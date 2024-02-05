@@ -1,0 +1,246 @@
+/* 形状相关 */
+
+/* 普通宽高 */
+@mixin size($width, $height, $radius: 0) {
+  width: $width + rpx;
+  height: $height + rpx;
+
+  @if $radius != 0 {
+    border-radius: $radius + rpx;
+  }
+}
+
+/* 正方形 */
+@mixin square($size, $radius: 0) {
+  width: $size + rpx;
+  height: $size + rpx;
+
+  @if $radius != 0 {
+    border-radius: $radius + rpx;
+  }
+}
+
+/* 圆形 */
+@mixin circle($size) {
+  width: $size + rpx;
+  height: $size + rpx;
+  border-radius: $size / 2 + rpx;
+}
+
+/* 线条 */
+@mixin line($width, $height) {
+  width: $width + rpx;
+  height: $height + rpx;
+  background: $color-line;
+}
+
+/* 文本相关 */
+
+/* 显示 n 行 */
+@mixin text-line($number) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if $number == 1 {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: $number;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+
+@mixin translate($left: -50%, $top: -50%) {
+  transform: translate($left, $top);
+}
+
+@mixin translateX($left: 0) {
+  transform: translateX($left);
+}
+
+@mixin translateY($top: 0) {
+  transform: translateY($top);
+}
+
+@mixin middle-center($position: absolute) {
+  position: $position;
+  left: 50%;
+  top: 50%;
+  @include translate(-50%, -50%);
+}
+
+@mixin middle-center-x($position: absolute) {
+  position: $position;
+  left: 50%;
+  @include translateX(-50%);
+}
+
+@mixin middle-center-y($position: absolute) {
+  position: $position;
+  top: 50%;
+  @include translateY(-50%);
+}
+
+@mixin multi-ellipsis($line-number: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-number;
+}
+
+@mixin item-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: rpx(30);
+
+  .item {
+    position: relative;
+    padding-left: rpx(30);
+    padding-right: rpx(30);
+    padding-bottom: rpx(30);
+    margin-bottom: rpx(30);
+    border-radius: rpx(8);
+    background-color: #fff;
+    width: rpx(375);
+    box-sizing: border-box;
+
+    .item-logo {
+      position: relative;
+      width: rpx(315);
+      height: rpx(315);
+      margin-bottom: rpx(30);
+
+      .sale-out-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .3);
+
+        .sale-out {
+          @include middle-center();
+          width: rpx(151);
+          height: rpx(151);
+        }
+      }
+    }
+
+    .brand-name {
+      font-size: rpx(28);
+      color: $color-black;
+      @include ellipsis();
+      line-height: rpx(42);
+      font-weight: bold;
+    }
+
+    .item-name {
+      padding-top: rpx(10);
+      font-size: rpx(26);
+      line-height: rpx(42);
+      color:$color-grey;
+      @include ellipsis();
+    }
+
+    .item-price {
+      padding-top: rpx(10);
+      line-height: rpx(42);
+      font-size: rpx(30);
+      color: $color-black;
+    }
+  }
+}
+
+@mixin filter-list {
+  display: flex;
+  align-items: center;
+  padding-left: rpx(30);
+  padding-right: rpx(30);
+  border-top: rpx(1) solid$color-grey;
+  border-bottom: rpx(1) solid$color-grey;
+
+  .filter {
+    position: relative;
+    flex: 1;
+    text-align: center;
+
+    .filter-status {
+      @include middle-center-y();
+      right: rpx(10);
+      width: rpx(18);
+      height: rpx(27);
+    }
+
+    .title {
+      display: inline-block;
+      height: rpx(70);
+      line-height: rpx(70);
+      font-size: rpx(28);
+      color: $color-black;
+      border-bottom: rpx(6) solid transparent;
+    }
+
+    &.active {
+      .title {
+        color:$color-primary;
+        border-bottom-color:$color-primary;
+      }
+    }
+  }
+}
+
+@mixin btn() {
+  height: rpx(88);
+  line-height: rpx(88);
+  font-size: rpx(36);
+  color: #fff;
+  // background-color: $color-black;
+  background: linear-gradient(135deg, #FF8800 0%, #FF5000 100%);
+  text-align: center;
+  letter-spacing: rpx(2);
+}
+
+@mixin btn-block() {
+  @include btn();
+  display: block;
+  width: 100%;
+  border-radius: rpx(8);
+}
+
+@mixin btn-round() {
+  @include btn();
+  border-radius: rpx(44);
+}
+
+@mixin btn-bottom-fixed() {
+  @include btn();
+  bottom: rpx(28);
+  border-radius: rpx(8);
+  width: rpx(690);
+
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    bottom: rpx(78);
+  }
+}
+
+@mixin background-image() {
+  background: center no-repeat;
+  background-size: contain;
+}
+
+@function rpx($px) {
+  @return $px + rpx;
+}
+

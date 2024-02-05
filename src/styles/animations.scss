@@ -1,0 +1,105 @@
+/*定义一个名字叫heartAnimate的动画，实现心形图的放大以及旋转效果*/
+@keyframes heartAnimate {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  } 
+  10%,
+  30% {
+    transform: scale(0.9) rotate(3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  50%,
+  70% {
+    transform: scale(1.1) rotate(3deg);
+  }
+}
+@-webkit-keyframes heartAnimate {
+  0%,
+  100% {
+    -webkit-transform: scale(1) rotate(0);
+  }
+  10%,
+  30% {
+    -webkit-transform: scale(0.9) rotate(3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale(1.1) rotate(-3deg);
+  }
+  50%,
+  70% {
+    -webkit-transform: scale(1.1) rotate(3deg);
+  }
+}
+@-moz-keyframes heartAnimate {
+  0%,
+  100% {
+    -moz-transform: scale(1) rotate(0);
+  }
+  10%,
+  30% {
+    -moz-transform: scale(0.9) rotate(3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -moz-transform: scale(1.1) rotate(-3deg);
+  }
+  50%,
+  70% {
+    -moz-transform: scale(1.1) rotate(3deg);
+  }
+}
+@-o-keyframes heartAnimate {
+  0%,
+  100% {
+    -o-transform: scale(1) rotate(0);
+  }
+  10%,
+  30% {
+    -o-transform: scale(0.9) rotate(3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -o-transform: scale(1.1) rotate(-3deg);
+  }
+  50%,
+  70% {
+    -o-transform: scale(1.1) rotate(3deg);
+  }
+}
+@-ms-keyframes heartAnimate {
+  0%,
+  100% {
+    -ms-transform: scale(1) rotate(0);
+  }
+  10%,
+  30% {
+    -ms-transform: scale(0.9) rotate(3deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    -ms-transform: scale(1.1) rotate(-3deg);
+  }
+  50%,
+  70% {
+    -ms-transform: scale(1.1) rotate(3deg);
+  }
+}
+
+.animated {
+  transition: all 0.3s;
+}

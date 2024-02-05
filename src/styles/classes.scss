@@ -1,0 +1,161 @@
+
+/* 常见样式 */
+
+/* flex 相关 */
+
+/* 横向 flex 布局 */
+.flex-h {
+  display: flex;
+  flex-direction: row;
+}
+/* 纵向 flex 布局 */
+.flex-v {
+  display: flex;
+  flex-direction: column;
+}
+/* flex: 1; */
+.flex-1 {
+  flex: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+/* flex 对齐方式 */
+.flex-c-c {
+  align-items: center;
+  justify-content: center;
+}
+.flex-c-a {
+  align-items: center;
+  justify-content: space-around;
+}
+.flex-c-b {
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-c-s {
+  align-items: center;
+  justify-content: flex-start;
+}
+.flex-c-e {
+  align-items: center;
+  justify-content: flex-end;
+}
+.flex-s-s {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* 颜色相关 */
+
+/* 颜色映射表 */
+$colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "white": $color-white,
+  "black": $color-black,
+  "grey": $color-grey,
+  "lightgrey": $color-lightgrey,
+);
+
+@each $key, $value in $colors {
+  .c-#{$key} {
+    color: $value;
+  }
+  .bg-#{$key} {
+    background: $value;
+  }
+}
+
+/* 字体相关 */
+
+/* 字体粗细 */
+$weights: 100, 200, 300, 400, 500, 600, 700, 800, 900, bold, bolder, lighter;
+@each $weight in $weights {
+  .fw-#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+
+/* 字体大小 */
+@for $size from 1 through 100 {
+  @if $size % 2 == 0 {
+    .fs-#{$size} {
+      font-size: $size + rpx;
+    }
+  }
+}
+
+// 行高
+@for $size from 1 through 100 {
+  @if $size % 4 == 0 {
+    .lh-#{$size} {
+      line-height: $size + rpx;
+    }
+  }
+}
+
+/* 圆角相关 */
+
+@for $size from 1 through 100 {
+  @if $size % 2 == 0 {
+    .br-#{$size} {
+      border-radius: $size + rpx;
+    }
+  }
+}
+
+/* 边距相关 */
+
+@for $distance from 0 through 100 {
+  @if $distance % 4 == 0 {
+    .m-#{$distance} {
+      margin: $distance + rpx;
+    }
+    .m-0-#{$distance} {
+      margin: 0 $distance + rpx;
+    }
+    .m-#{$distance}-0 {
+      margin: $distance + rpx 0;
+    }
+    .mt-#{$distance} {
+      margin-top: $distance + rpx;
+    }
+    .mb-#{$distance} {
+      margin-bottom: $distance + rpx;
+    }
+    .ml-#{$distance} {
+      margin-left: $distance + rpx;
+    }
+    .mr-#{$distance} {
+      margin-right: $distance + rpx;
+    }
+    .p-#{$distance} {
+      padding: $distance + rpx;
+    }
+    .p-0-#{$distance} {
+      padding: 0 $distance + rpx;
+    }
+    .p-#{$distance}-0 {
+      padding: $distance + rpx 0;
+    }
+    .pt-#{$distance} {
+      padding-top: $distance + rpx;
+    }
+    .pb-#{$distance} {
+      padding-bottom: $distance + rpx;
+    }
+    .pl-#{$distance} {
+      padding-left: $distance + rpx;
+    }
+    .pr-#{$distance} {
+      padding-right: $distance + rpx;
+    }
+  }
+}
+
+
+
+
+

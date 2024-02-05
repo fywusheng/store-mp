@@ -1,0 +1,1299 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "",
+        "mp-alipay": {
+          "transparentTitle": "always",
+          "allowsBounceVertical": "NO",
+          "titlePenetrate": "YES"
+        }
+      }
+    },
+    {
+      "path": "pages/index/category",
+      "style": {
+        "navigationBarTitleText": "分类"
+      }
+    },
+    {
+      "path": "pages/index/cart",
+      "style": {
+        "navigationBarTitleText": "购物车"
+      }
+    },
+    {
+      "path": "pages/index/mine",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "",
+        "mp-alipay": {
+          "transparentTitle": "always",
+          "allowsBounceVertical": "NO",
+          "titlePenetrate": "YES"
+        }
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/benefit",
+      "pages": [
+        {
+          "path": "bedehouse",
+          "style": { 
+            "navigationBarTitleText": "养老机构"
+          }
+        },
+        {
+          "path": "house-info",
+          "style": { 
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "bedehouse-info",
+          "style": { 
+            "navigationBarTitleText": "养老机构详情"
+          }
+        },
+        {
+          "path": "feature-service",
+          "style": { 
+            "navigationBarTitleText": "特色服务"
+          }
+        },
+        {
+          "path": "feature-item",
+          "style": { 
+            "navigationBarTitleText": "特色项目"
+          }
+        },
+        {
+          "path": "medicine-food",
+          "style": { 
+            "navigationBarTitleText": "药食同源"
+          }
+        },
+        {
+          "path": "elder-tools",
+          "style": { 
+            "navigationBarTitleText": "老年辅具"
+          }
+        },
+        {
+          "path": "trip-info",
+          "style": { 
+            "navigationBarTitleText": "出行旅游"
+          }
+        },
+        {
+          "path": "trip-info-russia",
+          "style": { 
+            "navigationBarTitleText": "出行旅游"
+          }
+        },
+        {
+          "path": "trip-list",
+          "style": { 
+            "navigationBarTitleText": "出行旅游"
+          }
+        },
+        {
+          "path": "confirm-order",
+          "style": { 
+            "navigationBarTitleText": "确认订单",
+            "mp-alipay": {
+              "titleBarColor": "#FFD3BC"
+            }
+          }
+        },
+        {
+          "path": "refund-apply",
+          "style": { 
+            "navigationBarTitleText": "申请退款"
+          }
+        },
+        {
+          "path": "order-info",
+          "style": { 
+            "navigationBarTitleText": "订单详情",
+            "mp-alipay": {
+              "titleBarColor": "#FFD3BC"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/common",
+      "pages": [
+        {
+          "path": "city-picker",
+          "style": {
+            "navigationBarTitleText": "选择城市"
+          }
+        },
+        {
+          "path": "webpage",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "face-recognition-result",
+          "style": {
+            "navigationBarTitleText": "认证结果"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/user-center",
+      "pages": [
+        {
+          "path": "cancel-user",
+          "style": {
+            "navigationBarTitleText": "注销账户"
+          }
+        },
+        {
+          "path": "result",
+          "style": {
+            "navigationBarTitleText": "注销结果"
+          }
+        },
+        {
+          "path": "login",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "user-center",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "profile",
+          "style": {
+            "navigationBarTitleText": "个人信息"
+          }
+        },
+        {
+          "path": "licence",
+          "style": {
+            "navigationBarTitleText": "我的证照"
+          }
+        },
+        {
+          "path": "register",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "set-password",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "register-result",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "real-name-authentication",
+          "style": {
+            "navigationBarTitleText": "身份信息"
+          }
+        },
+        {
+          "path": "real-name-result",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "real-name-result2",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "modify-phone-number",
+          "style": {
+            "navigationBarTitleText": "修改手机号码"
+          }
+        },
+        {
+          "path": "modify-by-phone-number",
+          "style": {
+            "navigationBarTitleText": "填写验证码"
+          }
+        },
+        {
+          "path": "set-phone-number",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "reset-password-by-phone-number",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "reset-password-by-id-card-number",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "reset-password",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "modify-password",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "feedback",
+          "style": {
+            "navigationBarTitleText": "意见反馈"
+          }
+        },
+        {
+          "path": "message-center",
+          "style": {
+            "navigationBarTitleText": "消息"
+          }
+        },
+        {
+          "path": "message-list",
+          "style": {
+            "navigationBarTitleText": "消息",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "message-detail",
+          "style": {
+            "navigationBarTitleText": "详情"
+          }
+        },
+        {
+          "path": "setting",
+          "style": {
+            "navigationBarTitleText": "设置"
+          }
+        },
+        {
+          "path": "about",
+          "style": {
+            "navigationBarTitleText": "关于"
+          }
+        },
+        {
+          "path": "password-change-password",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "phone-change-password",
+          "style": {
+            "navigationBarTitleText": "修改密码"
+          }
+        },
+        {
+          "path": "my-points",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "onReachBottomDistance": 30,
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "points-list",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "collect-center",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "收藏中心",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/certificate",
+      "pages": [
+        {
+          "path": "platform-authorization",
+          "style": {
+            "navigationBarTitleText": "电子老年证"
+          }
+        },
+        {
+          "path": "identity-info"
+        },
+        {
+          "path": "avatar-confirm",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "avatar-confirm-other",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "local-upload",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "other-local-upload",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "fillout-step-1",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "fillout-step-2",
+          "style": {
+            "navigationBarTitleText": "申请老年人证电子证照"
+          }
+        },
+        {
+          "path": "fillout-step-3",
+          "style": {
+            "navigationBarTitleText": "申请老年人证电子证照"
+          }
+        },
+        {
+          "path": "other-fillout-step-1",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "other-fillout-step-2",
+          "style": {
+            "navigationBarTitleText": "申请老年人证电子证照"
+          }
+        },
+        {
+          "path": "other-fillout-step-3",
+          "style": {
+            "navigationBarTitleText": "申请老年人证电子证照"
+          }
+        },
+        {
+          "path": "applicant-info",
+          "style": {
+            "navigationBarTitleText": "身份信息填写"
+          }
+        },
+        {
+          "path": "additional-info",
+          "style": {
+            "navigationBarTitleText": "申请老年人证电子证照"
+          }
+        },
+        {
+          "path": "submit-result",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "other-submit-result",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "electronic-card",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "scan-result",
+          "style": {
+            "navigationBarTitleText": "扫描结果"
+          }
+        },
+        {
+          "path": "upload-material",
+          "style": {
+            "navigationBarTitleText": "上传证明材料"
+          }
+        },
+        {
+          "path": "maintenance-and-support",
+          "style": {
+            "navigationBarTitleText": "赡养扶养关系"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/find",
+      "pages": [
+        {
+          "path": "search",
+          "style": {
+            "navigationBarTitleText": "搜索"
+          }
+        },
+        {
+          "path": "article-detail",
+          "style": {
+            "navigationBarTitleText": "详情"
+          }
+        },
+        {
+          "path": "search-detail",
+          "style": {
+            "navigationBarTitleText": "详情"
+          }
+        },
+        {
+          "path": "video-list",
+          "style": {
+            "navigationBarTitleText": "视频",
+            "onReachBottomDistance": 30,
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "video-swiper",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationStyle": "custom",
+            "mp-alipay": {
+              "transparentTitle": "always"
+            }
+          }
+        },
+        {
+          "path": "small-video-class",
+          "style": {
+            "navigationBarTitleText": "分类中心",
+            "enablePullDownRefresh": true,
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/support",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTextStyle": "black",
+            "backgroundTextStyle": "dark",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add",
+          "mp-alipay": {
+            "transparentTitle": "always",
+            "allowsBounceVertical": "NO",
+            "titlePenetrate": "YES"
+          }
+        },
+        {
+          "path": "bind-success",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/family-account",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "select-type",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add-success",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "family-list",
+          "style": {
+            "navigationBarTitleText": "管理亲情账号",
+            "enablePullDownRefresh": true
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/supermarket",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "discount-detail",
+          "style": {
+            "navigationBarTitleText": "优惠说明",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "market",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "other-market",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "全部门店",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "myOrder",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "我的订单",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "order-info",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "myInvoice",
+          "style": {
+            "navigationBarTitleText": "我的发票",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "company-list",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "抬头管理",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "company-update-or-add",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "apply-invoice",
+          "style": {
+            "navigationBarTitleText": "申请开票",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "apply-success",
+          "style": {
+            "navigationBarTitleText": "提交成功",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "invoice-info",
+          "style": {
+            "navigationBarTitleText": "发票详情",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/pay",
+      "pages": [
+        {
+          "path": "pay-detail",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "error-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "pay-result",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add-bank-card",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "bank-card-picker",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "confirm-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "select-card-type",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "auth-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "auth-forbid-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "select-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "open-online-pay",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "verificat-code",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add-bank-card-success",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "my-bank-card",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "set-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "my-bank-card-detail",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVertical": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "show-pay-code",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "app-pay",
+          "style": {
+            "navigationBarTitleText": "支付"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/life",
+      "pages": [
+        {
+          "path": "seeDoctor-old",
+          "style": {
+            "navigationBarTitleText": "看病"
+          }
+        },
+        {
+          "path": "seeDoctor",
+          "style": {
+            "navigationBarTitleText": "看病"
+          }
+        },
+        {
+          "path": "famouseDoctor",
+          "style": {
+            "navigationBarTitleText": "找名医"
+          }
+        },
+        {
+          "path": "seeDocotorDetail",
+          "style": {
+            "navigationBarTitleText": "详情"
+          }
+        },
+        {
+          "path": "bugshopping",
+          "style": {
+            "navigationBarTitleText": "买菜"
+          }
+        },
+        {
+          "path": "hotelDetail",
+          "style": {
+            "navigationBarTitleText": "酒店详情"
+          }
+        },
+        {
+          "path": "insurance",
+          "style": {
+            "navigationBarTitleText": "保险"
+          }
+        },
+        {
+          "path": "insuranceDetail",
+          "style": {
+            "navigationBarTitleText": "保险详情"
+          }
+        },
+        {
+          "path": "insurance-mofang",
+          "style": {
+            "navigationBarTitleText": "魔方百万医疗"
+          }
+        },
+        {
+          "path": "insurance-premium",
+          "style": {
+            "navigationBarTitleText": "赠险详情"
+          }
+        },
+        {
+          "path": "hotelHome",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "酒店"
+          }
+        },
+        {
+          "path": "hotelHomeDetail",
+          "style": {
+            "navigationBarTitleText": "酒店"
+          }
+        },
+        {
+          "path": "mapShow",
+          "style": {
+            "navigationBarTitleText": "地图"
+          }
+        },
+        {
+          "path": "submitOrder",
+          "style": {
+            "navigationBarTitleText": "提交订单"
+          }
+        },
+        {
+          "path": "applyRefund",
+          "style": {
+            "navigationBarTitleText": "申请退款"
+          }
+        },
+        {
+          "path": "orderInfo",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        {
+          "path": "orderList",
+          "style": {
+            "navigationBarTitleText": "订单"
+          }
+        },
+        {
+          "path": "insurance-order-info",
+          "style": {
+            "navigationBarTitleText": "保单详情"
+          }
+        },
+        {
+          "path": "consum-order-info",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        }
+      ]
+    },
+    {
+      "root": "sub-pages/index",
+      "pages": [
+        {
+          "path": "checkout/main",
+          "style": {
+            "navigationBarTitleText": "订单确认"
+          }
+        },
+        {
+          "path": "category/main",
+          "style": {
+            "navigationBarTitleText": "分类商品"
+          }
+        },
+        {
+          "path": "shop/main",
+          "style": {
+            "navigationBarTitleText": "门店"
+          }
+        },
+        {
+          "path": "store/main",
+          "style": {
+            "navigationBarTitleText": "店铺"
+          }
+        },
+        {
+          "path": "search/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "item/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "item-attribute/main",
+          "style": {
+            "navigationBarTitleText": "参数"
+          }
+        },
+        {
+          "path": "checkout-coupon/main",
+          "style": {
+            "navigationBarTitleText": "选择服务类型"
+          }
+        }
+      ]
+    },
+    {
+      "root": "sub-pages/me",
+      "pages": [
+        {
+          "path": "address-list/main",
+          "style": {
+            "navigationBarTitleText": "收货地址管理"
+          }
+        },
+        {
+          "path": "address-add/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "my-coupon/main",
+          "style": {
+            "navigationBarTitleText": "优惠券"
+          }
+        },
+        {
+          "path": "order-detail/main",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        },
+        {
+          "path": "refund-list/main",
+          "style": {
+            "navigationBarTitleText": "售后列表"
+          }
+        },
+        {
+          "path": "service-type/main",
+          "style": {
+            "navigationBarTitleText": "选择服务类型"
+          }
+        },
+        {
+          "path": "refund-apply/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "refund-detail/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "logistics/main",
+          "style": {
+            "navigationBarTitleText": "查看物流"
+          }
+        }
+      ]
+    },
+    {
+      "root": "sub-pages/point",
+      "pages": [
+        {
+          "path": "cart/main",
+          "style": {
+            "navigationBarTitleText": "积分购物车"
+          }
+        },
+        {
+          "path": "index/water-full",
+          "style": {
+            "navigationBarTitleText": "积分购物车"
+          }
+        },
+        {
+          "path": "index/index",
+          "style": {
+            "navigationBarTitleText": "积分兑换"
+          }
+        }
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "customize": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/category",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/index/cart",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/index/mine",
+        "iconPath": "",
+        "selectedIconPath": "",
+        "text": "我的"
+      }
+    ]
+  },
+  "easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	}
+}

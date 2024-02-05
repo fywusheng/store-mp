@@ -1,0 +1,116 @@
+
+.swiper-box{
+  position: fixed;
+  width: 100%;
+  height: 500rpx;
+  bottom: 180rpx;
+}
+.height-500{
+  height: 500rpx;
+}
+
+.uni-popup__wrapper-box{
+  border-radius: 10rpx;
+}
+
+/*每个页面公共css */
+.placeholder {
+  font-size: 40rpx;
+  color: #999999;
+}
+/* #ifdef MP-WEIXIN */
+wx-swiper .wx-swiper-dot {
+  width: 16rpx;
+  height: 16rpx;
+  background-color: rgba(255, 255, 255, 0.43);
+}
+wx-swiper .wx-swiper-dot-active {
+  background-color: rgba(255, 255, 255, 1);
+  width: 32rpx;
+  border-radius: 8rpx;
+}
+/* #endif */
+
+button {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+
+  &:after {
+    border-radius: 0;
+    border: none;
+  }
+}
+
+image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+view,
+input,
+image,
+textarea,
+scroll-view,
+button {
+  box-sizing: border-box;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.btn-block {
+  @include btn-block();
+}
+.btn-round {
+  @include btn-round();
+}
+.btn-bottom-fixed {
+  @include middle-center-x(fixed);
+  bottom: rpx(28);
+  @include btn();
+  width: rpx(690);
+  border-radius: rpx(8);
+  &.isIphoneHair {
+    bottom: rpx(64);
+  }
+}
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .btn-bottom-fixed {
+    bottom: rpx(78);
+  }
+}
+.empty {
+  padding-top: rpx(160);
+  font-size: rpx(26);
+  color: #25292D;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  .img {
+    display: block;
+    margin-bottom: rpx(30);
+    margin-left: auto;
+    margin-right: auto;
+    width: rpx(223);
+    height: rpx(257);
+  }
+  .btn-home {
+    @include btn-block();
+    margin-top: rpx(65);
+    margin-left: auto;
+    margin-right: auto;
+    width: rpx(320);
+  }
+}
+.line {
+  height: rpx(32);
+  background-color: #F5F5F5;
+}

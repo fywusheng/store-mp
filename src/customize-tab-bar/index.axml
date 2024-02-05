@@ -1,0 +1,9 @@
+
+<view class="bottom-tab">
+    <view class="{{item.center==true?'bottom-tab-item-center':'bottom-tab-item-sider'}}"
+      onTap="tap" data-value={{item}} data-index={{index}}  a:for="{{list}}" a:for-item="item" a:for-index="index" a:key="index">
+      <image a:if="{{tabIndex==item.id}}" class="first-img" src="{{item.imgOn}}"></image>
+      <image a:if="{{tabIndex!=item.id}}" class="first-img" src="{{item.imgOff}}"></image>
+      <text class="{{tabIndex==item.id?'text-position text-on':'text-position'}}">{{item.name}}</text>
+    </view>
+</view>
