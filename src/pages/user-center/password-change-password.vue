@@ -13,8 +13,7 @@
       />
       <image
         class="row__icon"
-        :src="oldPasswordIconURL"
-        mode="scaleToFill"
+        :src="oldPasswordIconURL" mode="scaleToFill"
         @click="showsOldPasswordText = !showsOldPasswordText"
       />
     </view>
@@ -28,8 +27,7 @@
       />
       <image
         class="row__icon"
-        :src="newPasswordIconURL"
-        mode="scaleToFill"
+        :src="newPasswordIconURL" mode="scaleToFill"
         @click="showsNewPasswordText = !showsNewPasswordText"
       />
     </view>
@@ -43,8 +41,7 @@
       />
       <image
         class="row__icon"
-        :src="confirmPasswordIconURL"
-        mode="scaleToFill"
+        :src="confirmPasswordIconURL" mode="scaleToFill"
         @click="showsConfirmPasswordText = !showsConfirmPasswordText"
       />
     </view>
@@ -55,10 +52,8 @@
 </template>
 
 <script>
-const Icon1 =
-  "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-show-password.png";
-const Icon2 =
-  "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-hide-password.png";
+let  Icon1  = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-show-password.png";
+let Icon2  = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-hide-password.png";
 import api from "@/apis/index.js";
 import sha256 from "crypto-js/sha256";
 export default {
@@ -131,10 +126,8 @@ export default {
             success: () => {
               this.$uni.showToast("修改成功");
               setTimeout(() => {
-                uni.redirectTo({
-                  url:
-                    "/pages/user-center/login?goUrl=" +
-                    "/pages/index/index?index=4",
+                 uni.redirectTo({
+                   url: '/pages/user-center/login?goUrl='+'/pages/index/index?index=4'
                 });
               }, 1500);
             },
@@ -148,9 +141,9 @@ export default {
 
 <style lang="scss" scoped>
 .modify-password {
-  background-color: #fff;
-  .title {
-    padding: 60rpx;
+  background-color:#fff;  
+  .title{
+    padding:60rpx;
   }
   .row {
     height: 120rpx;

@@ -1,128 +1,110 @@
 <template>
   <div class="checkout-coupon">
     <ul class="tab-list">
-      <li class="tab" @click="changeTab(0)" :class="{ active: status === 0 }">
-        可用({{ canuseList.length }})
-      </li>
-      <li class="tab" @click="changeTab(1)" :class="{ active: status === 1 }">
-        不可用({{ notuseList.length }})
-      </li>
+      <li class="tab" @click="changeTab(0)" :class="{active: status === 0}">
+        可用({{canuseList.length}})</li>
+      <li class="tab" @click="changeTab(1)" :class="{active: status === 1}">
+        不可用({{notuseList.length}})</li>
     </ul>
     <template v-if="status === 0">
       <ul class="coupon-list" v-if="canuseList && canuseList.length">
-        <li
-          class="coupon"
-          :key="index"
-          v-for="(coupon, index) in canuseList"
-          @click="toSelectCount(coupon)"
-        >
+        <li class="coupon" :key="index" v-for="(coupon,index) in canuseList"
+          @click='toSelectCount(coupon)'>
           <div class="money">
             <span class="unit"></span>
-            <span v-if="coupon.type == 0">{{ coupon.denominationStr }}元</span>
-            <span v-else-if="coupon.type == 1"
-              >{{ coupon.denominationStr }}折</span
-            >
-            <div v-if="coupon.checkThreshold == 0" class="desc">无门槛</div>
-            <div v-else-if="coupon.checkThreshold == 1" class="desc">
-              满{{ coupon.thresholdValue }}元可用
+            <span v-if="coupon.type==0">{{coupon.denominationStr}}元</span>
+            <span v-else-if="coupon.type==1">{{coupon.denominationStr}}折</span>
+            <div v-if="coupon.checkThreshold ==0" class="desc">无门槛</div>
+            <div v-else-if="coupon.checkThreshold ==1" class="desc">满{{coupon.thresholdValue}}元可用
             </div>
           </div>
-          <div class="coupon__name">{{ coupon.name }}</div>
-          <div class="coupon__rule">{{ coupon.description }}</div>
+          <div class="coupon__name">{{coupon.name}}</div>
+          <div class="coupon__rule">{{coupon.description}}</div>
           <div class="coupon__time">
-            {{ coupon.beginTime }} 至 {{ coupon.endTime }}
+            {{coupon.beginTime}} 至 {{coupon.endTime}}
           </div>
         </li>
       </ul>
       <div class="empty-wrap" v-if="status === 0 && !canuseList.length">
-        <img
-          class="icon-empty"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png"
-        />
+        <img class="icon-empty"
+          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png">
       </div>
     </template>
     <template v-if="status === 1">
       <ul class="coupon-list" v-if="notuseList && notuseList.length">
-        <li
-          class="coupon disabled"
-          :key="index"
-          v-for="(coupon, index) in notuseList"
-        >
+        <li class="coupon disabled" :key="index" v-for="(coupon,index) in notuseList">
           <div class="money">
             <span class="unit"></span>
-            <span v-if="coupon.type == 0">{{ coupon.denominationStr }}元</span>
-            <span v-else-if="coupon.type == 1"
-              >{{ coupon.denominationStr }}折</span
-            >
-            <div v-if="coupon.checkThreshold == 0" class="desc">无门槛</div>
-            <div v-else-if="coupon.checkThreshold == 1" class="desc">
-              满{{ coupon.thresholdValue }}元可用
-            </div>
+            <span v-if="coupon.type==0">{{coupon.denominationStr}}元</span>
+            <span v-else-if="coupon.type==1">{{coupon.denominationStr}}折</span>
+            <div class="desc">满{{coupon.thresholdValue}}元可用</div>
           </div>
-          <div class="coupon__name">{{ coupon.name }}</div>
-          <div class="coupon__rule">{{ coupon.description }}</div>
+          <div class="coupon__name">{{coupon.name}}</div>
+          <div class="coupon__rule">{{coupon.description}}</div>
           <div class="coupon__time">
-            {{ coupon.beginTime }} 至 {{ coupon.endTime }}
+            {{coupon.beginTime}} 至 {{coupon.endTime}}
           </div>
         </li>
       </ul>
       <div class="empty-wrap" v-if="status === 1 && !notuseList.length">
-        <img
-          class="icon-empty"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png"
-        />
+        <img class="icon-empty"
+          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png">
       </div>
     </template>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       couponList: [],
-      status: 0,
-    };
+      status: 0
+    }
   },
   computed: {
     notuseList() {
       if (Store.state.checkout.couponData) {
-        return Store.state.checkout.couponData.cannotUsedList || [];
+        return Store.state.checkout.couponData.cannotUsedList || []
       }
-      return [];
+      return []
     },
     canuseList() {
       if (Store.state.checkout.couponData) {
-        return Store.state.checkout.couponData.canUsedList || [];
+        return Store.state.checkout.couponData.canUsedList || []
       }
-      return [];
-    },
+      return []
+    }
   },
   components: {},
   methods: {
     toSelectCount(coupon) {
-      console.info("coupon:", coupon);
-      Store.commit(VUEX.CHECKOUT.SET_COUPON, coupon);
-      Store.dispatch("getCheckoutData", false);
-      uni.$emit("onSelectCoupon", coupon);
-      uni.navigateBack();
+      console.info('coupon:', coupon)
+      Store.commit(VUEX.CHECKOUT.SET_COUPON, coupon)
+      Store.dispatch('getCheckoutData', false)
+      uni.navigateBack()
     },
     changeTab(status) {
-      this.status = status;
+      this.status = status
     },
     selectCoupon(coupon) {
       if (coupon.status != 0) {
-        return false;
+        return false
       }
-      Store.commit(VUEX.CHECKOUT.SET_COUPON, coupon);
-      uni.navigateBack();
-    },
+      Store.commit(VUEX.CHECKOUT.SET_COUPON, coupon)
+      wx.navigateBack()
+    }
   },
-  mounted() {},
-};
+  mounted() {
+
+  }
+}
 </script>
 
 <style lang="scss">
+@import '~@/styles/base';
+
 .checkout-coupon {
   min-height: 100vh;
   background: #f5f5f5;
@@ -141,7 +123,7 @@ export default {
       border-bottom: rpx(2) solid transparent;
 
       &.active {
-        color: $color-black;
+        color: $black;
         font-weight: 500;
         border-bottom: rpx(8) solid #ff711a;
       }
@@ -158,8 +140,8 @@ export default {
       margin-bottom: rpx(30);
       width: rpx(693);
       min-height: rpx(232);
-      background: url(https://ggllstatic.hpgjzlinfo.com/static/images/order/icon-enabled.png)
-        left top no-repeat;
+      background: url(https://ggllstatic.hpgjzlinfo.com/static/images/order/icon-enabled.png) left
+        top no-repeat;
       background-size: 220rpx 232rpx;
       background-color: #ffffff;
 

@@ -79,9 +79,9 @@ export default {
   // 地图检索功能key值是高德注册的密匙北京编码110000 //关键字搜索
   // 文档地址https://lbs.amap.com/api/webservice/guide/api/newpoisearch
   searchMap: function (data = {}, args = {}) {
-    const url = encodeURI(`https://restapi.amap.com/v3/place/text?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&offset=${data.offset}&city=${data.city}&extensions=all&sortrule=weight&types=${data.types}&radius=${data.radius}`)
     request({
-      url: url,
+      url: `https://restapi.amap.com/v3/place/text?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&offset=${data.offset}&city=${data.city}&extensions=all&sortrule=weight&types=${data.types}&radius=${data.radius}`,
+      // url: `https://restapi.amap.com/v3/place/text?city=${data.city}&type=${data.type}&location=${data.location.longitude},${data.location.latitude}&keywords=${data.keyword}&offset=${data.offset}&key=ce15f988d6859314ea4748d9cc867e43`,
       method: 'get',
       common: true,
       ...args
@@ -91,10 +91,11 @@ export default {
   // 地图检索功能key值是高德注册的密匙北京编码110000 //周边搜索
   // https://lbs.amap.com/api/webservice/guide/api/search#around
   aroundMap: function (data = {}, args = {}) {
-    const url = `https://restapi.amap.com/v3/place/around?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&offset=${data.offset}&city=${data.city}&extensions=all&sortrule=distance&types=${encodeURIComponent(data.types)}&radius=${data.radius}&page=${data.page ? data.page : 1}`
+    const url = `https://restapi.amap.com/v3/place/around?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&offset=${data.offset}&city=${data.city}&extensions=all&sortrule=distance&types=${data.types}&radius=${data.radius}&page=${data.page ? data.page : 1}`
     console.log('接口data：', data)
     request({
-      url: encodeURI(url),
+      url: url,
+      // url: `https://restapi.amap.com/v3/place/around?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&city=${data.city}&types=${data.types}&radius=${data.radius}`,
       method: 'get',
       common: true,
       ...args
@@ -107,7 +108,8 @@ export default {
     const url = `https://restapi.amap.com/v3/place/polygon?key=ce15f988d6859314ea4748d9cc867e43&polygon=${data.polygon}&keywords=${data.keywords}&types=${data.types}`
     console.log('接口data：', data)
     request({
-      url: encodeURI(url),
+      url: url,
+      // url: `https://restapi.amap.com/v3/place/around?key=ce15f988d6859314ea4748d9cc867e43&location=${data.location}&keywords=${data.keywords}&city=${data.city}&types=${data.types}&radius=${data.radius}`,
       method: 'get',
       common: true,
       ...args

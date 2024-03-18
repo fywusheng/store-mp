@@ -1,26 +1,16 @@
 <template>
-  <div
-    class="top-layout"
-    v-if="showContainer"
-    :style="{ bottom: bottom + 'rpx' }"
-  >
-    <button class="menu" v-if="showShop" open-type="contact" @click="goBuy">
-      <img
-        class="icon icon-service"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/bug.png"
-      />
+  <div class="top-layout" v-show="showContainer" :style="{bottom: bottom + 'rpx'}">
+    <button class="menu" v-show="showShop" open-type="contact" @click="goBuy">
+      <img class="icon  icon-service"
+        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/bug.png">
     </button>
-    <div class="menu" v-if="showTop" @click="toTop">
-      <img
-        class="icon icon-top"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/top.png"
-      />
+    <div class="menu" v-show="showTop" @click="toTop">
+      <img class="icon icon-top"
+        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/top.png">
     </div>
-    <button class="menu" v-if="showContact" open-type="contact">
-      <img
-        class="icon icon-service"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/service.png"
-      />
+    <button class="menu" v-show="showContact" open-type="contact">
+      <img class="icon  icon-service"
+        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/service.png">
     </button>
   </div>
 </template>
@@ -29,50 +19,50 @@ export default {
   props: {
     bottom: {
       type: Number,
-      default: 60,
+      default: 60
     },
     showContact: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showTop: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showShop: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      showContainer: false,
-    };
+      showContainer: false
+    }
   },
   methods: {
     goBuy() {
-      uni.navigateTo({
-        url: "/sub-pages/index/index/main?index=4&sceneType=" + "积分兑换",
-      });
+      wx.navigateTo({
+        url: '/sub-pages/index/index/main?index=4&sceneType=' + '积分兑换'
+      })
     },
     show(flag) {
-      this.showContainer = flag;
+      this.showContainer = flag
     },
     toTop() {
-      this.$emit("toTop");
-      uni.pageScrollTo({
-        scrollTop: 0,
-      });
-    },
+      this.$emit('toTop')
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
   },
-  async mounted() {
-    console.log(this.showContact);
-  },
-};
+  async created() {
+
+  }
+}
 </script>
 
 <style lang="scss">
-@import "../../../styles/base";
+@import '@/styles/base';
 
 .top-layout {
   position: fixed;

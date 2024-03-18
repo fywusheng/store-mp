@@ -1,8 +1,8 @@
-Axios.defaults.baseURL = ENV.API
+Axios.defaults.baseURL = ENV.BASE_1
 
 Axios.interceptors.request.use(request => {
   const headers = {
-    'content-type': 'application/json',
+    'content-type': 'application/json;charset=utf-8',
     'accessToken': uni.getStorageSync('token'),
     'channel': uni.getSystemInfoSync().app
   }
@@ -15,7 +15,7 @@ Axios.interceptors.response.use(
   response => {
     // 处理请求结果
     if (response.data.code === '1001') {
-      Store.dispatch('logout')
+      Store.dispatch('login')
       uni.navigateTo({
         url: '/pages/user-center/login'
       })
@@ -33,7 +33,7 @@ Axios.interceptors.response.use(
 // 用Axios的适配器把通讯转换为底层的微信request api
 Axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
-    uni.request({
+    wx.request({
       url: config.baseURL + config.url,
       data: Object.assign({
         deviceNumber: uni.getStorageSync('deviceNumber'),
@@ -41,6 +41,7 @@ Axios.defaults.adapter = function (config) {
       }, (config.data ? JSON.parse(config.data) : config.params)),
       header: config.headers,
       method: config.method,
+	  responseType:'blob',
       success(res) {
         resolve({
           config,

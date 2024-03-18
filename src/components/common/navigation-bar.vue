@@ -1,27 +1,17 @@
 <template>
   <view :style="styles">
-    <view
-      class="status-bar"
-      :style="{ height: statusBarHeight + 'px', background: statusBackGround }"
-    ></view>
-    <view
-      class="navigation-bar"
-      :style="{
-        height: titleBarHeight + 'px',
-        'line-height': titleBarHeight + 'px',
-      }"
-    >
+    <view class="status-bar"
+      :style="{ height: statusBarHeight + 'px', background: statusBackGround }"></view>
+    <view class="navigation-bar"
+      :style="{'height':titleBarHeight+'px','line-height':titleBarHeight+'px'}">
       <view v-if="showsBackButton" class="back-button" @click="handleBackClick">
-        <image
-          class="back-button__image"
-          mode="scaleToFill"
-          :src="backButtonIconURL"
-        />
+        <image class="back-button__image" mode="scaleToFill" :src="backButtonIconURL" />
       </view>
-      <view v-if="title" class="container">
-        <text class="title" :style="{ color: titleColor }">{{ title }}</text>
-      </view>
-      <slot name="title1"> </slot>
+      <slot name="title1">
+        <!-- <view class="container">
+          <text class="title" :style="{ color: titleColor }">{{ title }}</text>
+        </view> -->
+      </slot>
     </view>
   </view>
 </template>
@@ -33,44 +23,44 @@ export default {
     alpha: {
       type: Number,
       default: 0,
-      validator: (value) => value >= 0 && value <= 1,
+      validator: (value) => value >= 0 && value <= 1
     },
     statusBackGround: {
       type: String,
-      default: "",
+      default: ''
     },
     // 背景色, 默认为 #ffffff
     backgroundColor: {
       type: String,
-      default: "#ffffff",
+      default: '#ffffff',
       validator: (value) => {
-        const isColor = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/.test(value);
-        const isGradient = value.indexOf("linear-gradient") !== -1;
-        return isColor || isGradient;
-      },
+        const isColor = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/.test(value)
+        const isGradient = value.indexOf('linear-gradient') !== -1
+        return isColor || isGradient
+      }
     },
     // 导航栏标题, 默认为空
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     // 标题颜色, 默认为黑色
     titleColor: {
       type: String,
-      default: "#000000",
-      validator: (value) => /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/.test(value),
+      default: '#000000',
+      validator: (value) => /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/.test(value)
     },
     // 是否显示返回 button, 默认为 false
     showsBackButton: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 返回 button 样式, 可选值为 black 或 white, 默认为 black
     backButtonStyle: {
       type: String,
-      default: "black",
-      validator: (value) => value === "black" || value === "white",
-    },
+      default: 'black',
+      validator: (value) => value === 'black' || value === 'white'
+    }
   },
   data() {
     return {
@@ -81,9 +71,9 @@ export default {
       titleBarHeight: 44,
       // #endif
       // #ifdef MP-ALIPAY
-      titleBarHeight: uni.getSystemInfoSync().titleBarHeight,
+      titleBarHeight: uni.getSystemInfoSync().titleBarHeight
       // #endif
-    };
+    }
   },
   computed: {
     // 动态计算导航栏样式
@@ -95,33 +85,33 @@ export default {
         top:0;
         left:0;
         z-index: 999;
-      `;
+      `
     },
     // 计算后的背景色
     background() {
-      if (this.backgroundColor.indexOf("linear-gradient") !== -1) {
-        return this.backgroundColor;
+      if (this.backgroundColor.indexOf('linear-gradient') !== -1) {
+        return this.backgroundColor
       } else if (this.backgroundColor.length === 4) {
-        const redValue = this.backgroundColor.slice(1, 2);
-        const red = parseInt(`0x${redValue}${redValue}`);
-        const greenValue = this.backgroundColor.slice(2, 3);
-        const green = parseInt(`0x${greenValue}${greenValue}`);
-        const blueValue = this.backgroundColor.slice(3, 4);
-        const blue = parseInt(`0x${blueValue}${blueValue}`);
-        return `rgba(${red}, ${green}, ${blue}, ${this.alpha})`;
+        const redValue = this.backgroundColor.slice(1, 2)
+        const red = parseInt(`0x${redValue}${redValue}`)
+        const greenValue = this.backgroundColor.slice(2, 3)
+        const green = parseInt(`0x${greenValue}${greenValue}`)
+        const blueValue = this.backgroundColor.slice(3, 4)
+        const blue = parseInt(`0x${blueValue}${blueValue}`)
+        return `rgba(${red}, ${green}, ${blue}, ${this.alpha})`
       } else {
-        const red = parseInt(`0x${this.backgroundColor.slice(1, 3)}`);
-        const green = parseInt(`0x${this.backgroundColor.slice(3, 5)}`);
-        const blue = parseInt(`0x${this.backgroundColor.slice(5, 7)}`);
-        return `rgba(${red}, ${green}, ${blue}, ${this.alpha})`;
+        const red = parseInt(`0x${this.backgroundColor.slice(1, 3)}`)
+        const green = parseInt(`0x${this.backgroundColor.slice(3, 5)}`)
+        const blue = parseInt(`0x${this.backgroundColor.slice(5, 7)}`)
+        return `rgba(${red}, ${green}, ${blue}, ${this.alpha})`
       }
     },
     // 返回 button 图标路径
     backButtonIconURL() {
-      return this.backButtonStyle === "white"
-        ? "https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-white.png"
-        : "https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-black.png";
-    },
+      return this.backButtonStyle === 'white'
+        ? 'https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-white.png'
+        : 'https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-black.png'
+    }
   },
   methods: {
     /**
@@ -130,13 +120,13 @@ export default {
     handleBackClick() {
       // 如果父组件定义了 handleNavigationBack 方法, 则调用该方法, 否则返回上一级页面, 主要用于拦截返回事件
       if (this.$parent.handleNavigationBack) {
-        this.$parent.handleNavigationBack();
+        this.$parent.handleNavigationBack()
       } else {
-        uni.navigateBack();
+        uni.navigateBack()
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

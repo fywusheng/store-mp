@@ -2,42 +2,31 @@
 <template>
   <view class="pages">
     <view class="list" v-if="list.length > 0">
-      <view class="item" v-for="(item, index) in list" :key="index">
+      <view class="item" v-for="(item,index) in list" :key="index">
         <view class="_center">
-          <view class="name">{{ item.storesName }}</view>
-          <view class="_time"
-            >营业时间: {{ item.startTime + "--" + item.endTime }}</view
-          >
-          <view class="address fs-36"
-            >{{ item.distance + "km" }}｜{{ item.storesAddress }}</view
-          >
+          <view class="name">{{item.storesName}}</view>
+          <view class="_time">营业时间: {{item.startTime +'--'+item.endTime}}</view>
+          <view class="address fs-36">{{item.distance +'km'}}｜{{item.storesAddress}}</view>
         </view>
         <view class="bottom">
           <view class="left" @click.stop="telClick(item)">
-            <image
-              class="icon-line"
+            <image class="icon-line"
               src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/tel.png"
-              mode="scaleToFill"
-            />
+              mode="scaleToFill" />
             <span class="lable">联系商家</span>
           </view>
           <view class="right" @click.stop="handleLineClick(item)">
-            <image
-              class="icon-line"
+            <image class="icon-line"
               src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/path.png"
-              mode="scaleToFill"
-            />
+              mode="scaleToFill" />
             <span class="lable">路线</span>
           </view>
         </view>
       </view>
     </view>
     <view class="status-box flex-v flex-c-s" v-if="showEmpty">
-      <image
-        class="icon-img"
-        src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/no-more.png"
-        mode="scaleToFill"
-      />
+      <image class="icon-img" src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/no-more.png"
+        mode="scaleToFill" />
       <view>暂无其他门店</view>
     </view>
   </view>
@@ -57,74 +46,71 @@ export default {
       pageSize: 15,
       // 城市信息
       city: {},
-      supplierId: "", // 店铺id
-      sceneid: "",
-    };
+      supplierId: '', // 店铺id
+      sceneid: ''
+    }
   },
   onLoad(e) {
     if (e.supplierId) {
-      this.supplierId = e.supplierId;
+      this.supplierId = e.supplierId
     }
     if (e.scene) {
-      this.sceneid = e.scene;
+      this.sceneid = e.scene
     }
-    console.log("----info:", e);
+    console.log('----info:', e)
     // this.city = uni.getStorageSync('supermarketCity')
-    this.getStoreList();
+    this.getStoreList()
   },
   // 下拉刷新
   onPullDownRefresh() {
-    this.pageNum = 1;
-    this.list = [];
-    this.getStoreList();
+    this.pageNum = 1
+    this.list = []
+    this.getStoreList()
   },
   // 上拉加载
   onReachBottom() {
-    console.log("上拉加载");
-    this.getStoreList();
+    console.log('上拉加载')
+    this.getStoreList()
   },
   methods: {
     telClick(item) {
       uni.makePhoneCall({
-        phoneNumber: item.storesPhone,
-      });
+        phoneNumber: item.storesPhone
+      })
     },
     // 门店列表
     async getStoreList() {
       // TODO 本地位置获取替换北京
-      const location = uni.getStorageSync("location");
-      const city = uni.getStorageSync("city");
+      const location = uni.getStorageSync('location')
+      const city = uni.getStorageSync('city')
       const params = {
         supplierId: this.supplierId,
         pageNum: this.pageNum,
         pageSize: this.pageSize,
         queryObject: {
           cusLt: location.longitude,
-          cusLat: location.latitude,
-        },
-      };
+          cusLat: location.latitude
+        }
+      }
       const params_c = {
         pageNum: this.pageNum,
         pageSize: this.pageSize,
         queryObject: {
           cusLt: location.longitude,
           cusLat: location.latitude,
-          storesAddress: city.name,
-        },
-      };
-      const result = await Axios.post(
-        "/srm/stores/listByPageNo",
-        this.sceneid ? params_c : params
-      );
-      if (result.code == "200") {
-        const data = result.data;
-        const list = data.list || [];
+          storesAddress: city.name
+        }
+      }
+      const result = await Axios.post('/srm/stores/listByPageNo', this.sceneid ? params_c : params)
+      if (result.code == '200') {
+        const data = result.data
+        const list = data.list || []
         if (list.length > 0) {
-          this.list = this.list.concat(list);
-          this.pageNum = this.pageNum + 1;
+          this.list = this.list.concat(list)
+          this.pageNum = this.pageNum + 1
         }
         if (this.list.length == 0) {
-          this.showEmpty = true;
+          this.showEmpty = true
         }
       }
     },
@@ -135,32 +121,30 @@ export default {
         longitude: item.longitude,
         latitude: item.latitude,
         distance: item.distance,
-        address: item.storesAddress,
-      };
+        address: item.storesAddress
+      }
       uni.navigateTo({
-        url:
-          "/pages/map/direction?data=" +
-          encodeURIComponent(JSON.stringify(data)),
+        url: '/pages/map/direction?data=' + encodeURIComponent(JSON.stringify(data)),
         success: (res) => {
-          res.eventChannel.emit("didOpenPageFinish", data);
-        },
-      });
-    },
+          res.eventChannel.emit('didOpenPageFinish', data)
+        }
+      })
+    }
   },
   filters: {
     setDistance(item) {
-      const s = Number(item) / 1000;
+      const s = Number(item) / 1000
       if (s.toFixed(3) < 1) {
-        return parseInt(s * 1000) + "m";
+        return parseInt(s * 1000) + 'm'
       } else {
-        return s.toFixed(1) + "km";
+        return s.toFixed(1) + 'km'
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
-<style lang="scss" scoped>
+<style  lang="scss" scoped>
 .pages {
   min-height: 100vh;
   background-color: #f2f2f2;

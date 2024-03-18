@@ -1,37 +1,14 @@
 <template>
   <!-- 212 改为166  首页底部栏高处理 alipay -->
-  <scroll-view
-    scroll-y="true"
-    :style="{
-      height:
-        height == -1
-          ? 'calc(100vh - 166rpx)'
-          : height == -2
-          ? 'calc(100vh - 114rpx)'
-          : height == '-3'
-          ? 'calc(100vh - 106rpx)'
-          : height == '-4'
-          ? '100%'
-          : height + 'rpx',
-    }"
-    @scrolltolower="loadMore"
-    :lower-threshold="lowerThreshold"
-    @touchstart="doTouchStart"
-    @touchend="doTouchEnd"
-    @touchmove="doTouchMove"
-  >
+  <scroll-view scroll-y='true'
+    :style="{height:height==-1?'calc(100vh - 166rpx)': height==-2?'calc(100vh - 114rpx)': height=='-3'?'calc(100vh - 106rpx)':height=='-4'?'100%':height+'rpx'}"
+    @scrolltolower='loadMore' :lower-threshold='lowerThreshold' @touchstart="doTouchStart"
+    @touchend="doTouchEnd" @touchmove="doTouchMove">
     <!-- 下拉提示 -->
-    <view
-      class="upDown"
-      :style="{ height: upDownTipsHeight + 'px', maxHeight: maxHeight + 'px' }"
-      :class="isHeightChange ? 'heightAnimation' : ''"
-    >
-      <text
-        class="arrow"
-        :class="upDownTipsHeight >= pullHeight ? 'upArrow' : ''"
-        v-if="!isAllowLoading && upDownTipsHeight > 20"
-        >↓</text
-      >
+    <view class="upDown" :style="{height: upDownTipsHeight+'px',maxHeight:maxHeight+'px'}"
+      :class="isHeightChange?'heightAnimation':''">
+      <text class="arrow" :class="upDownTipsHeight>=pullHeight?'upArrow':''"
+        v-if="!isAllowLoading&&upDownTipsHeight>20">↓</text>
       <view class="loading" v-if="isAllowLoading">
         <text class="list"></text>
         <text class="list"></text>
@@ -42,13 +19,13 @@
         <text class="list"></text>
         <text class="list"></text>
       </view>
-      <text class="tips">{{ upDownTips }}</text>
+      <text class="tips">{{upDownTips}}</text>
     </view>
     <!-- 内容 -->
     <slot></slot>
     <!-- 底部提示 -->
-    <view class="bottomTips" v-if="bottomTips">
-      <view class="loading" v-if="bottomTips == 'loading'">
+    <view class='bottomTips' v-if="bottomTips">
+      <view class="loading" v-if="bottomTips=='loading'">
         <text class="list"></text>
         <text class="list"></text>
         <text class="list"></text>
@@ -58,12 +35,9 @@
         <text class="list"></text>
         <text class="list"></text>
       </view>
-      <view>{{ judgeBottomTips(bottomTips) }}</view>
+      <view>{{bottomTips | judgeBottomTips}}</view>
     </view>
-    <view
-      :style="{ height: lowerThreshold + 1 + 'px' }"
-      v-if="newLoading"
-    ></view>
+    <view :style="{height:lowerThreshold+1+'px'}" v-if="newLoading"></view>
   </scroll-view>
 </template>
 
@@ -72,140 +46,139 @@ export default {
   data() {
     return {
       upDownTipsHeight: 0, // 下拉时提示框的高度
-      upDownTips: "", // 下拉时提示框的文字内容
+      upDownTips: '', // 下拉时提示框的文字内容
       startY: 0, // 第一次点击屏幕的Y坐标
       startX: 0, // 第一次点击屏幕的X坐标
       distanceY: 0, // 滑动的距离
       isAllowLoading: false, // 下拉释放时是否显示loading样式
       isHeightChange: false, // 下拉释放时提示框高度变化是否有动画
       isAllowPullDown: false, // 是否触发下拉刷新
-      isInterval: false, // 防止鼠标或者手指移动时多次执行逻辑判断
-    };
+      isInterval: false// 防止鼠标或者手指移动时多次执行逻辑判断
+    }
   },
   props: {
     height: {
       type: [String, Number],
-      default: 700,
+      default: 700
     },
     pullHeight: {
       type: Number,
-      default: 50,
+      default: 50
     },
     maxHeight: {
       type: Number,
-      default: 100,
+      default: 100
     },
     bottomTips: {
       type: [String, null],
-      default: "",
+      default: ''
     },
     lowerThreshold: {
       type: Number,
-      default: 20,
+      default: 20
     },
     isTab: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isAllowPull: {
       type: Boolean,
-      default: true,
+      default: true
     },
     newLoading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   created() {
     // 对传入的参数进行判断
-    this.pullHeight <= 20 ? (this.pullHeight = 40) : null;
-    this.maxHeight < 50 ? (this.maxHeight = 50) : null;
+    this.pullHeight <= 20 ? this.pullHeight = 40 : null
+    this.maxHeight < 50 ? this.maxHeight = 50 : null
   },
-  methods: {
+  filters: {
     // 判断底部提示文字
     judgeBottomTips(type) {
       switch (type) {
-        case "nomore":
-          return "暂无更多内容";
+        case 'nomore':
+          return '暂无更多内容'
         // break
-        case "loading":
-          return "正在努力加载中...";
+        case 'loading':
+          return '正在努力加载中...'
         // break
-        case "more":
-          return "上拉加载更多";
+        case 'more':
+          return '上拉加载更多'
         // break
         default:
-          break;
+          break
       }
-    },
+    }
+  },
+  methods: {
     // 鼠标点击
     doTouchStart(e) {
       if (!this.isAllowPull) {
-        return;
+        return
       }
-      this.isHeightChange = false;
-      this.isInterval = true;
-      this.startY = e.touches[0].clientY;
-      this.startX = e.touches[0].clientX;
+      this.isHeightChange = false
+      this.isInterval = true
+      this.startY = e.touches[0].clientY
+      this.startX = e.touches[0].clientX
     },
     // 鼠标移动
     doTouchMove(e) {
       if (!this.isAllowPull) {
-        return;
+        return
       }
       // 滑动的距离
-      this.distanceY = e.touches[0].clientY - this.startY;
+      this.distanceY = e.touches[0].clientY - this.startY
 
       // 只检测一次
       if (this.isInterval) {
-        this.isInterval = false;
+        this.isInterval = false
         // 这里判断横向滑动的距离差，主要是为了防止一个页面多个该组件时（横向tab切换）,出现的误操作
         if (Math.abs(this.startX - e.touches[0].clientX) > 10 && this.isTab) {
-          this.isAllowPullDown = false;
+          this.isAllowPullDown = false
         } else {
-          this.isAllowPullDown = true;
+          this.isAllowPullDown = true
         }
       }
 
       // 根据横向滑动的距离判断是否触发下拉
       if (!this.isAllowPullDown) {
-        return;
+        return
       }
 
       // 提示框的高度
-      this.upDownTipsHeight = this.distanceY;
+      this.upDownTipsHeight = this.distanceY
 
       // 根据提示框的高度提示不同的内容
       if (this.upDownTipsHeight <= 20) {
-        this.upDownTips = "";
-      } else if (
-        this.upDownTipsHeight > 20 &&
-        this.upDownTipsHeight < this.pullHeight
-      ) {
-        this.upDownTips = "下拉刷新";
+        this.upDownTips = ''
+      } else if (this.upDownTipsHeight > 20 && this.upDownTipsHeight < this.pullHeight) {
+        this.upDownTips = '下拉刷新'
       } else if (this.upDownTipsHeight >= this.pullHeight) {
-        this.upDownTips = "松开刷新";
+        this.upDownTips = '松开刷新'
       }
     },
     // 鼠标松开
     doTouchEnd(e) {
       if (!this.isAllowPull) {
-        return;
+        return
       }
       if (this.upDownTipsHeight >= this.pullHeight) {
-        this.isAllowLoading = true;
-        this.upDownTips = "刷新中...";
-        this.currentPage = 1;
-        this.loadingType = "more";
-        this.$emit("refresh", 1);
+        this.isAllowLoading = true
+        this.upDownTips = '刷新中...'
+        this.currentPage = 1
+        this.loadingType = 'more'
+        this.$emit('refresh', 1)
       } else {
-        this.distanceY = 0;
-        this.upDownTipsHeight = 0;
-        this.upDownTips = "";
+        this.distanceY = 0
+        this.upDownTipsHeight = 0
+        this.upDownTips = ''
       }
-      this.isInterval = true;
-      this.isAllowPullDown = false;
-      this.isHeightChange = true;
+      this.isInterval = true
+      this.isAllowPullDown = false
+      this.isHeightChange = true
       // console.log(e.changedTouches[0].clientY);
     },
     // 滚动时
@@ -215,20 +188,20 @@ export default {
     // 重置
     reSet() {
       if (!this.isAllowPull) {
-        return;
+        return
       }
-      this.isAllowLoading = false;
-      this.upDownTips = "";
-      this.upDownTipsHeight = 0;
-      this.distanceY = 0;
-      this.isInterval = true;
-      this.isAllowPullDown = false;
+      this.isAllowLoading = false
+      this.upDownTips = ''
+      this.upDownTipsHeight = 0
+      this.distanceY = 0
+      this.isInterval = true
+      this.isAllowPullDown = false
     },
     loadMore() {
-      this.$emit("loadMore");
-    },
-  },
-};
+      this.$emit('loadMore')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

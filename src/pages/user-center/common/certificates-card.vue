@@ -2,35 +2,21 @@
 <template>
   <view class="show-card">
     <view v-if="loading" class="need-known bg-white">
-      <image
-        v-if="cardStatus == 3 || cardStatus == 2 || crtfStas !== '2'"
-        class="need-img mb-8"
+      <image v-if="cardStatus == 3 || cardStatus == 2 || crtfStas !== '2'" class="need-img mb-8"
         src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-receive.png"
-        mode="scaleToFill"
-        @click="handleGetButtonClick"
-      />
-      <image
-        v-if="cardStatus == 4"
-        class="need-img mb-8"
+        mode="scaleToFill" @click="handleGetButtonClick" />
+      <image v-if="cardStatus == 4" class="need-img mb-8"
         src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-examine.png"
-        mode="scaleToFill"
-      />
-      <image
-        v-if="cardStatus == 5"
-        class="need-img mb-8"
+        mode="scaleToFill" />
+      <image v-if="cardStatus == 5" class="need-img mb-8"
         src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-re-examine.png"
-        mode="scaleToFill"
-        @click="handleGetButtonClick"
-      />
+        mode="scaleToFill" @click="handleGetButtonClick" />
     </view>
 
     <view class="electronic-certificate" v-if="cardStatus == 1">
       <view v-if="frontCard" class="front-side">
-        <image
-          class="national-emblem"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/icon-certificate-national-emblem.png"
-        />
+        <image class="national-emblem" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/icon-certificate-national-emblem.png" />
         <text class="title fs-36">中华人民共和国老年人证</text>
         <text class="name-title fs-20">
           姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
@@ -38,7 +24,7 @@
         <text class="name-value fs-20 c-black">{{ info.name }}</text>
         <text class="birthday-title fs-20">出生日期</text>
         <text class="birthday-value fs-20 c-black">
-          {{ dateFilter(info.birthday) }}
+          {{ info.birthday | dateFilter }}
         </text>
         <text class="id-card-number-title fs-20">公民身份号码</text>
         <text class="id-card-number-value fs-20 c-black">{{ info.psnNo }}</text>
@@ -72,23 +58,18 @@
         </text>
         <text class="date-title fs-20">发证日期</text>
         <text class="date-value fs-20 c-black">
-          {{ dateFilter(info.licenceDate) }}
+          {{ info.licenceDate | dateFilter }}
         </text>
         <text class="remark-value fs-20 c-black">{{ info.memo }}</text>
         <text class="copyright fs-16">
-          中国老龄协会老年人才信息中心&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制
+          中国老龄协会&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制
         </text>
         <canvas canvas-id="qr-code-card" id="qr-code-card" class="qr-code" />
       </view>
       <view class="buttom">
-        <image
-          class="icon-trans"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/trans_icon.png"
-        />
-        <text class="watch-btn" @click="watchBg">{{
-          frontCard ? "查看背面" : "查看正面"
-        }}</text>
+        <image class="icon-trans" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/trans_icon.png" />
+        <text class="watch-btn" @click="watchBg">{{frontCard?'查看背面':'查看正面'}}</text>
       </view>
     </view>
 
@@ -98,14 +79,13 @@
 </template>
 
 <script>
-import api from "@/apis/index.js";
-import dayjs from "dayjs";
-import generator from "uniapp-qrcode";
-import ScanOrInputPopup from "@/components/pop-entry-method/pop-entry-method.vue";
-import { showPoints } from "./showPoints.vue";
-import { desensitizeName, desensitizeInfo } from "@/utils/desensitization.js";
+import api from '@/apis/index.js'
+import dayjs from 'dayjs'
+import generator from '@/utils/code-generator.js'
+import ScanOrInputPopup from '@/components/pop-entry-method/pop-entry-method.vue'
+import { desensitizeName, desensitizeInfo } from '@/utils/desensitization.js'
 export default {
-  components: { ScanOrInputPopup, showPoints },
+  components: { ScanOrInputPopup },
   props: {},
   data() {
     return {
@@ -125,65 +105,74 @@ export default {
       // 用户信息
       info: {},
       // 提交审核时间
-      submitTime: "",
+      submitTime: '',
       // 电子证号
-      cardNumber: "",
+      cardNumber: '',
       // 头像
-      avatar: "",
+      avatar: ''
       // // 拨打电话弹窗选项
       // actionSheetItems: []
-    };
+    }
   },
-  mounted() {
-    this.initData();
-    console.log("---ces--", this.$refs.showPoints);
-  },
-  methods: {
+  filters: {
+    // 姓名过滤器, 用于姓名脱敏
+    nameFilter(value) {
+      return desensitizeName(value) || ''
+    },
+    // 身份证号过滤器, 用于身份证号脱敏
+    idCardNumberFilter(value) {
+      return desensitizeInfo(value) || ''
+    },
     // 日期过滤器, 用于格式化日期
     dateFilter(value) {
-      return dayjs(value).format("YYYY年MM月DD日");
-    },
+      return dayjs(value).format('YYYY年MM月DD日')
+    }
+  },
+  mounted() {
+    this.initData()
+    console.log('---ces--', this.$refs.showPoints)
+  },
+  methods: {
     watchBg() {
-      this.frontCard = !this.frontCard;
-      generator.qrcode("qr-code-card", this, this.cardNumber, 112, 112);
+      this.frontCard = !this.frontCard
+      generator.qrcode('qr-code-card', this, this.cardNumber, 112, 112)
     },
     success_flag(successFlag) {
       // this.$emit("success_flag",successFlag)
     },
     // 弹出500积分，并且标记已弹出
     handlePopShow(msgId) {
-      this.$refs.showPoints.showsCreditsPopup = true;
+      this.$refs.showPoints.showsCreditsPopup = true
       api.markPopover({
         data: {
           msgId: msgId,
-          channel: "miniprogram",
+          channel: 'miniprogram'
         },
         success: (res) => {
-          console.log("300积分弹出成功");
-        },
-      });
+          console.log('300积分弹出成功')
+        }
+      })
     },
     /**
      * 初始化事件
      */
     init() {
-      const userInfo = uni.getStorageSync("userInfo");
-      if (userInfo.crtfStas !== "2") {
-        this.$refs.popup.open("1");
-        return;
+      const userInfo = uni.getStorageSync('userInfo')
+      if (userInfo.crtfStas !== '2') {
+        this.$refs.popup.open('1')
+        return
       }
     },
     /**
      * 立即领取点击事件
      */
     handleGetButtonClick() {
-      this.$uni.showToast("系统升级中！");
-      // const userInfo = uni.getStorageSync("userInfo");
-      // if (userInfo.crtfStas !== "2") {
-      //   this.$refs.popup.open("1");
-      //   return;
-      // }
-      // this.$refs.popup.open(2);
+      const userInfo = uni.getStorageSync('userInfo')
+      if (userInfo.crtfStas !== '2') {
+        this.$refs.popup.open('1')
+        return
+      }
+      this.$refs.popup.open(2)
     },
     /**
      * 获取用户信息
@@ -192,51 +181,51 @@ export default {
       return new Promise((resolve, reject) => {
         api.getUserInfo({
           data: {
-            accessToken: uni.getStorageSync("token"),
+            accessToken: uni.getStorageSync('token')
           },
           success: (data) => {
-            resolve(data);
+            resolve(data)
           },
           fail: (error) => {
-            reject(error);
-          },
-        });
-      });
+            reject(error)
+          }
+        })
+      })
     },
     // 查询是否弹出过500积分
     findPopoverList() {
       api.findPopoverList({
         data: { userId: this.userInfo.uactId },
         success: (res) => {
-          let msgId = "";
+          let msgId = ''
           const popStatus = res.some((popItem, popIndex) => {
-            if (popItem.popoverType === "0") {
-              msgId = popItem.msgId;
-              return true;
+            if (popItem.popoverType === '0') {
+              msgId = popItem.msgId
+              return true
             }
-          });
+          })
           if (popStatus) {
             // 弹出弹框
             api.checkLogOutUser({
               data: { uactId: this.userInfo.uactId },
               success: (data) => {
-                console.log("===是否注销过---", data);
+                console.log('===是否注销过---', data)
                 if (!data) {
-                  this.handlePopShow(msgId);
+                  this.handlePopShow(msgId)
                 }
-              },
-            });
+              }
+            })
           }
-        },
-      });
+        }
+      })
     },
     async initData() {
-      this.loading = false;
-      const userinfor = await this.getUserInfo();
-      uni.setStorageSync("userInfo", userinfor);
-      this.userInfo = userinfor;
+      this.loading = false
+      const userinfor = await this.getUserInfo()
+      uni.setStorageSync('userInfo', userinfor)
+      this.userInfo = userinfor
       // 检查用户是否实名
-      this.crtfStas = this.userInfo.crtfStas;
+      this.crtfStas = this.userInfo.crtfStas
       // if (this.crtfStas !== '2') {
       //   // 未实名, 展示立即领取界面
       //   this.hasCard = false
@@ -246,104 +235,104 @@ export default {
       // 不存在 authCode, 请求获取卡状态接口
       api.getCertificateState({
         data: {
-          appId: "53928a083adb4a7dad2eecf05564873f",
-          idType: "身份证",
+          appId: '53928a083adb4a7dad2eecf05564873f',
+          idType: '身份证',
           userName: this.userInfo.psnName,
-          idNo: this.userInfo.idCard,
+          idNo: this.userInfo.idCard
         },
         success: (data) => {
-          const authState = data.authState;
-          this.cardStatus = data.authState;
+          const authState = data.authState
+          this.cardStatus = data.authState
           // 判断卡状态
-          if (authState === "1") {
+          if (authState === '1') {
             // 卡状态为 1, 无需操作
-            const aucode = data.authCode;
-            const getuserinfor = uni.getStorageSync("userInfo");
-            getuserinfor["authCode"] = aucode;
-            uni.setStorageSync("userInfo", getuserinfor);
+            const aucode = data.authCode
+            const getuserinfor = uni.getStorageSync('userInfo')
+            getuserinfor['authCode'] = aucode
+            uni.setStorageSync('userInfo', getuserinfor)
             // 获取用户证件信息
-            this.requestData();
+            this.requestData()
             // 查询是否弹出过500积分
-            this.findPopoverList();
-            this.loading = true;
-          } else if (authState === "2") {
+            this.findPopoverList()
+            this.loading = true
+          } else if (authState === '2') {
             // 卡状态为 2, 请求获取授权码接口
             api.getAuthorizationCode({
               data: {
                 uactId: this.userInfo.uactId,
                 psnName: this.userInfo.psnName,
                 certNo: this.userInfo.idCard,
-                appId: "53928a083adb4a7dad2eecf05564873f",
+                appId: '53928a083adb4a7dad2eecf05564873f'
               },
               success: (data) => {
                 // 授权成功
-                this.userInfo.authCode = data.authCode;
-                uni.setStorageSync("userInfo", this.userInfo);
+                this.userInfo.authCode = data.authCode
+                uni.setStorageSync('userInfo', this.userInfo)
                 // 获取用户证件信息
-                this.requestData();
+                this.requestData()
                 // 查询是否弹出过500积分
-                this.findPopoverList();
-                this.loading = true;
+                this.findPopoverList()
+                this.loading = true
               },
-              fail: (err) => {
-                console.log(err);
-                this.loading = true;
-              },
-            });
-          } else if (authState === "3") {
+              fail: err => {
+                console.log(err)
+                this.loading = true
+              }
+            })
+          } else if (authState === '3') {
             // 卡状态为 3, 显示立即领取
             // this.hasCard = false;
-            this.loading = true;
-          } else if (authState === "4") {
-            this.submitTime = data.submitTime;
-            this.loading = true;
+            this.loading = true
+          } else if (authState === '4') {
+            this.submitTime = data.submitTime
+            this.loading = true
             // // 卡状态为 4, 提示正在审核
             // this.$uni.showAlert({
             //   content: "您的申领请求正在审核中请耐心等待",
             // });
             // this.hasCard = false;
-          } else if (authState === "5") {
-            this.submitTime = data.submitTime;
-            this.loading = true;
+          } else if (authState === '5') {
+            this.submitTime = data.submitTime
+            this.loading = true
             // // 卡状态为 4, 提示正在审核
             // this.$uni.showAlert({
             //   content: "您的申领请求正在审核中请耐心等待",
             // });
             // this.hasCard = false;
           } else {
-            this.loading = true;
+            this.loading = true
           }
         },
-        fail: (err) => {
-          console.log(err);
-          this.loading = true;
-        },
-      });
+        fail: err => {
+          console.log(err)
+          this.loading = true
+        }
+      })
     },
     /**
      * 请求数据 获取证接口
      */
     requestData() {
-      const userInfo = uni.getStorageSync("userInfo");
+      const userInfo = uni.getStorageSync('userInfo')
       if (userInfo.authCode) {
         // 已领证已授权
         api.getCertificateInfo({
           data: {
-            chnlId: "53928a083adb4a7dad2eecf05564873f",
-            authCode: userInfo.authCode,
+            chnlId: '53928a083adb4a7dad2eecf05564873f',
+            authCode: userInfo.authCode
           },
           success: (data) => {
-            this.cardNumber = data.ecShowCardNo;
-            this.avatar = data.ecCertPhoto;
-            this.info = data.ecCertExtendDTO;
-            generator.qrcode("qr-code-card", this, this.cardNumber, 112, 112);
-          },
-        });
+            this.cardNumber = data.ecShowCardNo
+            this.avatar = data.ecCertPhoto
+            this.info = data.ecCertExtendDTO
+            generator.qrcode('qr-code-card', this, this.cardNumber, 112, 112)
+          }
+        })
       }
-    },
+    }
   },
-  onHide() {},
-};
+  onHide() { }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -419,7 +408,7 @@ export default {
       @include size(686, 434);
       position: relative;
       margin-bottom: 0;
-      background-image: url("https://ggllstatic.hpgjzlinfo.com/static/certificate/bg-certificate-card.png");
+      background-image: url('https://ggllstatic.hpgjzlinfo.com/static/certificate/bg-certificate-card.png');
       background-size: 100% 100%;
       .national-emblem {
         @include size(90, 94);

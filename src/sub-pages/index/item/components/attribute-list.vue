@@ -1,4 +1,6 @@
 <style lang="scss">
+@import '~@/styles/base';
+
 .modal-wrap {
   position: fixed;
   left: 0;
@@ -12,14 +14,14 @@
   position: relative;
   display: block;
   width: 100%;
-  border-bottom: 1px solid#f7f7f7;
+  border-bottom: 1px solid $gray;
 
   .modal-close {
     position: absolute;
     right: rpx(20);
     top: rpx(20);
     font-size: rpx(40);
-    color: $color-lightgrey;
+    color: $extra-black;
   }
 
   .modal-title {
@@ -31,7 +33,7 @@
       margin: rpx(10) auto 0;
       width: rpx(36);
       height: 1px;
-      background-color: $color-black;
+      background-color: $black;
     }
   }
 
@@ -47,7 +49,7 @@
       display: flex;
       align-items: center;
       position: relative;
-      color: $color-black;
+      color: $black;
       font-size: rpx(28);
       border-bottom: 1px solid #f1f1f1;
 
@@ -76,9 +78,9 @@
       </div>
       <div class="scroll-container" ref="scrollContainer">
         <ul class="attribute-list">
-          <li class="attribute" v-for="(data, index) in dataList" :key="index">
-            <div class="content">{{ data.name }}</div>
-            <div class="content">{{ data.value }}</div>
+          <li class="attribute" v-if="data.value" v-for="(data,index) in dataList" :key="index">
+            <div class="content">{{data.name}}</div>
+            <div class="content">{{data.value}}</div>
           </li>
         </ul>
       </div>
@@ -88,24 +90,25 @@
 
 <script>
 export default {
-  name: "ATTRIBUTE_LIST",
+  name: 'ATTRIBUTE_LIST',
   props: {
     dataList: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {
-      showPopup: false,
-    };
+      showPopup: false
+    }
   },
   components: {},
   methods: {
     show(flag) {
-      this.showPopup = flag;
-    },
+      this.showPopup = flag
+    }
   },
-  async mounted() {},
-};
+  async mounted() {
+  }
+}
 </script>

@@ -1,4 +1,6 @@
-<style lang="scss" scoped>
+<style lang="scss">
+@import '~@/styles/base';
+
 .modal-wrap {
   position: fixed;
   left: 0;
@@ -9,7 +11,7 @@
   z-index: 10000;
   .btn-submit {
     position: fixed;
-    bottom: 48rpx;
+    bottom: 24rpx;
     left: 78rpx;
     line-height: 54px;
     height: 108rpx;
@@ -28,20 +30,16 @@
 .select-sku {
   border-radius: 24rpx 24rpx 0rpx 0rpx;
   height: 900rpx;
-  overflow: hidden;
-  width: 750rpx;
-  height: 1000rpx;
-  background: #ffffff;
+  overflow: scroll;
   @include middle-center-x();
-  transition: all 1s linear;
   bottom: 0;
   width: 100%;
   background: #fff;
+  scroll-view {
+    // height: fit-content;
+  }
   &.isIphoneHair {
     padding-bottom: rpx(64);
-  }
-  .sku-content {
-    height: 530rpx;
   }
   .btn-close {
     position: absolute;
@@ -69,13 +67,13 @@
     .sell-price {
       padding-top: rpx(45);
       padding-left: rpx(171);
-      color: $color-black;
+      color: $black;
       font-size: rpx(30);
       ._span {
         font-size: 48rpx;
         font-family: PingFangSC-Medium, PingFang SC;
         font-weight: 500;
-        color: #ff5500;
+        color: #333333;
       }
     }
 
@@ -87,31 +85,9 @@
     }
   }
 
-  .number-wrap {
-    position: relative;
-    font-size: rpx(30);
-    color: $color-black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 26rpx 30rpx;
-    ._flex {
-      display: flex;
-      justify-content: space-between;
-      ._num {
-        line-height: 70rpx;
-      }
-    }
-    .c-number-wrap {
-      @include middle-center-y();
-      top: 30px;
-      right: rpx(30);
-      width: 208rpx;
-    }
-  }
-
   .sku-hd {
     // padding: rpx(0) rpx(30) rpx(50);
+    // border-top: 1rpx solid #e5e5e5;
 
     width: 90%;
     margin: 0 auto;
@@ -123,7 +99,7 @@
         padding-top: rpx(30);
         padding-bottom: rpx(20);
         font-size: rpx(36);
-        color: $color-black;
+        color: $black;
         font-family: PingFangSC-Regular, PingFang SC;
         font-weight: 400;
       }
@@ -145,7 +121,7 @@
           text-align: center;
           font-size: rpx(28);
           @include ellipsis();
-          color: $color-grey;
+          color: $light-black;
           // border: rpx(2) solid #cdcdcd;
 
           font-family: PingFangSC-Regular, PingFang SC;
@@ -157,11 +133,9 @@
           padding: 0 16rpx;
           background: #f5f5f5;
           &.active {
-            // background: #ff5500;
-            background: rgba(255, 85, 0, 0.07);
-            color: #ff5500;
-            border: 2rpx solid #ff5500;
-            // border-color: $color-black;
+            background: #ff5500;
+            color: #fff;
+            // border-color: $black;
 
             // &:after {
             //   content: '';
@@ -183,189 +157,128 @@
         }
       }
     }
-  }
 
-  .line {
-    width: 690rpx;
-    height: 1rpx;
-    margin: 0 auto;
-    background: #e5e5e5;
+    .number-wrap {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      padding-top: rpx(40);
+      padding-bottom: rpx(40);
+      font-size: rpx(30);
+      color: $black;
+      border-top: 1rpx solid #e5e5e5;
+      ._flex {
+        display: flex;
+        justify-content: space-between;
+        ._num {
+          line-height: 70rpx;
+        }
+      }
+      .c-number-wrap {
+        @include middle-center-y();
+        top: 30px;
+        right: rpx(30);
+        width: 208rpx;
+      }
+    }
   }
 }
 </style>
 
 <template>
   <div v-if="showPopup" class="modal-wrap">
-    <div class="select-sku" :class="{ isIphoneHair }">
-      <img
-        @click="show(false)"
-        class="btn-close"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/close.png?a=1"
-      />
+    <div class="select-sku" :class="{isIphoneHair}">
+      <img @click="show(false)" class="btn-close"
+        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/close.png">
 
       <div class="sku-header">
-        <div
-          class="sku-img"
-          :style="{ backgroundImage: 'url(' + imgUrl + ')' }"
-        ></div>
+        <div class="sku-img" :style="{backgroundImage: 'url('+imgUrl+')'}"></div>
         <div class="sell-price">
           <template v-if="selectSize.subClassAttrId">
-            <span>¥{{ selectSize.sellingPrice }}</span>
+            <span>¥{{selectSize.sellingPrice}}</span>
           </template>
         </div>
-        <div class="product-no">{{ selectSize.subClassAttrName }}</div>
+        <div class="product-no">{{selectSize.subClassAttrName}}</div>
       </div>
       <div class="line"></div>
 
-      <div class="number-wrap">
-        数量
-        <number
-          v-if="product.hzhH5"
-          :min="1"
-          :max="1"
-          @change="changeNum"
-        ></number>
-        <number
-          v-else
-          :min="1"
-          :max="selectSize.availableStock"
-          @change="changeNum"
-        ></number>
-      </div>
-      <div class="line"></div>
-
-      <scroll-view scroll-y class="sku-content">
+      <scroll-view scroll-y>
         <div class="sku-hd">
           <div class="info" v-if="colorList.length">
-            <div class="title">{{ product.firstClassName }}</div>
+            <div class="title">{{product.firstClassName}}</div>
             <div class="label-list">
-              <div
-                class="label"
-                :class="
-                  selectColor.firstClassAttrId == color.firstClassAttrId
-                    ? 'active'
-                    : ''
-                "
-                v-for="(color, index) in colorList"
-                :key="index"
-                @click="changeColor(color)"
-              >
-                {{ color.firstClassAttrName }}
+              <div class="label"
+                :class="selectColor.firstClassAttrId == color.firstClassAttrId ? 'active':''"
+                v-for="(color,index) in colorList" :key="index" @click="changeColor(color)">
+                {{color.firstClassAttrName}}
               </div>
             </div>
           </div>
           <div class="info" v-if="sizeList.length">
-            <div class="title">{{ product.subClassName }}</div>
+            <div class="title">{{product.subClassName}}</div>
             <div class="label-list">
               <!-- <div class="label round" :class="selectSize.subClassAttrId == size.subClassAttrId ? 'active':''"
                    v-for="(size,index) in sizeList" :key="index" @click="changeSize(size)">
                 {{size.subClassAttrName}}
               </div> -->
-              <block v-for="(size, index) in sizeList" :key="index">
-                <li
-                  v-if="size.availableStock == 0"
-                  class="condition disabled label"
-                >
-                  {{ size.subClassAttrName }}
+              <block v-for="(size,index) in sizeList" :key="index">
+                <li v-if="size.availableStock == 0" class="condition disabled label">
+                  {{size.subClassAttrName}}
                 </li>
-                <div
-                  v-else
-                  class="label round"
-                  :class="
-                    selectSize.subClassAttrId == size.subClassAttrId
-                      ? 'active'
-                      : ''
-                  "
-                  @click="changeSize(size)"
-                >
-                  {{ size.subClassAttrName }}
+                <div v-else class="label round"
+                  :class="selectSize.subClassAttrId == size.subClassAttrId ? 'active':''"
+                  @click="changeSize(size)">
+                  {{size.subClassAttrName}}
                 </div>
               </block>
             </div>
+          </div>
+          <div class="number-wrap">
+            <view>数量</view>
+            <view>
+              <number v-if="product.hzhH5" :min="1" :max="1" @change="changeNum"></number>
+              <number v-else :min="1" :max="selectSize.availableStock" @change="changeNum"></number>
+            </view>
           </div>
         </div>
-
-        <!-- <div class="sku-hd">
-          <div class="info" v-if="colorList.length">
-            <div class="title">{{ product.firstClassName }}</div>
-            <div class="label-list">
-              <div
-                class="label"
-                :class="
-                  selectColor.firstClassAttrId == color.firstClassAttrId
-                    ? 'active'
-                    : ''
-                "
-                v-for="(color, index) in colorList"
-                :key="index"
-                @click="changeColor(color)"
-              >
-                {{ color.firstClassAttrName }}
-              </div>
-            </div>
-          </div>
-          <div class="info" v-if="sizeList.length">
-            <div class="title">{{ product.subClassName }}</div>
-            <div class="label-list">
-              <block v-for="(size, index) in sizeList" :key="index">
-                <li
-                  v-if="size.availableStock == 0"
-                  class="condition disabled label"
-                >
-                  {{ size.subClassAttrName }}
-                </li>
-                <div
-                  v-else
-                  class="label round"
-                  :class="
-                    selectSize.subClassAttrId == size.subClassAttrId
-                      ? 'active'
-                      : ''
-                  "
-                  @click="changeSize(size)"
-                >
-                  {{ size.subClassAttrName }}
-                </div>
-              </block>
-            </div>
-          </div>
-        </div> -->
       </scroll-view>
+
     </div>
     <div class="btn-submit" @click="submit">确定</div>
   </div>
 </template>
 
 <script>
-import Number from "./number";
+import Number from './number'
 
 export default {
-  name: "SELECT_SKU",
+  name: 'SELECT_SKU',
   props: {
     product: {
       type: Object,
-      default: () => {},
+      default: () => { }
     },
     productImgList: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     colorList: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     sizeList: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     selectColor: {
       type: Object,
-      default: () => {},
+      default: () => { }
     },
     selectSize: {
       type: Object,
-      default: () => {},
-    },
+      default: () => { }
+    }
   },
   data() {
     return {
@@ -373,104 +286,102 @@ export default {
       operateType: 1,
       showPopup: false,
       number: 1,
-      imgUrl: "",
-    };
+      imgUrl: ''
+    }
   },
 
   watch: {
     selectColor() {
       if (this.selectColor.imgUrlList && this.selectColor.imgUrlList.length) {
-        this.imgUrl = this.selectColor.imgUrlList[0];
+        this.imgUrl = this.selectColor.imgUrlList[0]
       } else {
-        this.imgUrl = this.product.mainImgUrl;
+        this.imgUrl = this.product.mainImgUrl
       }
-    },
+    }
   },
   components: {
-    Number,
+    Number
   },
   methods: {
     changeNum(number) {
-      console.log("==dianji--", this.selectSize.availableStock);
-      console.log("sku id: ", this.product);
-      this.number = number;
+      console.log('==dianji--', this.selectSize.availableStock)
+      console.log('sku id: ', this.product)
+      this.number = number
     },
     async submit() {
       const params = {
         productIds: [this.product.id],
         sceneType: this.sceneType,
-        clickType: this.operateType === 1 ? 0 : 1,
-      };
+        clickType: this.operateType === 1 ? 0 : 1
+      }
 
-      const result = await Axios.post("/cart/checkAdd", params);
+      const result = await Axios.post('/cart/checkAdd', JSON.stringify(params))
       if (result.code != 200) {
-        this.$uni.showToast(result.msg || result.data);
-        return;
+        this.$uni.showToast(result.msg || result.data)
+        return
       }
 
       switch (this.operateType) {
         case 1:
-          this.addCart();
-          break;
+          this.addCart()
+          break
         case 2:
-          this.checkout();
-          break;
+          this.checkout()
+          break
       }
     },
     async addCart() {
       if (!this.selectSize.availableStock) {
-        this.$uni.showToast("库存不足");
-        return false;
+        this.$uni.showToast('库存不足')
+        return false
       }
-      uni.showLoading("正在添加...");
-      const result = await Axios.post("/cart/add", {
+      uni.showLoading('正在添加...')
+      const result = await Axios.post('/cart/add', {
         num: this.number,
         skuId: this.selectSize.id,
-        sceneType: this.sceneType,
-      });
-      uni.hideLoading();
+        sceneType: this.sceneType
+      })
+      uni.hideLoading()
       if (result.code == 200) {
         // App.updateCartNum()
-        this.$uni.showToast("添加成功");
-        this.show(false);
-        this.$parent.updateCart();
-        this.show(false);
+        this.$uni.showToast('添加成功')
+        this.show(false)
+        this.$parent.updateCart()
+        this.show(false)
       } else {
-        this.$uni.showToast(result.msg || "添加失败");
+        this.$uni.showToast(result.msg || '添加失败')
       }
     },
     checkout() {
-      if (
-        !this.selectSize.availableStock ||
-        this.selectSize.availableStock < this.number
-      ) {
-        this.$uni.showToast("库存不足");
-        return false;
+      if (!this.selectSize.availableStock || this.selectSize.availableStock < this.number) {
+        this.$uni.showToast('库存不足')
+        return false
       }
       // this.show(false)
       uni.navigateTo({
-        url: `/sub-pages/index/checkout/main?type=2&num=${this.number}&skuId=${this.selectSize.id}&sceneType=${this.sceneType}`,
-      });
+        url: `/sub-pages/index/checkout/main?type=2&num=${this.number}&skuId=${this.selectSize.id}&sceneType=${this.sceneType}`
+      })
     },
     changeColor(color) {
-      this.$parent.changeSku("selectColor", color);
+      this.$parent.changeSku('selectColor', color)
     },
     changeSize(size) {
-      this.$parent.changeSku("selectSize", size);
+      this.$parent.changeSku('selectSize', size)
     },
     show(flag, type, sceneType) {
-      this.showPopup = flag;
-      this.sceneType = sceneType;
+      this.showPopup = flag
+      this.sceneType = sceneType
       if (flag) {
-        this.operateType = type;
+        this.operateType = type
         if (this.selectColor.imgUrlList && this.selectColor.imgUrlList.length) {
-          this.imgUrl = this.selectColor.imgUrlList[0];
+          this.imgUrl = this.selectColor.imgUrlList[0]
         } else {
-          this.imgUrl = this.product.mainImgUrl;
+          this.imgUrl = this.product.mainImgUrl
         }
       }
-    },
+    }
   },
-  async mounted() {},
-};
+  async mounted() {
+  }
+}
 </script>

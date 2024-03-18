@@ -1,15 +1,9 @@
 <template>
   <view class="message-center">
     <view class="list" v-if="info.systemNotice">
-      <view
-        class="item flex-h flex-c-b p-0-32 bg-white"
-        @click="handleItemClick(0)"
-      >
-        <image
-          class="icon"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-announcement.png"
-        />
+      <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(0)">
+        <image class="icon" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-announcement.png" />
         <view class="info flex-v m-0-32 flex-1">
           <text class="fs-36 c-black">
             {{ info.systemNotice.msgTypeName }}
@@ -21,21 +15,12 @@
         <text v-if="info.systemNotice.nreadCnt" class="unread fs-32 c-white">
           {{ info.systemNotice.nreadCnt }}
         </text>
-        <image
-          class="accessory"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
-        />
+        <image class="accessory" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
-      <view
-        class="item flex-h flex-c-b p-0-32 bg-white"
-        @click="handleItemClick(1)"
-      >
-        <image
-          class="icon"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-service-message.png"
-        />
+      <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(1)">
+        <image class="icon" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-service-message.png" />
         <view class="info flex-v m-0-32 flex-1">
           <text class="fs-36 c-black">
             {{ info.serviceMessage.msgTypeName }}
@@ -47,21 +32,12 @@
         <text v-if="info.serviceMessage.nreadCnt" class="unread fs-32 c-white">
           {{ info.serviceMessage.nreadCnt }}
         </text>
-        <image
-          class="accessory"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
-        />
+        <image class="accessory" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
-      <view
-        class="item flex-h flex-c-b p-0-32 bg-white"
-        @click="handleItemClick(2)"
-      >
-        <image
-          class="icon"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-system-notice.png"
-        />
+      <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(2)">
+        <image class="icon" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-system-notice.png" />
         <view class="info flex-v m-0-32 flex-1">
           <text class="fs-36 c-black">
             {{ info.systemMessage.msgTypeName }}
@@ -73,36 +49,29 @@
         <text v-if="info.systemMessage.nreadCnt" class="unread fs-32 c-white">
           {{ info.systemMessage.nreadCnt }}
         </text>
-        <image
-          class="accessory"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
-        />
+        <image class="accessory" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
     </view>
   </view>
 </template>
 
 <script>
-import api from "@/apis/index.js";
+import api from '@/apis/index.js'
 export default {
   data() {
     return {
       // 最新消息
-      info: {},
-    };
+      info: {}
+    }
   },
   onShow() {
-    this.requestData();
-    uni.$on("didMessageStateChanged", this.requestData);
-  },
-  // onLoad() {
-  //   this.requestData()
+    this.requestData()
 
-  //   uni.$on('didMessageStateChanged', this.requestData)
-  // },
+    uni.$on('didMessageStateChanged', this.requestData)
+  },
   onUnload() {
-    uni.$off("didMessageStateChanged");
+    uni.$off('didMessageStateChanged')
   },
   methods: {
     handleItemClick(index) {
@@ -112,18 +81,18 @@ export default {
       const titles = [
         this.info.systemNotice.msgTypeName,
         this.info.serviceMessage.msgTypeName,
-        this.info.systemMessage.msgTypeName,
-      ];
-      const types = [3, 1, 2];
+        this.info.systemMessage.msgTypeName
+      ]
+      const types = [3, 1, 2]
       uni.navigateTo({
-        url: "/pages/user-center/message-list",
+        url: '/pages/user-center/message-list',
         success: (res) => {
-          res.eventChannel.emit("didOpenPageFinish", {
+          res.eventChannel.emit('didOpenPageFinish', {
             title: titles[index],
-            type: types[index],
-          });
-        },
-      });
+            type: types[index]
+          })
+        }
+      })
     },
     /**
      * 请求数据
@@ -131,12 +100,12 @@ export default {
     requestData() {
       api.getMessageInfo({
         success: (data) => {
-          this.info = data || {};
-        },
-      });
-    },
-  },
-};
+          this.info = data || {}
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

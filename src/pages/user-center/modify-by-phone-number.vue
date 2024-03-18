@@ -5,7 +5,7 @@
     </view>
     <view class="tips">
       <text class="fs-32 c-black">
-        验证码将发送至手机：{{ phoneNumberFilter(params.phoneNumber) }}
+        验证码将发送至手机：{{ params.phoneNumber | phoneNumberFilter }}
       </text>
     </view>
     <view class="row flex-h flex-c-s m-0-60">
@@ -46,20 +46,22 @@ export default {
         phoneNumber: "",
         smsCode: "",
       },
-      // 2为修改手机号，4为修改密码
-      type: "2",
+      //2为修改手机号，4为修改密码
+      type:'2'
     };
   },
-  onLoad(options) {
-    this.type = options.type;
-    const userInfo = uni.getStorageSync("userInfo");
-    this.params.phoneNumber = userInfo.tel;
-  },
-  methods: {
+  filters: {
     // 手机号过滤器, 用于手机号脱敏
     phoneNumberFilter(value) {
       return desensitizeInfo(value);
     },
+  },
+  onLoad(options) {
+    this.type = options.type
+    const userInfo = uni.getStorageSync("userInfo");
+    this.params.phoneNumber = userInfo.tel;
+  },
+  methods: {
     /**
      * 发送验证码点击事件
      */
@@ -104,17 +106,18 @@ export default {
           sceneFlag: this.type,
         },
         success: () => {
-          if (this.type === "2") {
+          if(this.type === '2'){
             // 修改手机号
             uni.navigateTo({
               url: `/pages/user-center/set-phone-number?phoneNumber=${this.params.phoneNumber}&type=${this.type}`,
             });
-          } else if (this.type === "4") {
+          }else if(this.type === '4'){
             // 修改密码
             uni.navigateTo({
               url: `/pages/user-center/reset-password?phoneNumber=${this.params.phoneNumber}`,
             });
           }
+        
         },
       });
     },
@@ -124,7 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 .modify-by-phone-number {
-  background-color: #fff;
+  background-color:#fff;
   .title {
     padding: 60rpx 60rpx 0;
   }

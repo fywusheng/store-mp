@@ -1,5 +1,6 @@
 <template>
   <view class="modify-password">
+    
     <view class="row flex-h flex-c-s m-0-60">
       <text class="fs-40 c-black">新密码：</text>
       <input
@@ -10,8 +11,7 @@
       />
       <image
         class="row__icon"
-        :src="newPasswordIconURL"
-        mode="scaleToFill"
+        :src="newPasswordIconURL" mode="scaleToFill"
         @click="showsNewPasswordText = !showsNewPasswordText"
       />
     </view>
@@ -25,8 +25,7 @@
       />
       <image
         class="row__icon"
-        :src="confirmPasswordIconURL"
-        mode="scaleToFill"
+        :src="confirmPasswordIconURL" mode="scaleToFill"
         @click="showsConfirmPasswordText = !showsConfirmPasswordText"
       />
     </view>
@@ -37,10 +36,8 @@
 </template>
 
 <script>
-const Icon1 =
-  "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-show-password.png";
-const Icon2 =
-  "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-hide-password.png";
+let Icon1  = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-show-password.png";
+let Icon2 = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-hide-password.png";
 import api from "@/apis/index.js";
 import sha256 from "crypto-js/sha256";
 export default {

@@ -308,56 +308,9 @@ export function getCanvasImage(canvasId, imagePath, imageW, imageH, getImgsucces
     }, which)
   })
 }
-
-/**
- * 判断是否高分辨率
- */
-export function isIphoneHair (deviceInfo){
-  const isIphoneX = /iPhone X/i.test(deviceInfo.model);
-  // iPhone X or iPhone XS
-  const isIphoneXS =
-    deviceInfo.platform === "ios" &&
-    deviceInfo.pixelRatio === 3 &&
-    deviceInfo.screenWidth === 375 &&
-    deviceInfo.screenHeight === 812;
-  // iPhone XS Max
-  const isIphoneXSMAX =
-    deviceInfo.platform === "ios" &&
-    deviceInfo.pixelRatio === 3 &&
-    deviceInfo.screenWidth === 414 &&
-    deviceInfo.screenHeight === 896;
-  // iPhone XR
-  const isIphoneXR =
-    deviceInfo.platform === "ios" &&
-    deviceInfo.pixelRatio === 2 &&
-    deviceInfo.screenWidth === 414 &&
-    deviceInfo.screenHeight === 896;
-    
-  return isIphoneX || isIphoneXS || isIphoneXSMAX || isIphoneXR;
-}
-/**
- * 生成随机唯一设备UUID
- * @returns uuid
- */
-export function uuid() {
-	var s = [];
-	var hexDigits = "0123456789abcdef";
-	for (var i = 0; i < 36; i++) {
-		s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
-	}
-	s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
-	s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
-	s[8] = s[13] = s[18] = s[23] = "-";
-
-	var uuid = s.join("");
-	return uuid;
-}
-
-
 export default {
   getLessLimitSizeImage,
   imageSizeIsLessLimitSize,
-  getCanvasImage,
-  isIphoneHair
+  getCanvasImage
 }
 

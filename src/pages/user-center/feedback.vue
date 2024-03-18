@@ -3,49 +3,31 @@
     <view class="section bg-white">
       <section-header title="反馈问题详情"></section-header>
       <view class="line m-0-32"></view>
-      <textarea
-        v-model="content"
-        class="textarea fs-40 c-black m-32"
-        placeholder="请输入您需要反馈的内容(500字以内)"
-        placeholder-class="placeholder"
-        maxlength="500"
-      ></textarea>
+      <textarea v-model="content" class="textarea fs-40 c-black m-32"
+        placeholder="请输入您需要反馈的内容(500字以内)" placeholder-class="placeholder"
+        maxlength="500"></textarea>
     </view>
     <view class="section bg-white">
       <section-header title="上传图片"></section-header>
       <view class="line m-0-32"></view>
       <view class="images flex-h flex-wrap m-32">
-        <view
-          class="item mr-32 mb-32"
-          v-for="(item, index) in images"
-          :key="index"
-        >
+        <view class="item mr-32 mb-32" v-for="(item, index) in images" :key="index">
           <image class="image" :src="item" mode="scaleToFill" />
-          <image
-            class="delete"
-            mode="scaleToFill"
+          <image class="delete" mode="scaleToFill"
             src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-input-clear.png"
-            @click="handleDeletePhotoClick(index)"
-          />
+            @click="handleDeletePhotoClick(index)" />
         </view>
         <view class="item mr-32 mb-32" v-if="images.length < 9">
-          <image
-            class="image"
-            mode="scaleToFill"
+          <image class="image" mode="scaleToFill"
             src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-add-photo.png"
-            @click="handlePhotoPickerClick"
-          />
+            @click="handlePhotoPickerClick" />
         </view>
       </view>
     </view>
     <view class="section bg-white">
       <section-header title="联系方式">
-        <input
-          v-model="contact"
-          class="input fs-40 c-black"
-          placeholder="请输入"
-          placeholder-class="placeholder"
-        />
+        <input v-model="contact" class="input fs-40 c-black" placeholder="请输入"
+          placeholder-class="placeholder" />
       </section-header>
     </view>
     <view class="tips fs-36 c-lightgrey">
@@ -58,25 +40,25 @@
 </template>
 
 <script>
-import SectionHeader from "../../components/common/section-header.vue";
-import api from "@/apis/index.js";
+import SectionHeader from '../../components/common/section-header.vue'
+import api from '@/apis/index.js'
 export default {
   components: { SectionHeader },
   data() {
     return {
       // 输入的文字
-      content: "",
+      content: '',
       // 选中的图片
       images: [],
       // 上传后的文件地址
-      imageURLs: "",
+      imageURLs: '',
       // 联系方式
-      contact: "",
-    };
+      contact: ''
+    }
   },
   onLoad() {
-    const userInfo = uni.getStorageSync("userInfo");
-    if (userInfo) this.contact = userInfo.tel;
+    const userInfo = uni.getStorageSync('userInfo')
+    if (userInfo) this.contact = userInfo.tel
   },
   methods: {
     /**
@@ -89,28 +71,28 @@ export default {
           res.tempFilePaths.forEach((item) => {
             uni.getFileSystemManager().readFile({
               filePath: item,
-              encoding: "base64",
+              encoding: 'base64',
               success: (res) => {
-                const data = "data:image/jpeg;base64," + res.data;
-                this.images.push(data);
-              },
-            });
-          });
-        },
-      });
+                const data = 'data:image/jpeg;base64,' + res.data
+                this.images.push(data)
+              }
+            })
+          })
+        }
+      })
     },
     /**
      * 删除照片点击事件
      */
     handleDeletePhotoClick(index) {
-      this.images.splice(index, 1);
+      this.images.splice(index, 1)
     },
     /**
      * 提交点击事件
      */
     handleSubmitClick() {
       // uni.navigateBack();
-      this.images.length > 0 ? this.upload() : this.submit();
+      this.images.length > 0 ? this.upload() : this.submit()
     },
     /**
      * 上传文件
@@ -119,42 +101,42 @@ export default {
       api.uploadImages({
         data: {
           base64Strings: this.images,
-          fileExt: "png",
+          fileExt: 'png'
         },
         success: (data) => {
-          this.imageURLs = data.absoluteUrl;
-          this.submit();
-        },
-      });
+          this.imageURLs = data.absoluteUrl
+          this.submit()
+        }
+      })
     },
     /**
      * 提交
      */
     submit() {
       if (!this.content) {
-        this.$uni.showToast("请输入反馈内容");
-        return;
+        this.$uni.showToast('请输入反馈内容')
+        return
       }
       if (!this.contact) {
-        this.$uni.showToast("请输入联系方式");
-        return;
+        this.$uni.showToast('请输入联系方式')
+        return
       }
       api.feedback({
         data: {
           prbDscr: this.content,
           img: this.imageURLs,
-          crterMob: this.contact,
+          crterMob: this.contact
         },
         success: (data) => {
-          this.$uni.showToast("提交成功");
+          this.$uni.showToast('提交成功')
           setTimeout(() => {
-            uni.navigateBack();
-          }, 1500);
-        },
-      });
-    },
-  },
-};
+            uni.navigateBack()
+          }, 1500)
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -187,9 +169,11 @@ export default {
       }
     }
     .input {
+      // text-align: right;
       width: 50%;
-      height: 100%;
+      padding-top: 20rpx;
       text-align: right;
+      margin-right: 68rpx;
     }
   }
   .tips {

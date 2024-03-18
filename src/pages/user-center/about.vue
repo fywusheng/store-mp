@@ -1,13 +1,10 @@
 <template>
   <view class="about">
     <view class="logon">
-      <image
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/logo.png"
-        class="logoicon"
-      />
+      <image src='https://ggllstatic.hpgjzlinfo.com/static/user-center/logo.png' class="logoicon" />
     </view>
     <view class="title">国家老龄服务平台</view>
-    <view class="v-num">版本号 {{ version }}</view>
+    <view class="v-num">版本号 {{version}}</view>
     <view class="bottom">
       <view class="xieyi">
         <view class="user" @click="handleUserAgreementClick">《用户协议》</view>
@@ -19,11 +16,12 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
-      version: ENV.VERSION,
-    };
+      version: ENV.VERSION
+    }
   },
 
   methods: {
@@ -31,22 +29,23 @@ export default {
      * 用户协议点击事件
      */
     handleUserAgreementClick() {
-      const url = "https://ggll.hpgjzlinfo.com/#/agreement?type=0";
+      const url = 'https://ggll.hpgjzlinfo.com/#/agreement?type=0'
       uni.navigateTo({
-        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`,
-      });
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
     },
     /**
      * 隐私协议点击事件
      */
     handlePrivacyPolicyClick() {
-      const url = "https://ggll.hpgjzlinfo.com/#/agreement?type=1";
+      const url = 'https://ggll.hpgjzlinfo.com/#/agreement?type=1'
       uni.navigateTo({
-        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`,
-      });
-    },
-  },
-};
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
+    }
+  }
+
+}
 </script>
 
 <style lang="scss" scoped>

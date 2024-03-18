@@ -56,14 +56,6 @@ export default {
       header: { 'content-type': 'application/json' },
       ...args
     })
-  },
-  // 传承服务预约登记
-  saveInheriteservation: function (args = {}) {
-    request({
-      url: '/nun/api/testament/saveInheriteservation',
-      header: { 'content-type': 'application/json' },
-      ...args
-    })
   }
 
 }

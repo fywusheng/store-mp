@@ -1,95 +1,74 @@
 //我的积分
 <template>
   <view class="my-points">
+
     <!-- #ifdef MP-ALIPAY -->
     <navigation-bar title="积分明细" title-color="#ffffff" />
     <!-- #endif -->
     <!-- #ifdef MP-WEIXIN -->
-    <navigation-bar
-      title="积分明细"
-      title-color="#ffffff"
-      :alpha="0"
-      back-button-style="white"
-      :shows-back-button="true"
-    />
+    <navigation-bar title="积分明细" title-color="#ffffff" :alpha="0" back-button-style="white"
+      :shows-back-button="true" />
     <!-- #endif -->
 
-    <view
-      class="blank flex-v flex-c-c"
-      :style="{ paddingTop: navigationBarHeight + 'px' }"
-    >
+    <view class="blank flex-v flex-c-c" :style="{ paddingTop: navigationBarHeight + 'px' }">
       <view class="canuse">当前剩余可用积分</view>
-      <view class="num">{{ score }}</view>
+      <view class="num">{{score}}</view>
+
     </view>
     <view class="points-detail">
       <view class="tab-bar flex-h flex-c-s">
-        <view
-          class="tab animated"
-          :class="{ 'tab--selected': selectedIndex === 2 }"
-          @click="handleTabClick(2)"
-        >
+        <view class="tab animated" :class="{ 'tab--selected': selectedIndex === 2 }"
+          @click="handleTabClick(2)">
           全部
         </view>
-        <view
-          class="tab animated"
-          :class="{ 'tab--selected': selectedIndex === 1 }"
-          @click="handleTabClick(1)"
-        >
+        <view class="tab animated" :class="{ 'tab--selected': selectedIndex === 1 }"
+          @click="handleTabClick(1)">
           增加
         </view>
-        <view
-          class="tab animated"
-          :class="{ 'tab--selected': selectedIndex === 0 }"
-          @click="handleTabClick(0)"
-        >
+        <view class="tab animated" :class="{ 'tab--selected': selectedIndex === 0 }"
+          @click="handleTabClick(0)">
           减少
         </view>
-        <view
-          class="indicator bg-primary br-6 animated"
-          :class="indicatorClass"
-        />
+        <view class="indicator bg-primary br-6 animated" :class="indicatorClass" />
       </view>
       <view class="list">
-        <view class="point-list p-32" v-if="list.length > 0">
-          <view
-            class="point-item flex-h flex-c-b pl-24 pr-20 mb-32"
-            v-for="(item, index) in list"
-            :key="index"
-          >
-            <view class="point-item-left flex-v">
-              <view class="mb-24">{{ item.taskDscr }}</view>
-              <view class="time">{{ dateFilter(item.crteTime) }}</view>
+        <view class="point-list p-32" v-if="list.length>0">
+          <view class="point-item flex-h flex-c-b pl-24 pr-20 mb-32" v-for="(item,index) in  list"
+            :key="index">
+            <view class="point-item-left flex-v ">
+              <view class="mb-24">{{item.taskDscr}}</view>
+              <view class="time">{{item.crteTime | dateFilter}}</view>
             </view>
             <view class="point-item-right">
-              <view v-if="item.chgType === '1'">+{{ item.chgScore }}</view>
-              <view class="reduce" v-else>-{{ item.chgScore }}</view>
+              <view v-if="item.chgType === '1'">+{{item.chgScore}}</view>
+              <view class="reduce" v-else>-{{item.chgScore}}</view>
             </view>
           </view>
         </view>
         <view class="no-data flex-v flex-c-c" v-else>
-          <image
-            class="img"
+          <image class="img"
             src="https://ggllstatic.hpgjzlinfo.com/static/support/icon-support-no-data.png"
-            mode="scaleToFill"
-          />
+            mode="scaleToFill" />
           <view class="text">暂无内容</view>
         </view>
       </view>
+
     </view>
+
   </view>
 </template>
 
 <script>
-import NavigationBar from "../../components/common/navigation-bar.vue";
-import api from "@/apis/index.js";
-import dayjs from "dayjs";
-import RealNamePop from "@/pages/real-name-pop/real-name-pop.vue";
+import NavigationBar from '../../components/common/navigation-bar.vue'
+import api from '@/apis/index.js'
+import dayjs from 'dayjs'
+import RealNamePop from '@/pages/real-name-pop/real-name-pop.vue'
 export default {
   components: { NavigationBar, RealNamePop },
   data() {
     return {
-      headImg: "",
-      clickId: "",
+      headImg: '',
+      clickId: '',
       // 导航栏高度
       // #ifdef MP-WEIXIN
       navigationBarHeight: uni.getSystemInfoSync().statusBarHeight + 44,
@@ -106,30 +85,30 @@ export default {
       // 赚积分任务列表
       list: [],
       // 可用积分
-      score: "0",
+      score: '0',
       // 最高积分
-      fixScore: "0",
+      fixScore: '0',
       // 页码
       pageNum: 1,
       // 页数
-      pageSize: 10,
-    };
+      pageSize: 10
+    }
   },
   computed: {
     indicatorClass() {
-      return ["indicator--left", "indicator--mid", "indicator--right"][
+      return ['indicator--left', 'indicator--mid', 'indicator--right'][
         this.selectedIndex
-      ];
+      ]
     },
     progressBarWidth() {
       // 当前可用积分进度条宽度
-      return Math.ceil((this.score / 1000) * 636);
-    },
+      return Math.ceil((this.score / 1000) * 636)
+    }
   },
   onLoad() {
-    this.userInfo = uni.getStorageSync("userInfo");
-    this.handleScoreInfo();
-    this.handleScoreList();
+    this.userInfo = uni.getStorageSync('userInfo')
+    this.handleScoreInfo()
+    this.handleScoreList()
     // this.setData();
   },
   onShow() {
@@ -137,28 +116,29 @@ export default {
     // this.getUserTaskInfoByPage()
   },
   methods: {
+
     /**
      * tab 点击事件
      */
     handleTabClick(index) {
-      if (index === this.selectedIndex) return;
-      this.selectedIndex = index;
-      this.pageNum = 1;
-      this.list = [];
-      this.handleScoreList();
+      if (index === this.selectedIndex) return
+      this.selectedIndex = index
+      this.pageNum = 1
+      this.list = []
+      this.handleScoreList()
     },
     // 获取用户积分
     handleScoreInfo() {
       api.scoreInfo({
         data: {
-          userId: this.userInfo.uactId,
+          userId: this.userInfo.uactId
         },
         success: (res) => {
-          console.log("用户积分：", res);
-          this.score = res.score;
-          this.fixScore = res.fixScore;
-        },
-      });
+          console.log('用户积分：', res)
+          this.score = res.score
+          this.fixScore = res.fixScore
+        }
+      })
     },
 
     // 获取积分数据
@@ -167,36 +147,39 @@ export default {
         showsLoading: true,
         data: {
           userId: this.userInfo.uactId,
-          chgType: this.selectedIndex < 2 ? this.selectedIndex + "" : "", // 变更类型(0-减少 1新增)
+          chgType: this.selectedIndex < 2 ? this.selectedIndex + '' : '', // 变更类型(0-减少 1新增)
           pageNum: this.pageNum,
-          pageSize: this.pageSize,
+          pageSize: this.pageSize
         },
         success: (res) => {
-          console.log("res.length", res);
+          console.log('res.length', res)
           if (res.list.length > 0) {
             res.list.map((item, index) => {
-              this.list.push(item);
-            });
-            this.pageNum = this.pageNum + 1;
+              this.list.push(item)
+            })
+            this.pageNum = this.pageNum + 1
           } else {
             if (this.pageNum > 1) {
-              this.$uni.showToast("暂无更多数据");
+              this.$uni.showToast('暂无更多数据')
             } else {
-              this.$uni.showToast("暂无数据");
+              this.$uni.showToast('暂无数据')
             }
           }
-        },
-      });
-    },
-    // 日期过滤器, 用于格式化日期
-    dateFilter(time) {
-      return dayjs(time).format("YYYY-MM-DD HH:mm:ss");
-    },
+        }
+      })
+    }
+
   },
   onReachBottom() {
-    this.handleScoreList();
+    this.handleScoreList()
   },
-};
+  filters: {
+    // 日期过滤器, 用于格式化日期
+    dateFilter(time) {
+      return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -244,7 +227,7 @@ export default {
           color: #323233;
           font-weight: bold;
           &::after {
-            content: "";
+            content: '';
             display: block;
             width: 80rpx;
             height: 8rpx;

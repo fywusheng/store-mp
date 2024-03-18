@@ -1,10 +1,8 @@
 <template>
   <view class="result">
     <image class="_img" :src="imgs[type]" mode="widthFix" />
-    <view class="infor" :class="type == 2 ? 'errorInfor' : ''">{{
-      infor[type]
-    }}</view>
-    <view class="centent">{{ content[type] }}</view>
+    <view class="infor" :class="type == 2 ? 'errorInfor' :''">{{infor[type]}}</view>
+    <view class="centent">{{content[type]}}</view>
     <view class="btn" @click="compet">完成</view>
   </view>
 </template>
@@ -15,30 +13,26 @@ export default {
   data() {
     return {
       type: 1, // 1-right 2-error
-      imgs: {
-        1: "https://ggllstatic.hpgjzlinfo.com/static/user-center/right.png",
-        2: "https://ggllstatic.hpgjzlinfo.com/static/user-center/error.png",
-      },
-      infor: { 1: "注销成功", 2: "注销失败" },
-      content: {
-        1: "您已成功注销账号",
-        2: "您的账号有正在进行中的订单 如需注销账号,请完成订单后再重试",
-      },
-    };
+      imgs: { 1: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/right.png', 2: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/error.png' },
+      infor: { 1: '注销成功', 2: '注销失败' },
+      content: { 1: '您已成功注销账号', 2: '您的账号有正在进行中的订单 如需注销账号,请完成订单后再重试' }
+    }
   },
-  computed: {},
+  computed: {
+
+  },
   onLoad(e) {
     if (e.type) {
-      this.type = e.type;
+      this.type = e.type
     }
   },
 
   methods: {
     compet() {
-      uni.reLaunch({ url: "/pages/index/mine" });
-    },
-  },
-};
+      uni.reLaunch({ url: '/pages/index/index?index=4' })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

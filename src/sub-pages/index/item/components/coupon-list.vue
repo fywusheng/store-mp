@@ -1,6 +1,7 @@
 <style lang="scss">
+@import '~@/styles/base';
 ._notice {
-  height: 760rpx;
+  height: 790rpx;
   background: #ffffff;
   border-radius: 16rpx;
   overflow: auto;
@@ -60,7 +61,7 @@
     font-size: rpx(34);
     background-color: #fff;
     z-index: 100;
-    color: $color-black;
+    color: $black;
     .btn-close {
       @include middle-center-y();
       right: rpx(30);
@@ -94,7 +95,7 @@
       }
 
       .money {
-        background: url("https://ggllstatic.hpgjzlinfo.com/static/common/left_icon.png");
+        background: url('https://ggllstatic.hpgjzlinfo.com/static/common/left_icon.png');
         background-size: 100% 100%;
         height: 100%;
         width: 232rpx;
@@ -187,7 +188,7 @@
     text-align: center;
     padding-top: rpx(300);
     height: rpx(705);
-    .img {
+    img {
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -219,72 +220,48 @@
     <div class="coupon-modal">
       <div class="modal-header">
         可领取优惠券
-        <img
-          class="btn-close"
+        <img class="btn-close"
           src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/close.png"
-          @click="show(false)"
-        />
+          @click="show(false)">
       </div>
       <view class="coupon-list" v-if="couponList && couponList.length">
-        <li class="coupon" :key="index" v-for="(coupon, index) in couponList">
+        <li class="coupon" :key="index" v-for="(coupon,index) in couponList">
           <div class="money">
             <!-- <span class="unit"></span> -->
-            <span v-if="coupon.type == 0">¥{{ coupon.denominationStr }}元</span>
-            <span v-else-if="coupon.type == 1"
-              >打{{ coupon.denominationStr }}折</span
-            >
+            <span v-if="coupon.type==0">¥{{coupon.denominationStr}}元</span>
+            <span v-else-if="coupon.type==1">打{{coupon.denominationStr}}折</span>
             <div class="desc">
-              {{
-                coupon.checkThreshold == 0
-                  ? "无门槛"
-                  : `满${coupon.thresholdValue}元可用`
-              }}
+              {{coupon.checkThreshold == 0?'无门槛':`满${coupon.thresholdValue}元可用`}}
             </div>
           </div>
           <div class="out">
-            <div
-              class="coupon__name"
-              :class="coupon.receivedState === 1 ? 'actice_name' : ''"
-            >
-              {{ coupon.name }}
-            </div>
+            <div class="coupon__name" :class="coupon.receivedState === 1 ? 'actice_name' :''">
+              {{coupon.name}}</div>
             <div class="coupon__time">
-              {{ replaceDate(coupon.beginTime) }}-{{
-                replaceDate(coupon.endTime)
-              }}
+              {{coupon.beginTime | replaceDate}}-{{coupon.endTime | replaceDate}}
             </div>
             <div class="f_r">
               <div class="show_ruler" @click="showRuler(coupon)">使用规则></div>
-              <div
-                class="btn-status"
-                :class="coupon.receivedState === 1 ? 'actice_btn' : ''"
-                @tap="toCoupon(coupon)"
-              >
-                {{ coupon.receivedState === 1 ? "已领取" : "立即领取" }}
+              <div class="btn-status" :class="coupon.receivedState === 1 ? 'actice_btn' :''"
+                @tap="toCoupon(coupon)">
+                {{coupon.receivedState === 1 ? '已领取' : '立即领取'}}
               </div>
             </div>
+
           </div>
         </li>
       </view>
       <div class="empty-wrap" v-if="!couponList.length">
-        <img
-          class="img"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/coupon-empty.png"
-        />
+        <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/coupon-empty.png">
         <div class="title">很遗憾</div>
         <div class="desc">您暂时无可领取的优惠券</div>
       </div>
       <!-- <div class="btn-confirm" @click="show(false)">完成</div> -->
     </div>
-    <uni-popup
-      v-show="showRulerV"
-      ref="notice"
-      type="center"
-      :mask-click="true"
-    >
-      <view class="_notice">
+    <uni-popup v-show="showRulerV" class="_notice" ref="notice" type="center" :mask-click="true">
+      <view class="content">
         <view class="title">使用规则</view>
-        <view class="infor">{{ rulerContent }}</view>
+        <view class="infor">{{rulerContent}}</view>
         <view class="close" @click="closed">知道了</view>
       </view>
     </uni-popup>
@@ -292,57 +269,62 @@
 </template>
 
 <script>
+import wx from 'utils/wx'
+
 export default {
-  name: "COUPON_LIST",
+  name: 'COUPON_LIST',
   props: {
     couponList: {
       type: Array,
-      default: () => [],
-    },
+      default: []
+    }
   },
   data() {
     return {
       showPopup: false,
-      rulerContent: "",
-      showRulerV: false,
-    };
+      rulerContent: '',
+      showRulerV: false
+    }
+  },
+  filters: {
+    replaceDate(val) {
+      return val.replace(/-/g, '.')
+    }
   },
   methods: {
-    replaceDate(val) {
-      return val.replace(/-/g, ".");
-    },
     showRuler(val) {
-      this.rulerContent = val.description || "暂无";
-      this.$refs.notice.open();
-      this.showRulerV = true;
+      this.rulerContent = val.description || '暂无'
+      this.$refs.notice.open()
+      this.showRulerV = true
     },
     closed() {
-      this.$refs.notice.close();
-      this.showRulerV = false;
+      this.$refs.notice.close()
+      this.showRulerV = false
     },
     async toCoupon(coupon) {
       if (coupon.receivedState === 1) {
-        return;
+        return
       }
       if (coupon.isReceived === 1) {
-        return false;
+        return false
       }
-      uni.showLoading();
-      const result = await Axios.post("/coupon/receive", {
-        couponId: coupon.id,
-      });
-      uni.hideLoading();
-      if (result.code == "200") {
-        this.$uni.showToast(result.msg);
-        this.$emit("loadCoupon");
+      wx.showLoading()
+      const result = await Axios.post('/coupon/receive', {
+        couponId: coupon.id
+      })
+      wx.hideLoading()
+      if (result.code == '200') {
+        wx.showToast(result.msg)
+        this.$emit('loadCoupon')
       } else {
-        this.$uni.showToast(result.msg);
+        wx.showToast(result.msg)
       }
     },
     show(flag) {
-      this.showPopup = flag;
-    },
+      this.showPopup = flag
+    }
   },
-  async mounted() {},
-};
+  async mounted() {
+  }
+}
 </script>

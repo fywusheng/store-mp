@@ -3,56 +3,38 @@
   <view>
     <uni-popup ref="popup" type="center">
       <view class="popup">
-        <image
-          class="img-real"
-          v-if="showImg"
+        <image class="img-real" v-if="showImg"
           src="https://ggllstatic.hpgjzlinfo.com/static/common/img-real-name.png"
-          mode="scaleToFill"
-        />
+          mode="scaleToFill" />
         <canvas class="canvas" canvas-id="canvas" id="canvas"></canvas>
-        <view class="popup-top fs-40 mt-56"> 选择信息录入方式 </view>
+        <view class="popup-top fs-40 mt-56">
+          选择信息录入方式
+        </view>
         <view class="popup-content flex-v flex-c-s mt-48">
-          <!-- <view
-            class="popup-button ocr-btn flex-h flex-c-c"
-            @click="handleIdCode"
-          >
-            <image
-              class="ocr mr-20"
+          <view class="popup-button ocr-btn flex-h flex-c-c" @click="handleIdCode">
+            <image class="ocr mr-20"
               src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-ocr.png"
-              mode="scaleToFill"
-            />
+              mode="scaleToFill" />
             <text>扫描身份证</text>
-          </view> -->
-          <view
-            class="popup-button flex-h flex-c-c mb-48"
-            @click="handleIdNumber"
-          >
-            <image
-              class="hand mr-20"
+          </view>
+          <view class="popup-button flex-h flex-c-c mb-48" @click="handleIdNumber">
+            <image class="hand mr-20"
               src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-des.png"
-              mode="scaleToFill"
-            />
+              mode="scaleToFill" />
             <text>手动输入</text>
           </view>
         </view>
-        <image
-          class="close"
-          @click="handleCloseHandle"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-close.png"
-          mode="scaleToFill"
-        />
+        <image class="close" @click="handleCloseHandle"
+          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-close.png" mode="scaleToFill" />
       </view>
     </uni-popup>
   </view>
 </template>
 
 <script>
-import uniPopup from "@/components/uni-popup/uni-popup.vue";
-import api from "@/apis/index.js";
-import {
-  startFacialRecognitionVerify,
-  getLessLimitSizeImage,
-} from "@/utils/utils.js";
+import uniPopup from '@/components/uni-popup/uni-popup.vue'
+import api from '@/apis/index.js'
+import { startFacialRecognitionVerify, getLessLimitSizeImage } from '@/utils/utils.js'
 export default {
   components: { uniPopup },
   props: {
@@ -64,118 +46,111 @@ export default {
   },
   data() {
     return {
-      type: "",
-      imgWidth: "",
-      imgHeight: "",
-    };
+      type: '',
+      imgWidth: '',
+      imgHeight: ''
+    }
   },
   computed: {},
   methods: {
     //扫描身份
     handleIdCode() {
-      uni.setStorageSync("typeChoice", "scan");
+      uni.setStorageSync('typeChoice', 'scan')
       uni.chooseImage({
-        sourceType: ["camera", "album"],
+        sourceType: ['camera', 'album'],
         success: (res) => {
-          const file = res.tempFilePaths[0];
-          getLessLimitSizeImage(
-            "canvas",
-            file,
-            0.2,
-            750,
-            (imagePath) => {
-              uni.getFileSystemManager().readFile({
-                filePath: imagePath,
-                encoding: "base64",
-                success: (rs) => {
-                  api.getIdentification({
-                    data: { image64: rs.data },
-                    showsLoading: true,
-                    success: (resinfo) => {
-                      if (!resinfo.data) {
-                        this.$uni.showToast("身份证识别失败");
-                        return;
-                      }
-                      // 拍照完成后调用后端识别接口, 并将识别结果传入下个页面
-                      let info = resinfo.data;
-                      this.$refs.popup.close();
-                      uni.navigateTo({
-                        url: "/pages/certificate/identity-info",
-                        success: (resLast) => {
-                          const data = {
-                            type: "scan",
-                            realName: this.type === "3" ? true : false,
-                            info: {
-                              name: info.name,
-                              idCardNumber: info.id_num,
-                              gender: info.sex,
-                              birthday: info.birth,
-                              nation: info.nation,
-                              address: info.address,
-                            },
-                          };
-                          resLast.eventChannel.emit("didOpenPageFinish", data);
-                        },
-                      });
-                    },
-                  });
-                },
-                fail: (erro) => {
-                  console.log("---异常拿到---", erro);
-                },
-              });
-            },
-            this
-          );
+          const file = res.tempFilePaths[0]
+          getLessLimitSizeImage('canvas', file, 0.2, 750, (imagePath) => {
+            uni.getFileSystemManager().readFile({
+              filePath: imagePath,
+              encoding: 'base64',
+              success: (rs) => {
+                api.getIdentification({
+                  data: { image64: rs.data },
+                  showsLoading: true,
+                  success: (resinfo) => {
+                    if (!resinfo.data) {
+                      this.$uni.showToast('身份证识别失败')
+                      return
+                    }
+                    // 拍照完成后调用后端识别接口, 并将识别结果传入下个页面
+                    let info = resinfo.data
+                    this.$refs.popup.close()
+                    uni.navigateTo({
+                      url: '/pages/certificate/identity-info',
+                      success: (resLast) => {
+                        const data = {
+                          type: 'scan',
+                          realName: this.type === '3' ? true : false,
+                          info: {
+                            name: info.name,
+                            idCardNumber: info.id_num,
+                            gender: info.sex,
+                            birthday: info.birth,
+                            nation: info.nation,
+                            address: info.address,
+                          },
+                        }
+                        resLast.eventChannel.emit('didOpenPageFinish', data)
+                      },
+                    })
+                  },
+                })
+              },
+              fail: (erro) => {
+                console.log('---异常拿到---', erro)
+              }
+            })
+          }, this)
         },
         complete: (res) => {
-          console.log("图片complete：", res);
+          console.log('图片complete：', res)
           //#ifdef MP-ALIPAY
 
           //#endif
         },
-      });
+      })
     },
     //手动输入
     handleIdNumber() {
-      this.$refs.popup.close();
-      uni.setStorageSync("typeChoice", "input");
+      this.$refs.popup.close()
+      uni.setStorageSync('typeChoice', 'input')
       uni.navigateTo({
-        url: "/pages/certificate/identity-info",
+        url: '/pages/certificate/identity-info',
         success: (res) => {
           const data = {
-            type: "input",
-            realName: this.type === "3" ? true : false,
+            type: 'input',
+            realName: this.type === '3' ? true : false,
             info: {},
-          };
-          res.eventChannel.emit("didOpenPageFinish", data);
+          }
+          res.eventChannel.emit('didOpenPageFinish', data)
         },
-      });
+      })
     },
     //关闭弹框
     handleCloseHandle() {
-      this.$refs.popup.close();
+      this.$refs.popup.close()
     },
     // 打开弹框
     open(type) {
       // type 流程类型
       // 0-需实名 1-需实名+领证 2-已实名，需领证
-      uni.setStorageSync("process_type", type);
-      console.log("流程type---", type);
-      if (type == "2") {
+      uni.setStorageSync('process_type', type)
+      console.log('流程type---', type)
+      if (type == '2') {
         // 人脸识别
-        this.handleNextStepClick();
-      } else if (type == "3") {
+        this.handleNextStepClick()
+      } else if (type == '3') {
         // 走实名认证
-        this.$refs.popup.open();
-        this.type = "3";
+        this.$refs.popup.open()
+        this.type = '3'
       } else {
-        this.$refs.popup.open();
+        this.$refs.popup.open()
       }
     },
     //  人脸识别
     handleNextStepClick() {
-      const userInfo = uni.getStorageSync("userInfo");
+      const userInfo = uni.getStorageSync('userInfo')
       this.params = {
         name: userInfo.psnName,
         idCardNumber: userInfo.idCard,
@@ -184,35 +159,35 @@ export default {
         birthday: userInfo.brdy,
         city: userInfo.uactAttributionName,
         address: userInfo.hsregAddr,
-      };
+      }
       const params = {
         name: userInfo.psnName,
         idCard: userInfo.idCard,
-        returnUrl: "https://www.baidu.com",
-      };
+        returnUrl: 'https://www.baidu.com'
+      }
       params.success = (faceimg) => {
-        console.log("认证成功------2", params);
-        console.log("===factimg--", faceimg);
+        console.log('认证成功------2', params)
+        console.log("===factimg--", faceimg)
         api.realPersonAuthenticate({
           data: {
             userName: this.params.name,
-            idCard: this.params.idCardNumber,
+            idCard: this.params.idCardNumber
           },
           success: async () => {
-            this.getUserInfo();
+            this.getUserInfo()
 
             // #ifdef MP-ALIPAY
-            const clearImage = await this.clearBgImg(faceimg);
-            uni.setStorageSync("first-face-img", JSON.stringify(clearImage));
+            const clearImage = await this.clearBgImg(faceimg)
+            uni.setStorageSync('first-face-img', JSON.stringify(clearImage))
             // #endif
 
-            const typeChoice = uni.getStorageSync("typeChoice");
-            //#ifdef MP-WEIXIN
+            const typeChoice = uni.getStorageSync('typeChoice')
+            //#ifdef MP-WEIXIN 
             const info = {
               ...this.params,
-              faceImg: "",
+              faceImg: '',
               type: typeChoice,
-            };
+            }
             // #endif
 
             // #ifdef MP-ALIPAY
@@ -220,25 +195,25 @@ export default {
               ...this.params,
               faceImg: faceimg,
               type: typeChoice,
-            };
+            }
             // #endif
-            console.log("---去调用时的值222info---", info);
-            console.log("===图片--", faceimg);
+            console.log('---去调用时的值222info---', info)
+            console.log("===图片--", faceimg)
             uni.navigateTo({
-              url: "/pages/certificate/avatar-confirm",
+              url: '/pages/certificate/avatar-confirm',
               success: (res) => {
-                console.log("----要传递的值---", info);
-                res.eventChannel.emit("didOpenPageFinish", info);
+                console.log("----要传递的值---", info)
+                res.eventChannel.emit('didOpenPageFinish', info)
               },
-            });
+            })
           },
-        });
-      };
+        })
+      }
 
       // 开启人脸识别
-      startFacialRecognitionVerify(params);
+      startFacialRecognitionVerify(params)
       // 调用活体检测, 各平台自带的或者大数据提供的, 成功后跳转到头像确认页面
-      uni.setStorageSync("applicantInfo", this.params);
+      uni.setStorageSync('applicantInfo', this.params)
     },
     /**
      * 获取用户信息
@@ -246,12 +221,12 @@ export default {
     getUserInfo() {
       api.getUserInfo({
         data: {
-          accessToken: uni.getStorageSync("token"),
+          accessToken: uni.getStorageSync('token'),
         },
         success: (data) => {
-          uni.$emit("didLogin", data);
+          uni.$emit('didLogin', data)
         },
-      });
+      })
     },
     // 去背景图片
     clearBgImg(photoBase64) {
@@ -261,18 +236,18 @@ export default {
           showsLoading: true,
           success: (resInfo) => {
             // 保存第一次人脸识别图片
-            resolve(resInfo);
-            console.log("===图片报错成功");
+            resolve(resInfo)
+            console.log('===图片报错成功')
             // uni.setStorageSync('first-face-img', JSON.stringify(resInfo));
           },
           fail: (erro) => {
-            reject(erro);
+            reject(erro)
           },
-        });
-      });
+        })
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

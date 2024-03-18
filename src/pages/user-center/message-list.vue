@@ -2,12 +2,8 @@
   <view class="message-list">
     <template v-if="list.length > 0">
       <view class="list">
-        <view
-          class="item"
-          v-for="(item, index) in list"
-          :key="index"
-          @click="handleItemClick(index)"
-        >
+        <view class="item" v-for="(item, index) in list" :key="index"
+          @click="handleItemClick(index)">
           <view class="time flex-h flex-c-c">
             <text class="fs-32 c-grey">{{ item.time }}</text>
           </view>
@@ -16,11 +12,8 @@
               <text class="fs-40 fw-bold c-black">{{ item.ttl }}</text>
               <view class="unread ml-16" v-if="item.readStas === 0" />
               <view class="flex-1" />
-              <image
-                class="accessory"
-                mode="scaleToFill"
-                src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
-              />
+              <image class="accessory" mode="scaleToFill"
+                src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
             </view>
             <text class="content fs-32 c-grey m-32">{{ item.cont }}</text>
           </view>
@@ -29,11 +22,8 @@
     </template>
     <template v-else>
       <view class="no-data flex-v flex-c-c">
-        <image
-          class="no-data__image"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/status-none2x.png"
-        />
+        <image class="no-data__image" mode="scaleToFill"
+          src="https://ggllstatic.hpgjzlinfo.com/static/common/status-none2x.png" />
         <text class="fs-36 c-grey mt-24">暂无数据</text>
       </view>
     </template>
@@ -41,37 +31,37 @@
 </template>
 
 <script>
-import api from "@/apis/index.js";
-import dayjs from "dayjs";
+import api from '@/apis/index.js'
+import dayjs from 'dayjs'
 export default {
   data() {
     return {
       // 消息类型
       type: null,
       // 消息列表
-      list: [],
-    };
+      list: []
+    }
   },
   onLoad(e) {
     if (e.type) {
-      this.$uni.setTitle(e.title);
-      this.type = e.type;
-      this.requestData();
+      this.$uni.setTitle(e.title)
+      this.type = e.type
+      this.requestData()
     } else {
-      this.getOpenerEventChannel().on("didOpenPageFinish", (data) => {
-        const { title, type } = data;
-        this.$uni.setTitle(title);
-        this.type = type;
-        this.requestData();
-      });
+      this.getOpenerEventChannel().on('didOpenPageFinish', (data) => {
+        const { title, type } = data
+        this.$uni.setTitle(title)
+        this.type = type
+        this.requestData()
+      })
     }
   },
   onPullDownRefresh() {
-    this.requestData();
+    this.requestData()
   },
   onReachBottom() {
     if (this.list.length % 10 === 0) {
-      this.requestData(this.list.length / 10 + 1);
+      this.requestData(this.list.length / 10 + 1)
     }
   },
   methods: {
@@ -79,7 +69,7 @@ export default {
      * 消息点击事件
      */
     handleItemClick(index) {
-      const item = this.list[index];
+      const item = this.list[index]
       uni.navigateTo({
         url: `/pages/user-center/message-detail?id=${item.msgId}`,
         success: () => {
@@ -88,16 +78,16 @@ export default {
             showsLoading: false,
             data: {
               msgId: item.msgId,
-              channel: "app",
+              channel: 'app'
             },
             success: () => {
               // 调用成功后手动刷新当前页面数据并通知上一页面刷新数据
-              this.list.splice(index, 1, { ...item, readStas: 1 });
-              uni.$emit("didMessageStateChanged");
-            },
-          });
-        },
-      });
+              this.list.splice(index, 1, { ...item, readStas: 1 })
+              uni.$emit('didMessageStateChanged')
+            }
+          })
+        }
+      })
     },
     /**
      * 请求数据
@@ -106,25 +96,25 @@ export default {
       api.getMessageList({
         data: {
           msgType: this.type,
-          channel: "app",
+          channel: 'app',
           pageNo: page,
-          pageSize: "10",
+          pageSize: '10'
         },
         success: (data) => {
-          this.list = page === 1 ? data.list : this.list.concat(data.list);
+          this.list = page === 1 ? data.list : this.list.concat(data.list)
           if (this.list.length > 0) {
             this.list.forEach((item) => {
-              item.time = dayjs(item.sendTime).format("YYYY-MM-DD HH:mm:ss");
-            });
+              item.time = dayjs(item.sendTime).format('YYYY-MM-DD HH:mm:ss')
+            })
           }
         },
         complete: () => {
-          uni.stopPullDownRefresh();
-        },
-      });
-    },
-  },
-};
+          uni.stopPullDownRefresh()
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,81 +1,51 @@
 <template>
-  <div class="page-address-list" :class="{ select: type === 1 }">
+  <div class="page-address-list" :class="{'select': type === 1}">
     <ul class="delivery-list" v-if="loading || dataList.length">
-      <li class="delivery" v-for="(delivery, index) in dataList" :key="index">
+      <li class="delivery" v-for="(delivery,index) in dataList" :key="index">
         <div class="checkbox" v-if="type === 1">
-          <img
-            v-if="delivery.id == addressId"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png"
-          />
-          <img
-            @click="selectAddress(delivery)"
-            v-else
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png"
-          />
+          <img v-if="delivery.id == addressId"
+            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png">
+          <img @click="selectAddress(delivery)" v-else
+            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
         </div>
         <div class="name-wrap">
-          <div class="name">{{ delivery.deliveryName }}</div>
-          <div class="phone">{{ delivery.deliveryPhone }}</div>
+          <div class="name">{{delivery.deliveryName}}</div>
+          <div class="phone">{{delivery.deliveryPhone}}</div>
         </div>
         <div class="address">
-          {{ delivery.provinceName || "" }}{{ delivery.cityName || ""
-          }}{{ delivery.areaName || "" }}{{ delivery.address }}
+          {{delivery.provinceName || ''}}{{delivery.cityName || ''}}{{delivery.areaName || ''}}{{delivery.address }}
         </div>
-        <div class="btn-edit" v-if="type === 1" @click.stop="toEdit(delivery)">
-          <img
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png"
-          />
-        </div>
+        <div class="btn-edit" v-if="type === 1" @click.stop="toEdit(delivery)"><img
+            src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png"></div>
         <div class="delivery-fb" v-if="type !== 1" @tap.stop="">
-          <img
-            class="checkbox"
-            v-if="delivery.isDefault"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png"
-          />
-          <img
-            class="checkbox"
-            @click="setDefault(delivery)"
-            v-else
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png"
-          />
+          <img class="checkbox" v-if="delivery.isDefault"
+            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png">
+          <img class="checkbox" @click="setDefault(delivery)" v-else
+            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
           <div class="desc">默认地址</div>
           <div class="btn-wrap">
-            <div class="btn-edit" @click.stop="toEdit(delivery)">
-              <img
-                class="icon-opr"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png"
-              />编辑
-            </div>
-            <div class="btn-edit" @click.stop="toDelete(delivery)">
-              <img
-                class="icon-opr"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-delete.png"
-              />删除
+            <div class="btn-edit" @click.stop="toEdit(delivery)"><img class="icon-opr"
+                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png">编辑</div>
+            <div class="btn-edit" @click.stop="toDelete(delivery)"><img class="icon-opr"
+                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-delete.png">删除
             </div>
           </div>
         </div>
       </li>
     </ul>
     <div class="empty" v-if="empty">
-      <img
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/empty.png"
-      />
+      <img src="https://ggllstatic.hpgjzlinfo.com/static/images/common/empty.png">
       暂无收货地址
       <div class="btn-home" @click="add">新建收货地址</div>
     </div>
-    <button
-      v-else
-      type="button"
-      class="btn-bottom-fixed"
-      :class="{ isIphoneHair }"
-      @click="add"
-    >
-      +添加新的收货地址
-    </button>
+    <button v-else type="button" class="btn-bottom-fixed" :class="{isIphoneHair}"
+      @click="add">+添加新的收货地址</button>
   </div>
 </template>
 
 <script>
+import wx from 'utils/wx'
+
 export default {
   data() {
     return {
@@ -84,152 +54,141 @@ export default {
       pageLoad: false,
       empty: false,
       type: 2,
-      addressId: "",
-    };
+      addressId: ''
+    }
   },
   components: {},
   methods: {
     async toDelete(delivery) {
-      uni.showModal({
-        title: "",
-        content: "确定删除该地址?",
-        success: async (res) => {
+      wx.showModal({
+        title: '',
+        content: '确定删除该地址?',
+        success: async res => {
           if (!res.confirm) {
-            return false;
+            return false
           }
-          uni.showLoading();
-          const result = await Axios.post(
-            "/address/delete",
-            {
-              id: delivery.id,
-            },
-            {
-              headers: {
-                "content-type": "application/json;charset=utf-8",
-              },
+          wx.showLoading()
+          const result = await Axios.post('/address/delete', {
+            id: delivery.id
+          }, {
+            headers: {
+              'content-type': 'application/json;charset=utf-8'
             }
-          );
-          uni.hideLoading();
-          if (result.code == 200) {
-            this.$uni.showToast("删除成功");
-            this.loadData();
-          } else {
-            this.$uni.showToast(result.msg);
           }
-        },
-      });
+          )
+          wx.hideLoading()
+          if (result.code == 200) {
+            wx.showToast('删除成功')
+            this.loadData()
+          } else {
+            wx.showToast(result.msg)
+          }
+        }
+      })
     },
     toEdit(address) {
-      uni.navigateTo({
-        url: `/sub-pages/me/address-add/main?address=${JSON.stringify(
-          address
-        )}`,
-      });
+      wx.navigateTo({
+        url: `/sub-pages/me/address-add/main?address=${JSON.stringify(address)}`
+      })
     },
     add() {
-      uni.navigateTo({
-        url: `/sub-pages/me/address-add/main?type=${this.type == 1 ? 3 : 1}`,
-      });
+      wx.navigateTo({
+        url: `/sub-pages/me/address-add/main?type=${this.type == 1 ? 3 : 1}`
+      })
     },
     async setDefault(address) {
       if (address.isDefault == 1) {
-        return false;
+        return false
       }
-      uni.showLoading("正在提交...");
-      const result = await Axios.post(
-        "/address/setDefault",
-        {
-          id: address.id,
-        },
-        {
-          headers: {
-            "content-type": "application/json;charset=utf-8",
-          },
+      wx.showLoading('正在提交...')
+      const result = await Axios.post('/address/setDefault', {
+        id: address.id
+      }, {
+        headers: {
+          'content-type': 'application/json;charset=utf-8'
         }
-      );
-      uni.hideLoading();
+      })
+      wx.hideLoading()
       if (result.code == 200) {
-        this.$uni.showToast(result.msg || "设置成功");
-        this.dataList.forEach((data) => {
+        wx.showToast(result.msg || '设置成功')
+        this.dataList.forEach(data => {
           if (data.isDefault == 1) {
-            data.isDefault = 0;
+            data.isDefault = 0
           }
-        });
-        address.isDefault = 1;
+        })
+        address.isDefault = 1
       } else {
-        this.$uni.showToast(result.msg || "设置失败");
+        wx.showToast(result.msg || '设置失败')
       }
     },
     async selectAddress(address) {
-      Store.commit(VUEX.CHECKOUT.SET_ADDRESS, address.id);
-      Store.dispatch("getCheckoutData", true);
-      uni.navigateBack();
+      Store.commit(VUEX.CHECKOUT.SET_ADDRESS, address.id)
+      Store.dispatch('getCheckoutData', true)
+      wx.navigateBack()
     },
     async remove(address) {
-      const result = await uni.showModal({
-        title: "",
-        content: "确定要删除?",
-        confirmColor: "#FB4769",
-      });
+      const result = await wx.showModal({
+        title: '',
+        content: '确定要删除?',
+        confirmColor: '#FB4769'
+      })
       if (result.confirm) {
-        uni.showLoading({ title: "正在提交...", mask: true });
-        const delResult = await Axios.post("/address/delete", {
-          id: address.id,
-        });
-        uni.hideLoading();
+        wx.showLoading({ title: '正在提交...', mask: true })
+        const delResult = await Axios.post('/address/delete', {
+          id: address.id
+        })
+        wx.hideLoading()
         if (delResult.code == 200) {
-          uni.showToast({
-            title: delResult.msg || "删除成功",
-            icon: "none",
-          });
-          setTimeout(
-            function () {
-              this.loadData();
-            }.bind(this),
-            1000
-          );
+          wx.showToast({
+            title: delResult.msg || '删除成功',
+            icon: 'none'
+          })
+          setTimeout(function () {
+            this.loadData()
+          }.bind(this), 1000)
         } else {
-          uni.showToast({
-            title: delResult.msg || "删除失败",
-            icon: "none",
-          });
+          wx.showToast({
+            title: delResult.msg || '删除失败',
+            icon: 'none'
+          })
         }
       }
     },
     async loadData() {
-      uni.showLoading();
-      this.loading = true;
-      const result = await Axios.get("/address/list");
-      uni.hideLoading();
+      wx.showLoading()
+      this.loading = true
+      const result = await Axios.get('/address/list')
+      wx.hideLoading()
       if (result.code == 200) {
-        this.dataList = result.data || [];
-        this.empty = !this.dataList.length;
+        this.dataList = result.data || []
+        this.empty = !this.dataList.length
       } else {
-        uni.showToast(result.msg);
+        wx.showToast(result.msg)
       }
-      this.loading = false;
-    },
+      this.loading = false
+    }
   },
   async onShow() {
     if (!Store.getters.isLogin) {
-      await Store.dispatch("login");
+      await Store.dispatch('login')
     }
-    await this.loadData();
+    await this.loadData()
   },
   async mounted() {
-    this.type = parseInt(this.$scope.options.type || 0);
-    this.addressId =
-      this.$scope.options.addressId || Store.state.checkout.addressId;
+    this.type = parseInt(this.$root.$mp.query.type || 0)
+    this.addressId = this.$root.$mp.query.addressId || Store.state.checkout.addressId
     if (this.type === 1) {
-      uni.setNavigationBarTitle({
-        title: "选择地址",
-      });
+      wx.setNavigationBarTitle({
+        title: '选择地址'
+      })
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss">
+@import '~@/styles/base';
+
 .page-address-list {
   padding-bottom: rpx(150);
   background-color: #f7f7f7;
@@ -247,7 +206,8 @@ export default {
         align-items: center;
         font-size: rpx(36);
         font-weight: bold;
-        color: $color-black;
+        color: $black;
+
         .name {
           max-width: rpx(300);
           @include ellipsis();
@@ -261,7 +221,7 @@ export default {
       .address {
         padding-top: rpx(30);
         font-size: rpx(36);
-        color: $color-black;
+        color: $extra-light-black;
         @include multi-ellipsis();
       }
 
@@ -272,7 +232,7 @@ export default {
         margin-top: rpx(30);
         height: rpx(80);
         line-height: rpx(80);
-        border-top: rpx(1) solid #d8d8d8;
+        border-top: rpx(1) solid $border;
 
         .checkbox {
           width: 35rpx;
@@ -282,7 +242,7 @@ export default {
         .desc {
           margin-left: rpx(20);
           font-size: rpx(26);
-          color: $color-black;
+          color: $extra-light-black;
         }
 
         .btn-wrap {
@@ -295,10 +255,8 @@ export default {
             display: flex;
             align-items: center;
             font-size: rpx(26);
-            color: $color-black;
+            color: $extra-light-black;
             margin-left: rpx(50);
-            width: rpx(30);
-            height: rpx(30);
 
             .icon-opr {
               margin-right: rpx(15);
@@ -324,11 +282,11 @@ export default {
         padding-left: rpx(62);
         margin-bottom: 0;
         padding-bottom: rpx(30);
-        border-bottom: rpx(1) solid #d8d8d8;
+        border-bottom: rpx(1) solid $border;
         .checkbox {
           @include middle-center-y();
           left: 0;
-          .img {
+          img {
             width: 35rpx;
             height: 35rpx;
           }
@@ -336,9 +294,7 @@ export default {
         .btn-edit {
           @include middle-center-y();
           right: rpx(30);
-          width: rpx(30);
-          height: rpx(30);
-          .img {
+          img {
             width: rpx(30);
             height: rpx(30);
           }
@@ -350,7 +306,7 @@ export default {
     font-size: rpx(26);
     text-align: center;
     padding-top: rpx(330);
-    .img {
+    img {
       display: block;
       width: rpx(210);
       height: rpx(172);

@@ -1,5 +1,5 @@
 <style lang="scss">
-@import "./../../../styles/base";
+@import '~@/styles/base';
 
 .page-views {
   width: 100%;
@@ -22,7 +22,7 @@
     }
   }
   .empty {
-    .img {
+    img {
       display: block;
       margin: rpx(200) auto rpx(30);
       width: rpx(200);
@@ -40,32 +40,33 @@
 <template>
   <div class="page-views">
     <ul class="attribute-list">
-      <li class="attribute" v-for="(data, index) in dataList" :key="index">
-        <div class="name">{{ data.name }}:</div>
-        <div class="content">{{ data.value || "无" }}</div>
+      <li class="attribute" v-if="data.value" v-for="(data,index) in dataList" :key="index">
+        <div class="name">{{data.name}}:</div>
+        <div class="content">{{data.value || '无'}}</div>
       </li>
     </ul>
     <div class="empty" v-if="!dataList.length">
-      <img
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/no-comment.png"
-      />
+      <img src="https://ggllstatic.hpgjzlinfo.com/static/images/no-comment.png">
       <div class="desc">暂无属性</div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "ATTRIBUTE_LIST",
+  name: 'ATTRIBUTE_LIST',
   data() {
     return {
-      dataList: [],
-    };
+      dataList: []
+    }
   },
 
-  methods: {},
-  async mounted() {
-    this.dataList = uni.getStorageSync("attribute");
+  methods: {
+
   },
-};
+  async mounted() {
+    this.dataList = wx.getStorageSync('attribute')
+  }
+}
 </script>

@@ -1,80 +1,77 @@
 <template>
   <view class="cancel">
-    <image
-      class="_img"
-      src="https://ggllstatic.hpgjzlinfo.com/static/user-center/cancel_infor.png"
-      mode="widthFix"
-    />
+    <image class="_img" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/cancel_infor.png"
+      mode="widthFix" />
     <view class="footer">
-      点击【申请注销】即代表您已经同意《<text class="xy" @click="agreement"
-        >用户注销协议</text
-      >》
+      点击【申请注销】即代表您已经同意《<text class="xy" @click="agreement">用户注销协议</text>》
     </view>
     <view class="apply" @click="openModel">申请注销</view>
-    <modal
-      ref="tipModal"
-      cancelText="取消"
-      title="风险提示"
-      confirmText="继续申请"
-      @cancel="handleCancel"
-      @confirm="confirm"
-    >
-      <template v-slot:text>
-        <view class="confirm-main" style="height: auto; line-height: 1.5">
+    <modal ref="tipModal" cancelText='取消' title="风险提示" confirmText='继续申请' @cancel='handleCancel'
+      @confirm='confirm'>
+      <view slot="text">
+        <view class="confirm-main" style="height:auto;line-height:1.5">
           <view class="content">
-            <text class="c-code" @click="handleUserAgreementClick"
-              >账号注销后，将无法找回，请再次确认，是否继续申请注销国家老龄服务平台账号</text
-            >
+            <text class="c-code"
+              @click="handleUserAgreementClick">账号注销后，将无法找回，请再次确认，是否继续申请注销国家老龄服务平台账号</text>
           </view>
         </view>
-      </template>
+      </view>
     </modal>
+
   </view>
 </template>
 
 <script>
-import Modal from "@/components/common/modal.vue";
-import api from "@/apis/index.js";
+import Modal from '@/components/common/modal.vue'
+import api from '@/apis/index.js'
 
 export default {
   components: { Modal },
   data() {
-    return {};
+    return {
+
+    }
   },
-  computed: {},
-  onLoad(e) {},
-  events: {},
+  computed: {
+
+  },
+  onLoad(e) {
+
+  },
+  events: {
+
+  },
 
   methods: {
     agreement() {
-      const url = "https://ggll.hpgjzlinfo.com/#/agreement?type=5";
+      const url = 'https://ggll.hpgjzlinfo.com/#/agreement?type=5'
       uni.navigateTo({
-        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`,
-      });
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
     },
     handleCancel() {
-      this.$refs.tipModal.close();
+      this.$refs.tipModal.close()
     },
     openModel() {
-      this.$refs.tipModal.open();
+      this.$refs.tipModal.open()
     },
     confirm() {
-      const userInfo = uni.getStorageSync("userInfo");
+      const userInfo = uni.getStorageSync('userInfo')
       api.cancel({
         data: { uactId: userInfo.uactId },
         success: (data) => {
-          this.$refs.tipModal.close();
+          this.$refs.tipModal.close()
           if (data) {
-            Store.dispatch("login");
-            uni.navigateTo({ url: "/pages/user-center/result?type=1" });
+            Store.dispatch('login')
+            uni.navigateTo({ url: '/pages/user-center/result?type=1' })
           } else {
-            uni.navigateTo({ url: "/pages/user-center/result?type=2" });
+            uni.navigateTo({ url: '/pages/user-center/result?type=2' })
           }
-        },
-      });
-    },
-  },
-};
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

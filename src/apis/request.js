@@ -1,6 +1,7 @@
 import { showLoading, hideLoading, showToast } from '@/utils/uni'
 
 export function request({
+  port, //开发版本域名区分
   url,
   method = 'post',
   header = {},
@@ -17,7 +18,7 @@ export function request({
   if (showsLoading) showLoading('加载中')
 
   const headers = {
-    'channel': uni.getSystemInfoSync().app,
+    'channel': 'msg',
     'Accept': 'application/json',
     'accessToken': uni.getStorageSync('token'),
     'tsf-metadata': ''
@@ -30,19 +31,18 @@ export function request({
     // headers["content-type"] = "woyebuzhidaoweishenmejiekouyaozhemezuo";
   }
   const body = {
-    appId: '19E179E5DC29C05E65B90CDE57A1C7E5',
-    version: '1.0.0',
-    encType: 'plain',
-    transType: 'get.authcode.data',
-    encData: 'sd',
-    signType: 'plain',
-    signData: 'sdfasfdasf',
-    timestamp: 201802231423897,
-    extra: {},
-    data
+    ...data
   }
-
-  const baseURL = ENV.BASE_API
+  let baseURL =  ENV.BASE_API
+  if(port==1){
+	 baseURL =  ENV.BASE_1
+	  
+  }else if(port==2){
+	  baseURL =  ENV.BASE_2
+  }else if(port == 3){
+	   baseURL =  ENV.BASE_3
+  }
+  // const baseURL = ENV.BASE_API
   const request = {
     url: url.indexOf('http') === -1 ? baseURL + url : url,
     method: method,
@@ -55,9 +55,9 @@ export function request({
     success: (response) => {
       //  隐藏 loading
       if (showsLoading) hideLoading()
-
       // 处理请求结果
-      if ([600001, 600002, 600003, 600016].includes(response.data.code)) {
+      if (response.data.code === 600001 || response.data.code === 600002 || response.data.code === 600003 || response.data.code === 600016) {
+        // showToast("登录过期");
         Store.dispatch('logout')
         uni.navigateTo({
           url: '/pages/user-center/login'
@@ -72,11 +72,12 @@ export function request({
           success(result)
         } else {
           const result = response.data
-          if (result.code === 0) {
+		  console.log("result",result)
+          if (result.code == 0 || result.code == 200) {
             success(result.data)
           } else {
             // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示
-            console.log('执行fail', result)
+            // console.log('执行fail', result)
             if (fail) {
               // 调用 fail 回调
               fail(result)
@@ -99,9 +100,9 @@ export function request({
       }
     },
     fail: (error) => {
+		console.log("as",error)
       //  隐藏 loading
       if (showsLoading) hideLoading()
-
       // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示
       if (fail) {
         // 调用 fail 回调
