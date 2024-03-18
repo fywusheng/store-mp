@@ -34,7 +34,7 @@
           <view class="content" @click="getPoint">
             <image
               class="get-point-bg"
-              src="https://ggllstatic.hpgjzlinfo.com/static/home/member-card-bg.png"
+              src="http://192.168.1.187:10088/static/home/member-card-bg.png"
               mode="scaleToFill"
             />
             <view class="info">持卡人：{{ name }} &nbsp; &nbsp;&nbsp;&nbsp;年龄：{{ age }}</view>
@@ -47,14 +47,14 @@
           <image
             class="save-btn"
             @click="extraImage"
-            src="https://ggllstatic.hpgjzlinfo.com/static/home/save-btn.png"
+            src="http://192.168.1.187:10088/static/home/save-btn.png"
             mode="scaleToFill"
           />
 
           <image
             class="icon-close"
             @click="memberCardPopclose"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-close.png"
+            src="http://192.168.1.187:10088/static/common/icon-close.png"
             mode="scaleToFill"
           />
           <view class="line"></view>
@@ -81,17 +81,17 @@
       return {
         icon: {
           // 会员权益卡
-          memberCard: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/card-member.png',
+          memberCard: 'http://192.168.1.187:10088/static/user-center/card-member.png',
           // 老年卡
-          old: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-old-card-new.png',
+          old: 'http://192.168.1.187:10088/static/user-center/icon-old-card-new.png',
           // 电子凭证
           electronic:
-            'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-electronic-card-new.png',
+            'http://192.168.1.187:10088/static/user-center/icon-electronic-card-new.png',
           // 医保卡
           insuranceCard:
-            'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-insurance-card-new.png',
+            'http://192.168.1.187:10088/static/user-center/icon-insurance-card-new.png',
           // 健康码
-          healthy: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-healthy-card-new.png',
+          healthy: 'http://192.168.1.187:10088/static/user-center/icon-healthy-card-new.png',
         },
         userInfo: {},
         succFlag: false,

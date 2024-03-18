@@ -2,24 +2,24 @@
   <div class="c-number-wrap">
     <div class="btn-operation">
       <img @click="reduce" mode="widthFix" v-if="number === min"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/minus.png">
+        src="http://192.168.1.187:10088/static/images/item-detail/minus.png">
       <img @click="reduce" mode="widthFix" v-else
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/minus.png">
+        src="http://192.168.1.187:10088/static/images/item-detail/minus.png">
       <!-- <img @click="reduce" mode="widthFix" v-if="number === min"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/number/reduce_n.png">
+        src="http://192.168.1.187:10088/static/images/number/reduce_n.png">
       <img @click="reduce" mode="widthFix" v-else
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/number/reduce_h.png"> -->
+        src="http://192.168.1.187:10088/static/images/number/reduce_h.png"> -->
     </div>
     <div class="number">{{number}}</div>
     <div class="btn-operation">
       <img @click="add" mode="widthFix" v-if="number === max"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/add.png">
+        src="http://192.168.1.187:10088/static/images/item-detail/add.png">
       <img @click="add" mode="widthFix" v-else
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/add.png">
+        src="http://192.168.1.187:10088/static/images/item-detail/add.png">
       <!-- <img @click="add" mode="widthFix" v-if="number === max"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/number/add_n.png">
+        src="http://192.168.1.187:10088/static/images/number/add_n.png">
       <img @click="add" mode="widthFix" v-else
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/number/add_h.png"> -->
+        src="http://192.168.1.187:10088/static/images/number/add_h.png"> -->
     </div>
   </div>
 </template>

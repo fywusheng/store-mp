@@ -2,7 +2,7 @@
   <view class="credits-popup flex-v flex-c-c" v-if="showsCreditsPopup" @touchmove.stop="touchmove">
     <image class="credits-image" mode="scaleToFill" @click="detailPoint" :src="imgUrl" />
     <image class="close-icon mt-32" mode="scaleToFill"
-      src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-popup-close.png"
+      src="http://192.168.1.187:10088/static/common/icon-common-popup-close.png"
       @click="showsCreditsPopup = false" />
   </view>
 </template>
@@ -17,7 +17,7 @@ export default {
   props: {
     imgUrl: {
       type: String,
-      default: 'https://ggllstatic.hpgjzlinfo.com/static/real-name/real-name-success.png'
+      default: 'http://192.168.1.187:10088/static/real-name/real-name-success.png'
     }
   },
   methods: {

@@ -11,7 +11,7 @@
                 {{ city.name || "定位中" }}
               </text>
               <image class="city-icon ml-8" mode="scaleToFill"
-                src="https://ggllstatic.hpgjzlinfo.com/static/home/up.png" />
+                src="http://192.168.1.187:10088/static/home/up.png" />
             </view>
             <view class="search-bar flex-h flex-c-b flex-1 p-0-32 bg-white">
               <text class="search-bar__text fs-32 flex-1 c-lightgrey"
@@ -21,7 +21,7 @@
               <template>
                 <view class="search-bar__line" />
                 <image class="search-bar__voice ml-16" mode="scaleToFill"
-                  src="https://ggllstatic.hpgjzlinfo.com/static/home/icon-home-voice.png"
+                  src="http://192.168.1.187:10088/static/home/icon-home-voice.png"
                   @click="handleVoiceSearchClick" />
               </template>
             </view>
@@ -30,12 +30,12 @@
         <view class="_right">
           <view class="_block" @click="goPath(0)">
             <image class="city-icon ml-8" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/store/card.png" />
+              src="http://192.168.1.187:10088/static/images/store/card.png" />
             <view class="n">钱包</view>
           </view>
           <view class="_block" @click="goPath(1)">
             <image class="city-icon ml-8" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/store/mess.png" />
+              src="http://192.168.1.187:10088/static/images/store/mess.png" />
             <view class="n">消息</view>
           </view>
         </view>
@@ -145,7 +145,7 @@ export default ({
         { icon: 'https://api.hpgjzlinfo.com/nepsp-file/group1/M00/49/AC/wKgupGHehVmAHLU4AANnPfVjZ2o826.png', name: '家具用品' }
       ],
       lifeList: [{ iconUrl: '' }],
-      buyList: ['https://ggllstatic.hpgjzlinfo.com/static/home/chao_zhi1.png', 'https://ggllstatic.hpgjzlinfo.com/static/home/chao_zhi2.png', 'https://ggllstatic.hpgjzlinfo.com/static/home/chao_zhi3.png'],
+      buyList: ['http://192.168.1.187:10088/static/home/chao_zhi1.png', 'http://192.168.1.187:10088/static/home/chao_zhi2.png', 'http://192.168.1.187:10088/static/home/chao_zhi3.png'],
       brandList: [
         { icon: 'https://api.hpgjzlinfo.com/nepsp-file/group1/M00/49/AC/wKgupGHehVmAHLU4AANnPfVjZ2o826.png', name: '苹果' },
         { icon: 'https://api.hpgjzlinfo.com/nepsp-file/group1/M00/49/AC/wKgupGHehVmAHLU4AANnPfVjZ2o826.png', name: '华为' },
@@ -653,7 +653,7 @@ export default ({
     .local {
       width: 93%;
       margin: 32rpx auto;
-      background-image: url('https://ggllstatic.hpgjzlinfo.com/static/home/bendi_hui.png');
+      background-image: url('http://192.168.1.187:10088/static/home/bendi_hui.png');
       background-size: 100% 100%;
       ._line {
         display: flex;

@@ -2,7 +2,7 @@
   <view class="modify-phone-number">
     <view class="tips flex-v flex-c-c p-44-0 bg-white">
       <image class="icon" mode="scaleToFill"
-             src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-exclamation-mark.png" />
+             src="http://192.168.1.187:10088/static/user-center/icon-user-center-exclamation-mark.png" />
       <text class="mt-20 fs-36 fw-bold c-black">提示</text>
       <text class="text mt-12 fs-32 c-lightgrey">
         您正在进行手机号修改操作，此操作会同步修改登入账号以及短信通知预留手机号
@@ -16,7 +16,7 @@
             @click="handleSMSValidationClicK">
         <text class="fs-36 c-black ml-48">短信验证</text>
         <image class="icon mr-32" mode="scaleToFill"
-               src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+               src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
     </view>
     <view class="section flex-v">
@@ -27,7 +27,7 @@
             @click="handleRealPersonAuthenticationClick">
         <text class="fs-36 c-black ml-48">实人认证</text>
         <image class="icon mr-32" mode="scaleToFill"
-               src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+               src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
     </view>
     <real-name-pop ref="realpop" :showTop="showTop"  @succFlag="succFlag" /> 

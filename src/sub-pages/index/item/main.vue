@@ -5,7 +5,7 @@
       <view class="detail" @click="point(2)" :class="actived == 2?'aclass':''">详情</view>
     </view>
     <div class="empty-wrap" v-if="product&&product.saleState !== 5">
-      <img class="tip" src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/tip.png">
+      <img class="tip" src="http://192.168.1.187:10088/static/images/item-detail/tip.png">
       <div class="title">很抱歉，您查看的商品已无效！</div>
       <div class="desc">您可以选择浏览其他商品</div>
       <button type="button" class="btn-view" @click="toHome">看看其他商品</button>
@@ -20,7 +20,7 @@
       </swiper>
       <div class="area">
         <div class="getPrice" v-if="product.creditPoints && selectSize.presentPrice>=0">
-          <img class="collected" src="https://ggllstatic.hpgjzlinfo.com/static/home/getP.png">
+          <img class="collected" src="http://192.168.1.187:10088/static/home/getP.png">
           <view class="flex_line">
             <view class="item">
               <view class="g">到手价</view>
@@ -57,9 +57,9 @@
           </div>
           <!-- <div class="store-wrap" @click="changeFavor">
             <img v-if="product.isCollected == 1" class="collected"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/store_h.png">
+              src="http://192.168.1.187:10088/static/images/item-detail/store_h.png">
             <img v-else class="collected"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/store_n.png">
+              src="http://192.168.1.187:10088/static/images/item-detail/store_n.png">
           </div> -->
           <!-- <div class="product-desc" v-if="product.subName">{{product.subName}}</div> -->
         </div>
@@ -168,11 +168,11 @@
         <li class="info" @click="toAttribute">
           <div class="title">产品参数</div>
           <div class="btn-right">更多参数<img
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/common/right-gray.png"></div>
+              src="http://192.168.1.187:10088/static/images/common/right-gray.png"></div>
         </li>
         <!--        <li class="info border-b">-->
         <!--          <div class="title">评价</div>-->
-        <!--          <div class="btn-right">查看全部评价<img src="https://ggllstatic.hpgjzlinfo.com/static/images/common/right-gray.png"></div>-->
+        <!--          <div class="btn-right">查看全部评价<img src="http://192.168.1.187:10088/static/images/common/right-gray.png"></div>-->
         <!--        </li>-->
       </ul>
       <!-- <div class="line"></div> -->
@@ -220,12 +220,12 @@
       <div class="footer">
         <button class="btn-service" @click="goStoreDetail">
           <img class="icon-img"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/store.png">
+            src="http://192.168.1.187:10088/static/images/item-detail/store.png">
           店铺
         </button>
         <div class="btn-cart" @click="toCart">
           <img class="icon-img"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/cart_new.png">
+            src="http://192.168.1.187:10088/static/images/item-detail/cart_new.png">
           购物车
           <span class="count" v-if="cartCount > 0">{{cartCount}}</span>
         </div>

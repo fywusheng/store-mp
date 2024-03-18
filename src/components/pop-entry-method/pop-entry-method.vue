@@ -4,7 +4,7 @@
     <uni-popup ref="popup" type="center">
       <view class="popup">
         <image class="img-real" v-if="showImg"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/img-real-name.png"
+          src="http://192.168.1.187:10088/static/common/img-real-name.png"
           mode="scaleToFill" />
         <canvas class="canvas" canvas-id="canvas" id="canvas"></canvas>
         <view class="popup-top fs-40 mt-56">
@@ -13,19 +13,19 @@
         <view class="popup-content flex-v flex-c-s mt-48">
           <view class="popup-button ocr-btn flex-h flex-c-c" @click="handleIdCode">
             <image class="ocr mr-20"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-ocr.png"
+              src="http://192.168.1.187:10088/static/common/icon-ocr.png"
               mode="scaleToFill" />
             <text>扫描身份证</text>
           </view>
           <view class="popup-button flex-h flex-c-c mb-48" @click="handleIdNumber">
             <image class="hand mr-20"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-des.png"
+              src="http://192.168.1.187:10088/static/common/icon-des.png"
               mode="scaleToFill" />
             <text>手动输入</text>
           </view>
         </view>
         <image class="close" @click="handleCloseHandle"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-close.png" mode="scaleToFill" />
+          src="http://192.168.1.187:10088/static/common/icon-close.png" mode="scaleToFill" />
       </view>
     </uni-popup>
   </view>

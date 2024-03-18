@@ -5,7 +5,7 @@
       <image class="avatar" :src="avatarURL" @click="handleAvatarClick" mode="scaleToFill" />
       <image
         class="photo-picker" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-select-photo.png"
+        src="http://192.168.1.187:10088/static/user-center/icon-user-center-select-photo.png"
         @click="handlePhotoPickerClick"
       />
     </view>
@@ -23,7 +23,7 @@
         <text class="row__value fs-40 c-black">18888888888</text>
         <image
           class="row__accessory ml-12" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
     </view>
@@ -40,7 +40,7 @@
         </picker>
         <image
           class="row__accessory ml-12" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -62,7 +62,7 @@
         </picker>
         <image
           class="row__accessory ml-12" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -98,7 +98,7 @@
         </uni-data-picker>
         <image
           class="row__accessory ml-12" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -139,7 +139,7 @@ export default {
     avatarURL() {
       return (
         this.userInfo.avatar ||
-         "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-default-avatar.png"
+         "http://192.168.1.187:10088/static/user-center/icon-user-center-default-avatar.png"
       );
     },
   },

@@ -98,7 +98,7 @@
   <div class="page-search">
     <div class="search-header">
       <img class="icon-search"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-search.png">
+        src="http://192.168.1.187:10088/static/images/common/icon-search.png">
       <input ref="searchInput" confirm-type="search" :adjust-position='false' @confirm="search('')"
         :placeholder="key" v-model="key">
       <div class="btn-clear" @click="cancel">取消</div>
@@ -106,7 +106,7 @@
     <div class="label-list-wrap" v-if="showHistory">
       <div class="title">
         历史搜索
-        <img src="https://ggllstatic.hpgjzlinfo.com/static/images/icon-delete.png"
+        <img src="http://192.168.1.187:10088/static/images/icon-delete.png"
           @click="clearHistory">
       </div>
       <ul class="label-list">

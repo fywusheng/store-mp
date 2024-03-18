@@ -2,7 +2,7 @@
   <div class="page-path-list">
     <ul class="item-list">
       <li class="item" @click="toItem(item)" v-for="(item,index) in dataList" :key="index">
-        <img class="btn-delete" @click.stop="remove(item)" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-delete.png">
+        <img class="btn-delete" @click.stop="remove(item)" src="http://192.168.1.187:10088/static/images/common/icon-delete.png">
         <img class="item-logo" mode="aspectFit" :lazy-load="true" :src="item.mainImgUrl">
         <div class="item-body">
           <div class="item-name">{{item.name}}</div>

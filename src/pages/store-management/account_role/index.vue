@@ -36,7 +36,7 @@
 								  ></uni-data-select>
 								
 								<!-- <input placeholder="请选择角色类型" v-model="roleType" class="input_select" :disabled="true"/>
-								<image mode="widthFix"  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/select_icon.png" class="icon"></image> -->
+								<image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image> -->
 							</view>
 							<view class="select" @click="showSelect(1)">
 								<uni-data-select
@@ -46,7 +46,7 @@
 									:clear="false"
 								  ></uni-data-select>
 								<!-- <input placeholder="请选择账号状态" v-model="userStatus" class="input_select" :disabled="true"/>
-								<image mode="widthFix"  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/select_icon.png" class="icon"></image> -->
+								<image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image> -->
 							</view>
 							<view class="btn" @click="handlerSearch">查询</view>
 						</view>
@@ -55,11 +55,11 @@
 				<view class="title flex_r_h">
 					<view class="title_text">{{tabActive==1?'店员列表':'账号列表'}}</view>
 					<view class="add_btn flex_r_h" v-if="tabActive == 1" @click="handleDetails('add')">
-						<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/add_icon.png" mode="widthFix"></image>
+						<image src="http://192.168.1.187:10088/static/store-mp/add_icon.png" mode="widthFix"></image>
 						<text>新建角色</text>
 					</view>
 					<view class="add_btn flex_r_h" v-if="tabActive == 2" @click="handleDetails('add')">
-						<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/add_icon.png" mode="widthFix"></image>
+						<image src="http://192.168.1.187:10088/static/store-mp/add_icon.png" mode="widthFix"></image>
 						<text>新建账号</text>
 					</view>
 				</view>
@@ -68,7 +68,7 @@
 					<view class="item" v-for="(item,index) in list" :key="index">
 						<view class="row flex_r_h" >
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
 								<view class="label">角色名称</view>:
 							</view>
 							<view class="right">
@@ -77,7 +77,7 @@
 						</view>
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/icon_zhsm.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/icon_zhsm.png" mode="widthFix" class="icon"></image>
 								<view class="label">角色说明</view>:
 							</view>
 							<view class="right">
@@ -86,7 +86,7 @@
 						</view>
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/icon_qx.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/icon_qx.png" mode="widthFix" class="icon"></image>
 								<view class="label">权限</view>:
 							</view>
 							<view class="right flex_r_h">
@@ -104,7 +104,7 @@
 					<view class="item" v-for="(item,index) in userlist" :key="index">
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/icon_xm.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/icon_xm.png" mode="widthFix" class="icon"></image>
 								<view class="label">姓名</view>:
 							</view>
 							<view class="right">
@@ -113,7 +113,7 @@
 						</view>
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/icon_phone.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/icon_phone.png" mode="widthFix" class="icon"></image>
 								<view class="label">登录账号</view>:
 							</view>
 							<view class="right">
@@ -122,7 +122,7 @@
 						</view>
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/icon_zhsm.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/icon_zhsm.png" mode="widthFix" class="icon"></image>
 								<view class="label">账号说明</view>:
 							</view>
 							<view class="right">
@@ -131,7 +131,7 @@
 						</view>
 						<view class="row flex_r_h">
 							<view class="left flex_r_h">
-								<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
+								<image src="http://192.168.1.187:10088/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
 								<view class="label">角色名称</view>:
 							</view>
 							<view class="right">

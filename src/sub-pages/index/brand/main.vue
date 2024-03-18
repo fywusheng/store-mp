@@ -9,7 +9,7 @@
     </div>
     <div class="brand-desc">
       {{brandInfo.brandIntroduce}}
-      <!--<img mode="aspectFit" class="btn-down" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-down.png">-->
+      <!--<img mode="aspectFit" class="btn-down" src="http://192.168.1.187:10088/static/images/common/icon-down.png">-->
     </div>
     <ul class="filter-list">
       <li class="filter" @click="changeFilter({id: 0})" :class="activeId === 0 ? 'active':''">
@@ -18,8 +18,8 @@
       <li class="filter" @click="changeFilter(sort)" :key="sort.id" v-for="sort in sortList"
           :class="activeId === sort.id ? 'active':''">
         <div class="title">{{sort.name}}</div>
-        <img v-if="sort.sort === 1" class="filter-status" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/down.png">
-        <img v-else class="filter-status" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/up.png">
+        <img v-if="sort.sort === 1" class="filter-status" src="http://192.168.1.187:10088/static/images/common/down.png">
+        <img v-else class="filter-status" src="http://192.168.1.187:10088/static/images/common/up.png">
       </li>
     </ul>
     <ul class="item-list">
@@ -30,7 +30,7 @@
         <div class="price-layout">
           <div class="sale-price">¥{{item.cuPrice}}</div>
           <div class="market-price">¥{{item.originalPrice}}</div>
-          <img class="icon-cart" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-cart.png">
+          <img class="icon-cart" src="http://192.168.1.187:10088/static/images/common/icon-cart.png">
         </div>
       </li>
     </ul>

@@ -2,7 +2,7 @@
     <view>
         <uni-popup type="center" ref="popupM">
             <view class="notice">
-                <view class="_center"><image class="_img" mode="scaleToFill" src="https://ggllstatic.hpgjzlinfo.com/static/rights/modalTop.png"/></view>
+                <view class="_center"><image class="_img" mode="scaleToFill" src="http://192.168.1.187:10088/static/rights/modalTop.png"/></view>
                 <view class="_t">{{title}}</view>
                 <view class="_subt">{{content}}</view>
                 <view class="spaceLine"></view>

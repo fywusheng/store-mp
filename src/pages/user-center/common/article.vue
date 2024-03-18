@@ -24,7 +24,7 @@
                            <view class="_text">分享</view>
                       </view> -->
             <view class="_item" @click.stop="optionClick(1,artItem,artIndex)">
-              <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/del.png"
+              <image class="icon" src="http://192.168.1.187:10088/static/user-center/del.png"
                 mode="scaleToFill" />
               <view class="_text">取消收藏</view>
             </view>
@@ -57,7 +57,7 @@
                            <view class="_text">分享</view>
                       </view> -->
             <view class="_item" @click.stop="optionClick(1,artItem,artIndex)">
-              <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/del.png"
+              <image class="icon" src="http://192.168.1.187:10088/static/user-center/del.png"
                 mode="scaleToFill" />
               <view class="_text">取消收藏</view>
             </view>
@@ -91,7 +91,7 @@
                            <view class="_text">分享</view>
                       </view> -->
             <view class="_item" @click.stop="optionClick(1,artItem,artIndex)">
-              <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/del.png"
+              <image class="icon" src="http://192.168.1.187:10088/static/user-center/del.png"
                 mode="scaleToFill" />
               <view class="_text">取消收藏</view>
             </view>
@@ -111,7 +111,7 @@
             <view class="audio-center" @click="goVedio()">
               <image class="videoplay" :src="artItem.imgs[0]" mode="scaleToFill" />
               <image class="play" mode="scaleToFill"
-                src="https://ggllstatic.hpgjzlinfo.com/static/find/audio2x.png"></image>
+                src="http://192.168.1.187:10088/static/find/audio2x.png"></image>
               <!-- <video class="videoplay" @play="saveplay('video'+artItem.contId)"
                 :id="'video'+artItem.contId" :title="artItem.ttl" :src="artItem.mediaUrl"></video> -->
             </view>
@@ -127,7 +127,7 @@
                            <view class="_text">分享</view>
                       </view> -->
             <view class="_item" @click.stop="optionClick(1,artItem,artIndex)">
-              <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/del.png"
+              <image class="icon" src="http://192.168.1.187:10088/static/user-center/del.png"
                 mode="scaleToFill" />
               <view class="_text">取消收藏</view>
             </view>
@@ -137,14 +137,14 @@
     </view>
     <block v-if="list.length === 0">
       <view class="pad-top flex-v flex-c-c status-box">
-        <image src="https://ggllstatic.hpgjzlinfo.com/static/common/status-none2x.png"
+        <image src="http://192.168.1.187:10088/static/common/status-none2x.png"
           mode="scaleToFill" class="imgStyle" />
         <view class="flex-c-c status-text">暂无内容</view>
       </view>
     </block>
     <uni-popup ref="confirmpop" type="center">
       <view class="modal-container showValue" @touchmove.stop @click.stop='close()'>
-        <image src="https://ggllstatic.hpgjzlinfo.com/static/common/videoTip.png" mode="widthFix" />
+        <image src="http://192.168.1.187:10088/static/common/videoTip.png" mode="widthFix" />
       </view>
     </uni-popup>
     <uni-popup class="popup" ref="popup" type="bottom" :mask-click="true">
@@ -152,29 +152,29 @@
         <view class="title fs-36">分享到</view>
         <view class="flex-h list fs-36">
           <button class="item flex-v flex-c-c" open-type="share">
-            <image src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-wechat.png"
+            <image src="http://192.168.1.187:10088/static/common/icon-wechat.png"
               mode="scaleToFill" />
             <text>微信好友</text>
           </button>
           <!-- #ifdef MP-ALIPAY -->
           <button class="item flex-v flex-c-c" open-type="share">
-            <image src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-qq.png"
+            <image src="http://192.168.1.187:10088/static/common/icon-qq.png"
               mode="scaleToFill" />
             <text>QQ好友</text>
           </button>
           <button class="item flex-v flex-c-c" open-type="share">
-            <image src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-alipay.png"
+            <image src="http://192.168.1.187:10088/static/common/icon-alipay.png"
               mode="scaleToFill" />
             <text>支付宝好友</text>
           </button>
           <button class="item flex-v flex-c-c" open-type="share">
-            <image src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-message.png"
+            <image src="http://192.168.1.187:10088/static/common/icon-message.png"
               mode="scaleToFill" />
             <text>短信</text>
           </button>
           <!-- #endif -->
           <button class="item flex-v flex-c-c" @click="handleCopyClick">
-            <image src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-link.png"
+            <image src="http://192.168.1.187:10088/static/common/icon-link.png"
               mode="scaleToFill" />
             <text>复制链接</text>
           </button>
@@ -199,7 +199,7 @@ export default {
   data() {
     return {
       article_id: '',
-      icons: { '0': 'https://ggllstatic.hpgjzlinfo.com/static/user-center/topicon.png', '1': 'https://ggllstatic.hpgjzlinfo.com/static/user-center/cancel.png' }
+      icons: { '0': 'http://192.168.1.187:10088/static/user-center/topicon.png', '1': 'http://192.168.1.187:10088/static/user-center/cancel.png' }
     }
   },
   filters: {
@@ -428,7 +428,7 @@ export default {
       width: 100%;
       height: 380rpx;
       border-radius: 10rpx;
-      // background: url("https://ggllstatic.hpgjzlinfo.com/static/logo.png") no-repeat;
+      // background: url("http://192.168.1.187:10088/static/logo.png") no-repeat;
       background-size: 100% 100%;
       margin-top: 12rpx;
       overflow: hidden;

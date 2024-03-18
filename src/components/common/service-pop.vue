@@ -5,13 +5,13 @@
       <view class="modal-container showValue" @touchmove.stop @click.stop='cancel(2)'>
         <view class="modal-content">
           <image v-if="modImg === '0'" class="modal-img modal-img1"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/modal-card2x.png"
+            src="http://192.168.1.187:10088/static/common/modal-card2x.png"
             mode="scaleToFill" />
           <image v-if="modImg === '2'" class="modal-img modal-img2"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/modal-support2x.png"
+            src="http://192.168.1.187:10088/static/common/modal-support2x.png"
             mode="scaleToFill" />
           <image v-if="modImg === '1'" class="modal-img modal-img3"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/modal-family2x.png"
+            src="http://192.168.1.187:10088/static/common/modal-family2x.png"
             mode="scaleToFill" />
           <view class="modal-main modImg">
             <view class="main" v-if="modImg === '0'">

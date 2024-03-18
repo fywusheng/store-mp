@@ -2,7 +2,7 @@
   <div class="page-category">
     <div class="search-layout">
       <div class="search" @click="toSearch">
-        <img class="icon-search" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-search.png">
+        <img class="icon-search" src="http://192.168.1.187:10088/static/images/common/icon-search.png">
         输入关键字搜索商品...
       </div>
     </div>

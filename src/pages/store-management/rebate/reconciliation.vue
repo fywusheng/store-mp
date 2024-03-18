@@ -14,7 +14,7 @@
 					<view class="select_lang" @click="selectDate">
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
-						<image mode="widthFix" src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/select_icon.png"
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
 							class="icon_s"></image>
 					</view>
 				</view>
@@ -40,7 +40,7 @@
 					</view>
 					<view class="bottom flex_r_h">
 						<view class="left flex_r_h">
-							<image mode="widthFix" src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/yb-icon.png">
+							<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/yb-icon.png">
 							</image>
 							<view class="price">返佣金额：<text>￥{{item.rebateAmount}}</text></view>
 						</view>

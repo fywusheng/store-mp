@@ -82,12 +82,12 @@
       width: rpx(670);
       min-height: rpx(226);
       box-shadow: 0rpx 8rpx 12rpx 0rpx rgba(0, 0, 0, 0.1);
-      // background: url(https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/coupon-valid.png)
+      // background: url(http://192.168.1.187:10088/static/images/item-detail/coupon-valid.png)
       //   left top no-repeat;
       // background-size: cover;
 
       &.disabled {
-        background-image: url(https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/coupon-invalid.png);
+        background-image: url(http://192.168.1.187:10088/static/images/item-detail/coupon-invalid.png);
 
         .coupon__name {
           color: #999;
@@ -95,7 +95,7 @@
       }
 
       .money {
-        background: url('https://ggllstatic.hpgjzlinfo.com/static/common/left_icon.png');
+        background: url('http://192.168.1.187:10088/static/common/left_icon.png');
         background-size: 100% 100%;
         height: 100%;
         width: 232rpx;
@@ -221,7 +221,7 @@
       <div class="modal-header">
         可领取优惠券
         <img class="btn-close"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/close.png"
+          src="http://192.168.1.187:10088/static/images/item-detail/close.png"
           @click="show(false)">
       </div>
       <view class="coupon-list" v-if="couponList && couponList.length">
@@ -252,7 +252,7 @@
         </li>
       </view>
       <div class="empty-wrap" v-if="!couponList.length">
-        <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-detail/coupon-empty.png">
+        <img src="http://192.168.1.187:10088/static/images/item-detail/coupon-empty.png">
         <div class="title">很遗憾</div>
         <div class="desc">您暂时无可领取的优惠券</div>
       </div>

@@ -4,14 +4,14 @@
 	<view class="dl_content">
 		<!-- 登录 -->
 		<view class="top">
-			<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dlbg.png" class="bg-img" mode="widthFix"></image>
-			<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/logo.png" class="logo" mode="widthFix"></image>
+			<image src="http://192.168.1.187:10088/static/store-mp/dlbg.png" class="bg-img" mode="widthFix"></image>
+			<image src="http://192.168.1.187:10088/static/store-mp/logo.png" class="logo" mode="widthFix"></image>
 		</view>
 		<view class="bottom">
-			<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dltitle.png" class="title-img" mode="widthFix"></image>
+			<image src="http://192.168.1.187:10088/static/store-mp/dltitle.png" class="title-img" mode="widthFix"></image>
 			<view class="dl_form">
 				<view class="input_content phone_input">
-					<image src=" https://ggllstatic.hpgjzlinfo.com/static/store-mp/phone-icon.png" class="form-icon" mode="widthFix"></image>
+					<image src=" http://192.168.1.187:10088/static/store-mp/phone-icon.png" class="form-icon" mode="widthFix"></image>
 					<input class="uni-input" 
 					 type="number"
 					 placeholder="请输入手机号"
@@ -20,7 +20,7 @@
 					 v-model="params.phoneNumber"/>
 				</view>
 				<view class="input_content yzm_input">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/aq-icon.png" class="form-icon" mode="widthFix"></image>
+					<image src="http://192.168.1.187:10088/static/store-mp/aq-icon.png" class="form-icon" mode="widthFix"></image>
 					<input class="uni-input" type="number"
 					placeholder="输入手机验证码"
 					placeholder-class="placeholder"

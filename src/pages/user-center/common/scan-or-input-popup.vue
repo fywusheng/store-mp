@@ -5,19 +5,19 @@
         <text class="fs-44 fw-500 c-black mt-48">选择信息录入方式</text>
         <view class="button flex-h flex-c-c mt-80" @click="handleScanClick">
           <image class="button__icon" mode="scaleToFill"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-idcard-scan.png" />
+            src="http://192.168.1.187:10088/static/common/icon-common-idcard-scan.png" />
           <text class="button__text fs-44 c-primary ml-20">扫描身份证</text>
         </view>
         <view class="button flex-h flex-c-c mt-60" @click="handleInputClick">
           <image mode="scaleToFill" class="button__icon"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-idcard-input.png" />
+            src="http://192.168.1.187:10088/static/common/icon-common-idcard-input.png" />
           <text class="button__text fs-44 c-primary ml-20">手动输入</text>
         </view>
         <!-- #ifdef MP-ALIPAY -->
         <canvas class="canvas" :width="imgWidth" :height="imgHeight" id="canvas"></canvas>
         <!-- #endif -->
         <image class="close-icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-close.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-close.png"
           @click="handleCloseClick" />
       </view>
     </uni-popup>

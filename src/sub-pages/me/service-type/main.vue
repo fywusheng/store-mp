@@ -5,18 +5,18 @@
         <div class="title">仅退款</div>
         <div class="tip">未收到货(包含未签收),或与卖家协商后</div>
         <img class="icon-right"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png">
+          src="http://192.168.1.187:10088/static/images/common/icon-right.png">
       </li>
       <li class="type" @click="toRefund(2)">
         <div class="title">退货退款</div>
         <div class="tip">已收货，需要退回已收到的商品</div>
         <img class="icon-right"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png">
+          src="http://192.168.1.187:10088/static/images/common/icon-right.png">
       </li>
       <!-- <li class="type" @click="toRefund(3)">
         <div class="title">换货</div>
         <div class="tip">已收货，需要更换已收到的商品</div>
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/common/icon-right.png">
       </li> -->
     </ul>
   </div>

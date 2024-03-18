@@ -20,13 +20,13 @@ export default {
   data() {
     return {
       icon: {
-        bg: 'https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-get-point.png',
-        close: 'https://ggllstatic.hpgjzlinfo.com/static/common/icon-close.png'
+        bg: 'http://192.168.1.187:10088/static/images/common/icon-get-point.png',
+        close: 'http://192.168.1.187:10088/static/common/icon-close.png'
       },
       content: {
         popUpTitle: '领积分,抵现金',
         popUpDesc: '加入官方本地福利群，领积分领福利',
-        popUpImg: 'https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-get-point.png',
+        popUpImg: 'http://192.168.1.187:10088/static/images/common/icon-get-point.png',
         popUpTargetUrl: '',
         popUpTimes: 0
       }

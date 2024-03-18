@@ -14,12 +14,12 @@
         <view class="item mr-32 mb-32" v-for="(item, index) in images" :key="index">
           <image class="image" :src="item" mode="scaleToFill" />
           <image class="delete" mode="scaleToFill"
-            src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-input-clear.png"
+            src="http://192.168.1.187:10088/static/common/icon-common-input-clear.png"
             @click="handleDeletePhotoClick(index)" />
         </view>
         <view class="item mr-32 mb-32" v-if="images.length < 9">
           <image class="image" mode="scaleToFill"
-            src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-add-photo.png"
+            src="http://192.168.1.187:10088/static/user-center/icon-user-center-add-photo.png"
             @click="handlePhotoPickerClick" />
         </view>
       </view>

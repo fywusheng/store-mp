@@ -22,10 +22,10 @@
         :key="parentIndex">
         <div class="order-header" @click.stop="goStoreDetail(order)">
           <image class="icon-logo"
-            src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/no-order.png" mode="" />
+            src="http://192.168.1.187:10088/static/supermarket/no-order.png" mode="" />
           <text>{{order.storeName}}</text>
           <image class="icon-right"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/me/right.png" mode="" />
+            src="http://192.168.1.187:10088/static/images/me/right.png" mode="" />
           <div class="status" :class="{red: order.status === 10}">{{order.orderStatusLabel}}</div>
         </div>
 
@@ -65,7 +65,7 @@
       </li>
     </ul>
     <div class="empty" v-if="!loading && !orderList.length">
-      <img src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/no-order.png">
+      <img src="http://192.168.1.187:10088/static/supermarket/no-order.png">
       暂无订单数据
       <div class="btn-home" @click="toHome">逛逛更多好货</div>
     </div>

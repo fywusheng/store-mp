@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       type: 1, // 1-right 2-error
-      imgs: { 1: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/right.png', 2: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/error.png' },
+      imgs: { 1: 'http://192.168.1.187:10088/static/user-center/right.png', 2: 'http://192.168.1.187:10088/static/user-center/error.png' },
       infor: { 1: '注销成功', 2: '注销失败' },
       content: { 1: '您已成功注销账号', 2: '您的账号有正在进行中的订单 如需注销账号,请完成订单后再重试' }
     }

@@ -11,14 +11,14 @@
 					<view class="select_lang" @click="selectDate">
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
-						<image mode="widthFix" src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/select_icon.png"
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
 							class="icon_s"></image>
 					</view>
 				</view>
 			</view>
 			<view class="info_content flex_r_h">
 				<view class="row flex_r_h" @click="exportOrderInfo(40)">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dc-icon.png" mode="widthFix"
+					<image src="http://192.168.1.187:10088/static/store-mp/dc-icon.png" mode="widthFix"
 						class="icon"></image>
 					<view class="desc">
 						<view>导出已完成</view>
@@ -26,7 +26,7 @@
 					</view>
 				</view>
 				<view class="row flex_r_h" @click="exportOrderInfo(100)">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dcq-icon.png" mode="widthFix"
+					<image src="http://192.168.1.187:10088/static/store-mp/dcq-icon.png" mode="widthFix"
 						class="icon"></image>
 					<view class="desc">
 						<view>导出已退款</view>
@@ -34,7 +34,7 @@
 					</view>
 				</view>
 				<view class="row flex_r_h" @click="exportOrderDetail(40)">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/mx-icon.png" mode="widthFix"
+					<image src="http://192.168.1.187:10088/static/store-mp/mx-icon.png" mode="widthFix"
 						class="icon"></image>
 					<view class="desc">
 						<view>导出已完成</view>
@@ -42,7 +42,7 @@
 					</view>
 				</view>
 				<view class="row flex_r_h" @click="exportOrderDetail(100)">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dct-icon.png" mode="widthFix"
+					<image src="http://192.168.1.187:10088/static/store-mp/dct-icon.png" mode="widthFix"
 						class="icon"></image>
 					<view class="desc">
 						<view>导出已退款</view>

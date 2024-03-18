@@ -5,13 +5,13 @@
 				<view class="name">更换绑定手机号</view>
 				<view class="desc flex_r_h">
 					<view>1378999999</view>
-					<image src=" https://ggllstatic.hpgjzlinfo.com/static/store-mp/qw-icon.png" class="icon"></image>
+					<image src=" http://192.168.1.187:10088/static/store-mp/qw-icon.png" class="icon"></image>
 				</view>
 			</view>
 			<view class="item flex_r_h">
 				<view class="name">关于应用</view>
 				<view class="desc flex_r_h">
-					<image src=" https://ggllstatic.hpgjzlinfo.com/static/store-mp/qw-icon.png" class="icon"></image>
+					<image src=" http://192.168.1.187:10088/static/store-mp/qw-icon.png" class="icon"></image>
 				</view>
 			</view>
 		</view>

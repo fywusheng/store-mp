@@ -9,7 +9,7 @@
     <view class="blank" :style="{ height: navigationBarHeight + 'px' }" />
     <view class="flex-v flex-c-s">
       <image class="result-icon mt-80" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/certificate/icon-certificate-submit-success.png" />
+        src="http://192.168.1.187:10088/static/certificate/icon-certificate-submit-success.png" />
       <text class="fs-50 c-primary mt-54">恭喜你实名认证成功</text>
 
       <button class="button fs-44 c-white" hover-class="none" @click="handleBackToHomeClick">

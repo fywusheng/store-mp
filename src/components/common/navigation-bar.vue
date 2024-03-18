@@ -109,8 +109,8 @@ export default {
     // 返回 button 图标路径
     backButtonIconURL() {
       return this.backButtonStyle === 'white'
-        ? 'https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-white.png'
-        : 'https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-back-black.png'
+        ? 'http://192.168.1.187:10088/static/common/icon-common-back-white.png'
+        : 'http://192.168.1.187:10088/static/common/icon-common-back-black.png'
     }
   },
   methods: {

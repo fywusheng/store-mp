@@ -35,7 +35,7 @@
         <text class="fs-36 c-lightgrey">1000</text>
       </view>
       <image class="watermark" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-logo-watermark.png" />
+        src="http://192.168.1.187:10088/static/common/icon-common-logo-watermark.png" />
     </view>
     <view class="points-detail bg-white">
       <view class="tab-bar flex-h flex-c-s">
@@ -193,9 +193,9 @@ export default {
       if (this.userInfo.crtfStas !== '2') {
         // 未实名
         if (tastId == '6') {
-          this.headImg = 'https://ggllstatic.hpgjzlinfo.com/static/common/loginAttest.png'
+          this.headImg = 'http://192.168.1.187:10088/static/common/loginAttest.png'
         } else {
-          this.headImg = 'https://ggllstatic.hpgjzlinfo.com/static/common/img-real-name.png'
+          this.headImg = 'http://192.168.1.187:10088/static/common/img-real-name.png'
         }
         this.$refs.realpop.open()
         return
@@ -247,19 +247,19 @@ export default {
         {
           title: '添加亲情账号',
           points: 300,
-          icon: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-task-2.png',
+          icon: 'http://192.168.1.187:10088/static/user-center/icon-user-center-task-2.png',
           isFinished: false
         },
         {
           title: '完善赡养扶养关系',
           points: 200,
-          icon: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-task-1.png',
+          icon: 'http://192.168.1.187:10088/static/user-center/icon-user-center-task-1.png',
           isFinished: false
         },
         {
           title: '申领电子证照老年人证',
           points: 500,
-          icon: 'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-task-0-finished.png',
+          icon: 'http://192.168.1.187:10088/static/user-center/icon-user-center-task-0-finished.png',
           isFinished: true
         }
       ]

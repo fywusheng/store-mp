@@ -36,8 +36,8 @@
 </template>
 
 <script>
-let Icon1  = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-show-password.png";
-let Icon2 = "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-hide-password.png";
+let Icon1  = "http://192.168.1.187:10088/static/user-center/icon-user-center-show-password.png";
+let Icon2 = "http://192.168.1.187:10088/static/user-center/icon-user-center-hide-password.png";
 import api from "@/apis/index.js";
 import sha256 from "crypto-js/sha256";
 export default {

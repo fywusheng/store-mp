@@ -8,7 +8,7 @@
           <view class="item__text flex-h flex-c-e">
             <text>{{userInfo.crtfStas == '2' ? '已实名' : '未实名'}}</text>
             <image v-if="userInfo.crtfStas !== '2'" class="item__accessory" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+              src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
           </view>
         </view>
         <view class="item flex-h flex-c-b " @click="handleModifyPhoneNumberClick"
@@ -17,7 +17,7 @@
           <view class="item__text flex-h flex-c-e">
             <text>{{userInfo.tel | phoneNumberFilter}}</text>
             <image class="item__accessory" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+              src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
           </view>
         </view>
         <view class="item flex-h flex-c-b" @click="handleModifyPasswordClick"
@@ -26,14 +26,14 @@
           <view class="item__text flex-h flex-c-e">
             <text>{{userInfo.needFirstSetPwd == '0' ? '已设置' : '未设置'}}</text>
             <image class="item__accessory" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+              src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
           </view>
         </view>
         <view class="item flex-h flex-c-b" @click="about">
           <text class="fs-40 c-black flex-1 ">关于应用</text>
           <view class="item__text flex-h flex-c-e">
             <image class="item__accessory" mode="scaleToFill"
-              src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+              src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
           </view>
         </view>
       </view>

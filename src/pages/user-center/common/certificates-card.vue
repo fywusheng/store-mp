@@ -3,20 +3,20 @@
   <view class="show-card">
     <view v-if="loading" class="need-known bg-white">
       <image v-if="cardStatus == 3 || cardStatus == 2 || crtfStas !== '2'" class="need-img mb-8"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-receive.png"
+        src="http://192.168.1.187:10088/static/user-center/icon-state-receive.png"
         mode="scaleToFill" @click="handleGetButtonClick" />
       <image v-if="cardStatus == 4" class="need-img mb-8"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-examine.png"
+        src="http://192.168.1.187:10088/static/user-center/icon-state-examine.png"
         mode="scaleToFill" />
       <image v-if="cardStatus == 5" class="need-img mb-8"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-state-re-examine.png"
+        src="http://192.168.1.187:10088/static/user-center/icon-state-re-examine.png"
         mode="scaleToFill" @click="handleGetButtonClick" />
     </view>
 
     <view class="electronic-certificate" v-if="cardStatus == 1">
       <view v-if="frontCard" class="front-side">
         <image class="national-emblem" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/icon-certificate-national-emblem.png" />
+          src="http://192.168.1.187:10088/static/certificate/icon-certificate-national-emblem.png" />
         <text class="title fs-36">中华人民共和国老年人证</text>
         <text class="name-title fs-20">
           姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
@@ -68,7 +68,7 @@
       </view>
       <view class="buttom">
         <image class="icon-trans" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/certificate/trans_icon.png" />
+          src="http://192.168.1.187:10088/static/certificate/trans_icon.png" />
         <text class="watch-btn" @click="watchBg">{{frontCard?'查看背面':'查看正面'}}</text>
       </view>
     </view>
@@ -408,7 +408,7 @@ export default {
       @include size(686, 434);
       position: relative;
       margin-bottom: 0;
-      background-image: url('https://ggllstatic.hpgjzlinfo.com/static/certificate/bg-certificate-card.png');
+      background-image: url('http://192.168.1.187:10088/static/certificate/bg-certificate-card.png');
       background-size: 100% 100%;
       .national-emblem {
         @include size(90, 94);

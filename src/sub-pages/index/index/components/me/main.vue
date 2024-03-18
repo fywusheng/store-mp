@@ -20,7 +20,7 @@
       box-sizing: border-box;
       height: rpx(280);
       width: rpx(718);
-      background: url(https://ggllstatic.hpgjzlinfo.com/static/images/me/face-bg.png) center no-repeat;
+      background: url(http://192.168.1.187:10088/static/images/me/face-bg.png) center no-repeat;
       background-size: cover;
       color: #fff;
       border-top-left-radius: rpx(16);
@@ -86,7 +86,7 @@
           border-radius: 50%;
           @include background-image();
           background-size: cover;
-          background-image: url(https://ggllstatic.hpgjzlinfo.com/static/images/me/face.png);
+          background-image: url(http://192.168.1.187:10088/static/images/me/face.png);
         }
       }
     }
@@ -263,7 +263,7 @@
           <image
             style="width:15rpx;height:30rpx;margin-left:6rpx"
             class="panel-header-icon-right"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/me/right.png"
+            src="http://192.168.1.187:10088/static/images/me/right.png"
             mode="scaleToFill"
           />
         </view>
@@ -271,25 +271,25 @@
       <view class="panel-body">
         <view class="flex-list">
           <view class="item" @click="toOrder(10)">
-            <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/wait-zhifu.png" mode="" />
+            <image class="icon" src="http://192.168.1.187:10088/static/images/me/wait-zhifu.png" mode="" />
             <view class="item-text">待付款</view>
           </view>
            <view class="item" @click="toOrder(20)">
-            <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/wait-fahuo.png" mode="" />
+            <image class="icon" src="http://192.168.1.187:10088/static/images/me/wait-fahuo.png" mode="" />
             <view class="item-text">待发货</view>
           </view>
            <view class="item" @click="toOrder(30)">
-            <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/wait-shouhuo.png" mode="" />
+            <image class="icon" src="http://192.168.1.187:10088/static/images/me/wait-shouhuo.png" mode="" />
             <view class="item-text">待收货</view>
           </view>
         </view>
         <view class="flex-list">
           <view class="item" @click="toOrder(40)">
-            <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/wait-pingjia.png" mode="" />
+            <image class="icon" src="http://192.168.1.187:10088/static/images/me/wait-pingjia.png" mode="" />
             <view class="item-text">待评价</view>
           </view>
           <view class="item" @click="toOrder(999)">
-            <image class="icon" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/shouhou.png" mode="" />
+            <image class="icon" src="http://192.168.1.187:10088/static/images/me/shouhou.png" mode="" />
             <view class="item-text">售后服务</view>
           </view>
         </view>
@@ -322,23 +322,23 @@
     <ul class="menu-list">
       <li class="menu" @click="toAddress">
         收货地址
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/me/right.png">
       </li>
       <!-- <li class="menu" @click="toMenu('my-point')">
         我的积分
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/common/right.png">
       </li> -->
       <li class="menu" @click="toMenu('my-collect')">
         收藏关注
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/me/right.png">
       </li>
       <li class="menu">
         <button class="contact-btn" open-type="contact"> 联系客服</button>
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/me/right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/me/right.png">
       </li>
       <!-- <li class="menu" @click="toTopic('help_app')">
         帮助中心
-        <img class="icon-right" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/right.png">
+        <img class="icon-right" src="http://192.168.1.187:10088/static/images/common/right.png">
       </li> -->
     </ul>
   </div>

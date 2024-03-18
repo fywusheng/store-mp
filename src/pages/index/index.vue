@@ -3,7 +3,7 @@
 <template>
 	<view class="index_content">
 		<!-- 首页 -->
-		<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/index_bg.png" mode="widthFix" class="bg_img"/>
+		<image src="http://192.168.1.187:10088/static/store-mp/index_bg.png" mode="widthFix" class="bg_img"/>
 		<view class="main">
 			<view class="top">
 				<view class="info flex_r_h">
@@ -11,7 +11,7 @@
 					<view class="shp_tag">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
 					<view class="shp_date">{{storeInfo.periodEndValidity}}到期</view>
 				</view>
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/set-icon.png" mode="widthFix" class="set_img" @click="setAccout"/>
+				<image src="http://192.168.1.187:10088/static/store-mp/set-icon.png" mode="widthFix" class="set_img" @click="setAccout"/>
 			</view>
 			<view class="dl_info flex_r_h">
 				<view class="info flex_r_h">
@@ -19,11 +19,11 @@
 					<view class="h-icon">|</view>
 					<view class="">店长：{{storeInfo.corporateAccount}}</view>
 				</view>
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/call-icon.png" mode="widthFix" class="set_img" @click="makeCall"/>
+				<image src="http://192.168.1.187:10088/static/store-mp/call-icon.png" mode="widthFix" class="set_img" @click="makeCall"/>
 			</view>
 			<view class="xs_count_content">
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/tj-bg.png" mode="widthFix" class="xs_bg_img"/>
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/date-icon.png" mode="widthFix" class="date_img" @click="handleCalerdarShow"/>
+				<image src="http://192.168.1.187:10088/static/store-mp/tj-bg.png" mode="widthFix" class="xs_bg_img"/>
+				<image src="http://192.168.1.187:10088/static/store-mp/date-icon.png" mode="widthFix" class="date_img" @click="handleCalerdarShow"/>
 				<view class="content">
 					<view class="tab flex_r_h">
 						<view :class="tabActive == item.id ? 'active':''" v-for="(item,index) in tabList" :key="index" @click="handleTab(item.id)">{{item.lable}}</view>
@@ -65,7 +65,7 @@
 			<!-- 活动通知 -->
 			<view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
 				<view class="pic">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/hdtz-img.png" />
+					<image src="http://192.168.1.187:10088/static/store-mp/hdtz-img.png" />
 				</view>
 				<text class='line'>|</text>
 				<view class='swipers'>
@@ -85,14 +85,14 @@
 			<!-- 代客下单 -->
 			<view class="dkxd_main flex_r_h">
 				 <navigator url="/pages/store-management/dkxd/index" class="btn_item left flex_r_h" v-if="functionList.length!=0">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dkbg.png" mode="widthFix" class="bg"/>
+					<image src="http://192.168.1.187:10088/static/store-mp/dkbg.png" mode="widthFix" class="bg"/>
 					<view>代客下单</view>
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/dkxd_icon.png" mode="widthFix" class="icon_img"/>
+					<image src="http://192.168.1.187:10088/static/store-mp/dkxd_icon.png" mode="widthFix" class="icon_img"/>
 				</navigator>
 				<navigator :url="'/pages/function_list/index?id='+userId" class="btn_item right flex_r_h">
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/mdbg.png" mode="widthFix" class="bg"/>
+					<image src="http://192.168.1.187:10088/static/store-mp/mdbg.png" mode="widthFix" class="bg"/>
 					<view>门店管理</view>
-					<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/md-icon.png" mode="widthFix" class="icon_img"/>
+					<image src="http://192.168.1.187:10088/static/store-mp/md-icon.png" mode="widthFix" class="icon_img"/>
 				</navigator>
 			</view>
 		</view>

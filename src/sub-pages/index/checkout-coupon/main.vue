@@ -27,7 +27,7 @@
       </ul>
       <div class="empty-wrap" v-if="status === 0 && !canuseList.length">
         <img class="icon-empty"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png">
+          src="http://192.168.1.187:10088/static/images/common/icon-empty.png">
       </div>
     </template>
     <template v-if="status === 1">
@@ -48,7 +48,7 @@
       </ul>
       <div class="empty-wrap" v-if="status === 1 && !notuseList.length">
         <img class="icon-empty"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-empty.png">
+          src="http://192.168.1.187:10088/static/images/common/icon-empty.png">
       </div>
     </template>
   </div>
@@ -140,13 +140,13 @@ export default {
       margin-bottom: rpx(30);
       width: rpx(693);
       min-height: rpx(232);
-      background: url(https://ggllstatic.hpgjzlinfo.com/static/images/order/icon-enabled.png) left
+      background: url(http://192.168.1.187:10088/static/images/order/icon-enabled.png) left
         top no-repeat;
       background-size: 220rpx 232rpx;
       background-color: #ffffff;
 
       &.disabled {
-        background-image: url(https://ggllstatic.hpgjzlinfo.com/static/images/order/icon-disabled.png);
+        background-image: url(http://192.168.1.187:10088/static/images/order/icon-disabled.png);
 
         .coupon__name,
         .coupon__rule {

@@ -25,36 +25,36 @@ export default {
         {
           id: 1,
           name: '首页',
-          imgOff: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/home.png',
-          imgOn: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/home-active.png',
+          imgOff: 'http://192.168.1.187:10088/static/images/footer/home.png',
+          imgOn: 'http://192.168.1.187:10088/static/images/footer/home-active.png',
           'url': '/sub-pages/index/index/main'
         },
         {
           id: 2,
           name: '分类',
-          imgOff: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/category.png',
-          imgOn: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/category-active.png',
+          imgOff: 'http://192.168.1.187:10088/static/images/footer/category.png',
+          imgOn: 'http://192.168.1.187:10088/static/images/footer/category-active.png',
           'url': '/sub-pages/index/cate'
         },
         {
           id: 3,
           name: '语音',
-          imgOff: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/voice.png',
-          imgOn: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/voice.png',
+          imgOff: 'http://192.168.1.187:10088/static/images/footer/voice.png',
+          imgOn: 'http://192.168.1.187:10088/static/images/footer/voice.png',
           'url': '/pages/index/cart'
         },
         {
           id: 4,
           name: '购物车',
-          imgOff: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/cart.png',
-          imgOn: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/cart-active.png',
+          imgOff: 'http://192.168.1.187:10088/static/images/footer/cart.png',
+          imgOn: 'http://192.168.1.187:10088/static/images/footer/cart-active.png',
           'url': '/pages/index/cart'
         },
         {
           id: 5,
           name: '订单',
-          imgOff: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/order.png',
-          imgOn: 'https://ggllstatic.hpgjzlinfo.com/static/images/footer/order-active.png',
+          imgOff: 'http://192.168.1.187:10088/static/images/footer/order.png',
+          imgOn: 'http://192.168.1.187:10088/static/images/footer/order-active.png',
           'url': '/pages/index/user'
         }
       ]

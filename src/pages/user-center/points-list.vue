@@ -47,7 +47,7 @@
         </view>
         <view class="no-data flex-v flex-c-c" v-else>
           <image class="img"
-            src="https://ggllstatic.hpgjzlinfo.com/static/support/icon-support-no-data.png"
+            src="http://192.168.1.187:10088/static/support/icon-support-no-data.png"
             mode="scaleToFill" />
           <view class="text">暂无内容</view>
         </view>

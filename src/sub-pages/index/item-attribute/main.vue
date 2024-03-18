@@ -46,7 +46,7 @@
       </li>
     </ul>
     <div class="empty" v-if="!dataList.length">
-      <img src="https://ggllstatic.hpgjzlinfo.com/static/images/no-comment.png">
+      <img src="http://192.168.1.187:10088/static/images/no-comment.png">
       <div class="desc">暂无属性</div>
     </div>
   </div>

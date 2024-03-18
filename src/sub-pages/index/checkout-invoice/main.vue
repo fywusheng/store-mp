@@ -172,26 +172,26 @@
       <ul class="invoice-content" v-model="invoice.invoiceContent">
         <li @click="changeInvoiceContent(1)">
           <img v-if="invoice.invoiceContent == 1"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_h.png">
-          <img v-else src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_h.png">
+          <img v-else src="http://192.168.1.187:10088/static/images/common/select_n.png">
           服饰、鞋帽
         </li>
         <li @click="changeInvoiceContent(2)">
           <img v-if="invoice.invoiceContent == 2"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_h.png">
-          <img v-else src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_h.png">
+          <img v-else src="http://192.168.1.187:10088/static/images/common/select_n.png">
           箱包
         </li>
         <li @click="changeInvoiceContent(3)">
           <img v-if="invoice.invoiceContent == 3"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_h.png">
-          <img v-else src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_h.png">
+          <img v-else src="http://192.168.1.187:10088/static/images/common/select_n.png">
           礼品、办公用品
         </li>
         <li @click="changeInvoiceContent(4)">
           <img v-if="invoice.invoiceContent == 4"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_h.png">
-          <img v-else src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_h.png">
+          <img v-else src="http://192.168.1.187:10088/static/images/common/select_n.png">
           订单商品明细
         </li>
       </ul>

@@ -1,7 +1,7 @@
 <template>
   <view class="about">
     <view class="logon">
-      <image src='https://ggllstatic.hpgjzlinfo.com/static/user-center/logo.png' class="logoicon" />
+      <image src='http://192.168.1.187:10088/static/user-center/logo.png' class="logoicon" />
     </view>
     <view class="title">国家老龄服务平台</view>
     <view class="v-num">版本号 {{version}}</view>

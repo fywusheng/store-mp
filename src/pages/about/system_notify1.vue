@@ -2,14 +2,14 @@
 	<view class="main">
 		<view class="list">
 			<view class="item flex_r_h">
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/xt-x-icon.png" class="icon"></image>
+				<image src="http://192.168.1.187:10088/static/store-mp/xt-x-icon.png" class="icon"></image>
 				<view class="desc">
 					<view class="name">通知公告</view>
 					<view class="info">暂无最新消息</view>
 				</view>
 			</view>
 			<view class="item flex_r_h">
-				<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/xt-s-icon.png" class="icon"></image>
+				<image src="http://192.168.1.187:10088/static/store-mp/xt-s-icon.png" class="icon"></image>
 				<view class="desc">
 					<view class="name">系统提醒</view>
 					<view class="info">暂无最新消息</view>

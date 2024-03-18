@@ -11,47 +11,47 @@
         时间
         <view class="img-wrap" v-if="sortType !== 11 && sortType !== 12">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </view>
         <view class="img-wrap" v-if="sortType === 11">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </view>
         <view class="img-wrap" v-if="sortType === 12">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png">
         </view>
       </view>
       <view class="sort" @click="changeSortType(sortType === 21 ? 22 : 21)">
         价格
         <view class="img-wrap" v-if="sortType !== 21 && sortType !== 22">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </view>
         <view class="img-wrap" v-if="sortType === 21">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </view>
         <view class="img-wrap" v-if="sortType === 22">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png">
         </view>
       </view>
       <view class="sort" @click="showFilter">
         <img class="filter"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/index/icon-filter.png">
+          src="http://192.168.1.187:10088/static/images/index/icon-filter.png">
       </view>
     </view>
     <scroll-view v-if="itemList.length || loading" scroll-y class="item-list-wrap"
@@ -65,7 +65,7 @@
           <view class="item-price">&yen;{{item.costPriceStr | formatPrice}}</view>
           <view class="sale-out-wrap" v-if="item.saleState !== 5 || item.availableStock === 0">
             <image class="sale-out"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/sale-out.png">
+              src="http://192.168.1.187:10088/static/images/item-list/sale-out.png">
           </view>
         </view>
         <view class="item holder" v-for="(i, index) in holder" :key="index"></view>
@@ -74,7 +74,7 @@
     <bottom-tips class="loadInfor" v-if="itemList.length > 0" ref="bottomTips"
       :bottomTips="bottomTips" />
     <view v-if="empty" class="empty">
-      <img class="img" src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/empty.png">
+      <img class="img" src="http://192.168.1.187:10088/static/images/item-list/empty.png">
       没有搜到您想要的商品
       <view class="btn-home" @click="toHome">再去逛逛</view>
     </view>

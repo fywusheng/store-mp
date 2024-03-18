@@ -234,11 +234,11 @@
   <div id="app">
     <div class="search-header">
       <img class="icon"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-search.png">
+        src="http://192.168.1.187:10088/static/images/common/icon-search.png">
       <input confirm-type="search" @confirm="search" :placeholder="key || '输入关键字搜索商品...'"
         v-model="key">
       <img class="btn-clear"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/clear.png" @click="clear">
+        src="http://192.168.1.187:10088/static/images/item-list/clear.png" @click="clear">
     </div>
     <ul class="sort-list">
       <li class="sort" :class="{active: !sortType}">综合</li>
@@ -246,63 +246,63 @@
         时间
         <div class="img-wrap" v-if="sortType !== 11 && sortType !== 12">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 11">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 12">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png">
         </div>
       </li>
       <!-- <li class="sort" @click="changeSortType(sortType === 31 ? 32 : 31)">
         销量
         <div class="img-wrap" v-if="sortType !== 31 && sortType !== 32">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 31">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_h@2x.png">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 32">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_h@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
+          <img src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png">
         </div>
       </li> -->
       <li class="sort" @click="changeSortType(sortType === 21 ? 22 : 21)">
         价格
         <div class="img-wrap" v-if="sortType !== 21 && sortType !== 22">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 21">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png">
         </div>
         <div class="img-wrap" v-if="sortType === 22">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/up_n@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png">
           <img class="image"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/down_h@2x.png">
+            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png">
         </div>
       </li>
       <li class="sort" @click="showFilter">
         筛选
         <img class="filter"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/filter.png">
+          src="http://192.168.1.187:10088/static/images/item-list/filter.png">
       </li>
     </ul>
     <scroll-view v-if="itemList.length || loading" scroll-y class="item-list-wrap"
@@ -317,13 +317,13 @@
           </div>
           <div class="sale-out-wrap" v-if="item.saleState !== 5 || item.availableStock === 0">
             <img class="sale-out"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/sale-out.png">
+              src="http://192.168.1.187:10088/static/images/item-list/sale-out.png">
           </div>
         </li>
       </ul>
     </scroll-view>
     <div v-if="empty" class="empty">
-      <img src="https://ggllstatic.hpgjzlinfo.com/static/images/item-list/empty.png">
+      <img src="http://192.168.1.187:10088/static/images/item-list/empty.png">
       没有搜到您想要的商品
       <div class="btn-home" @click="toHome">再去逛逛</div>
     </div>

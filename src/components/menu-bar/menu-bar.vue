@@ -6,7 +6,7 @@
       v-for="(item,index) in list" :key="index">
       <view v-if="!item.voice">{{item.menu}}</view>
       <image v-if="item.voice" class="voice"
-        src="https://ggllstatic.hpgjzlinfo.com/static/home/menu-voice.png" mode="scaleToFill" />
+        src="http://192.168.1.187:10088/static/home/menu-voice.png" mode="scaleToFill" />
     </view>
   </view>
 </template>

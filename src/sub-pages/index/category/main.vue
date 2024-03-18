@@ -43,7 +43,7 @@
         <image
           class="icon bgempt"
           v-if="v.soldOut === 0"
-          src="https://ggllstatic.hpgjzlinfo.com/static/home/empt.png"
+          src="http://192.168.1.187:10088/static/home/empt.png"
         />
         <view class="name">{{ v.name }}</view>
         <!-- <view class="jf">积分抵扣￥{{ v.creditPoints }}</view> -->
@@ -59,7 +59,7 @@
       <view class="menu" @click="toTop">
         <image
           class="icon-top"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/top.png"
+          src="http://192.168.1.187:10088/static/common/top.png"
         />
       </view>
     </view>

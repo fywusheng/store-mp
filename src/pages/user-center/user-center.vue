@@ -6,7 +6,7 @@
     <view class="user-info flex-h flex-c-s m-0-32">
       <image
         class="avatar" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-default-avatar.png"
+        src="http://192.168.1.187:10088/static/user-center/icon-user-center-default-avatar.png"
       />
       <view class="flex-v ml-32" v-if="userInfo.psnName">
         <text class="fs-60 c-black">{{ userInfo.psnName | nameFilter }}</text>
@@ -27,12 +27,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-realname-authentication.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-realname-authentication.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">实名认证</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -41,12 +41,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-modify-phone-number.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-modify-phone-number.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">修改手机号</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -55,12 +55,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-modify-password.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-modify-password.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">修改密码</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -69,12 +69,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-message-center.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-message-center.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">消息中心</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -83,12 +83,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-feedback.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-feedback.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">意见与反馈</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -97,12 +97,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-logout.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-logout.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">退出登录</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view
@@ -111,12 +111,12 @@
       >
         <image
           class="item__icon" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-logout.png"
+          src="http://192.168.1.187:10088/static/user-center/icon-user-center-logout.png"
         />
         <text class="fs-40 c-black flex-1 m-0-24">赡养抚养</text>
         <image
           class="item__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
     </view>

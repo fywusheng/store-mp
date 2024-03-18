@@ -226,14 +226,14 @@
         <view class="panel" v-for="(el, index) in itemList" :key="index">
           <view class="panel-header">
             <image v-if="el.checked" @click="selectAllStore(el)" class="icon-radio"
-              src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png" mode="">
+              src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png" mode="">
             </image>
             <image v-else @click="selectAllStore(el)" class="icon-radio"
-              src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-default.png" mode="">
+              src="http://192.168.1.187:10088/static/pay/icon-radio-default.png" mode="">
             </image>
             <view class="header-title" @click="goStoreDetail(el)">{{el.storeName}}</view>
             <image class="icon-right"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png" mode="">
+              src="http://192.168.1.187:10088/static/images/common/icon-right.png" mode="">
             </image>
           </view>
           <view class="panel-body">
@@ -241,16 +241,16 @@
               :key="product.id">
               <view v-if="product.soldOut">
                 <image v-if="product.checked" class="icon-radio-no" @click="changeCheck(product)"
-                  src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png" mode="">
+                  src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png" mode="">
                 </image>
                 <image v-else class="icon-radio-no" @click="changeCheck(product)"
-                  src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-default.png" mode="">
+                  src="http://192.168.1.187:10088/static/pay/icon-radio-default.png" mode="">
                 </image>
               </view>
               <view v-else class="radio-disabled"></view>
 
               <image v-if="!product.soldOut" class="product-img"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/common/sale-out.png" mode=""
+                src="http://192.168.1.187:10088/static/images/common/sale-out.png" mode=""
                 @click="tolDetail(product)"></image>
               <image v-else class="product-img" :src="product.imgUrl" mode=""
                 @click="tolDetail(product)"></image>
@@ -269,7 +269,7 @@
                 </view>
               </view>
               <img class="btn-delete"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/cart/delete.png"
+                src="http://192.168.1.187:10088/static/images/cart/delete.png"
                 @click="deleteItem(product)">
             </view>
           </view>
@@ -278,9 +278,9 @@
         <div class="cart-footer">
           <div class="checkbox" @click="changeSelectAll">
             <img class="icon-img" v-if="selectAll"
-              src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png">
+              src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png">
             <img class="icon-img" v-else
-              src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-default.png">
+              src="http://192.168.1.187:10088/static/pay/icon-radio-default.png">
             全选
           </div>
           <div class="total">
@@ -293,7 +293,7 @@
         </div>
       </template>
       <div class="empty-wrap" v-else>
-        <img class="icon-img" src="https://ggllstatic.hpgjzlinfo.com/static/images/cart/empty.png">
+        <img class="icon-img" src="http://192.168.1.187:10088/static/images/cart/empty.png">
         <div class="desc">您还没有选购商品</div>
         <button type="button" @click="toHome" class="btn-home" slot="slot">去挑选</button>
       </div>

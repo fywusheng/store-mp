@@ -8,7 +8,7 @@
     <!-- #ifdef MP-WEIXIN -->
     <view class="top" v-if="showTop">
       <image class="icon-back" @click="handleBack"
-        src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/icon-arrow-left.png"
+        src="http://192.168.1.187:10088/static/supermarket/icon-arrow-left.png"
         mode="scaleToFill" />
     </view>
     <view class="notop" v-else></view>
@@ -22,7 +22,7 @@
           placeholder-class="placeholder" v-model="params.name" />
         <view class="delete" v-if="params.name.length>0" @click="clearName">
           <image class="icon-delete"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-input-delete.png"
+            src="http://192.168.1.187:10088/static/pay/icon-input-delete.png"
             @click="handleDel" />
         </view>
       </view>
@@ -34,7 +34,7 @@
           @input="handleIDCardNumberInputFinish" />
         <view class="delete" v-if="params.idCardNumber.length>0" @click="clearNo">
           <image class="icon-delete"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-input-delete.png"
+            src="http://192.168.1.187:10088/static/pay/icon-input-delete.png"
             @click="handleDel" />
         </view>
       </view>
@@ -61,7 +61,7 @@
           </text>
         </picker>
         <image class="row__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
       <view class="row flex-h flex-c-s p-20-0" v-if="scanInfor.type === 'scan'">
         <text class="row__indicator">*</text>
@@ -73,7 +73,7 @@
           </text>
         </picker>
         <image class="row__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
       <view class="row flex-h flex-c-s p-20-0" v-if="scanInfor.type === 'scan'">
         <text class="row__indicator">*</text>
@@ -99,7 +99,7 @@
         </view>
         <!-- #endif -->
         <image class="row__accessory" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
       <view class="row flex-h flex-c-s p-20-0" v-if="scanInfor.type === 'scan'">
         <text class="row__indicator"></text>
@@ -110,7 +110,7 @@
     <view class="rescan flex-h flex-c-c" v-if="scanInfor.type === 'scan'"
       @click="handleRescanClick">
       <image class="rescan__icon" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/certificate/icon-certificate-scan.png"
+        src="http://192.168.1.187:10088/static/certificate/icon-certificate-scan.png"
         @click="handleRescanClick" />
       <text class="rescan__text fs-44 ml-16">重新扫描</text>
     </view>

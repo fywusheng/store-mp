@@ -58,7 +58,7 @@
           <div class="desc" style="padding-left:0;width:500rpx">
             {{dataForm.expressName || '请选择退单承运商...'}}
             <img class="icon-right"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png">
+              src="http://192.168.1.187:10088/static/images/common/icon-right.png">
           </div>
         </picker>
       </li>
@@ -73,11 +73,11 @@
             <img class="img" mode="aspectFit" :src="preview">
             <img class="btn-delete" v-if="dataForm.returnsStatus==0&&dataForm.expressStatus==0"
               @click="remove(index)"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-delete.png">
+              src="http://192.168.1.187:10088/static/images/common/icon-delete.png">
           </div>
           <img class="btn-upload" v-if="dataForm.returnsStatus==0&&dataForm.expressStatus==0"
             @click="chooseImage"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/upload.png">
+            src="http://192.168.1.187:10088/static/images/common/upload.png">
         </div>
       </li>
     </ul>

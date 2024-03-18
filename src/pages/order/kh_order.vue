@@ -9,7 +9,7 @@
 					<picker @change="bindPickerChange($event,userList)" :value="index" :range="userList" :range-key="'psName'">
 						<view class="uni-input">{{userList[index].psName?userList[index].psName:userList[index].phone}}</view>
 					</picker>
-					<image mode="widthFix"  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/select_icon.png" class="icon"></image>
+					<image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image>
 				</view>
 				<view class="btn" @click="handleSearch">查询</view>
 			</view>
@@ -23,7 +23,7 @@
 				<view class="item" v-for="(item,index) in orderList" :key="index">
 					<view class="order_top flex_r_h">
 						<view class="shp_name flex_r_h">
-							<image mode="widthFix" src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/gou_icon.png"
+							<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/gou_icon.png"
 								class="icon"></image>
 							<view>{{item.storeName}}</view>
 						</view>

@@ -1,7 +1,7 @@
 <template>
   <view class="register-result flex-v flex-c-s">
     <image class="result-icon mt-80" mode="scaleToFill"
-      src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-success.png" />
+      src="http://192.168.1.187:10088/static/common/icon-common-success.png" />
     <text class="fs-50 lh-72  fw-bold c-primary mt-60">恭喜您，注册成功</text>
     <text class="fs-40 lh-60 fw-bold c-grey mt-24">立即领取电子证照老年人证</text>
     <text class="fs-40 lh-60 fw-bold c-grey">享受更多服务</text>

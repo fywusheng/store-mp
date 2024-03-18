@@ -457,8 +457,8 @@ export default {
       countDown: 0,
       isIphoneHair: App.isIphoneHair,
       icon: {
-        address: 'https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-address.png',
-        right: 'https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png'
+        address: 'http://192.168.1.187:10088/static/images/common/icon-address.png',
+        right: 'http://192.168.1.187:10088/static/images/common/icon-right.png'
       }
     }
   },
@@ -470,13 +470,13 @@ export default {
       // 10：创建、待付款 20：已支付、待发货 30：已发货、待收货 40：已收货、交易完成、待评价
       // 50:已评价 90：订单取消、手动取消、系统自动取消 100：交易取消
       const statusMap = {
-        10: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/wait-fukuan.png',
-        20: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/wait-fahuo.png',
-        30: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/wait-shouhuo.png',
-        40: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/completed.png',
-        50: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/completed.png',
-        90: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/canceled.png',
-        100: 'https://ggllstatic.hpgjzlinfo.com/static/images/order/canceled.png'
+        10: 'http://192.168.1.187:10088/static/images/order/wait-fukuan.png',
+        20: 'http://192.168.1.187:10088/static/images/order/wait-fahuo.png',
+        30: 'http://192.168.1.187:10088/static/images/order/wait-shouhuo.png',
+        40: 'http://192.168.1.187:10088/static/images/order/completed.png',
+        50: 'http://192.168.1.187:10088/static/images/order/completed.png',
+        90: 'http://192.168.1.187:10088/static/images/order/canceled.png',
+        100: 'http://192.168.1.187:10088/static/images/order/canceled.png'
       }
       return statusMap[this.order.orderStatus]
     }

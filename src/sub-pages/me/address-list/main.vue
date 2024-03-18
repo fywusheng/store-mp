@@ -4,9 +4,9 @@
       <li class="delivery" v-for="(delivery,index) in dataList" :key="index">
         <div class="checkbox" v-if="type === 1">
           <img v-if="delivery.id == addressId"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png">
+            src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png">
           <img @click="selectAddress(delivery)" v-else
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_n.png">
         </div>
         <div class="name-wrap">
           <div class="name">{{delivery.deliveryName}}</div>
@@ -16,25 +16,25 @@
           {{delivery.provinceName || ''}}{{delivery.cityName || ''}}{{delivery.areaName || ''}}{{delivery.address }}
         </div>
         <div class="btn-edit" v-if="type === 1" @click.stop="toEdit(delivery)"><img
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png"></div>
+            src="http://192.168.1.187:10088/static/images/address/icon-edit.png"></div>
         <div class="delivery-fb" v-if="type !== 1" @tap.stop="">
           <img class="checkbox" v-if="delivery.isDefault"
-            src="https://ggllstatic.hpgjzlinfo.com/static/pay/icon-radio-checked.png">
+            src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png">
           <img class="checkbox" @click="setDefault(delivery)" v-else
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/select_n.png">
+            src="http://192.168.1.187:10088/static/images/common/select_n.png">
           <div class="desc">默认地址</div>
           <div class="btn-wrap">
             <div class="btn-edit" @click.stop="toEdit(delivery)"><img class="icon-opr"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-edit.png">编辑</div>
+                src="http://192.168.1.187:10088/static/images/address/icon-edit.png">编辑</div>
             <div class="btn-edit" @click.stop="toDelete(delivery)"><img class="icon-opr"
-                src="https://ggllstatic.hpgjzlinfo.com/static/images/address/icon-delete.png">删除
+                src="http://192.168.1.187:10088/static/images/address/icon-delete.png">删除
             </div>
           </div>
         </div>
       </li>
     </ul>
     <div class="empty" v-if="empty">
-      <img src="https://ggllstatic.hpgjzlinfo.com/static/images/common/empty.png">
+      <img src="http://192.168.1.187:10088/static/images/common/empty.png">
       暂无收货地址
       <div class="btn-home" @click="add">新建收货地址</div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <view class="cancel">
-    <image class="_img" src="https://ggllstatic.hpgjzlinfo.com/static/user-center/cancel_infor.png"
+    <image class="_img" src="http://192.168.1.187:10088/static/user-center/cancel_infor.png"
       mode="widthFix" />
     <view class="footer">
       点击【申请注销】即代表您已经同意《<text class="xy" @click="agreement">用户注销协议</text>》

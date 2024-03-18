@@ -9,7 +9,7 @@
           &yen;{{ item.costPriceStr }}
         </div>
         <div class="sale-out-wrap" v-if="item.saleState !== 5 || item.availableStock === 0">
-          <img class="sale-out" src="https://ggllstatic.hpgjzlinfo.com/static/images/sale-out.png">
+          <img class="sale-out" src="http://192.168.1.187:10088/static/images/sale-out.png">
         </div>
       </li>
     </ul>

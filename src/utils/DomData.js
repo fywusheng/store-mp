@@ -28,7 +28,7 @@ const wxml = (name, age, code, c2) =>`
 <view class="container">
   <image
   class="pic"
-  src="https://ggllstatic.hpgjzlinfo.com/static/home/member-card-bg.png"
+  src="http://192.168.1.187:10088/static/home/member-card-bg.png"
   mode="scaleToFill"
   />
   <text class="info">持卡人：`+ name +`     年龄：`+ age +`</text>

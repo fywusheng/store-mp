@@ -4,13 +4,13 @@
 	<view class="main_content">
 		<!-- 代客下单-产品搜索 -->
 		<view class="top">
-			<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/topbg-dk.png" mode="widthFix" class="bg_img"/>
+			<image src="http://192.168.1.187:10088/static/store-mp/topbg-dk.png" mode="widthFix" class="bg_img"/>
 			<view class="content">
 				<view class="date">2024-2-14</view>
 				<view class="desc">店员<text>【高磊】</text>正在代客户<text>【张三】</text>下单…</view>
 			</view>
 			<view class="search-content">
-				<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/search-img.png" mode="widthFix" ></image>
+				<image  src="http://192.168.1.187:10088/static/store-mp/search-img.png" mode="widthFix" ></image>
 			</view>
 		</view>
 		<view class="fl_content">
@@ -20,50 +20,23 @@
 				</view>
 				<view class="fl_list flex_r_h">
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
-						<view>分类名称</view>
-					</view>
-				</view>
-			</view>
-			<view class="fl_main">
-				<view class="title">
-					一级分类名称
-				</view>
-				<view class="fl_list flex_r_h">
-					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
-						<view>分类名称</view>
-					</view>
-					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
-						<view>分类名称</view>
-					</view>
-					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
-						<view>分类名称</view>
-					</view>
-					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
-						<view>分类名称</view>
-					</view>
-					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 				</view>
@@ -74,23 +47,50 @@
 				</view>
 				<view class="fl_list flex_r_h">
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 					<view class="fl_item flex_c_h">
-						<image  src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<view>分类名称</view>
+					</view>
+				</view>
+			</view>
+			<view class="fl_main">
+				<view class="title">
+					一级分类名称
+				</view>
+				<view class="fl_list flex_r_h">
+					<view class="fl_item flex_c_h">
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<view>分类名称</view>
+					</view>
+					<view class="fl_item flex_c_h">
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<view>分类名称</view>
+					</view>
+					<view class="fl_item flex_c_h">
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<view>分类名称</view>
+					</view>
+					<view class="fl_item flex_c_h">
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
+						<view>分类名称</view>
+					</view>
+					<view class="fl_item flex_c_h">
+						<image  src="http://192.168.1.187:10088/static/store-mp/fl-icon.png" mode="widthFix" ></image>
 						<view>分类名称</view>
 					</view>
 				</view>

@@ -4,7 +4,7 @@
       <div class="title">收货人:</div>
       <input class="form-control" v-model="dataForm.deliveryName" placeholder="姓名"
         placeholder-style="color:#999999">
-      <!-- <image class="icon-mail" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-mail.png" mode="" /> -->
+      <!-- <image class="icon-mail" src="http://192.168.1.187:10088/static/images/common/icon-mail.png" mode="" /> -->
     </div>
     <div class="form-group">
       <div class="title">手机号:</div>
@@ -19,7 +19,7 @@
         <div class="form-control default" v-else>请选择</div>
       </picker>
       <image class="icon-right" mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png">
+        src="http://192.168.1.187:10088/static/images/common/icon-right.png">
     </div>
     <div class="form-group">
       <div class="title">详细地址:</div>
@@ -150,7 +150,7 @@ export default {
           resolve(res.data)
         })
         // uni.request({
-        //   url: 'https://ggllstatic.hpgjzlinfo.com/static/bigData/region.json',
+        //   url: 'http://192.168.1.187:10088/static/bigData/region.json',
         //   method: 'get',
         //   dataType: 'json',
         //   success: (res) => {

@@ -6,7 +6,7 @@
       <view class="use">
         <view class="_left">
           <image class="img" mode="scaleToFill"
-            :src="userInfo.userIcon?userInfo.userIcon:'https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-default-avatar.png'">
+            :src="userInfo.userIcon?userInfo.userIcon:'http://192.168.1.187:10088/static/user-center/icon-user-center-default-avatar.png'">
             <view class="lable">可用积分:</view>
             <view class="num">{{score?score:'--'}}</view>
         </view>
@@ -26,7 +26,7 @@
               <image class="img" :class="{'opacityImg':v.soldOut === 0?true:false}"
                 :src="v.mainImgUrl" mode="scaleToFill">
                 <image class="img bgempt" v-if="v.soldOut === 0"
-                  src="https://ggllstatic.hpgjzlinfo.com/static/home/empt.png">
+                  src="http://192.168.1.187:10088/static/home/empt.png">
             </view>
             <view class="list_r">
               <view class="_n" :class="{'turnColor':v.soldOut === 0?true:false}">{{v.name}}</view>
@@ -54,7 +54,7 @@
             <view class="box">
               <image class="img" :src="v.mainImgUrl" mode="scaleToFill">
                 <image class="img bgempt" v-if="v.soldOut === 0"
-                  src="https://ggllstatic.hpgjzlinfo.com/static/home/empt.png">
+                  src="http://192.168.1.187:10088/static/home/empt.png">
             </view>
             <view class="jf">积分抵扣￥{{v.creditPoints}}</view>
             <view class="price">￥{{v.presentPrice}}</view>
@@ -67,7 +67,7 @@
           <image mode="scaleToFill" class="icon" :src="v.mainImgUrl"
             @error="handleImageLoadFail(i)" />
           <image class="icon bgempt" v-if="v.soldOut === 0"
-            src="https://ggllstatic.hpgjzlinfo.com/static/home/empt.png">
+            src="http://192.168.1.187:10088/static/home/empt.png">
             <view class="name">{{v.name}}</view>
             <view class="jf">积分抵扣￥{{v.creditPoints}}</view>
             <!--  isCreditPoints == 1 时显示到手价格-->
@@ -81,11 +81,11 @@
     <view class="top-layout">
       <button class="menu" @click="goBuy">
         <image class="icon  icon-service"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/bug.png">
+          src="http://192.168.1.187:10088/static/images/common/bug.png">
       </button>
       <div class="menu" @click="toTop">
         <image class="icon icon-top"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/top.png">
+          src="http://192.168.1.187:10088/static/images/common/top.png">
       </div>
     </view>
   </view>
@@ -131,7 +131,7 @@ export default ({
   methods: {
     // 图片加载失败
     handleImageLoadFail(index) {
-      this.prodList[index].mainImgUrl = 'https://ggllstatic.hpgjzlinfo.com/static/home/image-home-article-default.png'
+      this.prodList[index].mainImgUrl = 'http://192.168.1.187:10088/static/home/image-home-article-default.png'
     },
     async autoScore(e) {
       const token = uni.getStorageSync('token') || e.token
@@ -243,7 +243,7 @@ export default ({
   .top {
     width: 100%;
     height: 762rpx;
-    background-image: url('https://ggllstatic.hpgjzlinfo.com/static/home/ponit3.png');
+    background-image: url('http://192.168.1.187:10088/static/home/ponit3.png');
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -254,7 +254,7 @@ export default ({
     .use {
       width: 100%;
       height: 160rpx;
-      background-image: url('https://ggllstatic.hpgjzlinfo.com/static/home/bg_point.png');
+      background-image: url('http://192.168.1.187:10088/static/home/bg_point.png');
       background-size: contain;
       display: flex;
       margin-bottom: 32rpx;
@@ -300,7 +300,7 @@ export default ({
       margin-bottom: 32rpx;
       ._top {
         padding: 32rpx 0 32rpx 32rpx;
-        background-image: url('https://ggllstatic.hpgjzlinfo.com/static/home/di_kou.png');
+        background-image: url('http://192.168.1.187:10088/static/home/di_kou.png');
         background-size: cover;
         display: flex;
         background-repeat: no-repeat;

@@ -13,7 +13,7 @@
               <view class="unread ml-16" v-if="item.readStas === 0" />
               <view class="flex-1" />
               <image class="accessory" mode="scaleToFill"
-                src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png" />
+                src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
             </view>
             <text class="content fs-32 c-grey m-32">{{ item.cont }}</text>
           </view>
@@ -23,7 +23,7 @@
     <template v-else>
       <view class="no-data flex-v flex-c-c">
         <image class="no-data__image" mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/status-none2x.png" />
+          src="http://192.168.1.187:10088/static/common/status-none2x.png" />
         <text class="fs-36 c-grey mt-24">暂无数据</text>
       </view>
     </template>

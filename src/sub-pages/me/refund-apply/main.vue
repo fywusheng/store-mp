@@ -17,7 +17,7 @@
         <picker @change="changeType" :range="goodsStates" range-key="name">
           <div class="desc">
             {{goodsStateName|| '请选择货物状态'}}
-            <!-- <img class="icon-right" v-if="operateType == 2" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png"> -->
+            <!-- <img class="icon-right" v-if="operateType == 2" src="http://192.168.1.187:10088/static/images/common/icon-right.png"> -->
           </div>
         </picker>
       </li>
@@ -26,7 +26,7 @@
         <picker @change="changeReason" mode="selector" :range="reasonTypeList" range-key="name">
           <div class="desc">
             {{ reasonTypeName || '请选择售后原因'}}
-            <!-- <img class="icon-right" v-if="operateType == 2" src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-right.png"> -->
+            <!-- <img class="icon-right" v-if="operateType == 2" src="http://192.168.1.187:10088/static/images/common/icon-right.png"> -->
           </div>
         </picker>
       </li>
@@ -47,11 +47,11 @@
         <div class="title">上传凭证 <text class="more">最多三张</text></div>
         <div class="upload-wrap">
           <img class="btn-upload" @click="chooseImage"
-            src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-camera.png">
+            src="http://192.168.1.187:10088/static/images/common/icon-camera.png">
           <div class="img-wrap" v-for="(preview,index) in previewList" :key="index">
             <img class="img" mode="scaleToFill" :src="preview">
             <img class="btn-delete" @click="remove(index)"
-              src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-delete.png">
+              src="http://192.168.1.187:10088/static/images/common/icon-delete.png">
           </div>
 
         </div>
@@ -69,7 +69,7 @@
       </li>
       <li class="tips m-b-24">
         <image class="icon"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/common/icon-warning.png" mode="" />
+          src="http://192.168.1.187:10088/static/images/common/icon-warning.png" mode="" />
         <view class="txt">提交后将进行人工审核,请耐心等待</view>
       </li>
     </ul>

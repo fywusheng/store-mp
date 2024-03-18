@@ -1,6 +1,6 @@
 <template>
 	<view class="main">
-		<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/logo.png" class="logo"></image>
+		<image src="http://192.168.1.187:10088/static/store-mp/logo.png" class="logo"></image>
 		<view class="desc">
 			<view class="name">国家老龄服务平台-智慧康复平台</view>
 			<view class="version">当前版本v1.0.0</view>

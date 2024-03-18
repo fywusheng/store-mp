@@ -462,9 +462,9 @@ body {
   <div v-if="!loading" class="page-checkout" :class="{isIphoneHair}">
     <div class="checkout-address" @click="selectAddress">
       <img class="icon-address" v-if="settlement.addressId"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/checkout/icon-address.png">
+        src="http://192.168.1.187:10088/static/images/checkout/icon-address.png">
       <img class="icon-you"
-        src="https://ggllstatic.hpgjzlinfo.com/static/images/checkout/right.png">
+        src="http://192.168.1.187:10088/static/images/checkout/right.png">
       <view class="userInfo" v-if="settlement.addressId">
         <div class="user-info">
           <div class="name">{{settlement.receiveName}}</div>
@@ -478,7 +478,7 @@ body {
       </view>
       <template v-else>
         <div class="add-tip" @click.stop="selectAddress">
-          <img src="https://ggllstatic.hpgjzlinfo.com/static/images/checkout/icon-plus.png">
+          <img src="http://192.168.1.187:10088/static/images/checkout/icon-plus.png">
           请选择收货地址
         </div>
       </template>
@@ -592,7 +592,7 @@ body {
           <span class="content">无可用</span>
         </template>
         <img class="icon-you"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/checkout/right-gray.png">
+          src="http://192.168.1.187:10088/static/images/checkout/right-gray.png">
 
       </li>
 
@@ -605,7 +605,7 @@ body {
           <template v-else>不开发票</template>
         </span>
         <img class="icon-you"
-          src="https://ggllstatic.hpgjzlinfo.com/static/images/checkout/right-gray.png">
+          src="http://192.168.1.187:10088/static/images/checkout/right-gray.png">
       </li>
     </ul>
     <ul class="price-list">

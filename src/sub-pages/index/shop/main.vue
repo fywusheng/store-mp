@@ -11,13 +11,13 @@
         <view class="bottom">
           <view class="left" @click.stop="telClick(item)">
             <image class="icon-line"
-              src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/tel.png"
+              src="http://192.168.1.187:10088/static/supermarket/tel.png"
               mode="scaleToFill" />
             <span class="lable">联系商家</span>
           </view>
           <view class="right" @click.stop="handleLineClick(item)">
             <image class="icon-line"
-              src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/path.png"
+              src="http://192.168.1.187:10088/static/supermarket/path.png"
               mode="scaleToFill" />
             <span class="lable">路线</span>
           </view>
@@ -25,7 +25,7 @@
       </view>
     </view>
     <view class="status-box flex-v flex-c-s" v-if="showEmpty">
-      <image class="icon-img" src="https://ggllstatic.hpgjzlinfo.com/static/supermarket/no-more.png"
+      <image class="icon-img" src="http://192.168.1.187:10088/static/supermarket/no-more.png"
         mode="scaleToFill" />
       <view>暂无其他门店</view>
     </view>

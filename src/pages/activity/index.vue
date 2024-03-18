@@ -9,7 +9,7 @@
 				<view class="img">
 					<image :src="item.mainImg" mode="widthFix" class="hd_img"></image>
 					<view class="hdend_mask flex_r_h" v-if="item.dqStatus">
-						<image src="https://ggllstatic.hpgjzlinfo.com/static/store-mp/hdend_icon.png" mode="widthFix" class="end_img"></image>
+						<image src="http://192.168.1.187:10088/static/store-mp/hdend_icon.png" mode="widthFix" class="end_img"></image>
 					</view>
 				</view>
 				<view class="hd_main">
