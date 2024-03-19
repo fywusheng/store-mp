@@ -97,7 +97,8 @@
 			}
 		}
 	],
-	"subPackages": [{
+	"subPackages": [
+    {
 			"root": "pages/user-center",
 			"pages": [{
 					"path": "cancel-user",
@@ -413,7 +414,214 @@
 					}
 				}
 			]
-		}
+		},
+    {
+      "root": "sub-pages/index",
+      "pages": [
+        {
+          "path": "shop/main",
+          "style": {
+            "navigationBarTitleText": "门店"
+          }
+        },
+        {
+          "path": "category/main",
+          "style": {
+            "navigationBarTitleText": "分类商品"
+          }
+        },
+        {
+          "path": "store/main",
+          "style": {
+            "navigationBarTitleText": "店铺"
+          }
+        },
+        {
+          "path": "topic/main",
+          "style": {
+            "navigationBarTitleText": "收货地址管理"
+          }
+        },
+        {
+          "path": "search/main",
+          "style": {
+            "navigationBarTitleText": "搜索"
+          }
+        },
+        {
+          "path": "item-list/main",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        },
+        {
+          "path": "super-purchase/index",
+          "style": {
+            "navigationBarTitleText": "超值购"
+          }
+        },
+        {
+          "path": "local-benefit/index",
+          "style": {
+            "navigationBarTitleText": "本地惠"
+          }
+        },
+        {
+          "path": "item/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "coupon-center/main",
+          "style": {
+            "navigationBarTitleText": "领券中心"
+          }
+        },
+        {
+          "path": "item-reviews/main",
+          "style": {
+            "navigationBarTitleText": "我的积分"
+          }
+        },
+        {
+          "path": "item-attribute/main",
+          "style": {
+            "navigationBarTitleText": "参数"
+          }
+        },
+        {
+          "path": "checkout/main",
+          "style": {
+            "navigationBarTitleText": "我的订单"
+          }
+        },
+        {
+          "path": "brand/main",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        },
+        {
+          "path": "checkout-invoice/main",
+          "style": {
+            "navigationBarTitleText": "售后列表"
+          }
+        },
+        {
+          "path": "checkout-coupon/main",
+          "style": {
+            "navigationBarTitleText": "选择服务类型"
+          }
+        },
+        {
+          "path": "webview/main",
+          "style": {
+            "navigationBarTitleText": "看病"
+          }
+        },
+        {
+          "path": "index/main",
+          "style": {
+            "navigationBarTitleText": "惠民商城"
+          }
+        }
+      ]
+    },
+    {
+      "root": "sub-pages/me",
+      "pages": [
+        {
+          "path": "address-list/main",
+          "style": {
+            "navigationBarTitleText": "收货地址管理"
+          }
+        },
+        {
+          "path": "address-add/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "my-coupon/main",
+          "style": {
+            "navigationBarTitleText": "优惠券"
+          }
+        },
+        {
+          "path": "my-collect/main",
+          "style": {
+            "navigationBarTitleText": "收藏"
+          }
+        },
+        {
+          "path": "my-brand/main",
+          "style": {
+            "navigationBarTitleText": "关注"
+          }
+        },
+        {
+          "path": "order-detail/main",
+          "style": {
+            "navigationBarTitleText": "订单详情"
+          }
+        },
+        {
+          "path": "refund-list/main",
+          "style": {
+            "navigationBarTitleText": "售后列表"
+          }
+        },
+        {
+          "path": "service-type/main",
+          "style": {
+            "navigationBarTitleText": "选择服务类型"
+          }
+        },
+        {
+          "path": "refund-apply/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "refund-detail/main",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "logistics/main",
+          "style": {
+            "navigationBarTitleText": "查看物流"
+          }
+        }
+      ]
+    },
+    {
+      "root": "sub-pages/point",
+      "pages": [
+        {
+          "path": "checkout/main",
+          "style": {
+            "navigationBarTitleText": "我的订单"
+          }
+        },
+        {
+          "path": "cart/main",
+          "style": {
+            "navigationBarTitleText": "积分购物车"
+          }
+        },
+        {
+          "path": "index",
+          "style": {
+            "navigationBarTitleText": "积分兑换"
+          }
+        }
+      ]
+    }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

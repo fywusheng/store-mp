@@ -3,7 +3,7 @@ Axios.defaults.baseURL = ENV.BASE_1
 Axios.interceptors.request.use(request => {
   const headers = {
     'content-type': 'application/json;charset=utf-8',
-    'accessToken': uni.getStorageSync('token'),
+    'accessToken': uni.getStorageSync('khUserInfo').accessToken,
     'channel': uni.getSystemInfoSync().app
   }
   request.headers = Object.assign(headers, request.headers)
@@ -33,7 +33,7 @@ Axios.interceptors.response.use(
 // 用Axios的适配器把通讯转换为底层的微信request api
 Axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
-    wx.request({
+    uni.request({
       url: config.baseURL + config.url,
       data: Object.assign({
         deviceNumber: uni.getStorageSync('deviceNumber'),
@@ -41,7 +41,6 @@ Axios.defaults.adapter = function (config) {
       }, (config.data ? JSON.parse(config.data) : config.params)),
       header: config.headers,
       method: config.method,
-	  responseType:'blob',
       success(res) {
         resolve({
           config,
