@@ -4,15 +4,27 @@
 // import { set } from 'lodash'
 export default {
   state: {
-    sessionId: uni.getStorageSync('sessionId') || '',
+    token: uni.getStorageSync('token') || '',
     session_key: '',
     openid: '',
-    unionid: ''
+    unionid: '',
+	userInfo:null,//登录用户信息
+	storeInfo:null, //门店信息
+	storeNo:'' //门店编号
   },
   getters: {
     isLogin(state) {
-      return !!state.sessionId
-    }
+      return !!state.token
+    },
+	UserInfo(state){
+		return state.userInfo
+	},
+	StoreInfo(state){
+		return state.storeInfo
+	},
+	storeNo(state){
+		return state.storeNo
+	}
   },
   mutations: {
     [VUEX.LOGIN.SET_WX_AUTH_ID](state, payload) {
@@ -37,7 +49,11 @@ export default {
       }
     },
     [VUEX.LOGIN.SET_SESSION_ID](state, payload) {
-      state.sessionId = payload
+		console.log(" payload = payload || {}",payload)
+		state.token = payload.token;
+		state.userInfo = payload;
+		state.storeInfo = payload.shStoreDTO;
+		state.storeNo = payload.storeNo
     },
     'LOG_OUT'(state) {
       const map = ['sessionId', 'session_key', 'openid', 'unionid']
@@ -54,9 +70,8 @@ export default {
       })
       ctx.commit('LOG_OUT')
     },
-    async login(ctx) {
-      const authData = await Axios.post(`/user/login`, {})
-      ctx.commit(VUEX.LOGIN.SET_WX_AUTH_ID, authData.data)
+    async login(ctx,data) {
+      ctx.commit(VUEX.LOGIN.SET_SESSION_ID,data)
     }
   }
 }

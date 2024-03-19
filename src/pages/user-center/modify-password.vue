@@ -11,7 +11,7 @@
         <text class="fs-36 c-black ml-48">重置登录密码</text>
         <image
           class="icon mr-32"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
     </view>
@@ -26,7 +26,7 @@
         <text class="fs-36 c-black ml-48">重置登录密码</text>
         <image
           class="icon mr-32"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
     </view>

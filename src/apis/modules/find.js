@@ -43,7 +43,6 @@ export default {
       ...args
     })
   },
-
   // 获取小视频随机列表
   getRandomVideo: function (args = {}) {
     request({
@@ -59,7 +58,6 @@ export default {
       ...args
     })
   },
-
   // 搜索页面
   // 热词接口
   getCmsHotList: function (args = {}) {

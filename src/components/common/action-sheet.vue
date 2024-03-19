@@ -26,45 +26,45 @@
 </template>
 
 <script>
-import UniPopup from '../uni-popup/uni-popup.vue'
+import UniPopup from "../uni-popup/uni-popup.vue";
 export default {
   components: { UniPopup },
   props: {
     title: {
       type: String,
-      default: ''
+      default: "",
     },
     showsCancel: {
       type: Boolean,
-      default: true
+      default: true,
     },
     items: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   methods: {
     /**
      * 选项点击事件
      */
     handleItemClick(index) {
-      this.$refs.popup.close()
-      this.$emit('click', index)
+      this.$refs.popup.close();
+      this.$emit("click", index);
     },
     /**
      * 取消点击事件
      */
     handleCancelClick() {
-      this.$refs.popup.close()
+      this.$refs.popup.close();
     },
     /**
      * 给外部调用的方法
      */
     open() {
-      this.$refs.popup.open()
-    }
-  }
-}
+      this.$refs.popup.open();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,8 +1,6 @@
 /**
  * 结算模块-适老用品
  */
-import cloneDeep from 'lodash/cloneDeep'
-import {  showToast } from '@/utils/uni'
 
 const initState = {
   sceneType: '', // 场景
@@ -22,7 +20,7 @@ const initState = {
 }
 
 export default {
-  state: cloneDeep(initState),
+  state: _.cloneDeep(initState),
   getters: {},
   mutations: {
     CHECKOUT_SET_IS_DEFAULT(state, isDefault) {
@@ -76,6 +74,7 @@ export default {
       state.couponId = null
       state.couponData = null
     },
+
     [VUEX.CHECKOUT.SET_REMARK](state, remarkList) {
       state.remarkList = remarkList
     },
@@ -240,7 +239,7 @@ export default {
           commit('CHECKOUT_SET_IS_DEFAULT', false)
         }
       } else {
-        showToast(result.msg)
+        wx.showToast(result.msg)
       }
       dispatch('getGlobalCoupon')
       return result

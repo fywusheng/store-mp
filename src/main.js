@@ -1,14 +1,20 @@
-import { createSSRApp } from 'vue'
-import store from './store'
+import Vue from 'vue'
+import Store from './store'
 import App from './App'
-import uniapp from '@/utils/uni'
 import '@/config/axios'
 
-export function createApp() {
-  const app = createSSRApp(App)
-  app.config.globalProperties.$uni = uniapp
-  app.use(store)
-  return {
-      app
-  }
-}
+import share from '@/utils/share'
+import uniapp from './utils/uni.js'
+Vue.prototype.$uni = uniapp
+Vue.mixin(share)
+
+global.Store = Store
+global.State = Store.state
+
+Vue.config.productionTip = false
+
+const app = new Vue({
+  Store,
+  ...App
+})
+app.$mount()

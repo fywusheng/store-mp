@@ -5,8 +5,9 @@ import VUEX from '@/store/mutation-types'
 
 export default {
   state: {
-    userInfo: null, //  平台用户数据
-    wxUserInfo: null // 微信用户信息
+    userInfo: null, //  登录用户数据
+    wxUserInfo: null,// 微信用户信息
+	storeInfo:null //门店信息
   },
   getters: {},
   mutations: {
@@ -20,7 +21,12 @@ export default {
     },
     [VUEX.USER.SET_MODE](state, mode) {
       state.mode = mode
-    }
+    },
+	[VUEX.USER.SET_STORE_INFO](state, storeInfo) {
+	  // userInfo.age = userInfo.age || ''
+	  // userInfo.gender = userInfo.gender || ''
+	  // state.userInfo = userInfo
+	},
   },
   actions: {
     getUserData(ctx) {

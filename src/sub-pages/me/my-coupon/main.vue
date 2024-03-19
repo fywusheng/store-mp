@@ -1,7 +1,9 @@
 <style lang="scss">
+@import '~@/styles/base';
+
 .page-coupon-list {
   padding-top: rpx(88);
-  background-color: #f7f7f7;
+  background-color: $gray;
   min-height: 100vh;
 
   .tab-list {
@@ -26,15 +28,15 @@
         padding-left: rpx(18);
         padding-right: rpx(18);
         font-size: rpx(28);
-        color: $color-grey;
+        color: $light-black;
         border-bottom: rpx(6) solid transparent;
       }
 
       &.active {
         .name {
           font-size: rpx(32);
-          color: $color-black;
-          border-bottom-color: #ff5500;
+          color: $black;
+          border-bottom-color: $black;
         }
       }
     }
@@ -44,7 +46,7 @@
     padding: rpx(34) rpx(51) rpx(14);
     font-size: rpx(30);
     line-height: rpx(42);
-    color: $color-lightgrey;
+    color: $extra-black;
   }
 
   .coupon-list {
@@ -131,7 +133,7 @@
   .empty-wrap {
     text-align: center;
     padding-top: rpx(300);
-    .img {
+    img {
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -155,40 +157,24 @@
 <template>
   <div class="page-coupon-list">
     <ul class="tab-list">
-      <li
-        class="tab"
-        @click="changeStatus(0)"
-        :class="status === 0 ? 'active' : ''"
-      >
+      <li class="tab" @click="changeStatus(0)" :class="status === 0 ? 'active':''">
         <div class="name">未使用</div>
       </li>
-      <li
-        class="tab"
-        @click="changeStatus(1)"
-        :class="status === 1 ? 'active' : ''"
-      >
+      <li class="tab" @click="changeStatus(1)" :class="status === 1 ? 'active':''">
         <div class="name">已使用</div>
       </li>
-      <li
-        class="tab"
-        @click="changeStatus(2)"
-        :class="status === 2 ? 'active' : ''"
-      >
+      <li class="tab" @click="changeStatus(2)" :class="status === 2 ? 'active':''">
         <div class="name">已过期</div>
       </li>
     </ul>
     <template v-if="status === 0">
       <ul class="coupon-list" v-if="couponList1 && couponList1.length">
-        <li class="coupon" :key="index" v-for="(coupon, index) in couponList1">
-          <div class="coupon-body">
+        <li class="coupon" :key="index" v-for="(coupon,index) in couponList1">
+          <div class='coupon-body'>
             <div class="money">
               <span class="unit"></span>
-              <span v-if="coupon.type == 0"
-                >{{ coupon.denominationStr }}元</span
-              >
-              <span v-else-if="coupon.type == 1"
-                >{{ coupon.denominationStr }}折</span
-              >
+              <span v-if="coupon.type==0">{{ coupon.denominationStr }}元</span>
+              <span v-else-if="coupon.type==1">{{ coupon.denominationStr }}折</span>
               <div class="desc">满{{ coupon.thresholdValue }}元可用</div>
             </div>
             <div class="coupon__name">{{ coupon.name }}</div>
@@ -196,45 +182,27 @@
               {{ coupon.beginTime }} 至 {{ coupon.endTime }}
             </div>
           </div>
-          <div class="coupon__description" @click="changeDesc(coupon)">
-            使用描述
-            <img
-              mode="scaleToFill"
-              v-if="coupon.showDesc"
-              src="/static/images/me/up.png"
-            />
-            <img mode="scaleToFill" v-else src="/static/images/me/down.png" />
-          </div>
-          <div class="coupon__description-content" v-if="coupon.showDesc">
-            {{ coupon.description }}
+          <div class='coupon__description' @click='changeDesc(coupon)'>使用描述 <img
+              v-if='coupon.showDesc' src='/static/images/me/up.png'> <img v-else
+              src='/static/images/me/down.png'></div>
+          <div class='coupon__description-content' v-if='coupon.showDesc'>{{ coupon.description }}
           </div>
         </li>
       </ul>
-      <div class="empty-wrap" v-if="status === 0 && !couponList1?.length">
-        <img
-          mode="scaleToFill"
-          src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png"
-        />
+      <div class="empty-wrap" v-if="status === 0 && !couponList1.length">
+        <img src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png">
         <div class="title">很遗憾</div>
         <div class="desc">您暂时无可用的优惠券</div>
       </div>
     </template>
     <template v-if="status === 1">
       <ul class="coupon-list" v-if="couponList2 && couponList2.length">
-        <li
-          class="coupon disabled"
-          :key="index"
-          v-for="(coupon, index) in couponList2"
-        >
-          <div class="coupon-body">
+        <li class="coupon disabled" :key="index" v-for="(coupon,index) in couponList2">
+          <div class='coupon-body'>
             <div class="money">
               <span class="unit"></span>
-              <span v-if="coupon.type == 0"
-                >{{ coupon.denominationStr }} 元</span
-              >
-              <span v-else-if="coupon.type == 1"
-                >{{ coupon.denominationStr }} 折</span
-              >
+              <span v-if="coupon.type==0">{{ coupon.denominationStr }} 元</span>
+              <span v-else-if="coupon.type==1">{{ coupon.denominationStr }} 折</span>
               <div class="desc">满{{ coupon.thresholdValue }}元可用</div>
             </div>
             <div class="coupon__name">{{ coupon.name }}</div>
@@ -242,44 +210,26 @@
               {{ coupon.beginTime }} 至 {{ coupon.endTime }}
             </div>
           </div>
-          <div class="coupon__description" @click="changeDesc(coupon)">
-            规则描述
-            <img
-              mode="scaleToFill"
-              v-if="coupon.showDesc"
-              src="/static/images/me/up.png"
-            />
-            <img mode="scaleToFill" v-else src="/static/images/me/down.png" />
-          </div>
-          <div class="coupon__description-content" v-if="coupon.showDesc">
-            {{ coupon.description }}
+          <div class='coupon__description' @click='changeDesc(coupon)'>规则描述 <img
+              v-if='coupon.showDesc' src='/static/images/me/up.png'> <img v-else
+              src='/static/images/me/down.png'></div>
+          <div class='coupon__description-content' v-if='coupon.showDesc'>{{ coupon.description }}
           </div>
         </li>
       </ul>
-      <div class="empty-wrap" v-if="status === 1 && !couponList2?.length">
-        <img
-          mode="scaleToFill"
-          src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png"
-        />
+      <div class="empty-wrap" v-if="status === 1 && !couponList2.length">
+        <img src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png">
         <div class="desc">暂无已使用的优惠券</div>
       </div>
     </template>
     <template v-if="status === 2">
       <ul class="coupon-list" v-if="couponList3 && couponList3.length">
-        <li
-          class="coupon disabled"
-          :key="index"
-          v-for="(coupon, index) in couponList3"
-        >
-          <div class="coupon-body">
+        <li class="coupon disabled" :key="index" v-for="(coupon,index) in couponList3">
+          <div class='coupon-body'>
             <div class="money">
               <span class="unit"></span>
-              <span v-if="coupon.type == 0"
-                >{{ coupon.denominationStr }}元</span
-              >
-              <span v-else-if="coupon.type == 1"
-                >{{ coupon.denominationStr }}折</span
-              >
+              <span v-if="coupon.type==0">{{ coupon.denominationStr }}元</span>
+              <span v-else-if="coupon.type==1">{{ coupon.denominationStr }}折</span>
               <div class="desc">满{{ coupon.thresholdValue }}元可用</div>
             </div>
             <div class="coupon__name">{{ coupon.name }}</div>
@@ -287,25 +237,15 @@
               {{ coupon.beginTime }} 至 {{ coupon.endTime }}
             </div>
           </div>
-          <div class="coupon__description" @click="changeDesc(coupon)">
-            使用描述
-            <img
-              mode="scaleToFill"
-              v-if="coupon.showDesc"
-              src="/static/images/me/up.png"
-            />
-            <img mode="scaleToFill" v-else src="/static/images/me/down.png" />
-          </div>
-          <div class="coupon__description-content" v-if="coupon.showDesc">
-            {{ coupon.description }}
+          <div class='coupon__description' @click='changeDesc(coupon)'>使用描述 <img
+              v-if='coupon.showDesc' src='/static/images/me/up.png'> <img v-else
+              src='/static/images/me/down.png'></div>
+          <div class='coupon__description-content' v-if='coupon.showDesc'>{{ coupon.description }}
           </div>
         </li>
       </ul>
-      <div class="empty-wrap" v-if="status === 2 && !couponList3?.length">
-        <img
-          mode="scaleToFill"
-          src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png"
-        />
+      <div class="empty-wrap" v-if="status === 2 && !couponList3.length">
+        <img src="https://xiu-obs.obs.cn-south-1.myhuaweicloud.com/1556375797799.png">
         <div class="desc">暂无已过期的优惠券</div>
       </div>
     </template>
@@ -313,66 +253,70 @@
 </template>
 
 <script>
+import wx from 'utils/wx'
+import Image from '@/sub-pages/index/components/image.vue'
+
 export default {
-  name: "COUPON_LIST",
+  name: 'COUPON_LIST',
   data() {
     return {
       status: 0,
-      couponCouponList: [],
-    };
+      couponCouponList: []
+    }
   },
   computed: {
     couponList1() {
-      return this.couponCouponList?.filter((coupon) => {
-        return coupon.usedState === 0;
-      });
+      return this.couponCouponList.filter(coupon => {
+        return coupon.usedState === 0
+      })
     },
     couponList2() {
-      return this.couponCouponList?.filter((coupon) => {
-        return coupon.usedState === 1;
-      });
+      return this.couponCouponList.filter(coupon => {
+        return coupon.usedState === 1
+      })
     },
     couponList3() {
-      return this.couponCouponList?.filter((coupon) => {
-        return coupon.usedState === 2;
-      });
-    },
+      return this.couponCouponList.filter(coupon => {
+        return coupon.usedState === 2
+      })
+    }
   },
+  components: { Image },
   onLoad(e) {
-    this.status = Number(e.status) || 0;
+    this.status = Number(e.status)
   },
   methods: {
     changeDesc(data) {
-      data.showDesc = !data.showDesc;
+      data.showDesc = !data.showDesc
     },
     changeStatus(index) {
-      this.status = index;
+      this.status = index
     },
     async loadData() {
-      uni.showLoading();
-      const couponResult = await Axios.post("/coupon/loading", {
+      wx.showLoading()
+      const couponResult = await Axios.post('/coupon/loading', {
         pageNum: 1,
         pageSize: 100,
         queryObject: {
-          sessionId: Store.state.login.sessionId,
-        },
-      });
-      uni.hideLoading();
+          sessionId: Store.state.login.sessionId
+        }
+      })
+      wx.hideLoading()
       if (couponResult.code == 200) {
-        this.couponCouponList = couponResult?.data?.list?.map((data) => {
-          data.showDesc = false;
-          return data;
-        });
+        this.couponCouponList = couponResult.data.list.map(data => {
+          data.showDesc = false
+          return data
+        })
       } else {
-        uni.showToast(couponResult.msg);
+        wx.showToast(couponResult.msg)
       }
-    },
+    }
   },
   async mounted() {
     if (!Store.getters.isLogin) {
-      await Store.dispatch("login");
+      await Store.dispatch('login')
     }
-    this.loadData();
-  },
-};
+    this.loadData()
+  }
+}
 </script>

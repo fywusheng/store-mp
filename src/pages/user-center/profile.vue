@@ -2,16 +2,10 @@
 <template>
   <view class="profile">
     <view class="header bg-white flex-h flex-c-c">
+      <image class="avatar" :src="avatarURL" @click="handleAvatarClick" mode="scaleToFill" />
       <image
-        class="avatar"
-        :src="avatarURL"
-        @click="handleAvatarClick"
-        mode="scaleToFill"
-      />
-      <image
-        class="photo-picker"
-        mode="scaleToFill"
-        src="https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-select-photo.png"
+        class="photo-picker" mode="scaleToFill"
+        src="http://192.168.1.187:10088/static/user-center/icon-user-center-select-photo.png"
         @click="handlePhotoPickerClick"
       />
     </view>
@@ -28,9 +22,8 @@
         <text class="row__label flex-1 fs-40 c-grey">手机号</text>
         <text class="row__value fs-40 c-black">18888888888</text>
         <image
-          class="row__accessory ml-12"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          class="row__accessory ml-12" mode="scaleToFill"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
     </view>
@@ -46,9 +39,8 @@
           </text>
         </picker>
         <image
-          class="row__accessory ml-12"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          class="row__accessory ml-12" mode="scaleToFill"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -69,9 +61,8 @@
           </text>
         </picker>
         <image
-          class="row__accessory ml-12"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          class="row__accessory ml-12" mode="scaleToFill"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -88,7 +79,7 @@
           class="flex-1"
           popup-title="请选择所在地区"
           :localdata="cities"
-          v-slot:default="{ data, error, options }"
+          v-slot:default="{data, error, options}"
           @change="handleCityChange"
         >
           <!-- <view>
@@ -99,23 +90,15 @@
             {{ userInfo.city || "请选择" }}
           </text>
           </view> -->
-          <view v-if="data.length > 0" class="selectValue"
-            ><text v-for="(item, index) in data" :key="index">{{
-              item.text
-            }}</text></view
-          >
-          <text
-            v-if="data.length == 0"
-            class="city fs-40 c-black flex-1 ml-48"
-            :class="{ 'c-lightgrey': data.length == 0 }"
-          >
-            请选择所在地区
-          </text>
+          <view v-if="data.length > 0" class="selectValue"><text v-for="(item,index) in data" :key="index">{{item.text}}</text></view>
+              <text v-if="data.length == 0" class="city fs-40 c-black flex-1 ml-48"
+                    :class="{ 'c-lightgrey': data.length == 0 }">
+               请选择所在地区
+              </text>
         </uni-data-picker>
         <image
-          class="row__accessory ml-12"
-          mode="scaleToFill"
-          src="https://ggllstatic.hpgjzlinfo.com/static/common/icon-common-arrow-rightward-grey.png"
+          class="row__accessory ml-12" mode="scaleToFill"
+          src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png"
         />
       </view>
       <view class="row flex-h flex-c-b p-0-32 bg-white">
@@ -133,8 +116,10 @@
 </template>
 
 <script>
+import { UniDataPicker } from "@dcloudio/uni-ui";
 import api from "@/apis/index.js";
 export default {
+  components: { UniDataPicker },
   data() {
     return {
       // 性别选择器数据
@@ -154,7 +139,7 @@ export default {
     avatarURL() {
       return (
         this.userInfo.avatar ||
-        "https://ggllstatic.hpgjzlinfo.com/static/user-center/icon-user-center-default-avatar.png"
+         "http://192.168.1.187:10088/static/user-center/icon-user-center-default-avatar.png"
       );
     },
   },
@@ -225,7 +210,7 @@ export default {
 .profile {
   min-height: 100vh;
   background: #fbf9f7;
-  .selectValue {
+  .selectValue{
     width: 400rpx;
     overflow: hidden;
     white-space: nowrap;

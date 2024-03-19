@@ -1,46 +1,33 @@
 <template>
   <div class="page-logistics-info">
     <ul class="info-list" v-for="item in orderExpressModel" :key="item.id">
-      <li class="info">快递公司: {{ item.expressProviderName }}</li>
-      <li class="info">快递单号: {{ item.trackingNumber }}</li>
+      <li class="info">
+        快递公司: {{item.expressProviderName}}
+      </li>
+      <li class="info">
+        快递单号: {{item.trackingNumber}}
+      </li>
     </ul>
     <ul class="trace-list">
       <template v-if="logistics.senderInfoList">
-        <li
-          class="trace"
-          :key="index"
-          v-for="(senderInfo, index) in logistics.senderInfoList"
-        >
+        <li class="trace" :key="index" v-for="(senderInfo,index) in logistics.senderInfoList">
           <div class="line"></div>
-          您的包裹正在派件,快递员({{ senderInfo.personName }}),电话({{
-            senderInfo.personTel
-          }})
+          您的包裹正在派件,快递员({{senderInfo.personName}}),电话({{senderInfo.personTel}})
         </li>
       </template>
       <template v-if="logistics.traceList">
-        <li
-          class="trace"
-          :key="index"
-          v-for="(trace, index) in logistics.traceList"
-        >
+        <li class="trace" :key="index" v-for="(trace,index) in logistics.traceList">
           <div class="line"></div>
-          您的包裹到达({{ trace.acceptStation }}),时间({{
-            senderInfo.acceptTime
-          }})
+          您的包裹到达({{trace.acceptStation}}),时间({{senderInfo.acceptTime}})
         </li>
       </template>
       <template v-if="logistics.pickerInfoList">
-        <li
-          class="trace"
-          :key="index"
-          v-for="(pickerInfo, index) in logistics.pickerInfoList"
-        >
+        <li class="trace" :key="index" v-for="(pickerInfo,index) in logistics.pickerInfoList">
           <div class="line"></div>
-          您的包裹正在等待收件,网点({{ pickerInfo.stationName }}),收件员({{
-            pickerInfo.personName
-          }}),电话({{ pickerInfo.personTel }})
+          您的包裹正在等待收件,网点({{pickerInfo.stationName}}),收件员({{pickerInfo.personName}}),电话({{pickerInfo.personTel}})
         </li>
       </template>
+
     </ul>
   </div>
 </template>
@@ -53,9 +40,9 @@ export default {
       logistics: {
         pickerInfoList: [],
         senderInfoList: [],
-        traceList: [],
-      },
-    };
+        traceList: []
+      }
+    }
   },
   methods: {
     // async loadData() {
@@ -93,32 +80,32 @@ export default {
     //   }
     // }
     async loadData() {
-      this.loading = true;
-      uni.showLoading();
-      const result = await Axios.post("/order/get", { orderId: this.id });
-      uni.hideLoading();
-      this.loading = false;
+      this.loading = true
+      uni.showLoading()
+      const result = await Axios.post('/order/get', { orderId: this.id })
+      uni.hideLoading()
+      this.loading = false
       if (result.code == 200) {
-        this.orderExpressModel = result.data.orderExpressList;
+        this.orderExpressModel = result.data.orderExpressList
       } else {
-        uni.showToast(result.result.message);
+        uni.showToast(result.result.message)
       }
-    },
+    }
   },
   onUnload() {
-    this.order = {};
+    this.order = {}
   },
   onPageScroll(e) {
-    this.$refs.toTop.show(e.scrollTop > App.systemInfo.screenHeight);
+    this.$refs.toTop.show(e.scrollTop > App.systemInfo.screenHeight)
   },
   async mounted() {
     uni.setNavigationBarTitle({
-      title: "查看物流",
-    });
-    this.id = this.$scope.options.id;
-    this.loadData();
-  },
-};
+      title: '查看物流'
+    })
+    this.id = this.$root.$mp.query.id
+    this.loadData()
+  }
+}
 </script>
 
 <style lang="scss">
@@ -142,7 +129,7 @@ export default {
       font-size: 16rpx;
       color: #333;
       &:after {
-        content: "";
+        content: '';
         left: 0;
         bottom: 4rpx;
         position: absolute;

@@ -4,53 +4,41 @@
       <view class="row flex-h flex-c-s p-20-0">
         <text class="row__indicator">*</text>
         <text class="row__label fs-40 c-black mr-48">姓名(必填)</text>
-        <input
-          class="fs-40 c-black flex-1"
-          placeholder="请输入姓名"
-          placeholder-class="placeholder"
-          v-model="params.name"
-        />
+        <input class="fs-40 c-black flex-1" placeholder="请输入姓名" placeholder-class="placeholder"
+          v-model="params.name" />
       </view>
       <view class="row flex-h flex-c-s p-20-0">
         <text class="row__indicator">*</text>
         <text class="row__label fs-40 c-black mr-48">身份证号(必填)</text>
-        <input
-          class="fs-40 c-black flex-1"
-          type="idcard"
-          placeholder="请输入身份证号"
-          placeholder-class="placeholder"
-          v-model="params.idCardNumber"
-        />
+        <input class="fs-40 c-black flex-1" type="idcard" placeholder="请输入身份证号"
+          placeholder-class="placeholder" v-model="params.idCardNumber" />
       </view>
     </view>
-    <button
-      class="next-step-button bg-primary fs-44 c-white"
-      @click="handleNextStepClick"
-    >
+    <button class="next-step-button bg-primary fs-44 c-white" @click="handleNextStepClick">
       下一步
     </button>
   </view>
 </template>
 
 <script>
-import api from "@/apis/index.js";
-import { validateIDCardNumber } from "@/utils/validation.js";
-import staticData from "@/utils/dataBase64.js";
+import api from '@/apis/index.js'
+import { validateIDCardNumber } from '@/utils/validation.js'
+import staticData from '@/utils/dataBase64.js'
 export default {
   data() {
     return {
       // 表单数据
       params: {
-        name: "",
-        idCardNumber: "",
-      },
-    };
+        name: '',
+        idCardNumber: ''
+      }
+    }
   },
   onLoad() {
-    uni.$on("faceRecognitionFinished", this.handleFaceRecognitionFinish);
+    uni.$on('faceRecognitionFinished', this.handleFaceRecognitionFinish)
   },
   onUnload() {
-    uni.$off("faceRecognitionFinished");
+    uni.$off('faceRecognitionFinished')
   },
   methods: {
     /**
@@ -58,34 +46,34 @@ export default {
      */
     handleFaceRecognitionFinish(result) {
       // 人脸认证结束后处理结果
-      const { ismatch, img } = result;
+      const { ismatch, img } = result
       if (ismatch) {
         api.realPersonAuthenticate({
           data: {
             userName: this.params.name,
             idCard: this.params.idCardNumber,
-            faceImg: `data:image/jpg;base64,${decodeURIComponent(img)}`,
+            faceImg: `data:image/jpg;base64,${decodeURIComponent(img)}`
           },
           success: () => {
-            this.$uni.showToast("认证成功");
-            this.getUserInfo();
-          },
-        });
+            this.$uni.showToast('认证成功')
+            this.getUserInfo()
+          }
+        })
       }
     },
     /**
      * 下一步点击事件
      */
     handleNextStepClick() {
-      if (!this.chackInput()) return;
+      if (!this.chackInput()) return
       // 唤起人脸识别
-      this.startFacialRecognitionVerify();
-      uni.setStorageSync("applicantInfo", this.params);
-      return;
-      const url = `http://120.42.37.86:10013/#/?psnName=${this.params.name}&idCard=${this.params.idCardNumber}&url=/pages/common/face-recognition-result&platform=miniProgram`;
+      this.startFacialRecognitionVerify()
+      uni.setStorageSync('applicantInfo', this.params)
+      return
+      const url = `http://120.42.37.86:10013/#/?psnName=${this.params.name}&idCard=${this.params.idCardNumber}&url=/pages/common/face-recognition-result&platform=miniProgram`
       uni.navigateTo({
-        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`,
-      });
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
     },
     /**
      * 人脸识别
@@ -103,28 +91,28 @@ export default {
               data: {
                 userName: this.params.name,
                 idCard: this.params.idCardNumber,
-                faceImg: staticData.faceImg,
+                faceImg: staticData.faceImg
               },
               success: () => {
-                this.$uni.showToast("认证成功");
-                this.getUserInfo();
-              },
-            });
+                this.$uni.showToast('认证成功')
+                this.getUserInfo()
+              }
+            })
           }
         },
         fail: (err) => {
-          console.log(err, "err");
-        },
-      });
+          console.log(err, 'err')
+        }
+      })
       // #endif
-      console.log("param---", this.params);
+      console.log('param---', this.params)
       // #ifdef MP-ALIPAY
       api.getAliPayCertifyParams({
         data: {
-          bizCode: "FACE",
+          bizCode: 'FACE',
           userName: this.params.name,
           idCard: this.params.idCardNumber,
-          returnUrl: "/pages/user-center/real-name-authentication",
+          returnUrl: '/pages/user-center/real-name-authentication'
         },
         success: (data) => {
           if (data.code == 0) {
@@ -132,29 +120,30 @@ export default {
               url: data.certifyUrl,
               certifyId: data.certifyId,
               success: (res) => {
-                console.log("success", res);
+                console.log('success', res)
                 api.realPersonAuthenticate({
                   data: {
                     userName: this.params.name,
                     idCard: this.params.idCardNumber,
-                    faceImg: staticData.faceImg,
+                    faceImg: staticData.faceImg
                   },
                   success: () => {
-                    this.$uni.showToast("认证成功");
-                    this.getUserInfo();
-                  },
-                });
+                    this.$uni.showToast('认证成功')
+                    this.getUserInfo()
+                  }
+                })
               },
               fail: function (res) {
-                console.log("fail", res);
+                console.log('fail', res)
               },
               complete: function (res) {
-                console.log("complete", res);
-              },
-            });
+                console.log('complete', res)
+              }
+            })
           }
-        },
-      });
+        }
+      }
+      )
 
       // #endif
     },
@@ -164,34 +153,34 @@ export default {
     getUserInfo() {
       api.getUserInfo({
         data: {
-          accessToken: uni.getStorageSync("token"),
+          accessToken: uni.getStorageSync('token')
         },
         success: (data) => {
-          uni.$emit("didLogin", data);
-          setTimeout(uni.navigateBack, 1500);
-        },
-      });
+          uni.$emit('didLogin', data)
+          setTimeout(uni.navigateBack, 1500)
+        }
+      })
     },
     /**
      * 输入信息校验
      */
     chackInput() {
       if (!this.params.name) {
-        this.$uni.showToast("请输入姓名");
-        return false;
+        this.$uni.showToast('请输入姓名')
+        return false
       }
       if (!this.params.idCardNumber) {
-        this.$uni.showToast("请输入身份证号");
-        return false;
+        this.$uni.showToast('请输入身份证号')
+        return false
       }
       if (!validateIDCardNumber(this.params.idCardNumber)) {
-        this.$uni.showToast("身份证号格式错误，请重新输入");
-        return false;
+        this.$uni.showToast('身份证号格式错误，请重新输入')
+        return false
       }
-      return true;
-    },
-  },
-};
+      return true
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

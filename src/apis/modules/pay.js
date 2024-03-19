@@ -112,7 +112,7 @@ export default {
   // 获取userid 支付宝
   getALIUserIdByCode: function (args = {}) {
     request({
-      url: '/offlineshopping/payment/getALIUserIdByCode1',
+      url: '/offlineshopping/payment/getALIUserIdByCode',
       header: { 'content-type': 'application/json' },
       ...args
     })

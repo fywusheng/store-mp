@@ -6,7 +6,7 @@
     <view class="tips">
       <text class="fs-32 c-black">
         更换手机号后，下次登录可以使用新手机号登录，当前绑定手机号为{{
-          phoneNumberFilter(currentPhoneNumber)
+          currentPhoneNumber | phoneNumberFilter
         }}
       </text>
     </view>
@@ -64,15 +64,17 @@ export default {
       },
     };
   },
+  filters: {
+    // 手机号过滤器, 用于手机号脱敏
+    phoneNumberFilter(value) {
+      return desensitizeInfo(value);
+    },
+  },
   onLoad() {
     const userInfo = uni.getStorageSync("userInfo");
     this.currentPhoneNumber = userInfo.tel;
   },
   methods: {
-    // 手机号过滤器, 用于手机号脱敏
-    phoneNumberFilter(value) {
-      return desensitizeInfo(value);
-    },
     /**
      * 发送验证码点击事件
      */
@@ -118,20 +120,21 @@ export default {
         this.$uni.showToast("请输入正确的验证码");
         return;
       }
-      api.updateMobile({
-        data: {
-          newMobile: this.params.phoneNumber,
-          verifyCode: this.params.smsCode,
-        },
-        success: (res) => {
-          this.$uni.showToast("手机号修改成功，请重新登录");
-          setTimeout(() => {
-            uni.redirectTo({
-              url: "/pages/user-center/login?goUrl=" + "/pages/index/mine",
-            });
-          }, 1500);
-        },
-      });
+       api.updateMobile({
+            data: {
+              newMobile: this.params.phoneNumber,
+              verifyCode: this.params.smsCode,
+            },
+            success:(res)=>{
+              this.$uni.showToast("手机号修改成功，请重新登录");
+              setTimeout(()=>{
+                uni.redirectTo({
+                  url: '/pages/user-center/login?goUrl='+'/pages/index/index?index=4'
+              });
+              },1500)
+             
+            }
+          })
       // api.checkSMSCode({
       //   data: {
       //     mobile: this.params.phoneNumber,
@@ -151,10 +154,10 @@ export default {
       //             url: '/pages/user-center/login'
       //         });
       //         },1500)
-
+             
       //       }
       //     })
-
+         
       //   },
       // });
     },
@@ -164,9 +167,9 @@ export default {
 
 <style lang="scss" scoped>
 .set-phone-number {
-  background-color: #fff;
-  margin-top: -10%;
-  padding-top: 50rpx;
+   background-color:#fff;
+   margin-top:-10%;
+   padding-top:50rpx;
   .title {
     margin: 60rpx 60rpx 0;
   }

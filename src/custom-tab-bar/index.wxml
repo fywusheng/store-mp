@@ -1,0 +1,9 @@
+
+<view class="bottom-tab">
+    <view class="{{item.center==true?'bottom-tab-item-center':'bottom-tab-item-sider'}}"
+      bindtap="tap"  wx:for="{{list}}" wx:key="index" data-url="{{item.url}}" data-index="{{index}}" >
+      <image wx:if="{{tabIndex==item.id}}" class="first-img" src="{{item.imgOn}}"></image>
+      <image wx:if="{{tabIndex!=item.id}}" class="first-img" src="{{item.imgOff}}"></image>
+      <text class="{{tabIndex==item.id?'text-position text-on':'text-position'}}">{{item.name}}</text>
+    </view>
+</view>

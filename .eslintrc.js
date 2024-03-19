@@ -20,8 +20,10 @@ module.exports = {
     'uni': true,
     'Axios': true,
     'Store': true,
+    '_': true,
     'BUS': true,
     'ENV': true,
+    'XIU': true,
     'App': true,
     'VUEX': true,
     'my': true,
@@ -62,7 +64,9 @@ module.exports = {
       'after': true
     }],
     'handle-callback-err': [2, '^(err|error)$'],
-    'indent': ['off', 2],
+    'indent': [2, 2, {
+      'SwitchCase': 1
+    }],
     'jsx-quotes': [2, 'prefer-single'],
     'key-spacing': [2, {
       'beforeColon': false,

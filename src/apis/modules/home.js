@@ -260,23 +260,5 @@ export default {
       header: { 'content-type': 'application/json' },
       ...args
     })
-  },
-  // 判断用户是否已加积分
-  checkIntegral: function (args = {}) {
-    request({
-      url: '/nun/api/acct/checkIntegral',
-      method: 'post',
-      header: { 'content-type': 'application/json' },
-      ...args
-    })
-  },
-  // 怡生养老自动注册
-  syncUserInfoToYsh: function (args = {}) {
-    request({
-      url: '/nun/api/acct/syncUserInfoToYsh',
-      method: 'post',
-      header: { 'content-type': 'application/json' },
-      ...args
-    })
   }
 }
