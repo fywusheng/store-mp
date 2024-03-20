@@ -10,12 +10,12 @@
         class="bg_img"
       />
       <view class="content">
-        <view class="date">2024-2-14</view>
+        <view class="date">{{nowTime}}</view>
         <view class="desc">
-          店员
-          <text>【高磊】</text>
+          店员 
+          <text>【{{loginName}}】</text>
           正在代客户
-          <text>【张三】</text>
+          <text>【{{khUserInfo.psnName}}】</text>
           下单…
         </view>
       </view>
@@ -46,17 +46,24 @@
 </template>
 <script>
   export default {
-    // computed: mapGetters(['isLogin', 'uid']),
     components: {},
     data() {
       return {
         categoryList: [],
+		khUserInfo:null,
+		loginName:'',
+		nowTime:''
       };
     },
     watch: {},
     mounted() {},
     onLoad() {
-      this.loadData();
+		this.khUserInfo = uni.getStorageSync('khUserInfo');
+		this.loginName = uni.getStorageSync('name');
+		const dayjs = require('dayjs');
+		const now = dayjs();
+		this.nowTime = now.format('YYYY-MM-DD HH:mm:ss');
+        this.loadData();
     },
     onShow() {},
     methods: {
