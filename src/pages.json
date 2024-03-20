@@ -317,6 +317,17 @@
 				}
 			]
 		},
+    {
+      "root": "pages/common",
+      "pages": [
+        {
+          "path": "webpage",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        }
+      ]
+    },
 		{
 			"root": "pages/store-management",
 			"name": "store-management",
