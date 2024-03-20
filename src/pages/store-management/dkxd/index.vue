@@ -100,7 +100,6 @@
   import api from '@/apis/index.js';
   import { validatePhoneNumber } from '@/utils/validation.js';
   export default {
-    // computed: mapGetters(['isLogin', 'uid']),
     components: {},
     data() {
       return {
@@ -112,9 +111,6 @@
       };
     },
     watch: {},
-    mounted() {},
-    onLoad() {},
-    onShow() {},
     methods: {
       // 账号设置
       setAccout() {
