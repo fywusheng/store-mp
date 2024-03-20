@@ -45,7 +45,7 @@ export default {
   // http://192.168.1.187:10000/api/ngcmn/wbst/msgtype/list
   // 静态域
   ASSETS: {
-    development: 'http://39.101.162.232/',
+    development: 'http://192.168.1.187:10088/static',
     test: 'http://39.101.162.232/',
     production: '//39.101.162.232/'
   }[process.env.NODE_ENV],

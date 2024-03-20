@@ -70,8 +70,8 @@
 			 :class="'item' +' ' +'item_'+item.id"
 			 v-for="(item,index) in functionList" :key="index">
 				<view class="title">{{item.pemissonName}}</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image :src="item.iconUrl" mode="widthFix" class="img"></image>
+				<view class="go flex_r_h">立即前往<image :src="staticUrl+'/store-mp/qw-icon.png'" mode="widthFix" class="icon"></image></view>
+				<image :src="staticUrl+item.iconUrl" mode="widthFix" class="img"></image>
 			</navigator>
 		</view>
 	</view>
@@ -85,7 +85,8 @@
 			return{
 				userInfo:Store.getters.UserInfo, //登录用户信息
 				storeInfo:Store.getters.StoreInfo, //门店信息
-				functionList:[]
+				functionList:[],
+				staticUrl:''
 			}
 		},
 		watch: {
@@ -93,8 +94,8 @@
 		mounted() {
 		},
 		onLoad(options) {
-			console.log("opto",options)
 			this.getFunctionList(options?.id)
+			this.staticUrl =  ENV.ASSETS
 		},
 		onShow() {
 		},

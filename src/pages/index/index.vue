@@ -98,7 +98,6 @@
 		</view>
 		<view class="footer">门店支持电话：400-8888-666</view>
 		<!-- 日期选择框 -->
-		<!-- 日期选择框 -->
 		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" 
 			:insert="false"
 			:range="true" @confirm="confirmDate"  
