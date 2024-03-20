@@ -71,7 +71,7 @@ export default {
       ctx.commit('LOG_OUT')
     },
     async login(ctx,data) {
-      ctx.commit(VUEX.LOGIN.SET_SESSION_ID,data)
+      ctx.commit(VUEX.LOGIN.SET_SESSION_ID, data)
     }
   }
 }

@@ -59,6 +59,13 @@ export default {
     test: 'http://192.168.1.187:18888/plan/search/productList',
     production: 'http://192.168.1.187:18888/search/productList'
   }[process.env.NODE_ENV],
+  // 收银台地址
+  H5: {
+    // development: 'https://ggll.hpgjzlinfo.com', // 正式环境
+    development: 'http://192.168.1.187:9092', // 测试环境
+    test: 'http://192.168.1.187:9092',
+    production: 'https://ggll.hpgjzlinfo.com'
+  }[process.env.NODE_ENV],
   // 默认图片
   IMG_DEFAULT: 'http://192.168.1.187:10088/static/home/image-home-article-default.png'
 }

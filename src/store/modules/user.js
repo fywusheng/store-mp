@@ -22,15 +22,23 @@ export default {
     [VUEX.USER.SET_MODE](state, mode) {
       state.mode = mode
     },
-	[VUEX.USER.SET_STORE_INFO](state, storeInfo) {
-	  // userInfo.age = userInfo.age || ''
-	  // userInfo.gender = userInfo.gender || ''
-	  // state.userInfo = userInfo
-	},
+    [VUEX.USER.SET_STORE_INFO](state, storeInfo) {
+      // userInfo.age = userInfo.age || ''
+      // userInfo.gender = userInfo.gender || ''
+      // state.userInfo = userInfo
+    },
+    setUserInfo(state, userInfo) {
+      if(userInfo.type === '普通用户'){
+        userInfo.memberStatus = 0
+      }else{
+        userInfo.memberStatus = 1
+      }
+      state.userInfo = userInfo
+    }
   },
   actions: {
-    getUserData(ctx) {
-
+    setUserInfo(ctx, userInfo) {
+      ctx.commit('setUserInfo', userInfo)
     }
   }
 }

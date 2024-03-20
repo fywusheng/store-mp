@@ -12,6 +12,7 @@ global.Store = Store
 global.State = Store.state
 
 Vue.config.productionTip = false
+Vue.prototype.$store = Store
 
 const app = new Vue({
   Store,
