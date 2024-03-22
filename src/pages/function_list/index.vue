@@ -22,7 +22,6 @@
 					</view>
 				</view>
 			</view>
-			
 		</view>
 		<view class="bottom flex_r_h">
 			<!-- <navigator url="/pages/order/index"  class="item">
