@@ -5,7 +5,7 @@
 	<view class="main_content">
 		<!-- 门店管理-功能列表 -->
 		<view class="top">
-			<view class="zt_icon">{{storeInfo.storeSatus==1?'合作中':'合作终止'}}</view>
+			<view class="zt_icon">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
 			<!-- <image src="http://192.168.1.187:10088/static/store-mp/zt-bg.png" mode="widthFix" class="zt_icon"></image> -->
 			<view class="main">
 				<view class="title">{{storeInfo.storeName}}</view>

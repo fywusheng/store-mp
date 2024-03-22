@@ -6,7 +6,7 @@
 		<view class="top flex_r_h">
 			<view class="left item">
 				<view class="title">门店状态</view>
-				<view class="desc">{{storeInfo.storeSatus==1?'合作中':'合作终止'}}</view>
+				<view class="desc">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
 			</view>
 			<view class="right item">
 				<view class="title">合同有效期至</view>
@@ -22,7 +22,7 @@
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">合作年限</view>
-					<view class="desc">{{hzYears}}年</view>
+					<view class="desc">{{storeInfo.hzYears}}年</view>
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">售卖区域</view>
@@ -68,11 +68,7 @@
 				</view>
 			</view>
 		</view>	
-		<view class="btn" @click="renewalFunction" v-if="storeInfo.reviewStatus==2">申请合作续签</view>
-		<!-- 续签提示 -->
-		<uni-popup ref="alertDialog" type="dialog">
-			<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="知道了" title="申请提交成功" content="平台会尽快与您联系,请耐心等待!" @confirm="confirmDelete"></uni-popup-dialog>
-		</uni-popup>
+		<view class="btn" @click="renewalFunction">申请合作续签</view>
 	</view>
 </template>
 <script>
@@ -102,19 +98,6 @@
 				     },
 				     success:(res)=>{
 					  console.log("mendianxinxi====",res)
-					 
-					  const dayjs = require('dayjs');
-					  let today = dayjs();
-					  if(res){
-					  	const endTime = dayjs(res.periodEndValidity);
-					  	if (today.isBefore(endTime)) {
-					  	  res.storeSatus = 1 ;  //1合作中
-					  	  uni.setStorageSync('storeSatus', 1)
-					  	} else {
-					  	  res.storeSatus = 2 ; //2已过期
-					  	  uni.setStorageSync('storeSatus', 2)
-					  	}
-					  }
 					  this.storeInfo = res
 					  // 假设有两个日期字符串
 					  const date1 = res.periodStartValidity;
@@ -122,22 +105,34 @@
 					  // 使用dayjs处理日期
 					  const d1 = dayjs(date1);
 					  const d2 = dayjs(date2);
+					 
 					  // 计算两个日期之间的年数
 					  const years =  d2.diff(d1, 'year');
 					  this.hzYears = years
+					  // // 输出结果
+					  console.log(`相差: ${years} 年`);
+					  // // 计算月数和天数
+					  // const years = duration.years;
+					  // const months = duration.months;
+					  // const days = duration.days;
+					   
+					  // console.log(`相差: ${years} 年 ${months} 月 ${days} 天`);
 				     }
 				})
 			},
-			// 门店续签 待续签、已续签、未续签 0 1 2
+			// 门店续签
 			renewalFunction(){
+				const dayjs = require('dayjs');
+				const today = dayjs().format('YYYY-MM-DD');
+				console.log(today);
 				api.saveStores({
 				    data: {
 				       id:uni.getStorageSync('storeId'),
-					   renewalStatus:0,
+					   renewalStatus:'',
+					   renewalDate:today
 				    },
 					success:(res)=>{
-						 console.log("续签",res) 
-						 this.$refs.alertDialog.open()
+						  
 					}
 				})
 			}
