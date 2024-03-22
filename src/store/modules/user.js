@@ -29,9 +29,9 @@ export default {
     },
     setUserInfo(state, userInfo) {
       if(userInfo.type === '普通用户'){
-        userInfo.memberStatus = 0
+        userInfo.memberStatus = '0'
       }else{
-        userInfo.memberStatus = 1
+        userInfo.memberStatus = '1'
       }
       state.userInfo = userInfo
     }

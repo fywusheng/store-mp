@@ -416,7 +416,7 @@
       }),
       // 是否会员
       member() {
-        return this.userInfo && this.userInfo.memberStatus === 1;
+        return this.userInfo && this.userInfo.memberStatus === '1';
       },
     },
     methods: {
