@@ -12,7 +12,7 @@
       <view class="top">
         <view class="info flex_r_h">
           <view class="shp_name">{{ storeInfo.storeName }}</view>
-          <view class="shp_tag">{{ storeInfo.storeSatus == 1 ? '合作中' : '已到期' }}</view>
+          <view class="shp_tag">{{ storeInfo.storeSatus == 1 ? '合作中' : '合作终止' }}</view>
           <view class="shp_date">{{ storeInfo.periodEndValidity }}到期</view>
         </view>
         <image
