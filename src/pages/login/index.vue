@@ -78,14 +78,7 @@
 				       sceneFlag: 4
 				     },
 				     success:(res)=>{
-						 console.log("验证码",res)
-				       // this.$uni.showToast("手机号修改成功，请重新登录");
-				       // setTimeout(()=>{
-				       //   uni.redirectTo({
-				       //     url: '/pages/user-center/login?goUrl='+'/pages/index/index?index=4'
-				       // });
-				       // },1500)
-				      
+				        this.$uni.showToast("短信发送成功");
 				     }
 				   })
 			  // 开始倒计时

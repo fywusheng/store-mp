@@ -8,7 +8,7 @@
 			<view class="top">
 				<view class="info flex_r_h">
 					<view class="shp_name">{{storeInfo.storeName}}</view>
-					<view class="shp_tag">{{storeInfo.storeSatus==1?'合作中':'合作终止'}}</view>
+					<view class="shp_tag">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
 					<view class="shp_date">{{storeInfo.periodEndValidity}}到期</view>
 				</view>
 				<image src="http://192.168.1.187:10088/static/store-mp/set-icon.png" mode="widthFix" class="set_img" @click="setAccout"/>
