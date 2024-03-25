@@ -626,7 +626,7 @@
     <div v-if="empty" class="empty">
       <img src="http://192.168.1.187:10088/static/images/item-list/empty.png" />
       没有搜到您想要的商品
-      <div class="btn-home" @click="toHome">再去逛逛</div>
+      <!-- <div class="btn-home" @click="toHome">再去逛逛</div> -->
     </div>
     <top ref="toTop" :bottom="80" :showContact="false"></top>
     <search-filter
