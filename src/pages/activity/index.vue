@@ -9,7 +9,8 @@
 				<view class="img">
 					<image :src="item.mainImg" mode="widthFix" class="hd_img"></image>
 					<view class="hdend_mask flex_r_h" v-if="item.dqStatus">
-						<image src="http://192.168.1.187:10088/static/store-mp/hdend_icon.png" mode="widthFix" class="end_img"></image>
+						<image src="http://192.168.1.187:10088/static/store-mp/hdend_icon.png" mode="widthFix"
+							class="end_img"></image>
 					</view>
 				</view>
 				<view class="hd_main">
@@ -50,18 +51,17 @@
 		mounted() {
 			this.getActivityList();
 		},
-		onLoad(e) {
-		},
+		onLoad(e) {},
 		methods: {
-			
+
 			/**
 			 * 获取活动列表
 			 */
 			getActivityList() {
 				// {pageNum: 1, pageSize: 15, queryObject: {"auditState":"1"}}
 				let params = {
-					queryObject:{
-						auditState:1
+					queryObject: {
+						auditState: 1
 					},
 					...this.queryParam
 				};
@@ -110,17 +110,17 @@
 			/**
 			 * 去详情 handleGoDetails
 			 */
-			handleGoDetails(id,status) {
-				if(status){
+			handleGoDetails(id, status) {
+				if (status) {
 					this.$uni.showToast('活动已到期');
-				}else{
+				} else {
 					uni.navigateTo({
-						url: '/pages/activity/details?id=' + id 
+						url: '/pages/activity/details?id=' + id
 					})
 				}
-				
+
 			},
-			
+
 		},
 		// 上拉加载
 		onReachBottom() {
@@ -137,8 +137,7 @@
 				uni.stopPullDownRefresh();
 			}, 200);
 		},
-		onShow() {
-		},
+		onShow() {},
 		destroyed() {
 
 		},
@@ -156,26 +155,30 @@
 	}
 </style>
 <style lang="scss">
-	.flex_r_h{
+	.flex_r_h {
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
-	.flex_c_h{
+
+	.flex_c_h {
 		display: flex;
 		align-items: center;
-		justify-content:center;
+		justify-content: center;
 		flex-direction: column;
 	}
-	.main_content{
+
+	.main_content {
 		padding: 24rpx 32rpx;
-		.hd_list{
+
+		.hd_list {
 			margin-bottom: 38rpx;
-			.date{
+
+			.date {
 				width: 280rpx;
 				height: 48rpx;
 				line-height: 48rpx;
-				background: rgba(0,0,0,0.1);
+				background: rgba(0, 0, 0, 0.1);
 				border-radius: 27rpx;
 				text-align: center;
 				font-size: 24rpx;
@@ -184,43 +187,62 @@
 				margin-bottom: 32rpx;
 				padding: 0 30rpx;
 			}
-			.content{
+
+			.content {
 				border-radius: 16rpx;
-				.img{
+
+				.img {
 					position: relative;
-					.hd_img{
+
+					.hd_img {
 						width: 100%;
 					}
-					.hdend_mask{
+
+					.hdend_mask {
 						position: absolute;
 						top: 0;
 						right: 0;
 						left: 0;
 						bottom: 0;
-						background: rgba(0,0,0,0.6);
+						background: rgba(0, 0, 0, 0.6);
 						justify-content: center;
 						border-radius: 16rpx;
-						.end_img{
+
+						.end_img {
 							width: 260rpx;
 						}
 					}
 				}
-				.hd_main{
+
+				.hd_main {
 					padding: 24rpx;
 					background: #FFFFFF;
-					.title{
+
+					.title {
 						font-size: 32rpx;
 						font-weight: 500;
 						color: #333333;
+						display: -webkit-box;
+						-webkit-line-clamp: 1;
+						-webkit-box-orient: vertical;
+						overflow: hidden;
+						text-overflow: ellipsis;
 					}
-					.desc{
+
+					.desc {
 						font-size: 28rpx;
 						color: #999999;
 						margin-top: 16rpx;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+						overflow: hidden;
+						text-overflow: ellipsis;
+
 					}
 				}
 			}
-			
+
 		}
 	}
 </style>
