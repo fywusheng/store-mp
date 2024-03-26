@@ -8,16 +8,16 @@
 			<view class="zt_icon">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
 			<!-- <image src="http://192.168.1.187:10088/static/store-mp/zt-bg.png" mode="widthFix" class="zt_icon"></image> -->
 			<view class="main">
-				<view class="title">{{storeInfo.storeName}}</view>
-				<view class="date">{{storeInfo.periodEndValidity}}合作到期</view>
+				<view class="title">{{storeInfo.storeName || ''}}</view>
+				<view class="date">{{storeInfo.periodEndValidity || ''}}合作到期</view>
 				<view class="flex_r_h db_content">
 					<view class="name flex_r_h">
 						<image src="http://192.168.1.187:10088/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
-						<view>登录员工：<text>{{userInfo.name}}</text></view>
+						<view>登录员工：<text>{{userInfo.name || ''}}</text></view>
 					</view>
 					<view class="name flex_r_h dz_name">
 						<image src="http://192.168.1.187:10088/static/store-mp/dz-icon.png" mode="widthFix" class="icon"></image>
-						<view>店长：<text>{{storeInfo.corporateAccount}}</text></view>
+						<view>店长：<text>{{storeInfo.corporateAccount || ''}}</text></view>
 						<image src="http://192.168.1.187:10088/static/store-mp/dh-icon.png" mode="widthFix" class="dh_icon"></image>
 					</view>
 				</view>

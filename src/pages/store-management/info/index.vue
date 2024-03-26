@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- author by liushuag -->
 <!-- date：2.15 -->
 <template>
@@ -71,6 +72,7 @@
 		<view class="btn" @click="renewalFunction" v-if="storeInfo.reviewStatus==2">申请合作续签</view>
 	</view>
 </template>
+
 <script>
 	import api from '@/apis/index.js';
 	const dayjs = require('dayjs');
