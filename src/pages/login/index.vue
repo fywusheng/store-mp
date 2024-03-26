@@ -46,7 +46,7 @@
 				timer:null,
 				// 表单数据
 				params: {
-				  phoneNumber: "15011521284",
+				  phoneNumber: "18311067162",
 				  smsCode: "123953",
 				},
 			}
