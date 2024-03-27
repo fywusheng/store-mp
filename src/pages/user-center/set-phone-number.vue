@@ -72,7 +72,7 @@ export default {
   },
   onLoad() {
     const userInfo = uni.getStorageSync("userInfo");
-    this.currentPhoneNumber = userInfo.tel;
+    this.currentPhoneNumber = userInfo.accountPhone;
   },
   methods: {
     /**

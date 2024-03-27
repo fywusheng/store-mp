@@ -2,14 +2,45 @@
 	<view class="main">
 		<image src="http://192.168.1.187:10088/static/store-mp/logo.png" class="logo"></image>
 		<view class="desc">
-			<view class="name">国家老龄服务平台-智慧康复平台</view>
-			<view class="version">当前版本v1.0.0</view>
+			<view class="name">松辉医疗门店管理助手</view>
+			<view class="version">当前版本{{version}}</view>
 		</view>
 	</view>
 </template>
 
 <script>
+
+export default {
+  data() {
+    return {
+      version: ENV.VERSION
+    }
+  },
+
+  methods: {
+    /**
+     * 用户协议点击事件
+     */
+    handleUserAgreementClick() {
+      const url = 'https://ggll.hpgjzlinfo.com/#/agreement?type=0'
+      uni.navigateTo({
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
+    },
+    /**
+     * 隐私协议点击事件
+     */
+    handlePrivacyPolicyClick() {
+      const url = 'https://ggll.hpgjzlinfo.com/#/agreement?type=1'
+      uni.navigateTo({
+        url: `/pages/common/webpage?url=${encodeURIComponent(url)}`
+      })
+    }
+  }
+
+}
 </script>
+
 
 <style lang="scss">
 	page{

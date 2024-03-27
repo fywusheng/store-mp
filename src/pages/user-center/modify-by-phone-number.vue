@@ -59,7 +59,7 @@ export default {
   onLoad(options) {
     this.type = options.type
     const userInfo = uni.getStorageSync("userInfo");
-    this.params.phoneNumber = userInfo.tel;
+    this.params.phoneNumber = userInfo.accountPhone;
   },
   methods: {
     /**

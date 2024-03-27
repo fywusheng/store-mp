@@ -46,7 +46,7 @@
 				timer:null,
 				// 表单数据
 				params: {
-				  phoneNumber: "18311067162",
+				  phoneNumber: "15011521282",
 				  smsCode: "123953",
 				},
 			}
@@ -124,13 +124,11 @@
 			          code: this.params.smsCode,
 			        },
 			        success:(res)=>{
-						console.log("登录",res)
 						const dayjs = require('dayjs');
 						let today = dayjs();
 						if(res.shStoreDTO){
 							const endTime = dayjs(res.shStoreDTO.periodEndValidity);
 							if (today.isBefore(endTime)) {
-							  console.log('当前时间小于2024年3月1日');
 							  res.shStoreDTO.storeSatus = 1 ;  //1合作中
 							  uni.setStorageSync('storeSatus', 1)
 							} else {
@@ -140,6 +138,7 @@
 							uni.setStorageSync('storeId', res.shStoreDTO.id)
 						}
 						uni.setStorageSync('token', res.token)
+						uni.setStorageSync('userInfo', res)
 						uni.setStorageSync('name', res.name)
 						uni.setStorageSync('userLoginPhone', res.accountPhone)
 						uni.setStorageSync('userId', res.id)

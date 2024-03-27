@@ -19,7 +19,8 @@ export default {
   sendSMSCode: function (args = {}) {
     request({
       url: '/ngcmn/sms/sendCode',
-      ...args
+      ...args,
+	  port: '3',
     })
   },
   // 校验短信验证码
@@ -71,6 +72,7 @@ export default {
   // 修改手机号(未修改电子证)
   updateMobile: function (args = {}) {
     request({
+	  port:'3',
       url: '/nun/api/acct/updateMobile',
       showsLoading: true,
       ...args

@@ -113,10 +113,10 @@
     watch: {},
     methods: {
       // 账号设置
-      setAccout() {
-        uni.navigateTo({
-          url: '/pages/user-center/setting',
-        });
+      setAccout(){
+      	uni.navigateTo({
+      		url: '/pages/about/account_set'
+      	})
       },
       // 打电话
       makeCall() {

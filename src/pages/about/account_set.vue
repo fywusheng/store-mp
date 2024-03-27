@@ -1,25 +1,83 @@
 <template>
 	<view class="main">
 		<view class="list">
-			<view class="item flex_r_h">
+			<view class="item flex_r_h" @click="updateAccoutPhone">
 				<view class="name">更换绑定手机号</view>
 				<view class="desc flex_r_h">
-					<view>1378999999</view>
+					<view>{{ userInfo.accountPhone | phoneNumberFilter }}</view>
 					<image src=" http://192.168.1.187:10088/static/store-mp/qw-icon.png" class="icon"></image>
 				</view>
 			</view>
-			<view class="item flex_r_h">
+			<view class="item flex_r_h" @click="aboutYy">
 				<view class="name">关于应用</view>
 				<view class="desc flex_r_h">
 					<image src=" http://192.168.1.187:10088/static/store-mp/qw-icon.png" class="icon"></image>
 				</view>
 			</view>
 		</view>
-		<view class="exit_btn">退出登录</view>
+		<view class="exit_btn" @click="exitLoad">退出登录</view>
 	</view>
 </template>
 
 <script>
+	import api from '@/apis/index.js';
+	import { desensitizeInfo } from "@/utils/desensitization.js";
+	export default {
+		data() {
+			return {
+				userInfo: Store.getters.UserInfo, //登录用户信息
+			};
+		},
+		created() {
+
+		},
+		mounted() {
+			
+		},
+		onLoad(option) {
+		},
+		filters: {
+		  // 手机号过滤器, 用于手机号脱敏
+		  phoneNumberFilter(value) {
+		    return desensitizeInfo(value);
+		  },
+		},
+		methods: {
+			
+			/**
+			 * 更换手机号
+			 */
+			updateAccoutPhone() {
+				uni.navigateTo({
+					url: '/pages/user-center/modify-phone-number' 
+				})
+			},
+			aboutYy(){
+				uni.navigateTo({
+					url: '/pages/about/index'
+				})
+			},
+			exitLoad() {
+			  this.$uni.showConfirm({
+			    content: '是否退出登录',
+			    confirm: () => {
+			      api.logout({
+			        success: () => {
+			          Store.dispatch('logout')
+			          uni.reLaunch({
+			            url: '/pages/login/index'
+			          })
+			        }
+			      })
+			    }
+			  })
+			},
+		},
+		onShow() {
+
+		},
+		destroyed() {},
+	};
 </script>
 <style>
 	page {

@@ -201,7 +201,7 @@
 			// 账号设置
 			setAccout(){
 				uni.navigateTo({
-					url: '/pages/user-center/setting'
+					url: '/pages/about/account_set'
 				})
 			},
 			/**
