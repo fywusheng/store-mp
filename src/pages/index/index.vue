@@ -63,7 +63,7 @@
 				</view>
 			</view>
 			<!-- 活动通知 -->
-			<view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
+			<!-- <view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
 				<view class="pic">
 					<image src="http://192.168.1.187:10088/static/store-mp/hdtz-img.png" />
 				</view>
@@ -73,15 +73,13 @@
 			    vertical="true" circular="true">
 						<block v-for="(item,index) in scrollingNews" :key='index'>
 							<swiper-item @click="handleGoDetails(item.id)">
-								<!-- <navigator class='item' :url='item.url' hover-class='none'> -->
-									<view class='line1'>{{ item.name }}</view>
-								<!-- </navigator> -->
+								<view class='line1'>{{ item.name }}</view>
 							</swiper-item>
 						</block>
 					</swiper>
 				</view>
 				<view class="iconfont icon-xiangyou" />
-			</view>
+			</view> -->
 			<!-- 代客下单 -->
 			<view class="dkxd_main flex_r_h">
 				 <navigator url="/pages/store-management/dkxd/index" class="btn_item left flex_r_h" v-if="functionList.length!=0">
@@ -131,7 +129,7 @@
 					},
 				],
 				// 活动通知
-				scrollingNews: [], 
+				scrollingNews: [],  //由于需求变动第一版不上线，后期维护
 				// 日历
 				dateShow:false,
 				userInfo:Store.getters.UserInfo, //登录用户信息
@@ -205,7 +203,7 @@
 				})
 			},
 			/**
-			 * 获取活动列表
+			 * 获取活动列表由于需求变动第一版不上线，后期维护
 			 */
 			getActivityList() {
 				let params = {
