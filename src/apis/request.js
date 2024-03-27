@@ -1,5 +1,4 @@
 import { showLoading, hideLoading, showToast } from '@/utils/uni'
-
 export function request({
   port, //开发版本域名区分
   url,
@@ -18,7 +17,6 @@ export function request({
   if (showsLoading) showLoading('加载中')
 
   const headers = {
-    'channel': 'msg',
     'Accept': 'application/json',
     'accessToken': uni.getStorageSync('token'),
     'tsf-metadata': ''
@@ -83,7 +81,7 @@ export function request({
               fail(result)
             } else {
               // 统一提示
-              showToast(result.message)
+              showToast(result.message ? result.message: result.msg )
             }
           }
         }
@@ -100,7 +98,6 @@ export function request({
       }
     },
     fail: (error) => {
-		console.log("as",error)
       //  隐藏 loading
       if (showsLoading) hideLoading()
       // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示

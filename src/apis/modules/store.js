@@ -146,7 +146,10 @@ export default {
 			port: '2',
 			url: '/nepsp-api/nun/api/sms/sendLoginSms',
 			method: 'post',
-			...args
+			...args,
+			header:{
+					'channel': 'msg',
+			}
 		})
 	},
 	/**

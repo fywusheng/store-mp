@@ -61,14 +61,14 @@
 		// 		"navigationBarBackgroundColor": "#fff"
 		// 	}
 		// },
-		// {
-		// 	"path": "pages/about/account_set",
-		// 	"style": {
-		// 		"navigationStyle": "default",
-		// 		"navigationBarTitleText": "账号设置",
-		// 		"navigationBarBackgroundColor": "#fff"
-		// 	}
-		// },
+		{
+			"path": "pages/about/account_set",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "账号设置",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
 		
 		{
 			"path": "pages/order/index",
@@ -179,18 +179,6 @@
 					}
 				},
 				{
-					"path": "real-name-result2",
-					"style": {
-						"navigationStyle": "custom",
-						"navigationBarTitleText": "",
-						"mp-alipay": {
-							"transparentTitle": "always",
-							"allowsBounceVerticle": "NO",
-							"titlePenetrate": "YES"
-						}
-					}
-				},
-				{
 					"path": "modify-phone-number",
 					"style": {
 						"navigationBarTitleText": "修改手机号码"
@@ -257,18 +245,7 @@
 						"navigationBarTitleText": "详情"
 					}
 				},
-				{
-					"path": "setting",
-					"style": {
-						"navigationBarTitleText": "设置"
-					}
-				},
-				{
-					"path": "about",
-					"style": {
-						"navigationBarTitleText": "关于"
-					}
-				},
+				
 				{
 					"path": "password-change-password",
 					"style": {

@@ -19,13 +19,21 @@ export default {
   sendSMSCode: function (args = {}) {
     request({
       url: '/ngcmn/sms/sendCode',
-      ...args
+      ...args,
+	  port: '3',
+	  header:{
+	  		'channel': '4',
+	  }
     })
   },
   // 校验短信验证码
   checkSMSCode: function (args = {}) {
     request({
+	  port:'3',
       url: '/ngcmn/sms/verifyCode',
+	  header:{
+		'channel': '4',
+	  },
       ...args
     })
   },
@@ -71,6 +79,7 @@ export default {
   // 修改手机号(未修改电子证)
   updateMobile: function (args = {}) {
     request({
+	  port:'3',
       url: '/nun/api/acct/updateMobile',
       showsLoading: true,
       ...args

@@ -19,7 +19,7 @@
                src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
     </view>
-    <view class="section flex-v">
+   <!-- <view class="section flex-v">
       <view class="section-header flex-h flex-c-s">
         <text class="fs-32 c-grey ml-48">原手机号不可用</text>
       </view>
@@ -29,7 +29,7 @@
         <image class="icon mr-32" mode="scaleToFill"
                src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
-    </view>
+    </view> -->
     <real-name-pop ref="realpop" :showTop="showTop"  @succFlag="succFlag" /> 
   </view>
 </template>
@@ -44,41 +44,12 @@ export default {
   
   data() {
     return {
-      userInfo: uni.getStorageSync('userInfo'),
+      userInfo: uni.getStorageSync('userLoginPhone'),
       showTop:false
     }
   },
   onLoad() {},
   methods: {
-     /**
-     * 获取用户信息 
-     */
-    getUserInfo() {
-      return new Promise((resolve, reject) => {
-        api.getUserInfo({
-          data: {
-            accessToken: uni.getStorageSync('token'),
-          },
-          success: (data) => {
-            resolve(data)
-          },
-          fail: (error) => {
-            reject(error)
-          },
-        })
-      })
-    },
-    async succFlag(flag){
-      console.log("---1111111----")
-      //TODO 进行测试
-      if(flag == 1){
-        const userinfor = await this.getUserInfo()
-        uni.setStorageSync('userInfo', userinfor)
-        this.userInfo = userinfor
-        this.$refs.realpop.close()
-        uni.navigateTo({url: `/pages/user-center/real-name-result2?back=${'/pages/index/index'}`})
-      }
-    } ,
     /**
      * 短信验证点击事件
      */
@@ -87,29 +58,7 @@ export default {
         url: '/pages/user-center/modify-by-phone-number?type=2',
       })
     },
-    /**
-     * 实人认证点击事件
-     */
-    handleRealPersonAuthenticationClick() {
-
-      if (this.userInfo.crtfStas === '0') {
-        // 弹出实名弹框
-         this.$refs.realpop.open()
-      } else {
-         const params = {
-          name: this.userInfo.psnName,
-          idCard: this.userInfo.idCard,
-          returnUrl: '',
-        }
-        params.success = () =>{
-            //type :1实名修改；2短信验证码修改
-          uni.navigateTo({
-             url: '/pages/user-center/set-phone-number?type=1',
-           })
-        }
-        startFacialRecognitionVerify(params)
-      }
-    }
+    
   },
 }
 </script>

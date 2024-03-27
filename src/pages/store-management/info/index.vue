@@ -1,3 +1,4 @@
+
 <!-- author by liushuag -->
 <!-- date：2.15 -->
 <template>
@@ -22,7 +23,7 @@
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">合作年限</view>
-					<view class="desc">{{storeInfo.hzYears}}年</view>
+					<view class="desc">{{hzYears}}年</view>
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">售卖区域</view>
@@ -37,7 +38,7 @@
 					<view class="desc">{{storeInfo.operatingBrand}}</view>
 				</view>
 			</view>
-		</view>	
+		</view>
 		<view class="content">
 			<view class="title_text">企业佣金信息</view>
 			<view class="info_content">
@@ -50,7 +51,7 @@
 					<view class="desc">{{storeInfo.commissionSettlement}}</view>
 				</view>
 			</view>
-		</view>	
+		</view>
 		<view class="content">
 			<view class="title_text">企业对公账户信息</view>
 			<view class="info_content">
@@ -67,10 +68,11 @@
 					<view class="desc">{{storeInfo.corporateBankBranch}}</view>
 				</view>
 			</view>
-		</view>	
-		<view class="btn" @click="renewalFunction">申请合作续签</view>
+		</view>
+		<view class="btn" @click="renewalFunction" v-if="storeInfo.reviewStatus==2">申请合作续签</view>
 	</view>
 </template>
+
 <script>
 	import api from '@/apis/index.js';
 	const dayjs = require('dayjs');
@@ -78,8 +80,8 @@
 	export default {
 		data() {
 			return {
-				storeInfo:null, //门店信息
-				hzYears:0
+				storeInfo: null, //门店信息
+				hzYears: 0
 			};
 		},
 		created() {
@@ -87,52 +89,51 @@
 		},
 		mounted() {
 			this.getStoreInfo()
+			
 		},
-		onLoad(option) {
-		},
+		onLoad(option) {},
 		methods: {
-			getStoreInfo(){
+			getStoreInfo() {
 				api.getStoreInfo({
-				     data: {
-					   id:uni.getStorageSync('storeId')
-				     },
-				     success:(res)=>{
-					  console.log("mendianxinxi====",res)
-					  this.storeInfo = res
-					  // 假设有两个日期字符串
-					  const date1 = res.periodStartValidity;
-					  const date2 = res.periodEndValidity;
-					  // 使用dayjs处理日期
-					  const d1 = dayjs(date1);
-					  const d2 = dayjs(date2);
-					 
-					  // 计算两个日期之间的年数
-					  const years =  d2.diff(d1, 'year');
-					  this.hzYears = years
-					  // // 输出结果
-					  console.log(`相差: ${years} 年`);
-					  // // 计算月数和天数
-					  // const years = duration.years;
-					  // const months = duration.months;
-					  // const days = duration.days;
-					   
-					  // console.log(`相差: ${years} 年 ${months} 月 ${days} 天`);
-				     }
+					data: {
+						id: uni.getStorageSync('storeId')
+					},
+					success: (res) => {
+						const dayjs = require('dayjs');
+						let today = dayjs();
+						if (res) {
+							const endTime = dayjs(res.periodEndValidity);
+							if (today.isBefore(endTime)) {
+								res.storeSatus = 1; //1合作中
+								uni.setStorageSync('storeSatus', 1)
+							} else {
+								res.storeSatus = 2; //2已过期
+								uni.setStorageSync('storeSatus', 2)
+							}
+						}
+						this.storeInfo = res
+						// 假设有两个日期字符串
+						const date1 = res.periodStartValidity;
+						const date2 = res.periodEndValidity;
+						// 使用dayjs处理日期
+						const d1 = dayjs(date1);
+						const d2 = dayjs(date2);
+						// 计算两个日期之间的年数
+						const years = d2.diff(d1, 'year');
+						this.hzYears = years
+						console.log("nianxian ", years)
+					}
 				})
 			},
 			// 门店续签
-			renewalFunction(){
-				const dayjs = require('dayjs');
-				const today = dayjs().format('YYYY-MM-DD');
-				console.log(today);
+			renewalFunction() {
 				api.saveStores({
-				    data: {
-				       id:uni.getStorageSync('storeId'),
-					   renewalStatus:'',
-					   renewalDate:today
-				    },
-					success:(res)=>{
-						  
+					data: {
+						id: uni.getStorageSync('storeId'),
+						renewalStatus: 0,
+					},
+					success: (res) => {
+						this.$refs.alertDialog.open()
 					}
 				})
 			}
@@ -150,63 +151,74 @@
 		height: 100%;
 		/* #ifdef H5 */
 		background-color: #fff;
-		/* #endif */	}
+		/* #endif */
+	}
 </style>
 <style lang="scss">
-	.flex_r_h{
+	.flex_r_h {
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 	}
-	.flex_c_h{
+
+	.flex_c_h {
 		display: flex;
 		align-items: center;
-		justify-content:center;
+		justify-content: center;
 		flex-direction: column;
 	}
-	.main_content{
+
+	.main_content {
 		height: 480rpx;
-		background: linear-gradient(180deg, #FE5A08 0%, rgba(254,89,6,0) 100%);
+		background: linear-gradient(180deg, #FE5A08 0%, rgba(254, 89, 6, 0) 100%);
 		padding: 24rpx 32rpx;
-		.top{
+
+		.top {
 			height: 160rpx;
 			background: linear-gradient(180deg, #FFE6D9 0%, #FFFFFF 100%);
 			border-radius: 16rpx;
 			border: 2rpx solid #FFFFFF;
-			.item{
+
+			.item {
 				width: 344rpx;
 				text-align: center;
 				padding: 34rpx 0;
-				.title{
+
+				.title {
 					font-size: 24rpx;
 					color: #999999;
 				}
-				.desc{
+
+				.desc {
 					font-size: 32rpx;
 					font-weight: 500;
 					color: #00B47C;
 					margin-top: 16rpx;
 				}
 			}
-			.left{
-				.desc{
+
+			.left {
+				.desc {
 					color: #00B47C;
 				}
 			}
-			.right{
-				.desc{
+
+			.right {
+				.desc {
 					color: #333;
 				}
 			}
 		}
-		.title_text{
+
+		.title_text {
 			font-size: 32rpx;
 			font-weight: 500;
 			color: #333333;
 			border-bottom: 1rpx solid #F5F7FA;
 			padding-bottom: 24rpx;
 		}
-		.title_text::before{
+
+		.title_text::before {
 			width: 6rpx;
 			height: 24rpx;
 			background: #FF5500;
@@ -214,30 +226,36 @@
 			display: inline-block;
 			margin-right: 12rpx;
 		}
-		.content{
+
+		.content {
 			background: #FFFFFF;
 			border-radius: 16rpx;
 			padding: 24rpx;
 			margin-top: 24rpx;
-			.info_content{
-				.row{
+
+			.info_content {
+				.row {
 					justify-content: space-between;
 					margin-top: 24rpx;
-					.label{
+
+					.label {
 						font-size: 28rpx;
 						color: #999999;
 					}
-					.desc{
+
+					.desc {
 						font-size: 28rpx;
 						color: #333333;
 					}
-					.red{
+
+					.red {
 						color: #FF5500;
 					}
 				}
 			}
 		}
-		.btn{
+
+		.btn {
 			height: 80rpx;
 			line-height: 80rpx;
 			background: linear-gradient(95deg, #FA7532 0%, #FF5500 100%);

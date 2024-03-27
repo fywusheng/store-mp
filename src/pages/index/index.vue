@@ -9,19 +9,19 @@
 				<view class="info flex_r_h">
 					<view class="shp_name">{{storeInfo.storeName}}</view>
 					<view class="shp_tag">{{storeInfo.storeSatus==1?'合作中':'已到期'}}</view>
-					<view class="shp_date">{{storeInfo.periodEndValidity}}到期</view>
+					<view class="shp_date">{{storeInfo.periodEndValidity || ''}}到期</view>
 				</view>
 				<image src="http://192.168.1.187:10088/static/store-mp/set-icon.png" mode="widthFix" class="set_img" @click="setAccout"/>
 			</view>
 			<view class="dl_info flex_r_h">
 				<view class="info flex_r_h">
-					<view class="yg_name">登录员工 ： {{userInfo.name}}</view>
-					<view class="h-icon">|</view>
-					<view class="">店长：{{storeInfo.corporateAccount}}</view>
+					<view class="yg_name"v-if="role==2">登录员工 ： {{userInfo.name || ''}}</view>
+					<view class="h-icon" v-if="role==2">|</view>
+					<view class="">店长：{{storeInfo.storeManagerName || ''}}</view>
 				</view>
 				<image src="http://192.168.1.187:10088/static/store-mp/call-icon.png" mode="widthFix" class="set_img" @click="makeCall"/>
 			</view>
-			<view class="xs_count_content">
+			<view class="xs_count_content" v-if="role==1">
 				<image src="http://192.168.1.187:10088/static/store-mp/tj-bg.png" mode="widthFix" class="xs_bg_img"/>
 				<image src="http://192.168.1.187:10088/static/store-mp/date-icon.png" mode="widthFix" class="date_img" @click="handleCalerdarShow"/>
 				<view class="content">
@@ -63,7 +63,7 @@
 				</view>
 			</view>
 			<!-- 活动通知 -->
-			<view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
+			<!-- <view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
 				<view class="pic">
 					<image src="http://192.168.1.187:10088/static/store-mp/hdtz-img.png" />
 				</view>
@@ -73,15 +73,13 @@
 			    vertical="true" circular="true">
 						<block v-for="(item,index) in scrollingNews" :key='index'>
 							<swiper-item @click="handleGoDetails(item.id)">
-								<!-- <navigator class='item' :url='item.url' hover-class='none'> -->
-									<view class='line1'>{{ item.name }}</view>
-								<!-- </navigator> -->
+								<view class='line1'>{{ item.name }}</view>
 							</swiper-item>
 						</block>
 					</swiper>
 				</view>
 				<view class="iconfont icon-xiangyou" />
-			</view>
+			</view> -->
 			<!-- 代客下单 -->
 			<view class="dkxd_main flex_r_h">
 				 <navigator url="/pages/store-management/dkxd/index" class="btn_item left flex_r_h" v-if="functionList.length!=0">
@@ -96,7 +94,7 @@
 				</navigator>
 			</view>
 		</view>
-		<view class="footer">门店支持电话：400-8888-666</view>
+		<view class="footer">门店支持电话：{{ storeInfo.supportPhone}}</view>
 		<!-- 日期选择框 -->
 		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" 
 			:insert="false"
@@ -131,7 +129,7 @@
 					},
 				],
 				// 活动通知
-				scrollingNews: [], 
+				scrollingNews: [],  //由于需求变动第一版不上线，后期维护
 				// 日历
 				dateShow:false,
 				userInfo:Store.getters.UserInfo, //登录用户信息
@@ -142,7 +140,8 @@
 					queryEndTime:''
 				},
 				userId:'',
-				functionList:[]
+				functionList:[],
+				role:1 //1店长 2店员
 			};
 		},
 		created() {
@@ -150,11 +149,13 @@
 		},
 		mounted() {
 			this.getIndexCountByStore()
-			this.getActivityList()
+			// this.getActivityList()
 		},
 		onLoad(option) {
 			this.userId = option?.userId
 			this.getFunctionList(this.userId)
+			this.role =  uni.getStorageSync('userRole')
+			console.log("登录账号",this.role)
 		},
 		methods: {
 			// 获取统计数据
@@ -195,17 +196,17 @@
 			// 打电话
 			makeCall(){
 				uni.makePhoneCall({
-					phoneNumber: '114' //仅为示例
+					phoneNumber: this.storeInfo.contactPhone //仅为示例
 				});
 			},
 			// 账号设置
 			setAccout(){
 				uni.navigateTo({
-					url: '/pages/user-center/setting'
+					url: '/pages/about/account_set'
 				})
 			},
 			/**
-			 * 获取活动列表
+			 * 获取活动列表由于需求变动第一版不上线，后期维护
 			 */
 			getActivityList() {
 				let params = {

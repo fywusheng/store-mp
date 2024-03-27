@@ -46,7 +46,7 @@
 				timer:null,
 				// 表单数据
 				params: {
-				  phoneNumber: "15011521284",
+				  phoneNumber: "15011521282",
 				  smsCode: "123953",
 				},
 			}
@@ -78,14 +78,7 @@
 				       sceneFlag: 4
 				     },
 				     success:(res)=>{
-						 console.log("验证码",res)
-				       // this.$uni.showToast("手机号修改成功，请重新登录");
-				       // setTimeout(()=>{
-				       //   uni.redirectTo({
-				       //     url: '/pages/user-center/login?goUrl='+'/pages/index/index?index=4'
-				       // });
-				       // },1500)
-				      
+				        this.$uni.showToast("短信发送成功");
 				     }
 				   })
 			  // 开始倒计时
@@ -131,13 +124,11 @@
 			          code: this.params.smsCode,
 			        },
 			        success:(res)=>{
-						console.log("登录",res)
 						const dayjs = require('dayjs');
 						let today = dayjs();
 						if(res.shStoreDTO){
 							const endTime = dayjs(res.shStoreDTO.periodEndValidity);
 							if (today.isBefore(endTime)) {
-							  console.log('当前时间小于2024年3月1日');
 							  res.shStoreDTO.storeSatus = 1 ;  //1合作中
 							  uni.setStorageSync('storeSatus', 1)
 							} else {
@@ -145,8 +136,15 @@
 							  uni.setStorageSync('storeSatus', 2)
 							}
 							uni.setStorageSync('storeId', res.shStoreDTO.id)
+							// 如果登录手机号和店长联系电话相等 责证明这人是店长1 否则就是店员2
+							if(res.accountPhone == res.shStoreDTO.contactPhone){ 
+								 uni.setStorageSync('userRole', 1)
+							}else{
+								 uni.setStorageSync('userRole', 2)
+							}
 						}
 						uni.setStorageSync('token', res.token)
+						uni.setStorageSync('userInfo', res)
 						uni.setStorageSync('name', res.name)
 						uni.setStorageSync('userLoginPhone', res.accountPhone)
 						uni.setStorageSync('userId', res.id)
