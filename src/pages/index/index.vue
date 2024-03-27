@@ -15,13 +15,13 @@
 			</view>
 			<view class="dl_info flex_r_h">
 				<view class="info flex_r_h">
-					<view class="yg_name">登录员工 ： {{userInfo.name || ''}}</view>
-					<view class="h-icon">|</view>
-					<view class="">店长：{{storeInfo.corporateAccount || ''}}</view>
+					<view class="yg_name"v-if="role==2">登录员工 ： {{userInfo.name || ''}}</view>
+					<view class="h-icon" v-if="role==2">|</view>
+					<view class="">店长：{{storeInfo.storeManagerName || ''}}</view>
 				</view>
 				<image src="http://192.168.1.187:10088/static/store-mp/call-icon.png" mode="widthFix" class="set_img" @click="makeCall"/>
 			</view>
-			<view class="xs_count_content">
+			<view class="xs_count_content" v-if="role==1">
 				<image src="http://192.168.1.187:10088/static/store-mp/tj-bg.png" mode="widthFix" class="xs_bg_img"/>
 				<image src="http://192.168.1.187:10088/static/store-mp/date-icon.png" mode="widthFix" class="date_img" @click="handleCalerdarShow"/>
 				<view class="content">
@@ -94,7 +94,7 @@
 				</navigator>
 			</view>
 		</view>
-		<view class="footer">门店支持电话：400-8888-666</view>
+		<view class="footer">门店支持电话：{{ storeInfo.supportPhone}}</view>
 		<!-- 日期选择框 -->
 		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" 
 			:insert="false"
@@ -140,7 +140,8 @@
 					queryEndTime:''
 				},
 				userId:'',
-				functionList:[]
+				functionList:[],
+				role:1 //1店长 2店员
 			};
 		},
 		created() {
@@ -148,11 +149,13 @@
 		},
 		mounted() {
 			this.getIndexCountByStore()
-			this.getActivityList()
+			// this.getActivityList()
 		},
 		onLoad(option) {
 			this.userId = option?.userId
 			this.getFunctionList(this.userId)
+			this.role =  uni.getStorageSync('userRole')
+			console.log("登录账号",this.role)
 		},
 		methods: {
 			// 获取统计数据
@@ -193,7 +196,7 @@
 			// 打电话
 			makeCall(){
 				uni.makePhoneCall({
-					phoneNumber: '114' //仅为示例
+					phoneNumber: this.storeInfo.contactPhone //仅为示例
 				});
 			},
 			// 账号设置

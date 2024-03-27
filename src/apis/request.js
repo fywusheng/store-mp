@@ -17,7 +17,6 @@ export function request({
   if (showsLoading) showLoading('加载中')
 
   const headers = {
-    'channel': 'msg',
     'Accept': 'application/json',
     'accessToken': uni.getStorageSync('token'),
     'tsf-metadata': ''

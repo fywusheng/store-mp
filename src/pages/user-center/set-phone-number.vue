@@ -120,16 +120,17 @@ export default {
         this.$uni.showToast("请输入正确的验证码");
         return;
       }
-       api.updateMobile({
+       api.saveUser({
             data: {
-              newMobile: this.params.phoneNumber,
+			  id:uni.getStorageSync('userInfo').id, 
+              accountPhone: this.params.phoneNumber,
               verifyCode: this.params.smsCode,
             },
             success:(res)=>{
               this.$uni.showToast("手机号修改成功，请重新登录");
               setTimeout(()=>{
                 uni.redirectTo({
-                  url: '/pages/user-center/login?goUrl='+'/pages/index/index?index=4'
+                  url: '/pages/login/index'
               });
               },1500)
              

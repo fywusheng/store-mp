@@ -136,6 +136,12 @@
 							  uni.setStorageSync('storeSatus', 2)
 							}
 							uni.setStorageSync('storeId', res.shStoreDTO.id)
+							// 如果登录手机号和店长联系电话相等 责证明这人是店长1 否则就是店员2
+							if(res.accountPhone == res.shStoreDTO.contactPhone){ 
+								 uni.setStorageSync('userRole', 1)
+							}else{
+								 uni.setStorageSync('userRole', 2)
+							}
 						}
 						uni.setStorageSync('token', res.token)
 						uni.setStorageSync('userInfo', res)

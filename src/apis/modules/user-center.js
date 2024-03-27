@@ -21,12 +21,19 @@ export default {
       url: '/ngcmn/sms/sendCode',
       ...args,
 	  port: '3',
+	  header:{
+	  		'channel': '4',
+	  }
     })
   },
   // 校验短信验证码
   checkSMSCode: function (args = {}) {
     request({
+	  port:'3',
       url: '/ngcmn/sms/verifyCode',
+	  header:{
+		'channel': '4',
+	  },
       ...args
     })
   },

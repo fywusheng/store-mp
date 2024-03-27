@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!-- author by liushuag -->
 <!-- date：2.15 -->
 <template>
@@ -89,6 +89,7 @@
 		},
 		mounted() {
 			this.getStoreInfo()
+			
 		},
 		onLoad(option) {},
 		methods: {

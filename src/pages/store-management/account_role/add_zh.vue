@@ -85,6 +85,7 @@
 					roleId:'',//权限
 					accountPhone:'',//账号
 					name:'',//名称
+					storeNo:uni.getStorageSync('storeNo')
 				},
 				roleList:[], //角色列表
 				rolePemissonId:'', //权限显示

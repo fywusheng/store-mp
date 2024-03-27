@@ -24,9 +24,9 @@
       </view>
       <view class="dl_info flex_r_h">
         <view class="info flex_r_h">
-          <view class="yg_name">登录员工 ： {{ userInfo.name || ''}}</view>
-          <view class="h-icon">|</view>
-          <view class="">店长：{{ storeInfo.corporateAccount || ''}}</view>
+          <view class="yg_name" v-if="role==2">登录员工 ： {{ userInfo.name || ''}}</view>
+          <view class="h-icon"  v-if="role==2">|</view>
+          <view class="">店长：{{storeInfo.storeManagerName || ''}}</view>
         </view>
         <image
           src="http://192.168.1.187:10088/static/store-mp/call-icon.png"
@@ -58,7 +58,7 @@
         <view>门店客户订单管理</view>
       </navigator>
     </view>
-    <view class="footer">门店支持电话：400-8888-666</view>
+    <view class="footer">门店支持电话：{{ storeInfo.supportPhone}}</view>
     <!-- 门店客户信息展示 -->
     <uni-popup ref="alertDialog" type="dialog">
       <uni-popup-dialog
@@ -108,9 +108,13 @@
         userInfo: Store.getters.UserInfo, //登录用户信息
         storeInfo: Store.getters.StoreInfo, //门店信息
         kgUserInfo: null,
+		role:1
       };
     },
     watch: {},
+	mounted() {
+		this.role =  uni.getStorageSync('userRole')
+	},
     methods: {
       // 账号设置
       setAccout(){
@@ -121,7 +125,7 @@
       // 打电话
       makeCall() {
         uni.makePhoneCall({
-          phoneNumber: '114', //仅为示例
+        	phoneNumber: this.storeInfo.contactPhone 
         });
       },
       // 代客下单 用户查询登录

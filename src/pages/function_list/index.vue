@@ -11,60 +11,19 @@
 				<view class="title">{{storeInfo.storeName || ''}}</view>
 				<view class="date">{{storeInfo.periodEndValidity || ''}}合作到期</view>
 				<view class="flex_r_h db_content">
-					<view class="name flex_r_h">
+					<view class="name flex_r_h" v-if="role==2">
 						<image src="http://192.168.1.187:10088/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
 						<view>登录员工：<text>{{userInfo.name || ''}}</text></view>
 					</view>
-					<view class="name flex_r_h dz_name">
+					<view class="name flex_r_h">
 						<image src="http://192.168.1.187:10088/static/store-mp/dz-icon.png" mode="widthFix" class="icon"></image>
-						<view>店长：<text>{{storeInfo.corporateAccount || ''}}</text></view>
-						<image src="http://192.168.1.187:10088/static/store-mp/dh-icon.png" mode="widthFix" class="dh_icon"></image>
+						<view>店长：<text>{{storeInfo.storeManagerName || ''}}</text></view>
+						<image src="http://192.168.1.187:10088/static/store-mp/dh-icon.png" mode="widthFix" class="dh_icon" @click="makeCall"></image>
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="bottom flex_r_h">
-			<!-- <navigator url="/pages/order/index"  class="item">
-				<view class="title">订单管理</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/ddgl.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/store-management/user/index" class="item item3">
-				<view class="title">用户管理</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/yhgl.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/store-management/rebate/reconciliation" class="item item4">
-				<view class="title">财务对账</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/cwdz.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/activity/index" class="item item5">
-				<view class="title">活动通知</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/hdtz.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/report/index" class="item">
-				<view class="title">综合报表</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/zhbb.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/store-management/account_role/index" class="item item7">
-				<view class="title">店员管理</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/dygl.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/store-management/info/index" class="item item8">
-				<view class="title">基本信息</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/jbxx.png" mode="widthFix" class="img"></image>
-			</navigator>
-			<navigator url="/pages/user-center/message-center" class="item item9">
-				<view class="title">系统提醒</view>
-				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
-				<image src="http://192.168.1.187:10088/static/store-mp/xttx.png" mode="widthFix" class="img"></image>
-			</navigator> -->
-			<!-- 活的 -->
 			<navigator :url="item.path" 
 			 :class="'item' +' ' +'item_'+item.id"
 			 v-for="(item,index) in functionList" :key="index">
@@ -85,7 +44,8 @@
 				userInfo:Store.getters.UserInfo, //登录用户信息
 				storeInfo:Store.getters.StoreInfo, //门店信息
 				functionList:[],
-				staticUrl:''
+				staticUrl:'',
+				role:1
 			}
 		},
 		watch: {
@@ -95,10 +55,17 @@
 		onLoad(options) {
 			this.getFunctionList(options?.id)
 			this.staticUrl =  ENV.ASSETS
+			this.role =  uni.getStorageSync('userRole')
 		},
 		onShow() {
 		},
 		methods: {
+			// 打电话
+			makeCall(){
+				uni.makePhoneCall({
+					phoneNumber: this.storeInfo.contactPhone //仅为示例
+				});
+			},
 			getFunctionList(id){
 				api.getFunctionList({
 				    data: {
@@ -173,6 +140,7 @@
 			}
 			.db_content{
 				margin-top: 48rpx;
+				justify-content: space-between;
 				.name{
 					view{
 						font-size: 28rpx;
@@ -183,7 +151,7 @@
 					}
 				}
 				.dz_name{
-					margin-left: 80rpx;
+					margin-right: 80rpx;
 				}
 			}
 			.title{

@@ -95,6 +95,10 @@ export default {
      * 下一步点击事件
      */
     handleNextStepClick() {
+		// uni.navigateTo({
+		//   url: `/pages/user-center/set-phone-number?phoneNumber=${this.params.phoneNumber}&type=${this.type}`,
+		// });
+		// return
       if (this.params.smsCode.length !== 6) {
         this.$uni.showToast("请输入正确的验证码");
         return;
