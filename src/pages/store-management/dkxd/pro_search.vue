@@ -70,7 +70,7 @@
       // 请求数据
       async loadData() {
         const { code, data } = await Axios.post('/category/getCategoryList', {
-          type: 2,
+          type: 1,
         });
         if (code === '200') {
           this.categoryList = data;
@@ -82,7 +82,7 @@
       // 去列表页
       toCategory(cate) {
         uni.navigateTo({
-          url: '/sub-pages/index/item-list/main?dispId=' + cate.code,
+          url: '/sub-pages/index/item-list/main?dispId=' + cate.id,
         });
       },
       handleVoiceSearchClick() {
