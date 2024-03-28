@@ -79,7 +79,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="che_content">
+			<view class="che_content zindexg">
 				<radio-group class="flex_r_h" @change="changeSaleRadio">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in tjItems" :key="item.value">
 						<radio :value="item.value" />{{item.name}}
@@ -539,7 +539,6 @@
 		height: 480rpx;
 		background: linear-gradient(180deg, #FE5A08 0%, rgba(254, 89, 6, 0) 100%);
 		padding: 24rpx 32rpx;
-
 		.title_text {
 			font-size: 32rpx;
 			font-weight: 500;
@@ -618,16 +617,22 @@
 
 		}
 
-
+		.zindexd{
+			position: relative;
+			z-index: -2;
+		}
+		.zindexg{
+			position: relative;
+			z-index: -1;
+		}
 		.content {
 			background: #FFFFFF;
 			border-radius: 16rpx;
 			padding: 24rpx;
 			margin-top: 24rpx;
-
+		
 			.che_content {
 				margin-top: 30rpx;
-
 				checkbox-group {
 					justify-content: space-between;
 					flex-wrap: wrap;
