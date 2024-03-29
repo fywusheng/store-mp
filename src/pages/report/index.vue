@@ -489,8 +489,6 @@
 								filePath: filePath,
 								encoding: 'binary',
 								success: (res) => {
-									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("文件路径", filePath)
 									this.viewDoc(filePath)
 								}
 							})
@@ -505,16 +503,21 @@
 				}
 			},
 			// 打开文件
-			viewDoc(filePath) {
-				uni.openDocument({
-					// 直接打开
-					filePath: filePath, // 这里填上面写入本地的文件路径
-					fileType: 'xlsx',
-					showMenu: true, // 右上角是否有可以转发分享的功能，配不配随意
-					success: (res) => {
-						console.log('打开文档成功')
-					}
-				})
+			viewDoc(path) {
+				uni.downloadFile({
+				  url: path,
+				  success: function (res) {
+					  console.log("res",res)
+				    var filePath = res.tempFilePath;
+				    uni.openDocument({
+				      filePath: filePath,
+				      showMenu: true,
+				      success: function (res) {
+				        console.log('打开文档成功');
+				      }
+				    });
+				  }
+				});
 			},
 
 		},
