@@ -200,9 +200,11 @@
 					  	this.$uni.showToast("该账号新建成功！");
 					  }else{
 					  	this.$uni.showToast("该账号编辑成功！");
-						this.getAccountDetails(this.accountId)
+						// this.getAccountDetails(this.accountId)
 					  }
-					  // this.resetInfo()
+					  uni.redirectTo({
+					  	url: '/pages/store-management/account_role/index?tab=2'
+					  });
 				  },
 				  fail: (err) => {
 				    this.$uni.showToast(err.message);

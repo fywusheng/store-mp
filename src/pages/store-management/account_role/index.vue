@@ -227,6 +227,9 @@
 		this.queryRoleListNopage()
 	 },
 	  onLoad(e) {
+		  console.log(e)
+		  this.tabActive = e?.tab||1
+		  // this.handlerTab()
 	  },
 	  // 下拉刷新
 	  onPullDownRefresh() {

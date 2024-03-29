@@ -179,7 +179,7 @@
       }
       .fl_list {
         padding: 24rpx 0;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
         .fl_item {
           flex: 0 0 25%;

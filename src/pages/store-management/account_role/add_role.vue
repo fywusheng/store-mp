@@ -154,9 +154,11 @@
 						this.resetInfo()
 					  }else{
 					  	this.$uni.showToast("该角色编辑成功！");
-						this.getRoleDetails(this.roleId)
+						// this.getRoleDetails(this.roleId)
 					  }
-					  
+					  uni.redirectTo({
+					  	url: '/pages/store-management/account_role/index?tab=1'
+					  });
 				  },
 				  fail: (err) => {
 					this.$uni.showToast(err.message);
