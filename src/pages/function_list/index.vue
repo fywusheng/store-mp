@@ -24,6 +24,46 @@
 			</view>
 		</view>
 		<view class="bottom flex_r_h">
+<!-- <navigator url="/pages/order/index"  class="item">
+				<view class="title">订单管理</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/ddgl.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/store-management/user/index" class="item item3">
+				<view class="title">用户管理</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/yhgl.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/store-management/rebate/reconciliation" class="item item4">
+				<view class="title">财务对账</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/cwdz.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/activity/index" class="item item5">
+				<view class="title">活动通知</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/hdtz.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/report/index" class="item">
+				<view class="title">综合报表</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/zhbb.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/store-management/account_role/index" class="item item7">
+				<view class="title">店员管理</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/dygl.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/store-management/info/index" class="item item8">
+				<view class="title">基本信息</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/jbxx.png" mode="widthFix" class="img"></image>
+			</navigator>
+			<navigator url="/pages/user-center/message-center" class="item item9">
+				<view class="title">系统提醒</view>
+				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
+				<image src="http://192.168.1.187:10088/static/store-mp/xttx.png" mode="widthFix" class="img"></image>
+			</navigator> -->
 			<navigator :url="item.path" 
 			 :class="'item' +' ' +'item_'+item.id"
 			 v-for="(item,index) in functionList" :key="index">
@@ -72,7 +112,6 @@
 				       id:id
 				    },
 				    success:(res)=>{
-						console.log("功能",res)
 						const filteredArr= res.permissonList.filter(item => item.id != 1);
 						this.functionList = filteredArr
 				    }

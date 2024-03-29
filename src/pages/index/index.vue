@@ -155,7 +155,6 @@
 			this.userId = option?.userId
 			this.getFunctionList(this.userId)
 			this.role =  uni.getStorageSync('userRole')
-			console.log("登录账号",this.role)
 		},
 		methods: {
 			// 获取统计数据

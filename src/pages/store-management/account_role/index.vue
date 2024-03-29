@@ -94,7 +94,7 @@
 							</view>
 						</view>
 						<view class="footer_btn flex_r_h">
-							<view class="edit_btn" @click="handleDetails('edit',item.id)">编辑</view>
+							<view class="edit_btn" @click="handleDetails('edit',item.id)" v-if="item.id!=1">编辑</view>
 							<view class="delete_btn" @click="deleteRole(item.id,1)" v-if="item.id!=1">删除</view>
 						</view>
 					</view>
@@ -366,7 +366,7 @@
 		//删除角色
 		deleteRoleFunction(roleId) {
 			let params = {
-				roleId:roleId,
+				id:roleId,
 				status:2
 			}
 			api.saveRole({

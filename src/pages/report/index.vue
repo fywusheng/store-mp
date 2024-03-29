@@ -51,7 +51,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="content">
+		<view class="content zindexd">
 			<view class="title_text">销售报表导出</view>
 			<!-- 年份选择 -->
 			<view class="search flex_r_h">
@@ -68,7 +68,7 @@
 								@change="changeYear"
 							  ></uni-data-select>
 						</view>
-						<view class="date-select">
+						<view class="date-select ">
 							<uni-data-select
 								v-model="xsMonth"
 								placeholder ="选择月份"
@@ -79,7 +79,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="che_content">
+			<view class="che_content zindexg">
 				<radio-group class="flex_r_h" @change="changeSaleRadio">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in tjItems" :key="item.value">
 						<radio :value="item.value" />{{item.name}}
@@ -88,7 +88,7 @@
 			</view>
 			<view class="btn" @click="exportSaleExcel">导出</view>
 		</view>
-		<view class="content">
+		<view class="content zindexd">
 			<view class="title_text">对账报表导出</view>
 			<view class="search flex_r_h">
 				<view class="date flex_r_h">
@@ -115,7 +115,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="che_content">
+			<view class="che_content zindexg">
 				<radio-group  class="flex_r_h"  @change="changeRebateRadio">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in dzItems" :key="item.value">
 						<radio :value="item.value" />{{item.name}}
@@ -345,8 +345,8 @@
 								encoding: 'binary',
 								success: (res) => {
 									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("问价路径", filePath)
-									// this.viewDoc(filePath)
+									console.log("文件路径", filePath)
+									this.viewDoc(filePath)
 								}
 							})
 						},
@@ -539,7 +539,6 @@
 		height: 480rpx;
 		background: linear-gradient(180deg, #FE5A08 0%, rgba(254, 89, 6, 0) 100%);
 		padding: 24rpx 32rpx;
-
 		.title_text {
 			font-size: 32rpx;
 			font-weight: 500;
@@ -618,16 +617,22 @@
 
 		}
 
-
+		.zindexd{
+			position: relative;
+			z-index: 0;
+		}
+		.zindexg{
+			position: relative;
+			z-index: -1;
+		}
 		.content {
 			background: #FFFFFF;
 			border-radius: 16rpx;
 			padding: 24rpx;
 			margin-top: 24rpx;
-
+		
 			.che_content {
 				margin-top: 30rpx;
-
 				checkbox-group {
 					justify-content: space-between;
 					flex-wrap: wrap;
