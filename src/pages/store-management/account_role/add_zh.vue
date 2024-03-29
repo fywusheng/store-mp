@@ -146,7 +146,8 @@
 					  const newArray = list.map(role => {
 					  	return { ...role, value: role.id,text:role.name };
 					  });
-					  this.roleList = newArray
+					  const filteredArray = newArray.filter(item => item.value != 1);
+					  this.roleList = filteredArray
 				  },
 				  fail: (err) => {
 				    this.$uni.showToast(err.msg);
