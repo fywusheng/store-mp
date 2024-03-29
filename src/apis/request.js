@@ -69,7 +69,6 @@ export function request({
           success(result)
         } else {
           const result = response.data
-		  console.log("result",result)
           if (result.code == 0 || result.code == 200) {
             success(result.data)
           } else {
@@ -79,7 +78,6 @@ export function request({
               fail(result)
             } else {
               // 统一提示
-			  console.log("error",result)
               showToast(result.message ? result.message: result.msg )
             }
           }
