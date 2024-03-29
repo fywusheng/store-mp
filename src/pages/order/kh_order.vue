@@ -6,10 +6,11 @@
 		<view class="top">
 			<view class="search flex_r_h">
 				<view class="select">
-					<picker @change="bindPickerChange($event,userList)" :value="index" :range="userList" :range-key="'psName'">
+					<!-- <picker @change="bindPickerChange($event,userList)" :value="index" :range="userList" :range-key="'psName'" >
 						<view class="uni-input">{{userList[index].psName?userList[index].psName:userList[index].phone}}</view>
-					</picker>
-					<image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image>
+					</picker> -->
+					<view class="item"><input type="text" placeholder="输入客户手机号" v-model="phone"/></view>
+					<!-- <image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image> -->
 				</view>
 				<view class="btn" @click="handleSearch">查询</view>
 			</view>
@@ -225,7 +226,8 @@
 				const params = {
 					storeNo: uni.getStorageSync('storeNo'),
 					pageSize: 1000000,
-					pageNum: 1
+					pageNum: 1,
+					memberType:0,
 				}
 				api.getUserData({
 					data: params,
@@ -304,9 +306,17 @@
 				.select {
 					width: 526rpx;
 					height: 56rpx;
+					line-height: 56rpx;
 					background: #F5F7FA;
 					border-radius: 28rpx;
 					position: relative;
+					.item{
+						input{
+							width: 526rpx;
+							height: 56rpx;
+							padding: 0 30rpx;
+						}
+					}
 					.uni-input{
 						height: 56rpx;
 						line-height: 56rpx;
