@@ -43,7 +43,7 @@
         />
         <view class="content">
           <view class="input_content flex_r_h">
-            <input placeholder="手机号或身份证号" placeholder-class="placeh" v-model="mobile" />
+            <input placeholder="请输入客户手机号" placeholder-class="placeh" v-model="mobile" />
           </view>
           <view class="confirm-btn" @click="customLogin">确定</view>
         </view>

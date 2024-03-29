@@ -70,7 +70,7 @@
       // 请求数据
       async loadData() {
         const { code, data } = await Axios.post('/category/getCategoryList', {
-          type: 1,
+          type: 2,
         });
         if (code === '200') {
           this.categoryList = data;

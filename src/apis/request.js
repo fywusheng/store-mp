@@ -62,7 +62,6 @@ export function request({
         })
         return
       }
-
       if (response.statusCode === 200) {
         if (common) {
           // 这里通过第三方接口是没有data层的数据需要返回上一层的数据
@@ -75,12 +74,12 @@ export function request({
             success(result.data)
           } else {
             // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示
-            // console.log('执行fail', result)
             if (fail) {
               // 调用 fail 回调
               fail(result)
             } else {
               // 统一提示
+			  console.log("error",result)
               showToast(result.message ? result.message: result.msg )
             }
           }
@@ -89,7 +88,6 @@ export function request({
         // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示
         if (fail) {
           // 调用 fail 回调
-          console.log()
           fail({ message: response.statusCode })
         } else {
           // 统一提示
