@@ -138,7 +138,7 @@
 								<text class="desc">{{item.roleName}}</text>
 							</view>
 						</view>
-						<view class="footer_btn flex_r_h zhgl_btn">
+						<view class="footer_btn flex_r_h zhgl_btn" v-if="item.roleId!=1">
 							<view class="edit_btn" @click="handleDetails('edit',item.id)">编辑</view>
 							<view class="delete_btn" @click="enableAccount(1,item.id,item.status)">{{item.status == 0 ? '启用':'停用'}}</view>
 							<view class="delete_btn"  v-if="item.status!=2" @click="deleteRole(item.id,2)">删除</view>
