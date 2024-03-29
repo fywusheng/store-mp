@@ -55,19 +55,6 @@
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog type="info" cancelText="关闭" confirmText="确认" title=" " :content="type==='add'?'是否新建该账号？':'是否修改该账号？' " @confirm="querySaveRole"></uni-popup-dialog>
 		</uni-popup>
-		<!-- 新建编辑提示 -->
-		<!-- <u-modal v-model="show"
-		 :show-title = "false"
-		 :show-cancel-button = "true"
-		 confirm-color = "#FF5500"
-		 @confirm = "querySaveRole"
-		>
-			<view class="slot-content">
-				<text>是否{{type==='add'?'新建':'修改'}}该账号</text>
-			</view>
-		</u-modal>-->
-		<!-- 角色选择 -->
-		<!-- <u-select v-model="selectRoleShow" mode="single-column" :list="roleList" confirm-color="#FF5500" @confirm="confirmSelectRole"></u-select> --> 
 	</view>
 </template>
 <script>
@@ -149,7 +136,6 @@
 					},
 					pageNum:1,
 					pageSize:100000
-						
 			    }
 				api.getRoleList({
 				  data: {
@@ -163,7 +149,7 @@
 					  this.roleList = newArray
 				  },
 				  fail: (err) => {
-				    this.$uni.showToast(err.message);
+				    this.$uni.showToast(err.msg);
 				  },
 				})
 			},
@@ -200,14 +186,13 @@
 					  	this.$uni.showToast("该账号新建成功！");
 					  }else{
 					  	this.$uni.showToast("该账号编辑成功！");
-						// this.getAccountDetails(this.accountId)
 					  }
 					  uni.redirectTo({
 					  	url: '/pages/store-management/account_role/index?tab=2'
 					  });
 				  },
 				  fail: (err) => {
-				    this.$uni.showToast(err.message);
+					this.$uni.showToast(err.msg);
 				  },
 				})
 			},

@@ -95,8 +95,11 @@
 					    checked: rolePemissonId.split(",").includes(item.id)
 					  }));
 					  this.pemissionList = newArray
-					  // console.log(newArray,rolePemissonId.split(","));
-					  // console.log("权限",this.pemissionList)
+					  this.rolePemissonId = rolePemissonId.split(",")
+					  //   .filter(item => item.checked === true) // 过滤出 check 属性为 true 的对象
+					  //   .map(item => item.id); 
+					  // console.log(this.rolePemissonId);
+					  console.log("权限",this.pemissionList,rolePemissonId)
 				  },
 				  fail: (err) => {
 				    this.$uni.showToast(err.message);
@@ -161,7 +164,7 @@
 					  });
 				  },
 				  fail: (err) => {
-					this.$uni.showToast(err.message);
+					this.$uni.showToast(err.msg);
 				  },
 				})
 			},
