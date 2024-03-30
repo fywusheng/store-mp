@@ -299,7 +299,6 @@
 						        item.disable = false;
 						    }
 						});
-						// console.log("数据", this.monthArray)
 					},
 					fail: (err) => {
 						this.$uni.showToast(err.message);
@@ -334,7 +333,10 @@
 							...params
 						},
 						success: (data) => {
-							console.log("数据", data)
+							if(data==''){
+								this.$uni.showToast('暂无可导出数据！');
+								return;
+							}
 							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
 							console.log(fileManagerObj);
 							// 文件存储到本地的路径
@@ -380,7 +382,10 @@
 							...params
 						},
 						success: (data) => {
-							console.log("数据", data)
+							if(data==''){
+								this.$uni.showToast('暂无可导出数据！');
+								return;
+							}
 							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
 							console.log(fileManagerObj);
 							// 文件存储到本地的路径
@@ -395,10 +400,10 @@
 									this.viewDoc(filePath)
 								}
 							})
-
 						},
 						fail: (err) => {
-							this.$uni.showToast(err.message);
+							console.log("fail1",err)
+							this.$uni.showToast(err.msg);
 						}
 					})
 				} catch (error) {
@@ -424,7 +429,10 @@
 							...params
 						},
 						success: (data) => {
-							console.log("数据", data)
+							if(data==''){
+								this.$uni.showToast('暂无可导出数据！');
+								return;
+							}
 							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
 							console.log(fileManagerObj);
 							// 文件存储到本地的路径
@@ -439,9 +447,9 @@
 									this.viewDoc(filePath)
 								}
 							})
-
 						},
 						fail: (err) => {
+							console.log("fail",err)
 							this.$uni.showToast(err.message);
 						}
 					})
@@ -468,7 +476,10 @@
 							...params
 						},
 						success: (data) => {
-							console.log("数据", data)
+							if(data==''){
+								this.$uni.showToast('暂无可导出数据！');
+								return;
+							}
 							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
 							console.log(fileManagerObj);
 							// 文件存储到本地的路径
@@ -478,8 +489,6 @@
 								filePath: filePath,
 								encoding: 'binary',
 								success: (res) => {
-									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("文件路径", filePath)
 									this.viewDoc(filePath)
 								}
 							})
@@ -494,16 +503,21 @@
 				}
 			},
 			// 打开文件
-			viewDoc(filePath) {
-				uni.openDocument({
-					// 直接打开
-					filePath: filePath, // 这里填上面写入本地的文件路径
-					fileType: 'xlsx',
-					showMenu: true, // 右上角是否有可以转发分享的功能，配不配随意
-					success: (res) => {
-						console.log('打开文档成功')
-					}
-				})
+			viewDoc(path) {
+				uni.downloadFile({
+				  url: path,
+				  success: function (res) {
+					  console.log("res",res)
+				    var filePath = res.tempFilePath;
+				    uni.openDocument({
+				      filePath: filePath,
+				      showMenu: true,
+				      success: function (res) {
+				        console.log('打开文档成功');
+				      }
+				    });
+				  }
+				});
 			},
 
 		},
