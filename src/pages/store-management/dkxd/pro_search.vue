@@ -80,9 +80,9 @@
       },
 
       // 去列表页
-      toCategory(cate) {
+      toCategory(v) {
         uni.navigateTo({
-          url: '/sub-pages/index/item-list/main?dispId=' + cate.id,
+          url: `/sub-pages/index/item-list/main?cateId=${v.id}&level=${v.level}`,
         });
       },
       handleVoiceSearchClick() {
