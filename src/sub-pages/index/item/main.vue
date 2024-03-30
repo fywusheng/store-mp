@@ -306,7 +306,7 @@
       </view>
 
       <view class="footer">
-        <view class="btn-service" @click="goStoreDetail">
+        <!-- <view class="btn-service" @click="goStoreDetail">
           <img class="icon-img" src="http://192.168.1.187:10088/static/images/footer/home.png" />
           首页
         </view>
@@ -317,7 +317,7 @@
           />
           购物车
           <text class="count" v-if="cartCount > 0">{{ cartCount }}</text>
-        </view>
+        </view> -->
         <view class="btn-add-cart" @click="addCart">加入购物车</view>
         <view class="btn-buy" @click="checkout">
           {{ sceneType === '积分兑换' ? '立即兑换' : '立即购买' }}
