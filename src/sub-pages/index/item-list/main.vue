@@ -1,6 +1,11 @@
 <style lang="scss" scoped>
   @import '~@/styles/base';
 
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
   .search-header {
     // @include middle-center-x(fixed);
     // top: 0;
@@ -253,6 +258,8 @@
 
   .shop_list {
     // position: fixed;
+    flex: 1;
+    background: #f2f2f2;
     .scroll-container {
       overflow: hidden;
     }
@@ -454,7 +461,7 @@
 </style>
 
 <template>
-  <div id="app">
+  <div class="app">
     <div class="search-header">
       <img class="icon" src="http://192.168.1.187:10088/static/images/common/icon-search.png" />
       <input
@@ -545,14 +552,8 @@
       </li>
     </ul>
 
-    <view class="shop_list">
-      <scroll-view
-        v-if="itemList.length || loading"
-        scroll-y
-        class="item-list-wrap"
-        @scrolltolower="loadData"
-        :lower-threshold="400"
-      >
+    <view v-if="itemList.length || loading" class="shop_list">
+      <scroll-view scroll-y class="item-list-wrap" @scrolltolower="loadData" :lower-threshold="400">
         <ul class="item-list">
           <template v-if="listType === 0">
             <li
@@ -665,6 +666,8 @@
         brandList: [],
         brandId: '',
         dispId: '',
+        level: '',
+        cateId: '',
         sortType: '',
         key: '',
         name: '',
@@ -794,6 +797,10 @@
         }
         if (this.dispId) {
           params.categoryCodes = this.dispId;
+        }
+        if (this.level) {
+          const s = ['firstCategoryId', 'twoCategoryId', 'threeCategoryId'];
+          params[s[this.level - 1]] = this.cateId;
         }
         if (this.key) {
           params.name = this.key;
@@ -985,6 +992,8 @@
       this.brandId = this.$root.$mp.query.brandId;
       this.planId = this.$root.$mp.query.planId;
       this.dispId = this.$root.$mp.query.dispId;
+      this.cateId = this.$root.$mp.query.cateId;
+      this.level = this.$root.$mp.query.level;
       this.key = this.$root.$mp.query.key;
       this.$refs.filter.show(false);
       this.pageNo = 1;
