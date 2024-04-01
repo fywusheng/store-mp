@@ -23,7 +23,7 @@
 					</view>
 					<view class="col flex_r_h">
 						<view class="left">性别</view>
-						<view class="right">{{info.psnName}}</view>
+						<view class="right">{{info.sex==0?'男':'女'}}</view>
 					</view>
 				</view>
 				<view class="row flex_r_h">
@@ -39,7 +39,7 @@
 				<view class="row flex_r_h">
 					<view class="col col-100 flex_r_h">
 						<view class="left">默认地址</view>
-						<view class="right">{{info.address}}</view>
+						<view class="right">{{info.districtArea}}</view>
 					</view>
 				</view>
 			</view>
