@@ -272,7 +272,7 @@
         <button class="btn" v-if="storeList.length > 1" @click="watchMore">查看更多</button>
       </view>
       <view class="line"></view>
-      <view class="in-store">
+      <!-- <view class="in-store">
         <view class="left">
           <img mode="scaleToFill" class="_img" :src="product.supplierDTO.supplierStorePicUrl" />
           <view class="_right">
@@ -283,7 +283,7 @@
         <view class="right">
           <button class="btn-into" @click="goStoreDetail">进店逛逛</button>
         </view>
-      </view>
+      </view> -->
 
       <view class="product-detail">
         <view class="left-line"></view>
@@ -318,7 +318,7 @@
           购物车
           <text class="count" v-if="cartCount > 0">{{ cartCount }}</text>
         </view> -->
-        <view class="btn-add-cart" @click="addCart">加入购物车</view>
+        <!-- <view class="btn-add-cart" @click="addCart">加入购物车</view> -->
         <view class="btn-buy" @click="checkout">
           {{ sceneType === '积分兑换' ? '立即兑换' : '立即购买' }}
         </view>
@@ -1586,9 +1586,9 @@
 
       .btn-add-cart {
         @include btn();
-        //background-color:$color-primary;
-        border-top-left-radius: 47rpx;
-        border-bottom-left-radius: 47rpx;
+        width: 686rpx;
+        margin: 0 auto;
+        border-radius: 47rpx;
         border: 2rpx solid #ff711a;
         color: #ff5500;
         background: #fff;
@@ -1600,8 +1600,11 @@
 
       .btn-buy {
         @include btn();
-        border-top-right-radius: 47rpx;
-        border-bottom-right-radius: 47rpx;
+        // border-top-right-radius: 47rpx;
+        // border-bottom-right-radius: 47rpx;
+        border-radius: 47rpx;
+        width: 684rpx;
+        margin: 0 auto;
         height: 95rpx;
         line-height: 95rpx;
         font-size: 36rpx;

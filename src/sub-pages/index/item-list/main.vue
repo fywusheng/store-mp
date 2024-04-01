@@ -784,7 +784,7 @@
         const params = {
           pageSize: this.pageSize,
           pageNum: this.pageNo++,
-          isCreditPoints: 0,
+          // isCreditPoints: 0,
         };
         if (this.sortType) {
           params.sortType = this.sortType;
