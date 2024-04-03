@@ -131,6 +131,7 @@ export default {
         params.num = state.num
         params.skuId = state.skuId
       }
+      params.agentId = uni.getStorageSync('userInfo').id
       console.info(params)
       uni.showLoading({ title: '订单正在提交...' })
       const result = await Axios.post(state.type === 1 ? '/order/create' : '/order/create.direct', params)
@@ -143,7 +144,7 @@ export default {
         uni.hideLoading()
         if (payResult.code === '200') {
           // 去收银台支付
-          uni.reLaunch({
+          uni.navigateTo({
             url: '/pages/common/webpage?url=' + encodeURIComponent(result.data.payUrl)
           })
         }

@@ -1479,6 +1479,7 @@
         line-height: 1.5;
         padding: rpx(30);
         font-size: rpx(26);
+        text-indent: 30rpx;
 
         .img {
           display: block;
