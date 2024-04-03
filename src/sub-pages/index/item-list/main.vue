@@ -570,7 +570,7 @@
               <div class="brand-name" v-if="item.brandName">
                 {{ item.brandName }}
               </div>
-              <div class="item-name">{{ item.name }}||{{ item.soldOut }}</div>
+              <div class="item-name">{{ item.name }}</div>
               <div class="item-price">
                 {{ member ? '会员到手价' : '到手价' }}:&yen;{{
                   member ? item.memberPrice : item.finalPrice
