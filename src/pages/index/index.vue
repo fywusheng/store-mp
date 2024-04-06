@@ -152,7 +152,7 @@
 			// this.getActivityList()
 		},
 		onLoad(option) {
-			this.userId = option?.userId
+			this.userId = option?.userId || uni.getStorageSync('userInfo').id
 			this.getFunctionList(this.userId)
 			this.role =  uni.getStorageSync('userRole')
 		},
