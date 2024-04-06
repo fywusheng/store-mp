@@ -128,6 +128,17 @@ export default {
 		})
 	},
 	/**
+	 * 门店订单管理/orderAgent/orderList
+	 */
+	getStoreOrderList: function(args = {}) {
+		request({
+			port: '1',
+			url: '/orderAgent/orderList',
+			method: 'post',
+			...args
+		})
+	},
+	/**
 	 * 客户订单详情
 	 */
 	getUserOrderDetails: function(args = {}) {
