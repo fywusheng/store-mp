@@ -57,6 +57,7 @@ export function request({
   
  
   const request = {
+   
     url: url.indexOf('http') === -1 ? baseURL + url : url,
     method: method,
     header: { ...headers, ...header },

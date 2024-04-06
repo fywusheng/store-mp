@@ -36,7 +36,7 @@ export default {
     production: 'https://api.hpgjzlinfo.com/nepsp-api'
   }[process.env.NODE_ENV],
   BASE_3: {
-    development: ' http://192.168.1.187:10000/api',
+    development: 'http://192.168.1.187:10000/api',
   	// development: 'http://192.168.1.187:18888',
   	// development: 'http://192.168.1.187:10188',
     test: 'http://192.168.1.187:10000/api',
