@@ -14,13 +14,13 @@ Axios.interceptors.request.use(request => {
 Axios.interceptors.response.use(
   response => {
     // 处理请求结果
-    if (response.data.code === '1001') {
-      Store.dispatch('login')
-      uni.navigateTo({
-        url: '/pages/user-center/login'
-      })
-      return
-    }
+    // if (response.data.code === '1001') {
+    //   Store.dispatch('login')
+    //   uni.navigateTo({
+    //     url: '/pages/user-center/login'
+    //   })
+    //   return
+    // }
 
     return response.data
   },
