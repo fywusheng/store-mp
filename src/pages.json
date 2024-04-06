@@ -609,6 +609,215 @@
           }
         }
       ]
+    }, 
+    {
+      "root": "pages/pay",
+      "pages": [
+        {
+          "path": "pay-detail",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "error-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "pay-result",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add-bank-card",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "bank-card-picker",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "confirm-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "select-card-type",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "auth-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "auth-forbid-tip",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "select-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "open-online-pay",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "verificat-code",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "add-bank-card-success",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "my-bank-card",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "set-card-no",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "my-bank-card-detail",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "show-pay-code",
+          "style": {
+            "navigationBarTitleText": ""
+          }
+        },
+        {
+          "path": "app-pay",
+          "style": {
+            "navigationBarTitleText": "支付"
+          }
+        }
+      ]
     }
 	],
 	"globalStyle": {

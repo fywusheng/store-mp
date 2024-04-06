@@ -96,6 +96,7 @@ export default {
   // 微信支付宝预下单
   toPayment: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/payment/toPayment',
       header: { 'content-type': 'application/json' },
       ...args
@@ -104,6 +105,7 @@ export default {
   // 获取userid微信
   getOpenIdByCode: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/payment/getOpenIdByCode',
       header: { 'content-type': 'application/json' },
       ...args
@@ -112,6 +114,7 @@ export default {
   // 获取userid 支付宝
   getALIUserIdByCode: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/payment/getALIUserIdByCode',
       header: { 'content-type': 'application/json' },
       ...args
@@ -120,6 +123,7 @@ export default {
   // 查询状态
   paymentStatusQuery: function (args = {}) {
     request({
+       port: 3,
       url: '/offlineshopping/payment/paymentStatusQuery',
       header: { 'content-type': 'application/json' },
       ...args

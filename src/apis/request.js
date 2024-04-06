@@ -28,19 +28,34 @@ export function request({
   if (contentType) {
     // headers["content-type"] = "woyebuzhidaoweishenmejiekouyaozhemezuo";
   }
-  const body = {
+
+  let body = {
     ...data
   }
+  
   let baseURL =  ENV.BASE_API
   if(port==1){
 	 baseURL =  ENV.BASE_1
-	  
   }else if(port==2){
 	  baseURL =  ENV.BASE_2
   }else if(port == 3){
 	   baseURL =  ENV.BASE_3
+      body = {
+      appId: '19E179E5DC29C05E65B90CDE57A1C7E5',
+      version: '1.0.0',
+      encType: 'plain',
+      transType: 'get.authcode.data',
+      encData: 'sd',
+      signType: 'plain',
+      signData: 'sdfasfdasf',
+      timestamp: 201802231423897,
+      extra: {},
+      data
+    }
   }
   // const baseURL = ENV.BASE_API
+  
+ 
   const request = {
     url: url.indexOf('http') === -1 ? baseURL + url : url,
     method: method,
