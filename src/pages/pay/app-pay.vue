@@ -1,26 +1,27 @@
 <template>
-  <view class="show-pay-code">
-	  <navigation-bar :alpha="1">
-	    <view slot="title1">
-	      <view class="navigation-bar flex-h flex-c-s" :style="{ height: '44px' }">
-	        <image class="icon-desc"
-	        @click="handleHomeBack"
-	               src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
-	               mode="scaleToFill" />
-	        <!-- <text class="icon-desc" @click="handleComplete">完成</text> -->
-	  
-	        <text class="navigation-bar__title fs-44 c-black flex-1">
-	          订单详情
-	        </text>
-	      </view>
-	    </view>
-	  </navigation-bar>
-    <view class="text_loading">{{text[loading]}}</view>
-    <button open-type="launchApp" app-parameter="wechat" class="agree-button  c-white"
-      type="primary" @click="goHome">点击返回</button>
-  </view>
-</template>
-
+	<div>
+		<navigation-bar :alpha="1">
+		  <view slot="title1">
+		    <view class="navigation-bar flex-h flex-c-s" :style="{ height: '44px' }">
+		      <image class="icon-desc"
+		      @click="goHome"
+		             src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+		             mode="scaleToFill" />
+		      <!-- <text class="icon-desc" @click="handleComplete">完成</text> -->
+		
+		      <text class="navigation-bar__title fs-44 c-black flex-1">
+		        支付
+		      </text>
+		    </view>
+		  </view>
+		</navigation-bar>
+		<view class="show-pay-code">
+		    <view class="text_loading">{{text[loading]}}</view>
+		    <button open-type="launchApp" app-parameter="wechat" class="agree-button  c-white"
+		      type="primary" @click="goHome">点击返回</button>
+		  </view>
+	</div>
+  </template>
 <script>
 import api from '@/apis/index.js'
 import NavigationBar from '@/components/common/navigation-bar.vue';
@@ -54,6 +55,7 @@ export default {
 
   },
   methods: {
+	  
     goHome() {
       if (this.formData.phoneType == 'android' || this.formData.phoneType == 'ios') {
 
@@ -300,6 +302,9 @@ export default {
 	}
 .web {
   margin-top: 100px;
+}
+.show-pay-code{
+	margin-top: 179rpx;
 }
 .agree-button {
   width: 95%;
