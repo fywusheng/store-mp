@@ -301,6 +301,7 @@
           "path": "webpage",
           "style": {
             "navigationBarTitleText": ""
+			
           }
         }
       ]
@@ -821,7 +822,13 @@
         {
           "path": "app-pay",
           "style": {
-            "navigationBarTitleText": "支付"
+			"navigationStyle": "custom",
+			"navigationBarTitleText": "",
+			"mp-alipay": {
+			  "transparentTitle": "always",
+			  "allowsBounceVerticle": "NO",
+			  "titlePenetrate": "YES"
+			}
           }
         }
       ]

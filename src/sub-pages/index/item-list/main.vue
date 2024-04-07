@@ -389,9 +389,18 @@
           padding-top: rpx(10);
           font-size: rpx(36);
           line-height: rpx(42);
-          color: $color-grey;
-          @include ellipsis();
-          margin-left: 16rpx;
+          // color: $color-grey;
+          // @include ellipsis();
+          // margin-left: 16rpx;
+		    white-space: pre-wrap;
+		    margin-left: 0;
+		    padding-left: 16rpx;
+		    margin-bottom: 16rpx;
+		    word-break: unset;
+		    display: -webkit-box;
+		    -webkit-box-orient: vertical;
+		    -webkit-line-clamp: 2;
+		    overflow: hidden;
         }
 
         .item-price {

@@ -236,7 +236,7 @@
 			  wx.hideLoading();
 			  if (result.code == 200) {
 			    // 去收银台支付
-			    uni.reLaunch({
+			    uni.redirectTo({
 			      url: '/pages/common/webpage?url=' + encodeURIComponent(result.data.payUrl),
 			    });
 			  } else {
