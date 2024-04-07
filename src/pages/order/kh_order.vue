@@ -156,7 +156,7 @@
 				};
 				
 				try {
-					api.getUserOrderList({
+					api.getStoreOrderList({
 						data: {
 							...params
 						},
