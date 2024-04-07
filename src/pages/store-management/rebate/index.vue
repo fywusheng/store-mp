@@ -29,11 +29,11 @@
 				<view class="row flex_r_h">
 					<view class="col flex_r_h">
 						<view class="left">累计退款</view>
-						<view class="right">{{info.sceneType}}</view>
+						<view class="right">{{info.returnsPrice?info.returnsPrice:'-'}}</view>
 					</view>
 					<view class="col flex_r_h">
 						<view class="left">差异金额</view>
-						<view class="right">{{info.sceneType}}</view>
+						<view class="right">{{item.paidAmount && item.returnsPrice ? (item.paidAmount - item.returnsPrice) : '-'}}</view>
 					</view>
 				</view>
 				<view class="row flex_r_h">
@@ -43,7 +43,7 @@
 					</view>
 					<view class="col flex_r_h">
 						<view class="left">核对时间</view>
-						<view class="right line-height40">{{info.sceneType}}</view>
+						<view class="right">{{today}}</view>
 					</view>
 				</view>
 			</view>
@@ -118,7 +118,8 @@
 		data() {
 			return {
 				info:null,//信息
-				orderItem:[] //订单明细
+				orderItem:[], //订单明细
+				today:''
 			}
 		},
 		onLoad(options) {
@@ -132,6 +133,8 @@
 				let params = {
 					orderId: id
 				};
+				const dayjs = require('dayjs');
+				this.today =dayjs().format('YYYY-MM-DD');
 				api.getUserOrderDetails({
 					data: params,
 					success: (data) => {
