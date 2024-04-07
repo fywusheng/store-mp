@@ -46,7 +46,7 @@
 					<view class="bottom flex_r_h">
 						<view class="left">
 							<text class="count">共计{{item.totalQuantity}}个合计：</text>
-							<text class="price">￥{{item.orderAmount}}</text>
+							<text class="price">￥{{item.paidAmount}}</text>
 						</view>
 						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)" v-if="item.orderStatus!=10">查看详情</view>
 						<view class="details_btn" v-else  @click.stop="toPay(item)">去支付</view>
@@ -162,6 +162,7 @@
 							...params
 						},
 						success: (data) => {
+							console.log("整理前数据", data)
 							if (data) {
 								const res = [];
 								data.list.forEach(data => {
@@ -177,13 +178,13 @@
 													'skuName',
 													'sellingPrice',
 													'skuQuantity',
-													'payableAmount'
+													'paidAmount'
 												]))
 											})
 										})
 										const tempData = _.pick(data, ['orderId', 'orderStatus',
 											'totalQuantity', 'orderType', 'orderAmount',
-											'orderStatusLabel', 'payableAmount', 'storeName',
+											'orderStatusLabel', 'paidAmount', 'storeName',
 											'storeId', 'hzhH5'
 										])
 										tempData.itemList = itemList
