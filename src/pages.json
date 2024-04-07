@@ -552,7 +552,14 @@
         {
           "path": "order-detail/main",
           "style": {
-            "navigationBarTitleText": "订单详情"
+            // "navigationBarTitleText": "订单详情",
+			"navigationStyle": "custom",
+			"navigationBarTitleText": "",
+			"mp-alipay": {
+			  "transparentTitle": "always",
+			  "allowsBounceVerticle": "NO",
+			  "titlePenetrate": "YES"
+			}
           }
         },
         {

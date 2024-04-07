@@ -48,7 +48,8 @@
 							<text class="count">共计{{item.totalQuantity}}个合计：</text>
 							<text class="price">￥{{item.orderAmount}}</text>
 						</view>
-						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)">查看详情</view>
+						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)" v-if="item.orderStatus!=10">查看详情</view>
+						<view class="details_btn" v-else  @click.stop="toPay(item)">去支付</view>
 					</view>
 				</view>
 			</view>
@@ -161,7 +162,6 @@
 							...params
 						},
 						success: (data) => {
-							console.log("整理前数据", data)
 							if (data) {
 								const res = [];
 								data.list.forEach(data => {
@@ -217,6 +217,26 @@
 					this.status = "noMore";
 					console.log(error);
 				}
+			},
+			async toPay(order) {
+			  wx.showLoading({ title: '正在获取...', mask: true });
+			  const result = await Axios.post('/payment/sign', {
+			    orderId: order.orderId,
+			    paymentMethodCode: 'nepsp_pay',
+			    code: new Date().getTime(),
+			  });
+			  wx.hideLoading();
+			  if (result.code == 200) {
+			    // 去收银台支付
+			    uni.reLaunch({
+			      url: '/pages/common/webpage?url=' + encodeURIComponent(result.data.payUrl),
+			    });
+			  } else {
+			    wx.showToast({
+			      title: result.msg || '获取失败',
+			      icon: 'none',
+			    });
+			  }
 			},
 			/**
 			 * getUserData获取门店用户

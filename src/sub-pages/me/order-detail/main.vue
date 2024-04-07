@@ -1,6 +1,40 @@
 <style lang="scss" scope>
   @import '~@/styles/base';
-
+	.navigation-bar {
+      box-sizing: border-box;
+      padding-left: 24rpx;
+      width: 100vw;
+      height: 100%;
+      // .back-icon {
+      //   flex-shrink: 0;
+      //   width: 44rpx;
+      //   height: 44rpx;
+      //   margin-right: 48rpx;
+      //   position: relative;
+      //   z-index: 10;
+      // }
+      .icon-desc {
+        flex-shrink: 0;
+        width: 40rpx;
+        height: 40rpx;
+        // margin-left: 54rpx;
+        position: relative;
+        z-index: 10;
+      }
+      .desc {
+        color: #666666;
+      }
+      .navigation-bar__title {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .navigation-bar__complete {
+        position: absolute;
+        right: 36rpx;
+      }
+    }
   .page-order-info {
     padding-bottom: rpx(176);
     position: relative;
@@ -315,6 +349,21 @@
 </style>
 <template>
   <div class="page-order-info" v-if="!loading">
+	  <navigation-bar :alpha="1">
+	    <view slot="title1">
+	      <view class="navigation-bar flex-h flex-c-s" :style="{ height: '44px' }">
+	        <image class="icon-desc"
+	        @click="handleHomeBack"
+	               src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+	               mode="scaleToFill" />
+	        <!-- <text class="icon-desc" @click="handleComplete">完成</text> -->
+	  
+	        <text class="navigation-bar__title fs-44 c-black flex-1">
+	          订单详情
+	        </text>
+	      </view>
+	    </view>
+	  </navigation-bar>
     <div class="order-header-bg"></div>
     <div class="order-header-status">
       <div class="status">
@@ -524,8 +573,9 @@
   // import dayjs from 'dayjs'
   import wx from 'utils/wx';
   import PointPop from './get-point-pop.vue';
-
+  import NavigationBar from '@/components/common/navigation-bar.vue';
   export default {
+	components: { NavigationBar },
     data() {
       return {
         loading: true,
@@ -539,6 +589,16 @@
           address: 'http://192.168.1.187:10088/static/images/common/icon-address.png',
           right: 'http://192.168.1.187:10088/static/images/common/icon-right.png',
         },
+		// 导航栏高度
+		// #ifdef MP-WEIXIN
+		navigationBarHeight: uni.getSystemInfoSync().statusBarHeight + 44,
+		// #endif
+		// #ifdef MP-ALIPAY
+		navigationBarHeight:
+		  uni.getSystemInfoSync().statusBarHeight + uni.getSystemInfoSync().titleBarHeight,
+		// #endif
+		// 状态栏高度
+		statusBarHeight: uni.getSystemInfoSync().statusBarHeight,
       };
     },
     computed: {
@@ -721,6 +781,11 @@
           url: `/sub-pages/index/item/main?id=${data.productId}&sceneType=${this.order.sceneType}`,
         });
       },
+	  handleHomeBack(){
+		  uni.reLaunch({
+		    url: '/pages/index/index',
+		  });
+	  },
       async checkNeedPopUp(popUpType) {
         const params = {
           orderId: this.order.orderId,
