@@ -301,6 +301,7 @@
           "path": "webpage",
           "style": {
             "navigationBarTitleText": ""
+			
           }
         }
       ]
@@ -552,7 +553,14 @@
         {
           "path": "order-detail/main",
           "style": {
-            "navigationBarTitleText": "订单详情"
+            // "navigationBarTitleText": "订单详情",
+			"navigationStyle": "custom",
+			"navigationBarTitleText": "",
+			"mp-alipay": {
+			  "transparentTitle": "always",
+			  "allowsBounceVerticle": "NO",
+			  "titlePenetrate": "YES"
+			}
           }
         },
         {
@@ -814,7 +822,13 @@
         {
           "path": "app-pay",
           "style": {
-            "navigationBarTitleText": "支付"
+			"navigationStyle": "custom",
+			"navigationBarTitleText": "",
+			"mp-alipay": {
+			  "transparentTitle": "always",
+			  "allowsBounceVerticle": "NO",
+			  "titlePenetrate": "YES"
+			}
           }
         }
       ]

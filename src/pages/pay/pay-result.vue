@@ -61,7 +61,7 @@
     </view>
 
     <view class="page-footer">
-      <button class="btn btn-default" @click="handleHomeBack">返回首页</button>
+      <button class="btn btn-warning" @click="handleHomeBack">返回首页</button>
       <button v-if="resultType === 1" class="btn btn-warning" @click="handleRePay">重新支付</button>
       <button v-else class="btn btn-warning" @click="handleOrderDetail">订单详情</button>
     </view>

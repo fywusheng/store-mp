@@ -1,14 +1,32 @@
 <template>
-  <view class="show-pay-code">
-    <view class="text_loading">{{text[loading]}}</view>
-    <button open-type="launchApp" app-parameter="wechat" class="agree-button  c-white"
-      type="primary" @click="goHome">点击返回</button>
-  </view>
-</template>
-
+	<div>
+		<navigation-bar :alpha="1">
+		  <view slot="title1">
+		    <view class="navigation-bar flex-h flex-c-s" :style="{ height: '44px' }">
+		      <image class="icon-desc"
+		      @click="goHome"
+		             src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+		             mode="scaleToFill" />
+		      <!-- <text class="icon-desc" @click="handleComplete">完成</text> -->
+		
+		      <text class="navigation-bar__title fs-44 c-black flex-1">
+		        支付
+		      </text>
+		    </view>
+		  </view>
+		</navigation-bar>
+		<view class="show-pay-code">
+		    <view class="text_loading">{{text[loading]}}</view>
+		    <button open-type="launchApp" app-parameter="wechat" class="agree-button  c-white"
+		      type="primary" @click="goHome">点击返回</button>
+		  </view>
+	</div>
+  </template>
 <script>
 import api from '@/apis/index.js'
+import NavigationBar from '@/components/common/navigation-bar.vue';
 export default {
+  components: { NavigationBar },
   data() {
     return {
       url: '2',
@@ -37,6 +55,7 @@ export default {
 
   },
   methods: {
+	  
     goHome() {
       if (this.formData.phoneType == 'android' || this.formData.phoneType == 'ios') {
 
@@ -246,8 +265,46 @@ export default {
 </script>
 
 <style  lang="scss" scoped>
+	.navigation-bar {
+	  box-sizing: border-box;
+	  padding-left: 24rpx;
+	  width: 100vw;
+	  height: 100%;
+	  // .back-icon {
+	  //   flex-shrink: 0;
+	  //   width: 44rpx;
+	  //   height: 44rpx;
+	  //   margin-right: 48rpx;
+	  //   position: relative;
+	  //   z-index: 10;
+	  // }
+	  .icon-desc {
+	    flex-shrink: 0;
+	    width: 40rpx;
+	    height: 40rpx;
+	    // margin-left: 54rpx;
+	    position: relative;
+	    z-index: 10;
+	  }
+	  .desc {
+	    color: #666666;
+	  }
+	  .navigation-bar__title {
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    text-align: center;
+	  }
+	  .navigation-bar__complete {
+	    position: absolute;
+	    right: 36rpx;
+	  }
+	}
 .web {
   margin-top: 100px;
+}
+.show-pay-code{
+	margin-top: 179rpx;
 }
 .agree-button {
   width: 95%;

@@ -46,9 +46,17 @@
 					<view class="bottom flex_r_h">
 						<view class="left">
 							<text class="count">共计{{item.totalQuantity}}个合计：</text>
-							<text class="price">￥{{item.orderAmount}}</text>
+							<text class="price">￥{{item.paidAmount}}</text>
 						</view>
-						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)">查看详情</view>
+						<view class="details_btn" v-if="item.orderStatus === 10" @click.stop="toPay(item)">去支付</view>
+						<view class="details_btn" v-if="item.orderStatus === 30" @click.stop="confirm(item)">确认收货</view>
+						<view class="details_btn"  v-if="
+						  order.orderStatus > 20 &&
+						  order.orderStatus < 90 &&
+						  order.orderStatus !== 60"
+						  @click.stop="logistics(item)"
+						 >查看物流</view>
+						<view class="details_btn" v-if="item.orderStatus !== 30 && item.orderStatus !== 10" @click.stop="handleGoDetails(item.orderId)" >查看详情</view>
 					</view>
 				</view>
 			</view>
@@ -104,11 +112,11 @@
 					{
 						value: 90,
 						name: '已取消'
+					},
+					{
+						value: 100,
+						name: '退款/售后'
 					}
-					// {
-					// 	value: 6,
-					// 	name: '退款/售后'
-					// }
 				], //tab
 				orderList: [], //用户订单
 				queryParam: {
@@ -177,13 +185,13 @@
 													'skuName',
 													'sellingPrice',
 													'skuQuantity',
-													'payableAmount'
+													'paidAmount'
 												]))
 											})
 										})
 										const tempData = _.pick(data, ['orderId', 'orderStatus',
 											'totalQuantity', 'orderType', 'orderAmount',
-											'orderStatusLabel', 'payableAmount', 'storeName',
+											'orderStatusLabel', 'paidAmount', 'storeName',
 											'storeId', 'hzhH5'
 										])
 										tempData.itemList = itemList
@@ -217,6 +225,56 @@
 					this.status = "noMore";
 					console.log(error);
 				}
+			},
+			async toPay(order) {
+			  wx.showLoading({ title: '正在获取...', mask: true });
+			  const result = await Axios.post('/payment/sign', {
+			    orderId: order.orderId,
+			    paymentMethodCode: 'nepsp_pay',
+			    code: new Date().getTime(),
+			  });
+			  wx.hideLoading();
+			  if (result.code == 200) {
+			    // 去收银台支付
+			    uni.redirectTo({
+			      url: '/pages/common/webpage?url=' + encodeURIComponent(result.data.payUrl),
+			    });
+			  } else {
+			    wx.showToast({
+			      title: result.msg || '获取失败',
+			      icon: 'none',
+			    });
+			  }
+			},
+			async confirm(order) {
+			  const result = await wx.showModal({
+			    title: '',
+			    content: '确定已收货?',
+			  });
+			  if (result.confirm) {
+			    wx.showLoading('正在提交...');
+			    const delResult = await Axios.post('/order/confirm', {
+			      orderId: order.orderId,
+			    });
+			    wx.hideLoading();
+			    if (delResult.code == 200) {
+			      setTimeout(() => {
+			        wx.showToast({
+			          title: delResult.msg || '确认成功',
+			          icon: 'none',
+			        });
+			      }, 1500);
+			      // 触发订单刷新事件
+			      	this.queryOrderList()
+			    } else {
+			      wx.showToast(delResult.msg || '确认失败');
+			    }
+			  }
+			},
+			logistics(order) {
+			  wx.navigateTo({
+			    url: '/sub-pages/me/logistics/main?id=' + order.orderId,
+			  });
 			},
 			/**
 			 * getUserData获取门店用户

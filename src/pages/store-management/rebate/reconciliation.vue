@@ -36,7 +36,7 @@
 						<view  class="flex_r_h">累计退款金额：<text>{{item.returnsPrice?item.returnsPrice:'-'}}</text></view>
 						<view  class="flex_r_h">差异金额：<text>{{item.paidAmount && item.returnsPrice ? (item.paidAmount - item.returnsPrice) : '-'}}</text></view>
 						<view  class="flex_r_h">下单时间：<text>{{item.createdTime}}</text></view>
-						<view  class="flex_r_h">核对时间：<text>{{item.orderAmount}}</text></view>
+						<view  class="flex_r_h">核对时间：<text>{{today}}</text></view>
 					</view>
 					<view class="bottom flex_r_h">
 						<view class="left flex_r_h">
@@ -109,7 +109,8 @@
 					pageNum: 1,
 					pageSize: 10,
 				},
-				dateSelect: ''
+				dateSelect: '',
+				today:''
 			};
 		},
 		created() {
@@ -146,6 +147,8 @@
 					...this.queryParam
 				};
 				this.status = 'loading';
+				const dayjs = require('dayjs');
+				this.today = dayjs().format('YYYY-MM-DD');
 				try {
 					api.getUserOrderList({
 						data: {

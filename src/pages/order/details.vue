@@ -138,7 +138,7 @@
 					</view>
 					<view class="col flex_r_h">
 						<view class="left">支付方式</view>
-						<view class="right">{{info.paymentMethod}}</view>
+						<view class="right">微信支付</view>
 					</view>
 				</view>
 				<view class="row flex_r_h">
