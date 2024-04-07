@@ -48,8 +48,15 @@
 							<text class="count">共计{{item.totalQuantity}}个合计：</text>
 							<text class="price">￥{{item.paidAmount}}</text>
 						</view>
-						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)" v-if="item.orderStatus!=10">查看详情</view>
-						<view class="details_btn" v-else  @click.stop="toPay(item)">去支付</view>
+						<view class="details_btn" v-if="item.orderStatus === 10" @click.stop="toPay(item)">去支付</view>
+						<view class="details_btn" v-if="item.orderStatus === 30" @click.stop="confirm(item)">确认收货</view>
+						<view class="details_btn"  v-if="
+						  order.orderStatus > 20 &&
+						  order.orderStatus < 90 &&
+						  order.orderStatus !== 60"
+						  @click.stop="logistics(item)"
+						 >查看物流</view>
+						<view class="details_btn" v-if="item.orderStatus !== 30 && item.orderStatus !== 10" @click.stop="handleGoDetails(item.orderId)" >查看详情</view>
 					</view>
 				</view>
 			</view>
@@ -105,11 +112,11 @@
 					{
 						value: 90,
 						name: '已取消'
+					},
+					{
+						value: 100,
+						name: '退款/售后'
 					}
-					// {
-					// 	value: 6,
-					// 	name: '退款/售后'
-					// }
 				], //tab
 				orderList: [], //用户订单
 				queryParam: {
@@ -238,6 +245,36 @@
 			      icon: 'none',
 			    });
 			  }
+			},
+			async confirm(order) {
+			  const result = await wx.showModal({
+			    title: '',
+			    content: '确定已收货?',
+			  });
+			  if (result.confirm) {
+			    wx.showLoading('正在提交...');
+			    const delResult = await Axios.post('/order/confirm', {
+			      orderId: order.orderId,
+			    });
+			    wx.hideLoading();
+			    if (delResult.code == 200) {
+			      setTimeout(() => {
+			        wx.showToast({
+			          title: delResult.msg || '确认成功',
+			          icon: 'none',
+			        });
+			      }, 1500);
+			      // 触发订单刷新事件
+			      	this.queryOrderList()
+			    } else {
+			      wx.showToast(delResult.msg || '确认失败');
+			    }
+			  }
+			},
+			logistics(order) {
+			  wx.navigateTo({
+			    url: '/sub-pages/me/logistics/main?id=' + order.orderId,
+			  });
 			},
 			/**
 			 * getUserData获取门店用户
