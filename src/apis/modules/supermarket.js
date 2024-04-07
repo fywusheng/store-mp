@@ -110,6 +110,7 @@ export default {
   // 查询发票抬头列表
   getCompanyList: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/invoiceHeader/selectInvoiceHeader',
       header: { 'content-type': 'application/json' },
       ...args
@@ -118,6 +119,7 @@ export default {
   // 新增（修改）发票抬头
   handleUpdateOrAddHeader: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/invoiceHeader/insertOrUpdateInvoiceHeader',
       header: { 'content-type': 'application/json' },
       ...args
@@ -126,6 +128,7 @@ export default {
   // 删除发票抬头
   deleteInvoiceHeader: function (args = {}) {
     request({
+      port: 3,
       url: '/offlineshopping/invoiceHeader/deleteInvoiceHeader',
       header: { 'content-type': 'application/json' },
       ...args

@@ -818,6 +818,116 @@
           }
         }
       ]
+    },
+    {
+      "root": "pages/supermarket",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "discount-detail",
+          "style": {
+            "navigationBarTitleText": "优惠说明",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "market",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "other-market",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "全部门店",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "myOrder",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "我的订单",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "order-info",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "myInvoice",
+          "style": {
+            "navigationBarTitleText": "我的发票",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "company-list",
+          "style": {
+            "enablePullDownRefresh": true,
+            "navigationBarTitleText": "抬头管理",
+            "onReachBottomDistance": 30,
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "company-update-or-add",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "",
+            "mp-alipay": {
+              "transparentTitle": "always",
+              "allowsBounceVerticle": "NO",
+              "titlePenetrate": "YES"
+            }
+          }
+        },
+        {
+          "path": "apply-invoice",
+          "style": {
+            "navigationBarTitleText": "申请开票",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "apply-success",
+          "style": {
+            "navigationBarTitleText": "提交成功",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        },
+        {
+          "path": "invoice-info",
+          "style": {
+            "navigationBarTitleText": "发票详情",
+            "navigationBarBackgroundColor": "#ffffff"
+          }
+        }
+      ]
     }
 	],
 	"globalStyle": {
