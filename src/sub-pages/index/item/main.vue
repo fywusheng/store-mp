@@ -186,7 +186,8 @@
           <view class="wuliu-info">
             <text class="m-r-24">发货地</text>
             <text class="m-r-24">
-              {{ supplierDTO.actualCityName }}
+              <!-- {{ supplierDTO.actualCityName }} -->
+			  {{product.deliveryRegion}}
               <!-- {{ product.deliveryRegion }} 预计
               <template v-if="product.deliveryMinDays < product.deliveryMaxDays">
                 {{ product.deliveryMinDays }}-{{ product.deliveryMaxDays }}
