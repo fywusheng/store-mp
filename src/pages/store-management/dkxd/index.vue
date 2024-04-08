@@ -147,7 +147,6 @@
             this.kgUserInfo = res;
             uni.setStorageSync('khUserInfo', res);
             Store.dispatch('setUserInfo', res);
-
             if (this.kgUserInfo.storeNo === '') {
               uni.showToast({ title: '该用户非本门店用户,不可代客下单', icon: 'none' });
               return false;
@@ -161,7 +160,6 @@
         const res = await Axios.post(`/user/login`, {});
         uni.setStorageSync('sessionId', res.data.sessionId);
       },
-
       // 代客下单 18310253558
       dkOrder() {
         uni.navigateTo({
