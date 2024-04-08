@@ -41,6 +41,23 @@
 						<view class="right flex_c_h">
 							<view class="goods_price">￥{{goods.sellingPrice}}</view>
 							<view class="goods_sl">x{{goods.skuQuantity}}</view>
+							<div
+							  class="item-state"
+							  v-if="item.orderStatus == 30 || item.orderStatus == 40 || item.orderStatus == 50"
+							>
+							  <button
+							    v-if="goods.itemStatus == 1 && !item.hzhH5"
+							    type="button"
+							    class="btn-link"
+							    @click.stop="toService(item, goods)"
+							  >
+							    申请售后
+							  </button>
+							  <div v-else @click.stop="toService(item, goods)" class="item-state-label">
+							    {{ goods.itemStateStr }}
+							  </div>
+							</div>
+							
 						</view>
 					</view>
 					<view class="bottom flex_r_h">
@@ -56,7 +73,7 @@
 						  order.orderStatus !== 60"
 						  @click.stop="logistics(item)"
 						 >查看物流</view>
-						<view class="details_btn" v-if="item.orderStatus !== 30 && item.orderStatus !== 10" @click.stop="handleGoDetails(item.orderId)" >查看详情</view>
+						<view class="details_btn" @click.stop="handleGoDetails(item.orderId)" >查看详情</view>
 					</view>
 				</view>
 			</view>
@@ -105,10 +122,10 @@
 						value: 40,
 						name: '已完成'
 					},
-					{
-						value: 50,
-						name: '已评价'
-					},
+					// {
+					// 	value: 50,
+					// 	name: '已评价'
+					// },
 					{
 						value: 90,
 						name: '已取消'
@@ -185,14 +202,18 @@
 													'skuName',
 													'sellingPrice',
 													'skuQuantity',
-													'paidAmount'
+													'paidAmount',
+													'itemStateStr',
+													'itemStatus',
+													'skuId',
+													'id'
 												]))
 											})
 										})
 										const tempData = _.pick(data, ['orderId', 'orderStatus',
 											'totalQuantity', 'orderType', 'orderAmount',
 											'orderStatusLabel', 'paidAmount', 'storeName',
-											'storeId', 'hzhH5'
+											'storeId', 'hzhH5','id'
 										])
 										tempData.itemList = itemList
 										tempData.orderMallIcon = data.storeOrderItems[0].orderMallIcon
@@ -276,6 +297,20 @@
 			    url: '/sub-pages/me/logistics/main?id=' + order.orderId,
 			  });
 			},
+			// 申请售后
+			toService(order, item) {
+				console.log(order)
+				console.log(item)
+			  if (order.orderStatus == 20 || item.itemStatus > 1) {
+			    wx.navigateTo({
+			      url: `/sub-pages/me/refund-detail/main?type=1&productId=${item.productId}&skuId=${item.skuId}&orderId=${order.id}`,
+			    });
+			  } else {
+			    wx.navigateTo({
+			      url: `/sub-pages/me/service-type/main?itemId=${item.id}&num=${item.skuQuantity}&orderId=${order.id}&skuId=${item.skuId}&productId=${item.productId}`,
+			    });
+			  }
+			},
 			/**
 			 * getUserData获取门店用户
 			 * @param {Object} id
@@ -337,7 +372,8 @@
 
 	}
 </style>
-<style lang="scss">
+<style lang="scss" scope>
+  @import '~@/styles/base';
 	.flex_r_h {
 		display: flex;
 		align-items: center;
@@ -526,6 +562,21 @@
 								color: #999999;
 								margin-top: 8rpx;
 							}
+							.btn-link {
+							  margin-top: rpx(10);
+							  width: rpx(120);
+							  height: rpx(50);
+							  line-height: rpx(45);
+							  text-align: center;
+							  border: 1px solid #666;
+							  border-radius: 5px;
+							  color: #666;
+							  font-size: rpx(24);
+							}
+							.item-state-label {
+							  color: $extra-light-black;
+							  font-size: rpx(24);
+							}
 						}
 					}
 
@@ -551,11 +602,12 @@
 							font-size: 28rpx;
 							font-weight: 500;
 							color: #FF5500;
-							width: 192rpx;
+							width: 180rpx;
 							height: 68rpx;
 							line-height: 68rpx;
 							border-radius: 36rpx;
 							border: 2rpx solid #FF5500;
+							margin:0 3rpx;
 						}
 					}
 				}
