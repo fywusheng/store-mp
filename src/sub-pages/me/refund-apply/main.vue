@@ -264,7 +264,7 @@ export default {
       this.reasonTypeName = ''
     } else {
       wx.showToast({
-        title: result.result.message,
+        title: result.msg,
         icon: 'none'
       })
     }
