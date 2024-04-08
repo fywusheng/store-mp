@@ -383,24 +383,51 @@
           line-height: rpx(42);
         }
 
+        .coupon {
+          display: flex;
+          align-items: center;
+          height: 48rpx;
+          width: fit-content;
+          border-radius: 4rpx;
+          border: 2rpx solid #ff2600;
+          margin-left: 16rpx;
+          margin-top: 22rpx;
+          font-family: PingFangSC, PingFang SC;
+          font-weight: 400;
+          font-size: 32rpx;
+          .label {
+            width: 48rpx;
+            height: 48rpx;
+            line-height: 48rpx;
+            text-align: center;
+            background: #ff2600;
+            border-radius: 4rpx 0rpx 0rpx 4rpx;
+            border: 2rpx solid #ff2600;
+            color: #ffffff;
+          }
+          .coupon-price {
+            padding: 0 8rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff2600;
+          }
+        }
+
         .item-name {
           font-family: PingFangSC-Regular, PingFang SC;
           font-weight: 400;
           padding-top: rpx(10);
           font-size: rpx(36);
-          line-height: rpx(42);
-          // color: $color-grey;
-          // @include ellipsis();
-          // margin-left: 16rpx;
-          white-space: pre-wrap;
-          margin-left: 0;
-          padding-left: 16rpx;
-          margin-bottom: 16rpx;
-          word-break: unset;
+          color: $color-grey;
+          white-space: unset;
+          margin-left: 16rpx;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-all;
         }
 
         .item-price {
@@ -562,7 +589,7 @@
     </ul>
 
     <view v-if="itemList.length || loading" class="shop_list">
-      <scroll-view scroll-y class="item-list-wrap" @scrolltolower="loadData" :lower-threshold="400">
+      <scroll-view scroll-y class="item-list-wrap" :lower-threshold="400">
         <ul class="item-list">
           <template v-if="listType === 0">
             <li
@@ -576,10 +603,17 @@
                   <img class="sale-out" src="http://192.168.1.187:10088/static/home/empt.png" />
                 </div>
               </div>
-              <div class="brand-name" v-if="item.brandName">
+              <!-- <div class="brand-name" v-if="item.brandName">
                 {{ item.brandName }}
-              </div>
+              </div> -->
+
               <div class="item-name">{{ item.name }}</div>
+              <!-- 优惠券 -->
+              <!-- <view class="coupon">
+                <view class="label">券</view>
+                <view class="coupon-price">¥10</view>
+              </view> -->
+
               <div class="item-price">
                 {{ member ? '会员到手价' : '到手价' }}:&yen;{{
                   member ? item.memberPrice : item.finalPrice
@@ -756,7 +790,7 @@
         this.pageNo = 1;
         this.itemList = [];
         this.disabled = false;
-        this.loadData();
+        this.searchData();
       },
       changePrice(priceRange) {
         this.priceList.forEach((e) => {
@@ -989,9 +1023,152 @@
           this.empty = true;
         }
       },
+      async searchData() {
+        if (this.disabled) {
+          return false;
+        }
+        const params = {
+          pageSize: this.pageSize,
+          pageNum: this.pageNo++,
+          isCreditPoints: 0,
+        };
+        if (this.sortType) {
+          params.sortType = this.sortType;
+        }
+        if (this.brandId) {
+          params.brandIds = this.brandId.join(',');
+        }
+        if (this.planId) {
+          params.planId = this.planId;
+        }
+        if (this.dispId) {
+          params.categoryCodes = this.dispId;
+        }
+        if (this.level) {
+          const s = ['firstCategoryId', 'twoCategoryId', 'threeCategoryId'];
+          params[s[this.level - 1]] = this.cateId;
+        }
+        if (this.key) {
+          params.name = this.key;
+        }
+        const attrList = [];
+        this.attrList.forEach((attr) => {
+          attr.dataList.forEach((condition) => {
+            if (condition.check) {
+              attrList.push(condition.value);
+            }
+          });
+        });
+        if (attrList.length) {
+          params.attrValIds = attrList.join(',');
+        }
+        const dispIds = [];
+        this.categoryList.forEach((cate) => {
+          if (cate.check) {
+            dispIds.push(cate.id);
+          }
+        });
+        if (dispIds.length) {
+          params.categoryCodes = dispIds.join(',');
+        }
+        const brandIds = [];
+        this.brandList.forEach((brand) => {
+          if (brand.check) {
+            brandIds.push(brand.brandId);
+          }
+        });
+        if (brandIds.length) {
+          params.brandIds = brandIds.join(',');
+        }
+        const priceIds = [];
+        this.priceList.forEach((price) => {
+          if (price.check) {
+            priceIds.push(price.name);
+          }
+        });
+        if (priceIds.length) {
+          params.priceRange = priceIds.join(',');
+        }
+        const targetAudiences = [];
+        this.targetAudienceList.forEach((target) => {
+          if (target.check) {
+            targetAudiences.push(target.name);
+          }
+        });
+        if (targetAudiences.length) {
+          params.targetAudience = targetAudiences.join(',');
+        }
+        this.disabled = true;
+        uni.showLoading();
+        // console.log("params: " + JSON.stringify(params))
+        let searchResult = await Axios.post('/product/getProductSearchList', {
+          ...Object.assign(params, this.searchParams),
+        });
+        // console.log('searchResult: ', searchResult);
+
+        searchResult = searchResult.data;
+        uni.hideLoading();
+        this.loading = false;
+        if (searchResult.esProducts) {
+          this.disabled = searchResult.pageNum >= searchResult.totalPage;
+          const list = [];
+          searchResult.esProducts.forEach((data) => {
+            const tempData = _.pick(data, [
+              'id',
+              'skuList',
+              'mainImgUrl',
+              'brandName',
+              'name',
+              'price',
+              'stockBlance',
+              'saleState',
+              'pointDiscountPoint',
+            ]);
+            let availableStock = 0;
+            let minMarkOffPrice = 0;
+            let maxMarkOffPrice = 0;
+            let minCostPrice = 0;
+            let maxCostPrice = 0;
+            tempData.skuList &&
+              tempData.skuList.forEach((sku) => {
+                availableStock += sku.availableStock;
+                if (minMarkOffPrice === 0 || minMarkOffPrice > sku.markOffPrice) {
+                  minMarkOffPrice = sku.markOffPrice;
+                }
+                if (maxMarkOffPrice === 0 || maxMarkOffPrice < sku.markOffPrice) {
+                  maxMarkOffPrice = sku.markOffPrice;
+                }
+                if (minCostPrice === 0 || minCostPrice > sku.sellingPrice) {
+                  minCostPrice = sku.sellingPrice;
+                }
+                if (maxCostPrice === 0 || maxCostPrice < sku.sellingPrice) {
+                  maxCostPrice = sku.sellingPrice;
+                }
+              });
+            if (minMarkOffPrice !== maxMarkOffPrice) {
+              tempData.markOffPriceStr = `${minMarkOffPrice}-${maxMarkOffPrice}`;
+            } else {
+              tempData.markOffPriceStr = minMarkOffPrice;
+            }
+            if (minCostPrice !== maxCostPrice) {
+              tempData.costPriceStr = `${minCostPrice}-${maxCostPrice}`;
+            } else {
+              tempData.costPriceStr = minCostPrice;
+            }
+            tempData.availableStock = availableStock;
+            tempData.proPictDir = XIU.getImgFormat(tempData.mainImgUrl, '/resize,w_750');
+            Object.assign(tempData, data);
+            list.push(tempData);
+          });
+          this.itemList = this.itemList.concat(list);
+          this.empty = !this.itemList;
+        } else {
+          this.empty = true;
+        }
+      },
     },
     onReachBottom() {
-      this.loadData();
+      this.searchData();
     },
     onPageScroll(e) {
       // this.$refs.toTop.show(e.scrollTop > App.systemInfo.screenHeight);
