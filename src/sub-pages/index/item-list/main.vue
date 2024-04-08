@@ -392,15 +392,15 @@
           // color: $color-grey;
           // @include ellipsis();
           // margin-left: 16rpx;
-		    white-space: pre-wrap;
-		    margin-left: 0;
-		    padding-left: 16rpx;
-		    margin-bottom: 16rpx;
-		    word-break: unset;
-		    display: -webkit-box;
-		    -webkit-box-orient: vertical;
-		    -webkit-line-clamp: 2;
-		    overflow: hidden;
+          white-space: pre-wrap;
+          margin-left: 0;
+          padding-left: 16rpx;
+          margin-bottom: 16rpx;
+          word-break: unset;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
         }
 
         .item-price {
@@ -759,6 +759,9 @@
         this.loadData();
       },
       changePrice(priceRange) {
+        this.priceList.forEach((e) => {
+          e.check = false;
+        });
         priceRange.check = !priceRange.check;
         this.$set(this.priceList, priceRange.id, priceRange);
       },
