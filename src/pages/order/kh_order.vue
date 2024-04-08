@@ -150,7 +150,10 @@
 			this.getStoreUserData()
 		},
 		onLoad() {},
-		onShow() {},
+		onShow() {
+			console.log("onshow")
+			uni.removeStorageSync('khUserInfo');
+		},
 		methods: {
 			bindPickerChange(e,list){
 				this.phone = list[e.detail.value].phone
@@ -320,9 +323,7 @@
 			},
 			// 申请售后
 			async toService(order, item) {
-				console.log(order)
-				console.log(item)
-			   await this.getKhUserInfo(order.userLoginName)
+			  await this.getKhUserInfo(order.userLoginName)
 			  if (order.orderStatus == 20 || item.itemStatus > 1) {
 			    wx.navigateTo({
 			      url: `/sub-pages/me/refund-detail/main?type=1&productId=${item.productId}&skuId=${item.skuId}&orderId=${order.id}`,

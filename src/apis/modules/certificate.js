@@ -140,6 +140,7 @@ export default {
   // 上传图片(修改头像)
   imgUpload: function (args = {}) {
     request({
+		port:'3',
       url: '/cms/iep/web/cms/imgUpload',
       ...args
     })
