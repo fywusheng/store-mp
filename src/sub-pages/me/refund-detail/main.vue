@@ -133,7 +133,7 @@ export default {
           icon: 'none'
         })
         uni.reLaunch({
-          url: '/pages/order/orderList'
+          url: '/pages/order/kh_order'
         })
         // wx.navigateTo({
         //   url: `../refund-detail/main?orderId=${this.orderId}&productId=${this.productId}&skuId=${this.skuId}`
