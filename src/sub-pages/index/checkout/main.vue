@@ -49,7 +49,7 @@
             </div>
             <div class="number">x{{ item.quantity }}</div>
           </li>
-          <div class="point-wrap">
+          <div v-if="item.isCreditPoints === 1" class="point-wrap">
             <view class="use-point">
               <span class="_span">是否积分抵扣</span>
               <switch
