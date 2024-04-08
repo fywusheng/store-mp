@@ -149,7 +149,7 @@
             Store.dispatch('setUserInfo', res);
 
             if (this.kgUserInfo.storeNo === '') {
-              uni.showToast({ title: '该用户未绑定门店', icon: 'none' });
+              uni.showToast({ title: '该用户非本门店用户,不可代客下单', icon: 'none' });
               return false;
             }
             this.getSessionId();
