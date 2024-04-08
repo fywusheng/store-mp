@@ -52,6 +52,8 @@ export function request({
       extra: {},
       data
     }
+    
+    headers.accessToken = uni.getStorageSync('khUserInfo').accessToken
   }
   // const baseURL = ENV.BASE_API
   
