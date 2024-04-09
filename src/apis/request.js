@@ -39,7 +39,7 @@ export function request({
   }else if(port==2){
 	  baseURL =  ENV.BASE_2
   }else if(port == 3){
-	   baseURL =  ENV.BASE_3
+	  baseURL =  ENV.BASE_3
       body = {
       appId: '19E179E5DC29C05E65B90CDE57A1C7E5',
       version: '1.0.0',
@@ -52,12 +52,9 @@ export function request({
       extra: {},
       data
     }
-    
-    headers.accessToken = uni.getStorageSync('khUserInfo').accessToken
+    headers.accessToken = uni.getStorageSync('khUserInfo')?.accessToken
   }
   // const baseURL = ENV.BASE_API
-  
- 
   const request = {
    
     url: url.indexOf('http') === -1 ? baseURL + url : url,

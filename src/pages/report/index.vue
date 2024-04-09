@@ -12,7 +12,9 @@
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
-							class="icon_s"></image>
+							class="icon_s" v-if="!showClearIcon"></image>
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+							class="icon_s"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 			</view>
@@ -134,6 +136,7 @@
 	export default {
 		data() {
 			return {
+				showClearIcon:false,
 				tjItems:[
 					{
 						value:1,
@@ -251,6 +254,12 @@
 		mounted() {},
 		onLoad(e) {},
 		methods: {
+			clearIcon: function() {
+				this.dateSelect = '';
+				this.queryParam.startTime =''
+				this.queryParam.endTime = ''
+				this.showClearIcon = false;
+			},
 			getYear(){
 				const dayjs = require('dayjs'); // 引入dayjs库
 				// 获取当前年份
@@ -279,7 +288,7 @@
 				this.queryParam.startTime = obj.range.data[0]
 				this.queryParam.endTime = obj.range.data[obj.range.data.length - 1]
 				this.dateSelect = obj.range.data[0] + '~' + obj.range.data[obj.range.data.length - 1]
-				console.log(obj, this.queryParam)
+				this.showClearIcon = true;
 			},
 			changeYear(e){
 				console.log(e)

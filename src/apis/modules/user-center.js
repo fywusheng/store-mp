@@ -96,6 +96,7 @@ export default {
   // 退出登录
   logout: function (args = {}) {
     request({
+	  port:'3',
       url: '/nun/api/login/logout',
       showsLoading: true,
       ...args

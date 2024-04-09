@@ -15,7 +15,9 @@
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
-							class="icon_s"></image>
+							class="icon_s" v-if="!showClearIcon"></image>
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+							class="icon_s"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 				<view class="btn" @click.stop="handSearch">查询</view>
@@ -65,36 +67,7 @@
 	export default {
 		data() {
 			return {
-				// 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ）
-				tabList: [{
-						value: '',
-						text: '全部'
-					},
-					{
-						value: 10,
-						text: '待付款'
-					},
-					{
-						value: 20,
-						text: '待发货'
-					},
-					{
-						value: 30,
-						text: '待收货'
-					},
-					{
-						value: 40,
-						text: '已完成'
-					},
-					{
-						value: 90,
-						text: '已取消'
-					}
-					// {
-					// 	value: 6,
-					// 	text: '退款/售后'
-					// }
-				], //tab
+				showClearIcon:false,
 				status: 'more',
 				loadText: {
 					contentdown: '轻轻上拉',
@@ -121,6 +94,12 @@
 		},
 		onLoad(e) {},
 		methods: {
+			clearIcon: function() {
+				this.dateSelect = '';
+				this.queryParam.startTime =''
+				this.queryParam.endTime = ''
+				this.showClearIcon = false;
+			},
 			/**
 			 * 打开时间
 			 */
@@ -135,7 +114,7 @@
 				this.queryParam.startTime = obj.range.data[0]
 				this.queryParam.endTime = obj.range.data[obj.range.data.length - 1]
 				this.dateSelect = obj.range.data[0] + '~' + obj.range.data[obj.range.data.length - 1]
-				console.log(obj, this.queryParam)
+				this.showClearIcon = true;
 			},
 			/**
 			 * 获取订单列表
