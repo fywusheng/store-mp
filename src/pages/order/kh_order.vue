@@ -150,7 +150,10 @@
 			this.getStoreUserData()
 		},
 		onLoad() {},
-		onShow() {},
+		onShow() {
+			console.log("onshow")
+			uni.removeStorageSync('khUserInfo');
+		},
 		methods: {
 			bindPickerChange(e,list){
 				this.phone = list[e.detail.value].phone
@@ -213,7 +216,7 @@
 										const tempData = _.pick(data, ['orderId', 'orderStatus',
 											'totalQuantity', 'orderType', 'orderAmount',
 											'orderStatusLabel', 'paidAmount', 'storeName',
-											'storeId', 'hzhH5','id'
+											'storeId', 'hzhH5','id','userLoginName'
 										])
 										tempData.itemList = itemList
 										tempData.orderMallIcon = data.storeOrderItems[0].orderMallIcon
@@ -249,6 +252,7 @@
 			},
 			async toPay(order) {
 			  wx.showLoading({ title: '正在获取...', mask: true });
+			  await this.getKhUserInfo(order.userLoginName)
 			  const result = await Axios.post('/payment/sign', {
 			    orderId: order.orderId,
 			    paymentMethodCode: 'nepsp_pay',
@@ -267,7 +271,27 @@
 			    });
 			  }
 			},
+			// 代客登录
+			getKhUserInfo(phone){
+				api.customLogin({
+				  data: {
+				    mobile: phone,
+				    storeNo: uni.getStorageSync('storeNo'),
+				  },
+				  success: (res) => {
+				    this.kgUserInfo = res;
+				    uni.setStorageSync('khUserInfo', res);
+				    Store.dispatch('setUserInfo', res);
+				    this.getSessionId();
+				  },
+				});
+			},
+			async getSessionId() {
+			  const res = await Axios.post(`/user/login`, {});
+			  uni.setStorageSync('sessionId', res.data.sessionId);
+			},
 			async confirm(order) {
+			  await this.getKhUserInfo(order.userLoginName)
 			  const result = await wx.showModal({
 			    title: '',
 			    content: '确定已收货?',
@@ -298,9 +322,8 @@
 			  });
 			},
 			// 申请售后
-			toService(order, item) {
-				console.log(order)
-				console.log(item)
+			async toService(order, item) {
+			  await this.getKhUserInfo(order.userLoginName)
 			  if (order.orderStatus == 20 || item.itemStatus > 1) {
 			    wx.navigateTo({
 			      url: `/sub-pages/me/refund-detail/main?type=1&productId=${item.productId}&skuId=${item.skuId}&orderId=${order.id}`,
