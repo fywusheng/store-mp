@@ -14,7 +14,7 @@
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
 							class="icon_s" v-if="!showClearIcon"></image>
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
-							class="icon_s"  v-if="showClearIcon" @click.stop="clearIcon"></image>
+							class="icon_s delete"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 			</view>
@@ -347,9 +347,10 @@
 								return;
 							}
 							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
-							console.log(fileManagerObj);
+							console.log("3231",fileManagerObj);
 							// 文件存储到本地的路径
 							const filePath = `${wx.env.USER_DATA_PATH}/${new Date().getTime()}.xlsx`
+							console.log("文件路径",filePath)
 							fileManagerObj.writeFile({
 								data: data, // 拿到的arraybuffer数据
 								filePath: filePath,
@@ -358,6 +359,9 @@
 									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
 									console.log("文件路径", filePath)
 									this.viewDoc(filePath)
+								},
+								fail:(err)=>{
+									console.log("rt",err)
 								}
 							})
 						},
@@ -513,20 +517,27 @@
 			},
 			// 打开文件
 			viewDoc(path) {
-				uni.downloadFile({
-				  url: path,
+				uni.openDocument({
+				  filePath: filePath,
+				  showMenu: true,
 				  success: function (res) {
-					  console.log("res",res)
-				    var filePath = res.tempFilePath;
-				    uni.openDocument({
-				      filePath: filePath,
-				      showMenu: true,
-				      success: function (res) {
-				        console.log('打开文档成功');
-				      }
-				    });
+				    console.log('打开文档成功');
 				  }
 				});
+				// uni.downloadFile({
+				//   url: path,
+				//   success: function (res) {
+				// 	  console.log("res",res)
+				//     var filePath = res.tempFilePath;
+				//     // uni.openDocument({
+				//     //   filePath: filePath,
+				//     //   showMenu: true,
+				//     //   success: function (res) {
+				//     //     console.log('打开文档成功');
+				//     //   }
+				//     // });
+				//   }
+				// });
 			},
 
 		},
@@ -625,7 +636,12 @@
 						width: 20rpx;
 						position: absolute;
 						top: 19rpx;
-						right: 18rpx
+						right: 18rpx;
+						z-index: 333;
+					}
+					.delete{
+						width: 30rpx;
+						top:15rpx;
 					}
 					.date-select{
 						width: 240rpx;

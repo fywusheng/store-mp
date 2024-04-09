@@ -17,7 +17,7 @@
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
 							class="icon_s" v-if="!showClearIcon"></image>
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
-							class="icon_s"  v-if="showClearIcon" @click.stop="clearIcon"></image>
+							class="icon_s delete"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 				<view class="btn" @click.stop="handSearch">查询</view>
@@ -270,7 +270,12 @@
 							width: 20rpx;
 							position: absolute;
 							top: 19rpx;
-							right: 18rpx
+							right: 18rpx;
+							z-index: 333;
+						}
+						.delete{
+							width: 30rpx;
+							top:15rpx;
 						}
 					}
 				}

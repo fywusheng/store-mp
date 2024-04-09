@@ -189,8 +189,7 @@ export default {
 	 */
 	getIndexCountByStore: function(args = {}) {
 		request({
-			port: '2',
-			url: '/nepsp-api/offlineshopping/orderIndex/count/getIndexCountByStore',
+			url: '/srm/sh/stores/getIndexCountByStore',
 			method: 'post',
 			...args
 		})
