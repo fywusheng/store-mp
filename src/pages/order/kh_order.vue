@@ -86,6 +86,7 @@
 <script>
 	import api from '@/apis/index.js';
 	import tabs from '@/components/tab/v-tabs-center.vue';
+import { promises } from 'fs';
 	export default {
 		components: {
 			tabs
@@ -151,8 +152,6 @@
 		},
 		onLoad() {},
 		onShow() {
-			console.log("onshow")
-			uni.removeStorageSync('khUserInfo');
 		},
 		methods: {
 			bindPickerChange(e,list){
@@ -273,17 +272,21 @@
 			},
 			// 代客登录
 			getKhUserInfo(phone){
-				api.customLogin({
-				  data: {
-				    mobile: phone,
-				    storeNo: uni.getStorageSync('storeNo'),
-				  },
-				  success: (res) => {
-				    this.kgUserInfo = res;
-				    uni.setStorageSync('khUserInfo', res);
-				    Store.dispatch('setUserInfo', res);
-				    this.getSessionId();
-				  },
+				uni.removeStorageSync('khUserInfo');
+				return new Promise((resolve, reject) => {
+					api.customLogin({
+					  data: {
+					    mobile: phone,
+					    storeNo: uni.getStorageSync('storeNo'),
+					  },
+					  success: (res) => {
+					    this.kgUserInfo = res;
+					    uni.setStorageSync('khUserInfo', res);
+					    Store.dispatch('setUserInfo', res);
+					    this.getSessionId();
+						resolve(res)
+					  },
+					});
 				});
 			},
 			async getSessionId() {
