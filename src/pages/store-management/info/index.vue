@@ -69,14 +69,15 @@
 				</view>
 			</view>
 		</view>
-		<view :class="storeInfo.reviewStatus!='0'? 'btn dis':'btn'" @click="renewalFunction(storeInfo.reviewStatus)">申请合作续签</view>
+		<view :class="storeInfo.renewalStatus!='0'? 'btn dis':'btn'" @click="renewalFunction(storeInfo.renewalStatus)" v-if="storeInfo.reviewStatus!=1">申请合作续签</view>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="知道了" title="申请提交成功"content="平台会尽快与您联系" ></uni-popup-dialog>
 		</uni-popup>
 	</view>
 	
 </template>
-<!-- 0 1 2  待续签，已续签，未续签 -->
+<!-- renewalStatus 0 1 2  待续签，已续签，未续签 -->
+<!-- reviewStatus 审核状态 0否1是 -->
 <script>
 	import api from '@/apis/index.js';
 	const dayjs = require('dayjs');
