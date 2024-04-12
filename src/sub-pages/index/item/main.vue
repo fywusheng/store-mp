@@ -141,7 +141,7 @@
               </view>
               <view v-if="product.couponAmount" class="item_p">
                 <view class="g">优惠券</view>
-                <view class="g_n">￥{{ product.couponAmount ? product.discountAmount : 0 }}</view>
+                <view class="g_n">￥{{ product.couponAmount ? product.couponAmount : 0 }}</view>
               </view>
             </view>
           </view>
@@ -176,7 +176,7 @@
               </view>
               <view v-if="product.couponAmount" class="item_p">
                 <view class="g">优惠券</view>
-                <view class="g_n">￥{{ product.couponAmount ? product.discountAmount : 0 }}</view>
+                <view class="g_n">￥{{ product.couponAmount ? product.couponAmount : 0 }}</view>
               </view>
             </view>
           </view>
@@ -187,7 +187,7 @@
             <text class="m-r-24">发货地</text>
             <text class="m-r-24">
               <!-- {{ supplierDTO.actualCityName }} -->
-			  {{product.deliveryRegion}}
+              {{ product.deliveryRegion }}
               <!-- {{ product.deliveryRegion }} 预计
               <template v-if="product.deliveryMinDays < product.deliveryMaxDays">
                 {{ product.deliveryMinDays }}-{{ product.deliveryMaxDays }}

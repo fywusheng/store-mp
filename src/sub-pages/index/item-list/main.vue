@@ -603,16 +603,12 @@
                   <img class="sale-out" src="http://192.168.1.187:10088/static/home/empt.png" />
                 </div>
               </div>
-              <!-- <div class="brand-name" v-if="item.brandName">
-                {{ item.brandName }}
-              </div> -->
-
               <div class="item-name">{{ item.name }}</div>
               <!-- 优惠券 -->
-              <!-- <view class="coupon">
+              <view class="coupon">
                 <view class="label">券</view>
                 <view class="coupon-price">¥10</view>
-              </view> -->
+              </view>
 
               <div class="item-price">
                 {{ member ? '会员到手价' : '到手价' }}:&yen;{{
@@ -650,6 +646,11 @@
                     member ? item.memberPrice : item.finalPrice
                   }}
                 </div>
+                <!-- 优惠券 -->
+                <view v-if="item.denomination" class="coupon">
+                  <view class="label">券</view>
+                  <view class="coupon-price">¥{{ item.denomination }}</view>
+                </view>
                 <div class="item-price">
                   <view class="jf" v-if="item.isCreditPoints == 1">
                     积分抵扣￥{{ item.pointDiscountPoint }}
