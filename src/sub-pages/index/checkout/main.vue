@@ -206,7 +206,7 @@
         <div class="title">运费</div>
         <div class="price-value red">+¥{{ formateNum(settlement.totalFreightAmount) }}</div>
       </li>
-      <li class="price">
+      <li v-if="member" class="price">
         <div class="title">会员优惠</div>
         <div class="price-value red">-¥{{ formateNum(settlement.totalDiscountAmount) }}</div>
       </li>
@@ -249,6 +249,7 @@
 
 <script>
   // import Image from '../components/image.vue';
+  import { mapState } from 'vuex';
   export default {
     name: 'CHECKOUT',
     data() {
@@ -258,7 +259,6 @@
         loading: true,
         isInvoice: false,
         userPoint: false,
-        userInfo: null,
         // canuseList: [],
         // notuseList: [],
         usePoint: false,
@@ -267,6 +267,13 @@
     },
 
     computed: {
+      ...mapState({
+        userInfo: (state) => state.user.userInfo,
+      }),
+      // 是否会员
+      member() {
+        return this.userInfo && this.userInfo.memberStatus === '1';
+      },
       addressInfo() {
         const settlement = this.settlement;
         return (
