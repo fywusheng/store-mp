@@ -69,10 +69,15 @@
 				</view>
 			</view>
 		</view>
-		<view class="btn" @click="renewalFunction" v-if="storeInfo.reviewStatus==2">申请合作续签</view>
+		<view :class="storeInfo.renewalStatus!='0'? 'btn dis':'btn'" @click="renewalFunction(storeInfo.renewalStatus)" v-if="storeInfo.reviewStatus!=1">申请合作续签</view>
+		<uni-popup ref="alertDialog" type="dialog">
+			<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="知道了" title="申请提交成功"content="平台会尽快与您联系" ></uni-popup-dialog>
+		</uni-popup>
 	</view>
+	
 </template>
-
+<!-- renewalStatus 0 1 2  待续签，已续签，未续签 -->
+<!-- reviewStatus 审核状态 0否1是 -->
 <script>
 	import api from '@/apis/index.js';
 	const dayjs = require('dayjs');
@@ -126,7 +131,8 @@
 				})
 			},
 			// 门店续签
-			renewalFunction() {
+			renewalFunction(status) {
+				if(status!=0) return;
 				api.saveStores({
 					data: {
 						id: uni.getStorageSync('storeId'),
@@ -136,7 +142,7 @@
 						this.$refs.alertDialog.open()
 					}
 				})
-			}
+			},
 		},
 		onShow() {
 
@@ -264,6 +270,9 @@
 			font-size: 32rpx;
 			color: #FFFFFF;
 			margin-top: 36rpx;
+		}
+		.dis{
+			background: #ccc;
 		}
 	}
 </style>

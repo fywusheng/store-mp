@@ -149,6 +149,7 @@
 		},
 		mounted() {
 			this.getIndexCountByStore()
+			// this.getKhUserInfo()
 			// this.getActivityList()
 		},
 		onLoad(option) {
@@ -268,7 +269,26 @@
 						this.functionList = filteredArr
 				    }
 				})
-			}
+			},
+			// 代客登录
+			getKhUserInfo(){
+				api.customLogin({
+				  data: {
+				    mobile: this.userInfo.accountPhone,
+				    storeNo: uni.getStorageSync('storeNo'),
+				  },
+				  success: (res) => {
+				    this.kgUserInfo = res;
+				    uni.setStorageSync('khUserInfo', res);
+				    Store.dispatch('setUserInfo', res);
+				    this.getSessionId();
+				  },
+				});
+			},
+			async getSessionId() {
+			  const res = await Axios.post(`/user/login`, {});
+			  uni.setStorageSync('sessionId', res.data.sessionId);
+			},
 		},
 		onShow() {
 

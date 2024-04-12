@@ -61,14 +61,18 @@
 			  this.$uni.showConfirm({
 			    content: '是否退出登录',
 			    confirm: () => {
-			      api.logout({
-			        success: () => {
-			          Store.dispatch('logout')
-			          uni.reLaunch({
-			            url: '/pages/login/index'
-			          })
-			        }
-			      })
+					Store.dispatch('logout')
+					uni.reLaunch({
+					  url: '/pages/login/index'
+					})
+			      // api.logout({
+			      //   success: () => {
+			      //     Store.dispatch('logout')
+			      //     uni.reLaunch({
+			      //       url: '/pages/login/index'
+			      //     })
+			      //   }
+			      // })
 			    }
 			  })
 			},

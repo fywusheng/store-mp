@@ -23,7 +23,9 @@
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
-							class="icon_s"></image>
+							class="icon_s" v-if="!showClearIcon"></image>
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+							class="icon_s delete"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 				<view class="btn" @click="handSearch">查询</view>
@@ -70,6 +72,7 @@
 	export default {
 		data() {
 			return {
+				showClearIcon:false,
 				// 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ）
 				tabList: [{
 						value: '',
@@ -94,11 +97,11 @@
 					{
 						value: 90,
 						text: '已取消'
+					},
+					{
+						value: 100,
+						text: '退款/售后'
 					}
-					// {
-					// 	value: 6,
-					// 	text: '退款/售后'
-					// }
 				], //tab
 				status: 'more',
 				loadText: {
@@ -126,22 +129,28 @@
 		onLoad(e) {
 		},
 		methods: {
+			clearIcon: function() {
+				this.dateSelect = '';
+				this.queryParam.startTime =''
+				this.queryParam.endTime = ''
+				this.showClearIcon = false;
+			},
 			/**
 			    * 打开时间
 			    */
-			   selectDate() {
-			    this.$refs.calendar.open()
-			   },
-			   confirmDate(obj){
-			    if(obj.range.data.length == 0){
-			     this.$uni.showToast('请选择时间区间范围');
-			     return;
-			    }
-			    this.queryParam.startTime = obj.range.data[0]
-			    this.queryParam.endTime = obj.range.data[obj.range.data.length-1]
-			    this.dateSelect =  obj.range.data[0]+'~' + obj.range.data[obj.range.data.length-1]
-			    console.log(obj,this.queryParam)
-			   },
+		   selectDate() {
+			this.$refs.calendar.open()
+		   },
+		   confirmDate(obj){
+			if(obj.range.data.length == 0){
+			 this.$uni.showToast('请选择时间区间范围');
+			 return;
+			}
+			this.queryParam.startTime = obj.range.data[0]
+			this.queryParam.endTime = obj.range.data[obj.range.data.length-1]
+			this.dateSelect =  obj.range.data[0]+'~' + obj.range.data[obj.range.data.length-1]
+			this.showClearIcon = true;
+		   },
 			/**
 			 * 获取订单列表
 			 */
@@ -317,7 +326,12 @@
 							width: 20rpx;
 							position: absolute;
 							top: 19rpx;
-							right: 18rpx
+							right: 18rpx;
+							z-index: 333;
+						}
+						.delete{
+							width: 30rpx;
+							top:15rpx;
 						}
 					}
 				}

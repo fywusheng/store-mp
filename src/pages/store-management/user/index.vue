@@ -22,7 +22,9 @@
 						<image mode="widthFix" src="/static/img/date-icon-h.png" class="icon"></image>
 						<input placeholder="开始时间-结束时间" v-model="dateSelect" class="input_select" :disabled="true" />
 						<image mode="widthFix" src="http://192.168.1.187:10088/static/store-mp/select_icon.png"
-							class="icon_s"></image>
+							class="icon_s" v-if="!showClearIcon"></image>
+						<image mode="widthFix" src="http://192.168.1.187:10088/static/supermarket/icon-index.png"
+							class="icon_s delete"  v-if="showClearIcon" @click.stop="clearIcon"></image>
 					</view>
 				</view>
 				<view class="btn" @click.stop="handlerSearch">查询</view>
@@ -78,8 +80,14 @@
 	export default {
 		data() {
 			return {
+				showClearIcon:false,
 				list: [], //用户列表
-				userType: [{
+				userType: [
+					{
+						value: '',
+						text: '全部'
+					},
+					{
 						value: 0,
 						text: '用户'
 					},
@@ -120,6 +128,12 @@
 
 		},
 		methods: {
+			clearIcon: function() {
+				this.dateSelect = '';
+				this.search.crteStartTime =''
+				this.search.crteEndTime = ''
+				this.showClearIcon = false;
+			},
 			/**
 			 * 打开时间
 			 */
@@ -134,7 +148,7 @@
 				this.search.crteStartTime = obj.range.data[0]
 				this.search.crteEndTime = obj.range.data[obj.range.data.length-1]
 				this.dateSelect =  obj.range.data[0]+'~' + obj.range.data[obj.range.data.length-1]
-				console.log(obj,this.search)
+				this.showClearIcon = true;
 			},
 			/**
 			 * 获取用户分页
@@ -303,7 +317,12 @@
 							width: 20rpx;
 							position: absolute;
 							top: 18rpx;
-							right: 18rpx
+							right: 18rpx;
+							z-index: 333;
+						}
+						.delete{
+							width: 30rpx;
+							top:15rpx;
 						}
 					}
 				}
