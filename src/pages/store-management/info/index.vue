@@ -27,15 +27,15 @@
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">售卖区域</view>
-					<view class="desc">{{storeInfo.salesArea}}</view>
+					<view class="desc">{{storeInfo.salesAreaStr}}</view>
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">经营范围</view>
-					<view class="desc">{{storeInfo.businessScope}}</view>
+					<view class="desc">{{storeInfo.businessScopeStr}}</view>
 				</view>
 				<view class="row flex_r_h">
 					<view class="label">经营品牌</view>
-					<view class="desc">{{storeInfo.operatingBrand}}</view>
+					<view class="desc">{{storeInfo.operatingBrandStr}}</view>
 				</view>
 			</view>
 		</view>
