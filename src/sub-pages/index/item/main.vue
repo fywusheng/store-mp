@@ -132,9 +132,7 @@
               </view>
               <view class="item_p">
                 <view class="g">积分抵扣</view>
-                <view class="g_n">
-                  ￥{{ member ? product.pointDiscountPoint : product.registerPoint }}
-                </view>
+                <view class="g_n">￥{{ pointDiscountPoint === '' ? 0 : pointDiscountPoint }}</view>
               </view>
               <view v-if="product.couponAmount" class="item_d">
                 <view class="d">-</view>
@@ -418,6 +416,10 @@
       // 是否会员
       member() {
         return this.userInfo && this.userInfo.memberStatus === '1';
+      },
+      // 积分抵扣金额
+      pointDiscountPoint() {
+        return this.member ? this.product.pointDiscountPoint : this.product.registerPoint;
       },
     },
     methods: {
