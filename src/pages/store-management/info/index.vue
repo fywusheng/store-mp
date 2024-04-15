@@ -132,7 +132,7 @@
 			},
 			// 门店续签
 			renewalFunction(status) {
-				if(status!=0) return;
+				// if(status!=0) return;
 				api.saveStores({
 					data: {
 						id: uni.getStorageSync('storeId'),

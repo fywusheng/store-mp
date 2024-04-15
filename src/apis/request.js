@@ -71,7 +71,6 @@ export function request({
   }
   // const baseURL = ENV.BASE_API
   const request = {
-   
     url: url.indexOf('http') === -1 ? baseURL + url : url,
     method: method,
     header: { ...headers, ...header },
