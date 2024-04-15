@@ -82,11 +82,11 @@
 			</view> -->
 			<!-- 代客下单 -->
 			<view class="dkxd_main flex_r_h">
-				 <navigator url="/pages/store-management/dkxd/index" class="btn_item left flex_r_h" v-if="functionList.length!=0">
+				 <view  class="btn_item left flex_r_h" v-if="functionList.length!=0" @click="goDkOrder()">
 					<image src="http://192.168.1.187:10088/static/store-mp/dkbg.png" mode="widthFix" class="bg"/>
 					<view>代客下单</view>
 					<image src="http://192.168.1.187:10088/static/store-mp/dkxd_icon.png" mode="widthFix" class="icon_img"/>
-				</navigator>
+				</view>
 				<navigator :url="'/pages/function_list/index?id='+userId" class="btn_item right flex_r_h">
 					<image src="http://192.168.1.187:10088/static/store-mp/mdbg.png" mode="widthFix" class="bg"/>
 					<view>门店管理</view>
@@ -145,7 +145,6 @@
 			};
 		},
 		created() {
-
 		},
 		mounted() {
 			this.getIndexCountByStore()
@@ -158,6 +157,14 @@
 			this.role =  uni.getStorageSync('userRole')
 		},
 		methods: {
+			// 代客下单
+			goDkOrder(){
+				if(this.storeInfo.storeSatus==1){
+					uni.navigateTo({
+						url:'/pages/store-management/dkxd/index'
+					})
+				}
+			},
 			// 获取统计数据
 			getIndexCountByStore(){
 				api.getIndexCountByStore({

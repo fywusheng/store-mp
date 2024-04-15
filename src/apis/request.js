@@ -53,6 +53,21 @@ export function request({
       data
     }
     headers.accessToken = uni.getStorageSync('khUserInfo')?.accessToken
+  }else if(port == 4){
+	  baseURL =  ENV.BASE_3
+      body = {
+		appId: '19E179E5DC29C05E65B90CDE57A1C7E5',
+		version: '1.0.0',
+		encType: 'plain',
+		transType: 'get.authcode.data',
+		encData: 'sd',
+		signType: 'plain',
+		signData: 'sdfasfdasf',
+		timestamp: 201802231423897,
+		extra: {},
+		data
+    }
+	headers.accessToken = uni.getStorageSync('token')
   }
   // const baseURL = ENV.BASE_API
   const request = {
