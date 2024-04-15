@@ -376,12 +376,13 @@
 						}
 
 						.status {
-							width: 104rpx;
+							// width: 104rpx;
 							height: 50rpx;
 							line-height: 50rpx;
 							text-align: center;
 							border-radius: 8rpx;
-							font-size: 24rpx;
+							font-size: 22rpx;
+							padding: 0 10rpx;
 
 						}
 
