@@ -69,7 +69,7 @@
 				</view>
 			</view>
 		</view>
-		<view :class="storeInfo.renewalStatus!='0'? 'btn dis':'btn'" @click="renewalFunction(storeInfo.renewalStatus)" v-if="storeInfo.reviewStatus!=1">申请合作续签</view>
+		<view :class="storeInfo.renewalStatus!='0'? 'btn dis':'btn'" @click="renewalFunction(storeInfo.renewalStatus)" v-if="storeInfo.storeSatus!=1">申请合作续签</view>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog :type="msgType" cancelText="关闭" confirmText="知道了" title="申请提交成功"content="平台会尽快与您联系" ></uni-popup-dialog>
 		</uni-popup>
