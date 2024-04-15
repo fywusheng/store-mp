@@ -64,13 +64,13 @@
 				<view class="go flex_r_h">立即前往<image src="http://192.168.1.187:10088/static/store-mp/qw-icon.png" mode="widthFix" class="icon"></image></view>
 				<image src="http://192.168.1.187:10088/static/store-mp/xttx.png" mode="widthFix" class="img"></image>
 			</navigator> -->
-			<navigator :url="item.path" 
-			 :class="'item' +' ' +'item_'+item.id"
-			 v-for="(item,index) in functionList" :key="index">
+				<!-- :url="item.path" -->
+			<view :class="'item' +' ' +'item_'+item.id"
+			 v-for="(item,index) in functionList" :key="index" @click="goToPage(item.path,item.id)">
 				<view class="title">{{item.pemissonName}}</view>
 				<view class="go flex_r_h">立即前往<image :src="staticUrl+'/store-mp/qw-icon.png'" mode="widthFix" class="icon"></image></view>
 				<image :src="staticUrl+item.iconUrl" mode="widthFix" class="img"></image>
-			</navigator>
+			</view>
 		</view>
 	</view>
 </template>
@@ -100,6 +100,24 @@
 		onShow() {
 		},
 		methods: {
+			// 
+			goToPage(path,id){
+				if(id!=8){
+					if(this.storeInfo.storeSatus==1){
+						uni.navigateTo({
+							url:path
+						})
+					}
+				}else{
+					uni.navigateTo({
+						url:path
+					})
+				}
+				// uni.navigateTo({
+				// 	url:path
+				// })
+				
+			},
 			// 打电话
 			makeCall(){
 				uni.makePhoneCall({

@@ -28,7 +28,7 @@
 								class="icon"></image>
 							<view>{{item.storeName}}</view>
 						</view>
-						<view class="status" v-if="item.orderStatus== 40">{{item.orderStatusLabel}}</view>
+						<view class="status wc" v-if="item.orderStatus== 40">{{item.orderStatusLabel}}</view>
 						<view class="status qx" v-else>{{item.orderStatusLabel}} </view>
 
 					</view>
@@ -517,12 +517,13 @@ import { promises } from 'fs';
 						}
 
 						.status {
-							width: 104rpx;
+							// width: 104rpx;
 							height: 50rpx;
 							line-height: 50rpx;
 							text-align: center;
 							border-radius: 8rpx;
 							font-size: 24rpx;
+							padding: 0 16rpx;
 
 						}
 

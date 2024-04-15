@@ -143,7 +143,7 @@ export default {
   // 获取消息列表
   getMessageInfo: function (args = {}) {
     request({
-	  port:'3',
+	  port:'4',
       url: '/ngcmn/wbst/msgtype/list',
       ...args
     })
@@ -151,7 +151,7 @@ export default {
   // 获取消息列表
   getMessageList: function (args = {}) {
     request({
-	  port:'3',
+	  port:'4',
       url: '/ngcmn/wbst/msg/record/list',
       ...args
     })
