@@ -517,27 +517,27 @@
 			},
 			// 打开文件
 			viewDoc(path) {
-				uni.openDocument({
-				  filePath: filePath,
-				  showMenu: true,
-				  success: function (res) {
-				    console.log('打开文档成功');
-				  }
-				});
-				// uni.downloadFile({
-				//   url: path,
+				// uni.openDocument({
+				//   filePath: path,
+				//   showMenu: true,
 				//   success: function (res) {
-				// 	  console.log("res",res)
-				//     var filePath = res.tempFilePath;
-				//     // uni.openDocument({
-				//     //   filePath: filePath,
-				//     //   showMenu: true,
-				//     //   success: function (res) {
-				//     //     console.log('打开文档成功');
-				//     //   }
-				//     // });
+				//     console.log('打开文档成功');
 				//   }
 				// });
+				uni.downloadFile({
+				  url: path,
+				  success: function (res) {
+					  console.log("res",res)
+				    var filePath = res.tempFilePath;
+				    // uni.openDocument({
+				    //   filePath: filePath,
+				    //   showMenu: true,
+				    //   success: function (res) {
+				    //     console.log('打开文档成功');
+				    //   }
+				    // });
+				  }
+				});
 			},
 
 		},
