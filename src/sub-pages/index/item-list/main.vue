@@ -828,6 +828,8 @@
           pageSize: this.pageSize,
           pageNum: this.pageNo++,
           isCreditPoints: 0,
+          storeBrandIds: uni.getStorageSync('userInfo').shStoreDTO.operatingBrand,
+          businessScopeList: uni.getStorageSync('userInfo').shStoreDTO.businessScope,
         };
         if (this.sortType) {
           params.sortType = this.sortType;
