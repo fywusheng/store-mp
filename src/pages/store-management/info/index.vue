@@ -252,6 +252,8 @@
 					.desc {
 						font-size: 28rpx;
 						color: #333333;
+						flex: 1;
+						padding-left:15rpx;
 					}
 
 					.red {
