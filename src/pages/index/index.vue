@@ -158,11 +158,11 @@
   export default {
     data() {
       return {
-        tabActive: 0,
+        tabActive: '',
         //tab
         tabList: [
           {
-            id: 0,
+            id: '',
             lable: '全部',
           },
           {
