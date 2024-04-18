@@ -232,6 +232,8 @@
       // tab切换选择筛选天数
       handleTab(day) {
         this.tabActive = day;
+		this.search.queryStartTime = '';
+		this.search.queryEndTime = '';
         this.getIndexCountByStore();
       },
       //弹出日历
