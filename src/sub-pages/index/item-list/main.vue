@@ -500,74 +500,39 @@
   <div class="app">
     <div class="search-header">
       <img class="icon" src="http://192.168.1.187:10088/static/images/common/icon-search.png" />
-      <input
-        confirm-type="search"
-        @confirm="search"
-        :placeholder="key || '输入关键字搜索商品...'"
-        v-model="key"
-      />
-      <img
-        class="btn-clear"
-        src="http://192.168.1.187:10088/static/images/item-list/clear.png"
-        @click="clear"
-      />
+      <input confirm-type="search" @confirm="search" :placeholder="key || '输入关键字搜索商品...'" v-model="key" />
+      <img class="btn-clear" src="http://192.168.1.187:10088/static/images/item-list/clear.png" @click="clear" />
     </div>
     <ul class="sort-list">
       <li class="sort" :class="{ active: !sortType }" @click="changeSortType('')">综合</li>
-      <li
-        class="sort"
-        :class="{ active: [11, 12].includes(sortType) }"
-        @click="changeSortType(sortType === 11 ? 12 : 11)"
-      >
+      <li class="sort" :class="{ active: [11, 12].includes(sortType) }" @click="changeSortType(sortType === 11 ? 12 : 11)">
         时间
         <div class="img-wrap" v-if="sortType !== 11 && sortType !== 12">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png" />
         </div>
         <div class="img-wrap" v-if="sortType === 11">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png" />
         </div>
         <div class="img-wrap" v-if="sortType === 12">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png" />
         </div>
       </li>
-      <li
-        class="sort"
-        :class="{ active: [21, 22].includes(sortType) }"
-        @click="changeSortType(sortType === 21 ? 22 : 21)"
-      >
+      <li class="sort" :class="{ active: [21, 22].includes(sortType) }" @click="changeSortType(sortType === 21 ? 22 : 21)">
         价格
         <div class="img-wrap" v-if="sortType !== 21 && sortType !== 22">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png" />
         </div>
         <div class="img-wrap" v-if="sortType === 21">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_h@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_n@2x.png" />
         </div>
         <div class="img-wrap" v-if="sortType === 22">
           <img class="image" src="http://192.168.1.187:10088/static/images/item-list/up_n@2x.png" />
-          <img
-            class="image"
-            src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png"
-          />
+          <img class="image" src="http://192.168.1.187:10088/static/images/item-list/down_h@2x.png" />
         </div>
       </li>
       <li class="sort" @click="showFilter">
@@ -575,16 +540,8 @@
         <img class="filter" src="http://192.168.1.187:10088/static/images/item-list/filter.png" />
       </li>
       <li class="sort" @click="changeListType">
-        <img
-          class="filter"
-          v-if="listType === 0"
-          src="http://192.168.1.187:10088/static/images/common/card-type.png"
-        />
-        <img
-          class="filter"
-          v-if="listType === 1"
-          src="http://192.168.1.187:10088/static/images/common/list-type.png"
-        />
+        <img class="filter" v-if="listType === 0" src="http://192.168.1.187:10088/static/images/common/card-type.png" />
+        <img class="filter" v-if="listType === 1" src="http://192.168.1.187:10088/static/images/common/list-type.png" />
       </li>
     </ul>
 
@@ -592,12 +549,7 @@
       <scroll-view scroll-y class="item-list-wrap" :lower-threshold="400">
         <ul class="item-list">
           <template v-if="listType === 0">
-            <li
-              class="item"
-              @click="goItem(item)"
-              v-for="(item, subIndex) in itemList"
-              :key="subIndex"
-            >
+            <li class="item" @click="goItem(item)" v-for="(item, subIndex) in itemList" :key="subIndex">
               <div class="item-logo" :style="{ backgroundImage: 'url(' + item.proPictDir + ')' }">
                 <div class="sale-out-wrap" v-if="item.soldOut === 0">
                   <img class="sale-out" src="http://192.168.1.187:10088/static/home/empt.png" />
@@ -610,27 +562,16 @@
                 <view class="coupon-price">¥10</view>
               </view>
 
+              <div class="item-price">{{ member ? '会员到手价' : '到手价' }}:&yen;{{ member ? item.memberPrice : item.finalPrice }}</div>
               <div class="item-price">
-                {{ member ? '会员到手价' : '到手价' }}:&yen;{{
-                  member ? item.memberPrice : item.finalPrice
-                }}
-              </div>
-              <div class="item-price">
-                <view class="jf" v-if="item.isCreditPoints == 1">
-                  积分抵扣￥{{ item.pointDiscountPoint }}
-                </view>
+                <view class="jf" v-if="item.isCreditPoints == 1">积分抵扣￥{{ item.pointDiscountPoint }}</view>
                 <view v-else class="_line_height"></view>
                 <!-- &yen;{{item.costPriceStr}} -->
               </div>
             </li>
           </template>
           <template v-if="listType === 1">
-            <li
-              class="item list"
-              @click="goItem(item)"
-              v-for="(item, subIndex) in itemList"
-              :key="subIndex"
-            >
+            <li class="item list" @click="goItem(item)" v-for="(item, subIndex) in itemList" :key="subIndex">
               <div class="item-logo" :style="{ backgroundImage: 'url(' + item.proPictDir + ')' }">
                 <div class="sale-out-wrap" v-if="item.soldOut === 0">
                   <img class="sale-out" src="http://192.168.1.187:10088/static/home/empt.png" />
@@ -641,20 +582,14 @@
                   {{ item.brandName }}
                 </div>
                 <div class="item-name">{{ item.name }}</div>
-                <div class="item-price">
-                  {{ member ? '会员到手价' : '到手价' }}:&yen;{{
-                    member ? item.memberPrice : item.finalPrice
-                  }}
-                </div>
+                <div class="item-price">{{ member ? '会员到手价' : '到手价' }}:&yen;{{ member ? item.memberPrice : item.finalPrice }}</div>
                 <!-- 优惠券 -->
                 <view v-if="item.denomination" class="coupon">
                   <view class="label">券</view>
                   <view class="coupon-price">¥{{ item.denomination }}</view>
                 </view>
                 <div class="item-price">
-                  <view class="jf" v-if="item.isCreditPoints == 1">
-                    积分抵扣￥{{ item.pointDiscountPoint }}
-                  </view>
+                  <view class="jf" v-if="item.isCreditPoints == 1">积分抵扣￥{{ item.pointDiscountPoint }}</view>
                   <view v-else class="_line_height"></view>
                   <!-- &yen;{{item.costPriceStr}} -->
                 </div>
@@ -830,6 +765,9 @@
           isCreditPoints: 0,
           storeBrandIds: uni.getStorageSync('userInfo').shStoreDTO.operatingBrand,
           businessScopeList: uni.getStorageSync('userInfo').shStoreDTO.businessScope,
+          // businessScopeList: JSON.parse(uni.getStorageSync('userInfo').shStoreDTO.businessScope)
+          //   .flat()
+          //   .join(','),
         };
         if (this.sortType) {
           params.sortType = this.sortType;
@@ -1034,6 +972,8 @@
           pageSize: this.pageSize,
           pageNum: this.pageNo++,
           isCreditPoints: 0,
+          storeBrandIds: uni.getStorageSync('userInfo').shStoreDTO.operatingBrand,
+          businessScopeList: uni.getStorageSync('userInfo').shStoreDTO.businessScope,
         };
         if (this.sortType) {
           params.sortType = this.sortType;

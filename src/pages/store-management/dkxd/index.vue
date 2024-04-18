@@ -3,11 +3,7 @@
 <template>
   <view class="index_content">
     <!-- 代客下单-客户关联 -->
-    <image
-      src="http://192.168.1.187:10088/static/store-mp/index_bg.png"
-      mode="widthFix"
-      class="bg_img"
-    />
+    <image src="http://192.168.1.187:10088/static/store-mp/index_bg.png" mode="widthFix" class="bg_img" />
     <view class="main">
       <view class="top">
         <view class="info flex_r_h">
@@ -15,12 +11,7 @@
           <view class="shp_tag">{{ storeInfo.storeSatus == 1 ? '合作中' : '已到期' }}</view>
           <view class="shp_date">{{ storeInfo.periodEndValidity || '' }}到期</view>
         </view>
-        <image
-          src="http://192.168.1.187:10088/static/store-mp/set-icon.png"
-          mode="widthFix"
-          class="set_img"
-          @click="setAccout"
-        />
+        <image src="http://192.168.1.187:10088/static/store-mp/set-icon.png" mode="widthFix" class="set_img" @click="setAccout" />
       </view>
       <view class="dl_info flex_r_h">
         <view class="info flex_r_h">
@@ -28,19 +19,10 @@
           <view class="h-icon" v-if="role == 2">|</view>
           <view class="">店长：{{ storeInfo.storeManagerName || '' }}</view>
         </view>
-        <image
-          src="http://192.168.1.187:10088/static/store-mp/call-icon.png"
-          mode="widthFix"
-          class="set_img"
-          @click="makeCall"
-        />
+        <image src="http://192.168.1.187:10088/static/store-mp/call-icon.png" mode="widthFix" class="set_img" @click="makeCall" />
       </view>
       <view class="xs_count_content">
-        <image
-          src="http://192.168.1.187:10088/static/store-mp/dk_cbg.png"
-          mode="widthFix"
-          class="xs_bg_img"
-        />
+        <image src="http://192.168.1.187:10088/static/store-mp/dk_cbg.png" mode="widthFix" class="xs_bg_img" />
         <view class="content">
           <view class="input_content flex_r_h">
             <input placeholder="请输入客户手机号" placeholder-class="placeh" v-model="mobile" />
@@ -50,26 +32,14 @@
       </view>
       <!-- 门店客户订单管理-->
       <navigator url="/pages/order/kh_order" class="md_main flex_r_h">
-        <image
-          src="http://192.168.1.187:10088/static/store-mp/mddd_icon.png"
-          mode="widthFix"
-          class="icon_img"
-        />
+        <image src="http://192.168.1.187:10088/static/store-mp/mddd_icon.png" mode="widthFix" class="icon_img" />
         <view>门店客户订单管理</view>
       </navigator>
     </view>
     <view class="footer">门店支持电话：{{ storeInfo.supportPhone }}</view>
     <!-- 门店客户信息展示 -->
     <uni-popup ref="alertDialog" type="dialog">
-      <uni-popup-dialog
-        :type="msgType"
-        cancelText="取消下单"
-        confirmText="代客下单"
-        title=" "
-        content=" "
-        @confirm="dkOrder"
-        @close="dialogClose"
-      >
+      <uni-popup-dialog :type="msgType" cancelText="取消下单" confirmText="代客下单" title=" " content=" " @confirm="dkOrder" @close="dialogClose">
         <view class="row slot-content">
           <view class="col flex_r_h">
             <view class="left">姓名:</view>
@@ -253,7 +223,7 @@
         .input_content {
           width: 622rpx;
           height: 96rpx;
-          line-height: 96rpx;
+          // line-height: 96rpx;
           background: rgba(255, 255, 255, 0.23);
           border-radius: 48rpx;
           border: 2rpx solid #ff5500;
@@ -262,6 +232,7 @@
             font-size: 28rpx;
             padding: 10rpx 32rpx;
             flex: 1;
+            height: 100%;
           }
           .placeh {
             color: #fff;

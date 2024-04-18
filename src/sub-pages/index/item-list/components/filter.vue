@@ -145,15 +145,8 @@
   <div class="filter-modal-wrap" v-if="showPopup">
     <scroll-view scroll-y class="filter-modal">
       <!-- <view class="title">所在区域：{{ city }}</view> -->
-      <div class="condition-list-wrap">
-        <div class="condition-title">
-          商品类型
-          <!-- <div class="more-wrap" @click="showMoreCate = !showMoreCate">
-            全部
-            <i v-if="showMoreCate" class="iconfont icon-xiangshangjiantou"></i>
-            <i v-else class="iconfont icon-xiangxia1"></i>
-          </div> -->
-        </div>
+      <div v-if="categoryList.length > 0" class="condition-list-wrap">
+        <div class="condition-title">商品类型</div>
         <ul class="condition-list">
           <li
             class="condition"
@@ -168,7 +161,7 @@
           </li>
         </ul>
       </div>
-      <div class="condition-list-wrap">
+      <div v-if="brandList.length > 0" class="condition-list-wrap">
         <div class="condition-title">
           商品品牌
           <!-- <div class="more-wrap" @click="showMoreBrand = !showMoreBrand">
@@ -235,12 +228,7 @@
         </ul>
       </div>
 
-      <div
-        class="condition-list-wrap"
-        v-for="(attr, index) in attrList"
-        v-if="attr.dataList.length"
-        :key="index"
-      >
+      <div class="condition-list-wrap" v-for="(attr, index) in attrList" v-if="attr.dataList.length" :key="index">
         <div class="condition-title">
           {{ attr.name }}
           <div class="more-wrap" @click="showMoreBrand = !showMoreBrand">

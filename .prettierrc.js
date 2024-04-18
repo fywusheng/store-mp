@@ -1,7 +1,7 @@
 //配置 prettier
 module.exports = {
   // 单行最大长度
-  printWidth: 100,
+  printWidth: 150,
   // 设置编辑器每一个水平缩进的空格数
   tabWidth: 2,
   // 在句尾添加分号
