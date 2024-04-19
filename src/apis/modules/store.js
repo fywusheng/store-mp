@@ -224,7 +224,7 @@ export default {
 			port: '1',
 			url: '/orderAgent/exportOrderInfo',
 			method: 'post',
-			// common:true,
+			common:true,
 			...args
 		})
 	},
@@ -237,7 +237,7 @@ export default {
 			url: '/orderAgent/exportOrderDetail',
 			method: 'post',
 			...args,
-			// common:true
+			common:true
 		})
 	},
 	/**
@@ -249,7 +249,7 @@ export default {
 			url: '/orderAgent/exportSaleExcel',
 			method: 'post',
 			...args,
-			// common:true,
+			common:true,
 		})
 	},
 	/**
@@ -261,7 +261,7 @@ export default {
 			url: '/orderAgent/exportReconciliation',
 			method: 'post',
 			...args,
-			// common:true,
+			common:true,
 		})
 	},
 	/**
