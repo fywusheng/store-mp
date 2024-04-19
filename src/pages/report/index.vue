@@ -181,7 +181,7 @@
 				yearArray: [], //可选年份数组
 				monthArray: [
 					{
-						value:0,
+						value:'全部',
 						text:'全部',
 						disable:false
 					},
@@ -300,14 +300,21 @@
 			selectOrderMonthByYea(e){
 				api.selectOrderMonthByYea({
 					data: {
-						year:e
+						year:e,
+						storeNo:uni.getStorageSync('storeNo'),
 					},
 					success: (data) => {
-						this.monthArray.forEach(item => {
-						    if (data.includes(item.value)) {
-						        item.disable = false;
-						    }
-						});
+						if(data.length !=0){
+							this.monthArray.forEach(item => {
+								data.forEach(it=>{
+									if(item.value == it){
+										item.disable = false;
+									}
+								})
+							});
+						}
+						console.log(this.monthArray)
+						
 					},
 					fail: (err) => {
 						this.$uni.showToast(err.message);
@@ -336,34 +343,42 @@
 					this.$uni.showToast('请选择下单时间');
 					return;
 				}
+				// uni.downloadFile({
+				//   url:'http://192.168.1.187:10188/nepsp-static/orderList-2024-04.xlsx',
+				//   success: function (res) {
+				// 	  console.log("res",res)
+				//     var filePath = res.tempFilePath;
+				//     uni.openDocument({
+				//       filePath: filePath,
+				//       showMenu: true,
+				//       success: function (res) {
+				//         console.log('打开文档成功');
+				//       },
+				// 	  fail:function (err){
+				// 	  	console.log("打开失败",err)
+				// 	  }
+				//     });
+				//   },
+				//   fail:function (err){
+				//   	console.log("下载失败",err)
+				//   }
+				// });
 				try {
+					let data =  Axios.post('/product/getProductSearchList', {
+					  ...Object.assign(params),
+					});
+					console.log("数据",data)
 					api.exportOrderInfo({
 						data: {
 							...params
 						},
 						success: (data) => {
+							console.log("data",data)
 							if(data==''){
 								this.$uni.showToast('暂无可导出数据！');
 								return;
 							}
-							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
-							console.log("3231",fileManagerObj);
-							// 文件存储到本地的路径
-							const filePath = `${wx.env.USER_DATA_PATH}/${new Date().getTime()}.xlsx`
-							console.log("文件路径",filePath)
-							fileManagerObj.writeFile({
-								data: data, // 拿到的arraybuffer数据
-								filePath: filePath,
-								encoding: 'binary',
-								success: (res) => {
-									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("文件路径", filePath)
-									this.viewDoc(filePath)
-								},
-								fail:(err)=>{
-									console.log("rt",err)
-								}
-							})
+							this.viewDoc(data)
 						},
 						fail: (err) => {
 							this.$uni.showToast(err.message);
@@ -399,20 +414,7 @@
 								this.$uni.showToast('暂无可导出数据！');
 								return;
 							}
-							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
-							console.log(fileManagerObj);
-							// 文件存储到本地的路径
-							const filePath = `${wx.env.USER_DATA_PATH}/${new Date().getTime()}.xlsx`
-							fileManagerObj.writeFile({
-								data: data, // 拿到的arraybuffer数据
-								filePath: filePath,
-								encoding: 'binary',
-								success: (res) => {
-									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("文件路径", filePath)
-									this.viewDoc(filePath)
-								}
-							})
+							this.viewDoc(data)
 						},
 						fail: (err) => {
 							console.log("fail1",err)
@@ -446,20 +448,7 @@
 								this.$uni.showToast('暂无可导出数据！');
 								return;
 							}
-							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
-							console.log(fileManagerObj);
-							// 文件存储到本地的路径
-							const filePath = `${wx.env.USER_DATA_PATH}/${new Date().getTime()}.xlsx`
-							fileManagerObj.writeFile({
-								data: data, // 拿到的arraybuffer数据
-								filePath: filePath,
-								encoding: 'binary',
-								success: (res) => {
-									console.log("写出成功", res) // 成功了的话这里会打印 writeFile:ok
-									console.log("文件路径", filePath)
-									this.viewDoc(filePath)
-								}
-							})
+							this.viewDoc(data)
 						},
 						fail: (err) => {
 							console.log("fail",err)
@@ -493,19 +482,7 @@
 								this.$uni.showToast('暂无可导出数据！');
 								return;
 							}
-							const fileManagerObj = uni.getFileSystemManager() // 获取全局的文件管理器
-							console.log(fileManagerObj);
-							// 文件存储到本地的路径
-							const filePath = `${wx.env.USER_DATA_PATH}/${new Date().getTime()}.xlsx`
-							fileManagerObj.writeFile({
-								data: data, // 拿到的arraybuffer数据
-								filePath: filePath,
-								encoding: 'binary',
-								success: (res) => {
-									this.viewDoc(filePath)
-								}
-							})
-
+							this.viewDoc(data)
 						},
 						fail: (err) => {
 							this.$uni.showToast(err.message);
@@ -517,25 +494,18 @@
 			},
 			// 打开文件
 			viewDoc(path) {
-				// uni.openDocument({
-				//   filePath: path,
-				//   showMenu: true,
-				//   success: function (res) {
-				//     console.log('打开文档成功');
-				//   }
-				// });
 				uni.downloadFile({
 				  url: path,
 				  success: function (res) {
 					  console.log("res",res)
 				    var filePath = res.tempFilePath;
-				    // uni.openDocument({
-				    //   filePath: filePath,
-				    //   showMenu: true,
-				    //   success: function (res) {
-				    //     console.log('打开文档成功');
-				    //   }
-				    // });
+				    uni.openDocument({
+				      filePath: filePath,
+				      showMenu: true,
+				      success: function (res) {
+				        console.log('打开文档成功');
+				      }
+				    });
 				  }
 				});
 			},
