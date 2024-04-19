@@ -158,11 +158,11 @@
   export default {
     data() {
       return {
-        tabActive: 0,
+        tabActive: '',
         //tab
         tabList: [
           {
-            id: 0,
+            id: '',
             lable: '全部',
           },
           {
@@ -232,6 +232,8 @@
       // tab切换选择筛选天数
       handleTab(day) {
         this.tabActive = day;
+		this.search.queryStartTime = '';
+		this.search.queryEndTime = '';
         this.getIndexCountByStore();
       },
       //弹出日历
