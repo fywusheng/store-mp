@@ -193,6 +193,7 @@
               encoding: 'base64',
               success: (rs) => {
                 // 线上环境
+<<<<<<< HEAD
                 // uni.request({
                 //   url: 'https://api.hpgjzlinfo.com/nepsp-api/cms/iep/web/cms/imgUpload',
                 //   data: {
@@ -208,6 +209,23 @@
                 //   },
                 // });
                 // return;
+=======
+                uni.request({
+                  url: 'http://192.168.1.187:10088/nepsp-api//cms/iep/web/cms/imgUpload',
+                  data: {
+                    base64String: rs.data,
+                    imageName,
+                    imageExt,
+                  },
+                  method: 'POST',
+                  success: (imgres) => {
+                    const fileData = imgres.data.data;
+                    this.previewList.push(fileData.absoluteUrl);
+                    this.imgList.push(fileData.absoluteUrl);
+                  },
+                });
+                return;
+>>>>>>> 7a563cb (修改上传图片路径)
                 api.imgUpload({
                   data: {
                     base64String: rs.data,
