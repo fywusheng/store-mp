@@ -2,12 +2,7 @@
   <div class="page-service-type">
     <ul class="info-list" v-if="dataForm.returnsItem">
       <li class="item">
-        <img
-          class="item-logo"
-          mode="aspectFit"
-          :lazy-load="true"
-          :src="dataForm.returnsItem.imgUrl"
-        />
+        <img class="item-logo" mode="aspectFit" :lazy-load="true" :src="dataForm.returnsItem.imgUrl" />
         <div class="title">{{ dataForm.returnsItem.productName }}</div>
         <div class="desc">{{ dataForm.returnsItem.skuName }}</div>
         <div class="price">¥{{ dataForm.returnsItem.sellingPrice }}</div>
@@ -44,12 +39,7 @@
       </li>
       <li class="info cont m-b-24">
         <div class="title">问题描述</div>
-        <textarea
-          class="new-remark"
-          v-model="dataForm.remark"
-          placeholder="请描述申请退款/推货退款的原因"
-          placeholder-class="placeholder1"
-        />
+        <textarea class="new-remark" v-model="dataForm.remark" placeholder="请描述申请退款/推货退款的原因" placeholder-class="placeholder1" />
       </li>
       <li class="info cont m-b-24" v-if="returnsType != 1">
         <div class="title">
@@ -57,18 +47,10 @@
           <text class="more">最多三张</text>
         </div>
         <div class="upload-wrap">
-          <img
-            class="btn-upload"
-            @click="chooseImage"
-            src="http://192.168.1.187:10088/static/images/common/icon-camera.png"
-          />
+          <img class="btn-upload" @click="chooseImage" src="http://192.168.1.187:10088/static/images/common/icon-camera.png" />
           <div class="img-wrap" v-for="(preview, index) in previewList" :key="index">
             <img class="img" mode="scaleToFill" :src="preview" />
-            <img
-              class="btn-delete"
-              @click="remove(index)"
-              src="http://192.168.1.187:10088/static/images/common/icon-delete.png"
-            />
+            <img class="btn-delete" @click="remove(index)" src="http://192.168.1.187:10088/static/images/common/icon-delete.png" />
           </div>
         </div>
       </li>
@@ -84,11 +66,7 @@
         <div class="address-desc">*寄回地址将在审核通过后获取</div>
       </li>
       <li class="tips m-b-24">
-        <image
-          class="icon"
-          src="http://192.168.1.187:10088/static/images/common/icon-warning.png"
-          mode=""
-        />
+        <image class="icon" src="http://192.168.1.187:10088/static/images/common/icon-warning.png" mode="" />
         <view class="txt">提交后将进行人工审核,请耐心等待</view>
       </li>
     </ul>
@@ -215,21 +193,21 @@
               encoding: 'base64',
               success: (rs) => {
                 // 线上环境
-                uni.request({
-                  url: 'https://api.hpgjzlinfo.com/nepsp-api/cms/iep/web/cms/imgUpload',
-                  data: {
-                    base64String: rs.data,
-                    imageName,
-                    imageExt,
-                  },
-                  method: 'POST',
-                  success: (imgres) => {
-                    const fileData = imgres.data.data;
-                    this.previewList.push(fileData.absoluteUrl);
-                    this.imgList.push(fileData.absoluteUrl);
-                  },
-                });
-                return;
+                // uni.request({
+                //   url: 'https://api.hpgjzlinfo.com/nepsp-api/cms/iep/web/cms/imgUpload',
+                //   data: {
+                //     base64String: rs.data,
+                //     imageName,
+                //     imageExt,
+                //   },
+                //   method: 'POST',
+                //   success: (imgres) => {
+                //     const fileData = imgres.data.data;
+                //     this.previewList.push(fileData.absoluteUrl);
+                //     this.imgList.push(fileData.absoluteUrl);
+                //   },
+                // });
+                // return;
                 api.imgUpload({
                   data: {
                     base64String: rs.data,
