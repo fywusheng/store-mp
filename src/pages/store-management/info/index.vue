@@ -39,7 +39,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="content">
+		<!-- 422开会需隐藏掉 -->
+		<!-- <view class="content">
 			<view class="title_text">企业佣金信息</view>
 			<view class="info_content">
 				<view class="row flex_r_h">
@@ -51,7 +52,7 @@
 					<view class="desc">{{storeInfo.commissionSettlement}}</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<view class="content">
 			<view class="title_text">企业对公账户信息</view>
 			<view class="info_content">
