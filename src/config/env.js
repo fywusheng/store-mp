@@ -42,6 +42,13 @@ export default {
     test: 'http://192.168.1.187:10000/api',
     production: 'https://api.hpgjzlinfo.com/nepsp-api'
   }[process.env.NODE_ENV],
+  BASE_4: {
+    development: 'http://192.168.1.187:10088',
+  	// development: 'http://192.168.1.187:18888',
+  	// development: 'http://192.168.1.187:10188',
+    test: 'http://192.168.1.187:10000/api',
+    production: 'https://api.hpgjzlinfo.com/nepsp-api'
+  }[process.env.NODE_ENV],
   // http://192.168.1.187:10000/api/ngcmn/wbst/msgtype/list
   // 静态域
   ASSETS: {

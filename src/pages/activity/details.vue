@@ -5,14 +5,14 @@
 		<!-- 门店管理-活动详情 -->
 		<view class="hd_detail">
 			<view class="top">
-				<image :src="info.mainImg" mode="widthFix" class="hd_img"></image>
+				<image :src="info.activityPic" mode="widthFix" class="hd_img"></image>
 				<view class="date">活动时间：{{info.beginTime}}</view>
 			</view>
 			<view class="hd_main">
 				<view class="details">
-					<view class="title">{{info.name}}</view>
+					<view class="title">{{info.activityTitle}}</view>
 					<view class="desc">
-						{{info.description}}
+						{{info.activityDesc}}
 					</view>
 				</view>
 			</view>
@@ -28,15 +28,15 @@
 		data() {
 			return {
 				info:null,//信息
-				orderItem:[] //订单明细
 			}
 		},
 		onLoad(options) {
-			this.queryActivityDetails(options?.id)
+			// this.queryActivityDetails(options?.id)
+			this.info = JSON.parse(options?.details)
 		},
 		methods: {
 			/**
-			 * 获取活动详情
+			 * 获取活动详情==弃用
 			 */
 			queryActivityDetails(id) {
 				let params = {
@@ -57,7 +57,7 @@
 					provider: "weixin",
 					scene: "WXSceneSession",
 					type: 1,
-					summary: this.info.name,
+					summary: this.info.activityTitle,
 					success: function (res) {
 						console.log("success:" + JSON.stringify(res));
 					},

@@ -3,19 +3,19 @@
 <template>
 	<view class="main_content">
 		<!-- 门店管理-活动通知 -->
-		<view class="hd_list" v-for="(item,index) in list" :key="index" @click="handleGoDetails(item.id,item.dqStatus)">
-			<view class="date">{{item.createdTime}}</view>
+		<view class="hd_list" v-for="(item,index) in list" :key="index" @click="handleGoDetails(item,item.dqStatus)">
+			<view class="date">{{item.createTime}}</view>
 			<view class="content">
 				<view class="img">
-					<image :src="item.mainImg" mode="widthFix" class="hd_img"></image>
+					<image :src="item.activityPic" mode="widthFix" class="hd_img"></image>
 					<view class="hdend_mask flex_r_h" v-if="item.dqStatus">
 						<image src="http://192.168.1.187:10088/static/store-mp/hdend_icon.png" mode="widthFix"
 							class="end_img"></image>
 					</view>
 				</view>
 				<view class="hd_main">
-					<view class="hd_title">{{item.name}}</view>
-					<view class="desc">{{item.description}}</view>
+					<view class="hd_title">{{item.activityTitle}}</view>
+					<view class="desc">{{item.activityDesc}}</view>
 				</view>
 			</view>
 		</view>
@@ -58,10 +58,9 @@
 			 * 获取活动列表
 			 */
 			getActivityList() {
-				// {pageNum: 1, pageSize: 15, queryObject: {"auditState":"1"}}
 				let params = {
 					queryObject: {
-						auditState: 1
+						storeNos:uni.getStorageSync('storeNo'),
 					},
 					...this.queryParam
 				};
@@ -104,18 +103,17 @@
 					})
 				} catch (error) {
 					this.status = "noMore";
-					console.log(error);
 				}
 			},
 			/**
 			 * 去详情 handleGoDetails
 			 */
-			handleGoDetails(id, status) {
+			handleGoDetails(items, status) {
 				if (status) {
 					this.$uni.showToast('活动已到期');
 				} else {
 					uni.navigateTo({
-						url: '/pages/activity/details?id=' + id
+						url: '/pages/activity/details?details=' + JSON.stringify(items)
 					})
 				}
 
