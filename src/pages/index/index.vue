@@ -93,7 +93,7 @@
         </view>
       </view>
       <!-- 活动通知 -->
-      <!-- <view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
+      <view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
 				<view class="pic">
 					<image src="http://192.168.1.187:10088/static/store-mp/hdtz-img.png" />
 				</view>
@@ -102,14 +102,14 @@
 					<swiper :indicator-dots="false" :autoplay="true" interval="2500" duration="500"
 			    vertical="true" circular="true">
 						<block v-for="(item,index) in scrollingNews" :key='index'>
-							<swiper-item @click="handleGoDetails(item.id)">
-								<view class='line1'>{{ item.name }}</view>
+							<swiper-item @click="handleGoDetails(item,dqStatus)">
+								<view class='line1'>{{ item.activityTitle }}</view>
 							</swiper-item>
 						</block>
 					</swiper>
 				</view>
 				<view class="iconfont icon-xiangyou" />
-			</view> -->
+			</view>
       <!-- 代客下单 -->
       <view class="dkxd_main flex_r_h">
         <view class="btn_item left flex_r_h" v-if="functionList.length != 0" @click="goDkOrder()">
@@ -198,7 +198,7 @@
     mounted() {
       this.getIndexCountByStore();
       // this.getKhUserInfo()
-      // this.getActivityList()
+      this.getActivityList()
     },
     onLoad(option) {
       this.userId = option?.userId || uni.getStorageSync('userInfo').id;
@@ -269,7 +269,7 @@
       getActivityList() {
         let params = {
           queryObject: {
-            auditState: 1,
+            storeNos:uni.getStorageSync('storeNo'),
           },
           pageNum: 1,
           pageSize: 15,
@@ -306,14 +306,14 @@
       /**
        * 去详情 handleGoDetails
        */
-      handleGoDetails(id, status) {
-        if (status) {
-          this.$uni.showToast('活动已到期');
-        } else {
-          uni.navigateTo({
-            url: '/pages/activity/details?id=' + id,
-          });
-        }
+      handleGoDetails(items, status) {
+      	if (status) {
+      		this.$uni.showToast('活动已到期');
+      	} else {
+      		uni.navigateTo({
+      			url: '/pages/activity/details?details=' + JSON.stringify(items)
+      		})
+      	}
       },
       // 判断是否有代客下单权限
       getFunctionList(id) {
