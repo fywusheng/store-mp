@@ -113,6 +113,20 @@
 				if (status) {
 					this.$uni.showToast('活动已到期');
 				} else {
+					if(items.activityUrl){
+						uni.navigateToMiniProgram({
+							appId:'wxfd6d1a32cce64511',
+							path:items.activityUrl,
+							extraData: {
+								foo: 'bar'
+							},
+							envVersion: 'trial',
+							success(res) {
+								// 打开成功
+							}
+						})
+						return;
+					}
 					uni.navigateTo({
 						url: '/pages/activity/details?details=' + JSON.stringify(items)
 					})

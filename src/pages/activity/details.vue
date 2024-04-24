@@ -2,8 +2,7 @@
 <!-- date：2.15 -->
 <template>
 	<view>
-		<web-view :src="nfo.activityUrl" v-if="info.activityUrl"></web-view>
-		<view class="main_content" v-else>
+		<view class="main_content">
 			<!-- 门店管理-活动详情 -->
 			<view class="hd_detail">
 				<view class="top">
