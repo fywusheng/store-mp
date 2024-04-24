@@ -93,7 +93,7 @@
         </view>
       </view>
       <!-- 活动通知 -->
-      <view class='notice acea-row row-middle row-between' v-if="scrollingNews.length">
+      <view class='notice acea-row row-middle row-between'>
 				<view class="pic">
 					<image src="http://192.168.1.187:10088/static/store-mp/hdtz-img.png" />
 				</view>
@@ -101,6 +101,11 @@
 				<view class='swipers'>
 					<swiper :indicator-dots="false" :autoplay="true" interval="2500" duration="500"
 			    vertical="true" circular="true">
+						<block v-if="scrollingNews.length==0">
+							<swiper-item>
+								<view class='line1'>暂无通知</view>
+							</swiper-item>
+						</block>
 						<block v-for="(item,index) in scrollingNews" :key='index'>
 							<swiper-item @click="handleGoDetails(item,dqStatus)">
 								<view class='line1'>{{ item.activityTitle }}</view>
@@ -108,7 +113,7 @@
 						</block>
 					</swiper>
 				</view>
-				<view class="iconfont icon-xiangyou" />
+				<view class="iconfont icon-xiangyou" v-if="scrollingNews.length!=0" />
 			</view>
       <!-- 代客下单 -->
       <view class="dkxd_main flex_r_h">
@@ -268,29 +273,22 @@
        */
       getActivityList() {
         let params = {
-          queryObject: {
-            storeNos:uni.getStorageSync('storeNo'),
-          },
-          pageNum: 1,
-          pageSize: 15,
+			storeNos:uni.getStorageSync('storeNo'),
+          // queryObject: {
+          //   storeNos:uni.getStorageSync('storeNo'),
+          // },
+          // pageNum: 1,
+          // pageSize: 15,
         };
         this.status = 'loading';
         try {
-          api.getActivityList({
+          api.getActivityListIndex({
             data: {
               ...params,
             },
             success: (data) => {
-              const dayjs = require('dayjs');
-              // 获取当前日期
-              const currentDate = dayjs();
               if (data) {
-                const list = data.list || [];
-                list.forEach((item) => {
-                  item.dqStatus = currentDate.isAfter(dayjs(item.endTime));
-                });
-                const filteredArr = list.filter((activity) => !activity.dqStatus);
-                this.scrollingNews = filteredArr;
+                this.scrollingNews = data;
               }
             },
             fail: (err) => {

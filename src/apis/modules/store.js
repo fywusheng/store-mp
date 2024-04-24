@@ -275,6 +275,14 @@ export default {
 			...args
 		})
 	},
+	getActivityListIndex: function(args = {}) {
+		request({
+			port: '1',
+			url: '/srm/activity/getListByStoreNo',
+			method: 'post',
+			...args
+		})
+	},
 	/**
 	 * 活动详情
 	 */

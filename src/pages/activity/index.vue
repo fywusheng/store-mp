@@ -61,6 +61,7 @@
 				let params = {
 					queryObject: {
 						storeNos:uni.getStorageSync('storeNo'),
+						yn:1
 					},
 					...this.queryParam
 				};

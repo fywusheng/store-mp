@@ -21,7 +21,7 @@ export default {
   onShareTimeline() {
     return {
       title: '优待权益一站办、智能适老跨鸿沟，积分惠老享服务！',
-      path: '/pages/index/index',
+      path: '/pages/activity/details',
       imageUrl: 'http://192.168.1.187:10088/static/common/icon-share.png',
       success(res) {
         uni.showToast({
