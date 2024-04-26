@@ -6,10 +6,16 @@
 		<view class="top">
 			<view class="search flex_r_h">
 				<view class="select">
+					<uni-data-select
+						v-model="dzMonth"
+						placeholder ="选择客户手机号"
+						:localdata="userList"
+						:clear="false"
+					></uni-data-select>
 					<!-- <picker @change="bindPickerChange($event,userList)" :value="index" :range="userList" :range-key="'psName'" >
 						<view class="uni-input">{{userList[index].psName?userList[index].psName:userList[index].phone}}</view>
 					</picker> -->
-					<view class="item"><input type="text" placeholder="输入客户手机号" v-model="phone"/></view>
+					<!-- <view class="item"><input type="text" placeholder="输入客户手机号" v-model="phone"/></view> -->
 					<!-- <image mode="widthFix"  src="http://192.168.1.187:10088/static/store-mp/select_icon.png" class="icon"></image> -->
 				</view>
 				<view class="btn" @click="handleSearch">查询</view>
@@ -351,7 +357,13 @@ import { promises } from 'fs';
 				api.getUserData({
 					data: params,
 					success: (data) => {
-						this.userList = data.list
+						this.userList=  data.list.map(item => {
+							return {
+							  ...item, 
+							  value: item.phone,
+							  text:item.phone 
+							};
+						  });
 						console.log("用户",this.userList)
 					}
 				})
@@ -400,6 +412,9 @@ import { promises } from 'fs';
 </style>
 <style lang="scss" scope>
   @import '~@/styles/base';
+	.uni-select__selector {
+		z-index: 99999999999!important;
+	}
 	.flex_r_h {
 		display: flex;
 		align-items: center;

@@ -63,7 +63,7 @@
 			<view class="table_content" v-for="(item,index) in orderItem" :key="index">
 				<view class="row flex_r_h">
 					<view class="col flex_r_h">
-						<view class="left">LOGO</view>
+						<view class="left">商品图片</view>
 						<view class="right flex_r_h">
 							<image :src="item.imgUrl" class="good_img"></image>
 						</view>
@@ -111,7 +111,7 @@
 			<view class="table_content">
 				<view class="row flex_r_h">
 					<view class="col flex_r_h">
-						<view class="left width200">收货人姓名</view>
+						<view class="left">收货人姓名</view>
 						<view class="right">{{info.receiveName}}</view>
 					</view>
 					<view class="col flex_r_h">
@@ -300,6 +300,7 @@
 						font-weight: 400;
 						color: rgba(0, 0, 0, 0.88);
 						padding: 0 8rpx;
+						word-break: keep-all;
 					}
 
 					.width200 {

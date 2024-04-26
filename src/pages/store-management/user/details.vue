@@ -170,7 +170,7 @@
 						},
 						success: (data) => {
 							if (data) {
-								this.total = data.total;
+								this.total = data.totalCount;
 								const orderList = data.list || [];
 								if (this.queryParam.pageNum == 1) this.orderList = [];
 								if (orderList.length) {
@@ -476,6 +476,7 @@
 			border: 1rpx solid #FF5500;
 			color: #FF5500;
 			text-align: center;
+			@include iphoneAdaptive(m, -20rpx)
 		}
 	}
 </style>

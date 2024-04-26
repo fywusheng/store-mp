@@ -11,7 +11,7 @@
 				<view class="title">{{storeInfo.storeName || ''}}</view>
 				<view class="date">{{storeInfo.periodEndValidity || ''}}合作到期</view>
 				<view class="flex_r_h db_content">
-					<view class="name flex_r_h" v-if="role==2">
+					<view class="name flex_r_h">
 						<image src="http://192.168.1.187:10088/static/store-mp/yg-icon.png" mode="widthFix" class="icon"></image>
 						<view>登录员工：<text>{{userInfo.name || ''}}</text></view>
 					</view>
@@ -185,7 +185,7 @@
 				background: linear-gradient(180deg, #FFE6D9 0%, #FFFFFF 100%);
 				border-radius: 16rpx;
 				border: 2rpx solid #FFFFFF;
-				padding: 28rpx 40rpx;
+				padding: 28rpx 28rpx;
 			}
 			.icon{
 				width: 28rpx;
@@ -200,6 +200,12 @@
 				justify-content: space-between;
 				.name{
 					view{
+						flex:1 ;
+						display: -webkit-box;
+						-webkit-box-orient: vertical; 
+						-webkit-line-clamp: 1;
+						overflow: hidden;
+						text-overflow: ellipsis; 
 						font-size: 28rpx;
 						color: #999999;
 						text{
@@ -208,8 +214,9 @@
 					}
 				}
 				.dz_name{
-					margin-right: 80rpx;
+					margin-right: 5rpx;
 				}
+				
 			}
 			.title{
 				font-size: 40rpx;

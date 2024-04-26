@@ -454,6 +454,6 @@
 		color: #FF5500;
 		padding: 8rpx 0;
 		text-align: center;
-		@include iphoneAdaptive(m, 0rpx)
+		@include iphoneAdaptive(m, -20rpx)
 	}
 </style>
