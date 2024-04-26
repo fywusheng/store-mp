@@ -8,23 +8,12 @@
       <img class="tip" src="http://192.168.1.187:10088/static/images/item-detail/tip.png" />
       <view class="title">很抱歉，您查看的商品已无效！</view>
       <view class="desc">您可以选择浏览其他商品</view>
-      <button type="button" class="btn-view" @click="toHome">看看其他商品</button>
     </view>
 
     <template v-else>
-      <swiper
-        class="banner-list"
-        :circular="true"
-        :autoplay="true"
-        :duration="1000"
-        @change="handleBannerChange"
-      >
+      <swiper class="banner-list" :circular="true" :autoplay="true" :duration="1000" @change="handleBannerChange">
         <swiper-item v-for="(productImg, index) in productImgList" :key="index">
-          <view
-            class="banner"
-            :style="{ backgroundImage: 'url(' + productImg + ')' }"
-            @click="previewImg(index)"
-          ></view>
+          <view class="banner" :style="{ backgroundImage: 'url(' + productImg + ')' }" @click="previewImg(index)"></view>
         </swiper-item>
       </swiper>
       <view class="pointer">{{ currentIndex }}/{{ productImgList.length }}</view>
@@ -32,9 +21,7 @@
         <view class="product-info" :class="product.creditPoints ? 'margTop1' : ''">
           <view class="product-price">
             <view class="sell-price">
-              <span class="span">
-                ¥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}
-              </span>
+              <span class="span">¥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}</span>
             </view>
 
             <!-- 积分商城-到手价 -->
@@ -50,11 +37,7 @@
               <template v-else>
                 <view class="sell-price-label">到手价</view>
 
-                <image
-                  class="member-price-icon"
-                  src="http://192.168.1.187:10088/static/songhui/sub-item/member-price.png"
-                  mode="scaleToFill"
-                />
+                <image class="member-price-icon" src="http://192.168.1.187:10088/static/songhui/sub-item/member-price.png" mode="scaleToFill" />
               </template>
             </template>
 
@@ -64,27 +47,17 @@
           </view>
 
           <!-- 商城项目-会员到手价 -->
-          <view v-if="sceneType === '商品购买' && member" class="no-member-price">
-            ¥{{ selectSize.finalPrice }} 非会员到手价
-          </view>
+          <view v-if="sceneType === '商品购买' && member" class="no-member-price">¥{{ selectSize.finalPrice }} 非会员到手价</view>
 
-          <view
-            v-if="couponList && couponList.length"
-            @click="showModal('couponList')"
-            class="line_j"
-          >
+          <view v-if="couponList && couponList.length" @click="showModal('couponList')" class="line_j">
             <view class="f_w">
               <view class="pres">
                 <view v-if="couponList[0].checkThreshold == 0">
                   {{ `无门槛${couponList[0].denominationStr}元` }}
                 </view>
                 <view v-else>
-                  <span v-if="couponList[0].type == 0">
-                    {{ `满${couponList[0].thresholdValue}减` + couponList[0].denominationStr }}元
-                  </span>
-                  <span v-else-if="couponList[0].type == 1">
-                    {{ `满${couponList[0].thresholdValue}打` + couponList[0].denominationStr }}折
-                  </span>
+                  <span v-if="couponList[0].type == 0">{{ `满${couponList[0].thresholdValue}减` + couponList[0].denominationStr }}元</span>
+                  <span v-else-if="couponList[0].type == 1">{{ `满${couponList[0].thresholdValue}打` + couponList[0].denominationStr }}折</span>
                 </view>
               </view>
               <view class="pres _right" v-if="couponList && couponList.length >= 2">
@@ -92,12 +65,8 @@
                   {{ `无门槛${couponList[1].denominationStr}元` }}
                 </view>
                 <view v-else>
-                  <span v-if="couponList[1].type == 0">
-                    {{ `满${couponList[1].thresholdValue}减` + couponList[1].denominationStr }}元
-                  </span>
-                  <span v-else-if="couponList[1].type == 1">
-                    {{ `满${couponList[1].thresholdValue}打` + couponList[1].denominationStr }}折
-                  </span>
+                  <span v-if="couponList[1].type == 0">{{ `满${couponList[1].thresholdValue}减` + couponList[1].denominationStr }}元</span>
+                  <span v-else-if="couponList[1].type == 1">{{ `满${couponList[1].thresholdValue}打` + couponList[1].denominationStr }}折</span>
                 </view>
               </view>
             </view>
@@ -116,9 +85,7 @@
             <view class="flex_line">
               <view class="item">
                 <view class="g">到手价</view>
-                <view class="g_n">
-                  ￥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}
-                </view>
+                <view class="g_n">￥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}</view>
               </view>
               <view class="item_d">
                 <view class="d">=</view>
@@ -149,9 +116,7 @@
             <view class="flex_line">
               <view class="item">
                 <view class="g">{{ member ? '会员到手价' : '到手价' }}</view>
-                <view class="g_n">
-                  ￥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}
-                </view>
+                <view class="g_n">￥{{ member ? selectSize.memberPrice : selectSize.finalPrice }}</view>
               </view>
               <view class="item_d">
                 <view class="d">=</view>
@@ -196,35 +161,20 @@
             <text class="m-r-24">|</text>
             <text class="m-r-24">运费</text>
             <!-- 全免包邮 -->
-            <text v-if="freight.isPostage === 1 && freight.postage === 0" class="font_value">
-              商家包邮
-            </text>
+            <text v-if="freight.isPostage === 1 && freight.postage === 0" class="font_value">商家包邮</text>
             <!-- 满X元包邮 -->
-            <text
-              v-if="
-                freight.isPostage === 1 && freight.postage > 0 && freight.templates[0].firstPrice
-              "
-              class="font_value freight"
-            >
-              店铺单笔订单不满{{ freight.postage }}元，收运费{{
-                freight.templates[0].firstPrice
-              }}元（请以提交订单时为准）
+            <text v-if="freight.isPostage === 1 && freight.postage > 0 && freight.templates[0].firstPrice" class="font_value freight">
+              店铺单笔订单不满{{ freight.postage }}元，收运费{{ freight.templates[0].firstPrice }}元（请以提交订单时为准）
             </text>
             <!-- 不包邮 -->
-            <text v-if="freight.isPostage === 0" class="font_value">
-              {{ freight.templates[0].firstPrice }}元
-            </text>
+            <text v-if="freight.isPostage === 0" class="font_value">{{ freight.templates[0].firstPrice }}元</text>
             <!-- 未设置运费模版 -->
             <text v-if="!freight" class="font_value">商家承担</text>
           </view>
           <view class="wuliu-info flex">
             <text class="m-r-24">参数</text>
             <text class="text-over">{{ attributeList[0].name + attributeList[0].value }}</text>
-            <image
-              class="icon-right"
-              @click="toAttribute"
-              src="http://192.168.1.187:10088/static/images/common/right-gray.png?a=1"
-            />
+            <image class="icon-right" @click="toAttribute" src="http://192.168.1.187:10088/static/images/common/right-gray.png?a=1" />
           </view>
         </view>
       </view>
@@ -290,18 +240,8 @@
         <view class="right-line"></view>
       </view>
       <view class="detail-img-list">
-        <rich-text
-          class="rich-text"
-          v-if="detailContents.length > 0"
-          :nodes="detailContents"
-        ></rich-text>
-        <img
-          mode="widthFix"
-          :src="img"
-          class="img"
-          v-for="(img, index) in detailImageList"
-          :key="index"
-        />
+        <rich-text class="rich-text" v-if="detailContents.length > 0" :nodes="detailContents"></rich-text>
+        <img mode="widthFix" :src="img" class="img" v-for="(img, index) in detailImageList" :key="index" />
       </view>
 
       <view class="footer">
@@ -349,7 +289,7 @@
       return {
         isIphoneHair: App.isIphoneHair,
         showContact: false,
-        sceneType: '', // 场景类型：适老用品、积分兑换
+        // sceneType: '', // 场景类型：适老用品、积分兑换
         productId: '',
         freight: {}, // 运费模版
         product: null,
@@ -417,6 +357,9 @@
       member() {
         return this.userInfo && this.userInfo.memberStatus === '1';
       },
+      sceneType() {
+        return this.product.isCreditPoints === 1 ? '积分兑换' : '商品购买';
+      },
       // 积分抵扣金额
       pointDiscountPoint() {
         return this.member ? this.product.pointDiscountPoint : this.product.registerPoint;
@@ -451,15 +394,15 @@
         });
       },
       toHome() {
-        if (this.sceneType === '适老用品') {
-          uni.navigateTo({
-            url: '/sub-pages/index/index/main',
-          });
-        } else {
-          uni.navigateTo({
-            url: '/sub-pages/point/index/index',
-          });
-        }
+        // if (this.sceneType === '适老用品') {
+        //   uni.navigateTo({
+        //     url: '/sub-pages/index/index/main',
+        //   });
+        // } else {
+        //   uni.navigateTo({
+        //     url: '/sub-pages/point/index/index',
+        //   });
+        // }
       },
       // 门店列表
       async getStoreList() {
@@ -514,14 +457,11 @@
           return false;
         }
         uni.showLoading('正在提交...');
-        const result = await Axios.get(
-          !this.isAttention ? 'brand/addconcern' : 'brand/delconcern',
-          {
-            params: {
-              id: this.product.brand.id,
-            },
+        const result = await Axios.get(!this.isAttention ? 'brand/addconcern' : 'brand/delconcern', {
+          params: {
+            id: this.product.brand.id,
           },
-        );
+        });
         uni.hideLoading();
         if (result.code == 200) {
           this.isAttention = !this.isAttention;
@@ -560,12 +500,9 @@
           return false;
         }
         uni.showLoading('正在提交...');
-        const result = await Axios.post(
-          this.product.isCollected == 1 ? '/product/deleteFavorites' : '/product/addFavorites',
-          {
-            id: this.productId,
-          },
-        );
+        const result = await Axios.post(this.product.isCollected == 1 ? '/product/deleteFavorites' : '/product/addFavorites', {
+          id: this.productId,
+        });
         uni.hideLoading();
         if (result.code == 200) {
           this.product.isCollected = this.product.isCollected == 1 ? 0 : 1;
@@ -737,7 +674,7 @@
     async onShow() {
       console.info('query:', this);
       this.productId = this.$scope.options.id;
-      this.sceneType = this.$scope.options.sceneType;
+      // this.sceneType = this.$scope.options.sceneType;
       this.loadData();
     },
   };

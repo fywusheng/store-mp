@@ -249,20 +249,11 @@
               src="http://192.168.1.187:10088/static/pay/icon-radio-default.png"
               mode=""
             ></image>
-            <view class="header-title" @click="goStoreDetail(el)">{{ el.storeName }}</view>
-            <image
-              class="icon-right"
-              src="http://192.168.1.187:10088/static/images/common/icon-right.png"
-              mode=""
-            ></image>
+            <view class="header-title" @click="goStoreDetail(el)">{{ showStoreName(el.storeName) }}</view>
+            <image class="icon-right" src="http://192.168.1.187:10088/static/images/common/icon-right.png" mode=""></image>
           </view>
           <view class="panel-body">
-            <view
-              class="product-list"
-              :class="{ disabled: item.soldOut }"
-              v-for="(product, subIndex) in el.carts"
-              :key="product.id"
-            >
+            <view class="product-list" :class="{ disabled: item.soldOut }" v-for="(product, subIndex) in el.carts" :key="product.id">
               <view v-if="product.soldOut">
                 <image
                   v-if="product.checked"
@@ -288,13 +279,7 @@
                 mode=""
                 @click="tolDetail(product)"
               ></image>
-              <image
-                v-else
-                class="product-img"
-                :src="product.imgUrl"
-                mode=""
-                @click="tolDetail(product)"
-              ></image>
+              <image v-else class="product-img" :src="product.imgUrl" mode="" @click="tolDetail(product)"></image>
 
               <view class="product-item-right">
                 <view class="product-name" @click="tolDetail(product)">
@@ -315,27 +300,15 @@
                   </view>
                 </view>
               </view>
-              <img
-                class="btn-delete"
-                src="http://192.168.1.187:10088/static/images/cart/delete.png"
-                @click="deleteItem(product)"
-              />
+              <img class="btn-delete" src="http://192.168.1.187:10088/static/images/cart/delete.png" @click="deleteItem(product)" />
             </view>
           </view>
         </view>
         <div class="cart-footer-block"></div>
         <div v-if="itemList.length" class="cart-footer">
           <div class="checkbox" @click="changeSelectAll">
-            <img
-              class="icon-img"
-              v-if="selectAll"
-              src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png"
-            />
-            <img
-              class="icon-img"
-              v-else
-              src="http://192.168.1.187:10088/static/pay/icon-radio-default.png"
-            />
+            <img class="icon-img" v-if="selectAll" src="http://192.168.1.187:10088/static/pay/icon-radio-checked.png" />
+            <img class="icon-img" v-else src="http://192.168.1.187:10088/static/pay/icon-radio-default.png" />
             全选
           </div>
           <div class="total">
@@ -423,6 +396,13 @@
       },
     },
     methods: {
+      showStoreName(name) {
+        if (name === '商品购买') {
+          return uni.getStorageSync('userInfo').shStoreDTO.storeName;
+        } else {
+          return name;
+        }
+      },
       goStoreDetail(store) {
         uni.navigateTo({
           url: '/sub-pages/index/store/main?supplierId=' + store.storeId,
@@ -588,8 +568,7 @@
       },
       tolDetail(product) {
         wx.navigateTo({
-          url:
-            '/sub-pages/index/item/main?id=' + product.productId + '&sceneType=' + this.sceneType,
+          url: '/sub-pages/index/item/main?id=' + product.productId + '&sceneType=' + this.sceneType,
         });
       },
       deleteItem(product) {
