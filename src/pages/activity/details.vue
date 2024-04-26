@@ -1,26 +1,29 @@
 <!-- author by liushuag -->
 <!-- date：2.15 -->
 <template>
-	<view class="main_content">
-		<!-- 门店管理-活动详情 -->
-		<view class="hd_detail">
-			<view class="top">
-				<image :src="info.mainImg" mode="widthFix" class="hd_img"></image>
-				<view class="date">活动时间：{{info.beginTime}}</view>
-			</view>
-			<view class="hd_main">
-				<view class="details">
-					<view class="title">{{info.name}}</view>
-					<view class="desc">
-						{{info.description}}
+	<view>
+		<view class="main_content">
+			<!-- 门店管理-活动详情 -->
+			<view class="hd_detail">
+				<view class="top">
+					<image :src="info.activityPic" mode="widthFix" class="hd_img"></image>
+					<view class="date">活动时间：{{info.beginTime}} 至 {{info.endTime}}</view>
+				</view>
+				<view class="hd_main">
+					<view class="details">
+						<view class="title">{{info.activityTitle}}</view>
+						<view class="desc">
+							{{info.activityDesc}}
+						</view>
 					</view>
 				</view>
 			</view>
-		</view>
-		<view class="footer">
-			<view class="share_btn" @click="onShare">分享活动</view>
+			<view class="footer">
+				 <button open-type="share" class="share_btn">分享活动</button>
+			</view>
 		</view>
 	</view>
+	
 </template>
 <script>
 	import api from '@/apis/index.js';
@@ -28,15 +31,35 @@
 		data() {
 			return {
 				info:null,//信息
-				orderItem:[] //订单明细
 			}
 		},
 		onLoad(options) {
-			this.queryActivityDetails(options?.id)
+			// this.queryActivityDetails(options?.id)
+			
+			this.info = JSON.parse(options?.details)
+			console.log(this.info)
+		},
+		onShareAppMessage() {
+		  return {
+		    title: this.info.activityTitle,
+		    path:  '/pages/activity/details?details=' + JSON.stringify(this.info),
+		    imageUrl:  this.info.activityPic,
+		    success(res) {
+		      uni.showToast({
+		        title: '分享成功'
+		      })
+		    },
+		    fail(res) {
+		      uni.showToast({
+		        title: '分享失败',
+		        icon: 'none'
+		      })
+		    }
+		  }
 		},
 		methods: {
 			/**
-			 * 获取活动详情
+			 * 获取活动详情==弃用
 			 */
 			queryActivityDetails(id) {
 				let params = {
@@ -52,20 +75,7 @@
 					}
 				})
 			},
-			onShare(){
-				uni.share({
-					provider: "weixin",
-					scene: "WXSceneSession",
-					type: 1,
-					summary: this.info.name,
-					success: function (res) {
-						console.log("success:" + JSON.stringify(res));
-					},
-					fail: function (err) {
-						console.log("fail:" + JSON.stringify(err));
-					}
-				});
-			}
+			
 			
 		}
 	}

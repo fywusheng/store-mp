@@ -52,8 +52,8 @@ export default {
 		justify-content: center;
 		align-items: center;
 		.logo{
-			width: 452rpx;
-			height: 176rpx;
+			width: 434rpx;
+			height: 140rpx;
 			margin-top: 110rpx;
 		}
 		.desc{

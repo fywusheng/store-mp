@@ -270,7 +270,15 @@ export default {
 	getActivityList: function(args = {}) {
 		request({
 			port: '1',
-			url: '/marketing/promotion/activity/list',
+			url: '/srm/activity/listByPageNo',
+			method: 'post',
+			...args
+		})
+	},
+	getActivityListIndex: function(args = {}) {
+		request({
+			port: '1',
+			url: '/srm/activity/getListByStoreNo',
 			method: 'post',
 			...args
 		})
