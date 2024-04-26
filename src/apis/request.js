@@ -68,8 +68,6 @@ export function request({
 		data
     }
 	headers.accessToken = uni.getStorageSync('token')
-  }else if(port == 5){
-	  baseURL =  ENV.BASE_4
   }
   // const baseURL = ENV.BASE_API
   const request = {
