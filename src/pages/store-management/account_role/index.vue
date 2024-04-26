@@ -447,6 +447,7 @@
 		    let params = {
 				queryObject:{
 					...this.accountParmas,
+					storeNo:uni.getStorageSync('storeNo'),
 				},
 				pageNum:this.pageNum,
 				pageSize:this.pageSize

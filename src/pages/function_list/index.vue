@@ -66,7 +66,7 @@
 			</navigator> -->
 				<!-- :url="item.path" -->
 			<view :class="'item' +' ' +'item_'+item.id"
-			 v-for="(item,index) in functionList" :key="index" @click="goToPage(item.path,item.id)">
+			 v-for="(item,index) in functionList" :key="index" @click="goToPage(item.path,item.id)" v-if="item.id!=4">
 				<view class="title">{{item.pemissonName}}</view>
 				<view class="go flex_r_h">立即前往<image :src="staticUrl+'/store-mp/qw-icon.png'" mode="widthFix" class="icon"></image></view>
 				<image :src="staticUrl+item.iconUrl" mode="widthFix" class="img"></image>
