@@ -269,8 +269,8 @@ export default {
 	 */
 	getActivityList: function(args = {}) {
 		request({
-			port: '5',
-			url: '/nepsp-api-server/srm/sh/activity/listByPageNo',
+			port: '1',
+			url: '/srm/activity/listByPageNo',
 			method: 'post',
 			...args
 		})
