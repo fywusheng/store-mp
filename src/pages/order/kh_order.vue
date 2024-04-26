@@ -7,7 +7,7 @@
 			<view class="search flex_r_h">
 				<view class="select">
 					<uni-data-select
-						v-model="dzMonth"
+						v-model="phone"
 						placeholder ="选择客户手机号"
 						:localdata="userList"
 						:clear="false"

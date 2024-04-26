@@ -114,7 +114,8 @@
 				api.getPermissonList({
 				  data: {},
 				  success: (data) => {
-					  this.pemissionList = data
+					  this.pemissionList = data.filter(item=>item.id!=4)
+					  console.log(this.pemissionList)
 				  },
 				  fail: (err) => {
 					this.$uni.showToast(err.message);
@@ -241,7 +242,7 @@
 				margin-top: 30rpx;
 
 				checkbox-group {
-					justify-content: space-between;
+					justify-content: flex-start;
 					flex-wrap: wrap;
 				}
 

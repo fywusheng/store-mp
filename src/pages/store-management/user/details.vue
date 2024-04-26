@@ -392,6 +392,7 @@
 			padding: 34rpx;
 			background: #FFFFFF;
 			.list{
+				padding-bottom: 80rpx;
 				.item{
 					background: #FFFFFF;
 					border-radius: 16rpx;
