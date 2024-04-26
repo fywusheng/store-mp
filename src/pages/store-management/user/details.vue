@@ -471,13 +471,13 @@
 			left: 0;
 			right: 0;
 			width: 100%;
-			height: 50rpx;
-			line-height: 50rpx;
+			height: 60rpx;
+			line-height: 60rpx;
 			background: #FFEEE6;
 			border: 1rpx solid #FF5500;
 			color: #FF5500;
 			text-align: center;
-			@include iphoneAdaptive(m, -20rpx)
+			@include iphoneAdaptive(m, -5rpx)
 		}
 	}
 </style>
