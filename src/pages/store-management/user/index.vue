@@ -37,7 +37,7 @@
 						<view class="shp_name flex_r_h">
 							<view>姓名：{{item.psnName}}</view>
 						</view>
-						<view :class="memberType==1?'status wc':'status qx'">{{memberType==1?'会员':'用户'}}</view>
+						<view :class="item.memberType==1?'status wc':'status qx'">{{item.memberType==1?'会员':'用户'}}</view>
 					</view>
 					<view class="or_content flex_r_h">
 						<view class="left">
