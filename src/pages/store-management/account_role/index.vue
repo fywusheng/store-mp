@@ -264,7 +264,8 @@
 	        let params = {
 				queryObject:{
 					name:this.keyword,
-					status:1
+					status:1,
+					storeNo:uni.getStorageSync('storeNo'),
 				},
 				pageNum:this.pageNum,
 				pageSize:this.pageSize
@@ -308,7 +309,8 @@
 		queryRoleListNopage() {
 		    let params = {
 				queryObject:{
-					name:''
+					name:'',
+					storeNo:uni.getStorageSync('storeNo')
 				},
 				pageNum:1,
 				pageSize:10000

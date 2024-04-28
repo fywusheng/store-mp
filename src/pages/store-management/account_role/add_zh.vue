@@ -132,7 +132,8 @@
 			queryRoleList() {
 			    let params = {
 					queryObject:{
-						name:''
+						name:'',
+						storeNo:uni.getStorageSync('storeNo'),
 					},
 					pageNum:1,
 					pageSize:100000
