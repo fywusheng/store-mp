@@ -1,6 +1,6 @@
 export default {
   // 版本号
-  VERSION: '1.4.7',
+  VERSION: '1.0.0',
   // 环境常量
   NODE_ENV: process.env.NODE_ENV,
   NODE_ENV_DEVELOPMENT: process.env.NODE_ENV === 'development',

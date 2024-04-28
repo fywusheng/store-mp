@@ -24,8 +24,8 @@
       </view>
       <view class="dl_info flex_r_h">
         <view class="info flex_r_h">
-          <view class="yg_name" v-if="role == 2">登录员工 ： {{ userInfo.name || '' }}</view>
-          <view class="h-icon" v-if="role == 2">|</view>
+          <view class="yg_name">登录员工 ： {{ userInfo.name || '' }}</view>
+          <view class="h-icon">|</view>
           <view class="">店长：{{ storeInfo.storeManagerName || '' }}</view>
         </view>
         <image
@@ -305,13 +305,27 @@
        * 去详情 handleGoDetails
        */
       handleGoDetails(items, status) {
-      	if (status) {
-      		this.$uni.showToast('活动已到期');
-      	} else {
-      		uni.navigateTo({
-      			url: '/pages/activity/details?details=' + JSON.stringify(items)
-      		})
-      	}
+		if (status) {
+			this.$uni.showToast('活动已到期');
+		} else {
+			if(items.activityUrl){
+				uni.navigateToMiniProgram({
+					appId:'wxfd6d1a32cce64511',
+					path:items.activityUrl,
+					extraData: {
+						foo: 'bar'
+					},
+					envVersion: 'trial',
+					success(res) {
+						// 打开成功
+					}
+				})
+				return;
+			}
+			uni.navigateTo({
+				url: '/pages/activity/details?details=' + JSON.stringify(items)
+			})
+		}
       },
       // 判断是否有代客下单权限
       getFunctionList(id) {

@@ -170,7 +170,7 @@
 						},
 						success: (data) => {
 							if (data) {
-								this.total = data.total;
+								this.total = data.totalCount;
 								const orderList = data.list || [];
 								if (this.queryParam.pageNum == 1) this.orderList = [];
 								if (orderList.length) {
@@ -392,6 +392,7 @@
 			padding: 34rpx;
 			background: #FFFFFF;
 			.list{
+				padding-bottom: 80rpx;
 				.item{
 					background: #FFFFFF;
 					border-radius: 16rpx;
@@ -470,12 +471,13 @@
 			left: 0;
 			right: 0;
 			width: 100%;
-			height: 50rpx;
-			line-height: 50rpx;
+			height: 60rpx;
+			line-height: 60rpx;
 			background: #FFEEE6;
 			border: 1rpx solid #FF5500;
 			color: #FF5500;
 			text-align: center;
+			@include iphoneAdaptive(m, -5rpx)
 		}
 	}
 </style>

@@ -2,7 +2,7 @@
 	<view class="main">
 		<image src="http://192.168.1.187:10088/static/store-mp/logo.png" class="logo"></image>
 		<view class="desc">
-			<view class="name">松辉医疗门店管理助手</view>
+			<view class="name">松辉云康门店管理助手</view>
 			<view class="version">当前版本{{version}}</view>
 		</view>
 	</view>

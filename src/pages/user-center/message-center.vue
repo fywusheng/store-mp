@@ -18,7 +18,7 @@
         <image class="accessory" mode="scaleToFill"
           src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
       </view>
-      <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(1)">
+    <!--  <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(1)">
         <image class="icon" mode="scaleToFill"
           src="http://192.168.1.187:10088/static/user-center/icon-user-center-service-message.png" />
         <view class="info flex-v m-0-32 flex-1">
@@ -34,7 +34,7 @@
         </text>
         <image class="accessory" mode="scaleToFill"
           src="http://192.168.1.187:10088/static/common/icon-common-arrow-rightward-grey.png" />
-      </view>
+      </view> -->
       <view class="item flex-h flex-c-b p-0-32 bg-white" @click="handleItemClick(2)">
         <image class="icon" mode="scaleToFill"
           src="http://192.168.1.187:10088/static/user-center/icon-user-center-system-notice.png" />
@@ -83,6 +83,7 @@ export default {
         this.info.serviceMessage.msgTypeName,
         this.info.systemMessage.msgTypeName
       ]
+	  
       const types = [3, 1, 2]
       uni.navigateTo({
         url: '/pages/user-center/message-list',

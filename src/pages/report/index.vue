@@ -90,7 +90,7 @@
 			</view>
 			<view class="btn" @click="exportSaleExcel">导出</view>
 		</view>
-		<view class="content zindexd">
+		<!-- <view class="content zindexd">
 			<view class="title_text">对账报表导出</view>
 			<view class="search flex_r_h">
 				<view class="date flex_r_h">
@@ -125,7 +125,7 @@
 				</radio-group>
 			</view>
 			<view class="btn" @click="exportReconciliation">导出</view>
-		</view>
+		</view> -->
 		<!-- 日期选择框 -->
 		<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true"
 			@confirm="confirmDate" />
