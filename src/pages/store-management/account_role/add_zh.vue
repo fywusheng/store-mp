@@ -184,6 +184,7 @@
 				   ...this.accountParams
 				  },
 				  success: (data) => {
+					  
 					  if(this.type === 'add'){
 					  	this.$uni.showToast("该账号新建成功！");
 					  }else{
