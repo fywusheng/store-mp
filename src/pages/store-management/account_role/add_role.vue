@@ -147,7 +147,8 @@
 				let params = {
 					name:this.name,
 					summary:this.summary,
-					rolePemissonId:this.rolePemissonId.toString()
+					rolePemissonId:this.rolePemissonId.toString(),
+					storeNo:uni.getStorageSync('storeNo'),
 				}
 				if(this.type=='edit') params= {...params,id:this.roleId}
 				api.saveRole({

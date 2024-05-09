@@ -41,7 +41,8 @@ export default {
 		request({
 			url: '/srm/sh/user/saveUser',
 			method: 'post',
-			...args
+			...args,
+			code:true
 		})
 	},
 
@@ -302,6 +303,17 @@ export default {
 		request({
 			port: '1',
 			url: '/orderAgent/selectOrderMonthByYear',
+			method: 'post',
+			...args
+		})
+	},
+	/**
+	 * 获取门店分类
+	 */
+	getStoreCategoryList: function(args = {}) {
+		request({
+			port: '1',
+			url: '/category/getStoreCategoryList',
 			method: 'post',
 			...args
 		})

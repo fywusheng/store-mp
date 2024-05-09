@@ -45,6 +45,7 @@
   </view>
 </template>
 <script>
+  import api from '@/apis/index.js';
   export default {
     components: {},
     data() {
@@ -69,14 +70,27 @@
     methods: {
       // 请求数据
       async loadData() {
-        const { code, data } = await Axios.post('/category/getCategoryList', {
-          type: 2,
-        });
-        if (code === '200') {
-          this.categoryList = data;
-        } else {
-          this.uni.showToast(msg);
-        }
+     //    const { code, data } = await Axios.post('/category/getStoreCategoryList', {
+     //      // type: 2,
+		   // businessScope: uni.getStorageSync('userInfo').shStoreDTO.businessScope,
+     //    });
+     //    if (code === '200') {
+     //      this.categoryList = data;
+     //    } else {
+     //      this.uni.showToast(msg);
+     //    }
+		 api.getStoreCategoryList({
+		   data: {
+				businessScope: JSON.parse(uni.getStorageSync('userInfo').shStoreDTO.businessScope),
+		   },
+		   success: (data) => {
+			  console.log("分类")
+			  this.categoryList = data;
+		   },
+		   fail: (err) => {
+			 this.$uni.showToast(err.msg);
+		   },
+		 })
       },
 
       // 去列表页

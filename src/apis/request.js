@@ -100,7 +100,9 @@ export function request({
           const result = response.data
           if (result.code == 0 || result.code == 200) {
             success(result.data)
-          } else {
+          } else if(result.code == 20005){
+			  showToast('手机号重复，请检查输入或联系管理员')
+		  }else {
             // 如果传入了 fail 回调则调用 fail 回调, 否则统一提示
             if (fail) {
               // 调用 fail 回调

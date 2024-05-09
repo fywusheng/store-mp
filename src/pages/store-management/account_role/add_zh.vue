@@ -132,7 +132,8 @@
 			queryRoleList() {
 			    let params = {
 					queryObject:{
-						name:''
+						name:'',
+						storeNo:uni.getStorageSync('storeNo'),
 					},
 					pageNum:1,
 					pageSize:100000
@@ -183,6 +184,7 @@
 				   ...this.accountParams
 				  },
 				  success: (data) => {
+					  
 					  if(this.type === 'add'){
 					  	this.$uni.showToast("该账号新建成功！");
 					  }else{

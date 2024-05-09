@@ -51,7 +51,7 @@
 								<view class="label">注册时间：</view><text class="desc">{{item.crteTime}}</text>
 							</view>
 							<view class="flex_r_h">
-								<view class="label">默认地址：</view><text class="desc">{{item.districtArea}}</text>
+								<view class="label">默认地址：</view><text class="desc">{{item.address}}</text>
 							</view>
 						</view>
 					</view>
