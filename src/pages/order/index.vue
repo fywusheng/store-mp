@@ -58,6 +58,7 @@
 		<view class="loading">
 			<uni-load-more :status="status" :content-text="loadText"></uni-load-more>
 		</view>
+			<view class="footer_bottom">合计共{{total}}条</view>
 		<view>
 			<!-- 日期选择框 -->
 			<uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" 
@@ -117,7 +118,8 @@
 					pageNum: 1,
 					pageSize: 10,
 				},
-				dateSelect:''
+				dateSelect:'',
+				total:0
 			};
 		},
 		created() {
@@ -171,6 +173,7 @@
 							console.log("整理前数据", data)
 							if (data) {
 								console.log("数据", data)
+								this.total = data.totalCount
 								const orderList = data.list || [];
 								if (this.queryParam.pageNum == 1) this.orderList = [];
 								if (orderList.length) {
@@ -439,5 +442,17 @@
 				}
 			}
 		}
+	}
+	.footer_bottom{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #FFEEE6;
+		border: 1rpx solid #FF5500;
+		color: #FF5500;
+		padding: 10rpx 0 20rpx 0;
+		text-align: center;
+		@include iphoneAdaptive(m, -5rpx)
 	}
 </style>

@@ -71,7 +71,7 @@
       // 请求数据
       async loadData() {
      //    const { code, data } = await Axios.post('/category/getStoreCategoryList', {
-     //      // type: 2,
+     //    // type: 2,
 		   // businessScope: uni.getStorageSync('userInfo').shStoreDTO.businessScope,
      //    });
      //    if (code === '200') {
@@ -79,7 +79,7 @@
      //    } else {
      //      this.uni.showToast(msg);
      //    }
-		 api.getStoreCategoryList({
+		api.getStoreCategoryList({
 		   data: {
 				businessScope: JSON.parse(uni.getStorageSync('userInfo').shStoreDTO.businessScope),
 		   },
@@ -105,7 +105,6 @@
           url: '/sub-pages/index/search/main',
         });
       },
-
       handleImgLoadFail(item) {
         item.iconUrl = ENV.IMG_DEFAULT;
       },
