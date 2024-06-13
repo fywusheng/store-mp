@@ -849,6 +849,24 @@
           }
         },
         {
+          "path": "brokerage",
+          "style": {
+            "navigationStyle": "default",
+            "navigationBarTitleText": "商品佣金",
+            "navigationBarBackgroundColor": "#fff",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "brokerage-info",
+          "style": {
+            "navigationStyle": "default",
+            "navigationBarTitleText": "佣金明细",
+            "navigationBarBackgroundColor": "#fff",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
           "path": "discount-detail",
           "style": {
             "navigationBarTitleText": "优惠说明",
