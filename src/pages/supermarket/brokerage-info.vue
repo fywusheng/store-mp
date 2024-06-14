@@ -3,39 +3,58 @@
 <template>
   <view class="main_content">
     <!-- 门店管理-订单管理 -->
-    <view class="top">
+    <!-- <view class="top">
       <view class="form flex_r_h">
         <view class="item"><input type="text" placeholder="输入商品编码" v-model="queryParam.orderId" /></view>
         <view class="item"><input type="text" placeholder="输入商品名称" v-model="queryParam.userLoginName" /></view>
         <view class="btn" @click="handSearch">查询</view>
       </view>
-    </view>
+    </view> -->
     <view class="order_content">
       <view class="list">
         <!-- 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ） -->
+        <view class="item main">
+          <view class="item-top">
+            <image class="logo" src="" mode="scaleToFill" />
+            <view class="right">
+              <view class="r-t">
+                <view class="name">松辉健康理疗仪-2024款全名称两行情况</view>
+                <view class="label">销售中</view>
+                <!-- <view class="label wait">待上架</view> -->
+              </view>
+              <view class="sku">PRD100234311233123</view>
+            </view>
+          </view>
+          <!-- <view class="line"></view>
+          <view class="bottom flex_r_h">
+            <view class="sale-price">销售价：¥345.00</view>
+            <view class="brokerage-price">佣金：¥45.00</view>
+          </view> -->
+        </view>
         <view class="item" v-for="(item, index) in orderList" :key="index">
           <view class="item-top">
             <image class="logo" src="" mode="scaleToFill" />
             <view class="right">
               <view class="r-t">
-                <view class="name">松辉健康理疗仪-2024款…</view>
+                <view class="name">SKU规格：512G/曜石黑</view>
                 <!-- <view class="label ">销售中</view> -->
-                <view class="label wait">待上架</view>
+                <!-- <view class="label wait">待上架</view> -->
               </view>
-              <view class="sku">PRD100234311233123</view>
+              <view class="sku">SKU编码：PRD100234311233123</view>
             </view>
           </view>
           <view class="line"></view>
           <view class="bottom flex_r_h">
-            <view class="details_btn" @click.stop="handleGoDetails(item.orderId)">查看佣金</view>
+            <view class="sale-price">销售价：¥345.00</view>
+            <view class="brokerage-price">佣金：¥45.00</view>
           </view>
         </view>
       </view>
     </view>
-    <view class="loading">
+    <!-- <view class="loading">
       <uni-load-more :status="status" :content-text="loadText"></uni-load-more>
-    </view>
-    <view class="footer_bottom">合计共{{ total }}条</view>
+    </view> -->
+    <!-- <view class="footer_bottom">合计共{{ total }}条</view> -->
     <view>
       <!-- 日期选择框 -->
       <uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true" @confirm="confirmDate" />
@@ -329,6 +348,20 @@
           border-radius: 16rpx;
           padding: 24rpx;
           margin-bottom: 24rpx;
+          &.main {
+            .item-top {
+              .right {
+                .r-t {
+                  .name {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    white-space: unset;
+                  }
+                }
+              }
+            }
+          }
           .item-top {
             display: flex;
             align-items: center;
@@ -377,6 +410,9 @@
                   }
                 }
               }
+              .sku {
+                color: #909399;
+              }
             }
           }
 
@@ -390,18 +426,15 @@
           .bottom {
             padding: 24rpx 0 0 0;
             justify-content: space-between;
-            flex-direction: row-reverse;
-
-            .details_btn {
-              text-align: center;
-              font-size: 32rpx;
-              font-weight: 500;
+            font-family: PingFangSC, PingFang SC;
+            font-weight: 500;
+            font-size: 28rpx;
+            font-style: normal;
+            .sale-price {
+              color: #909399;
+            }
+            .brokerage-price {
               color: #ff5500;
-              width: 198rpx;
-              height: 68rpx;
-              line-height: 68rpx;
-              border-radius: 36rpx;
-              border: 2rpx solid #ff5500;
             }
           }
         }
