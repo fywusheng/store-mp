@@ -349,6 +349,9 @@
           padding: 24rpx;
           margin-bottom: 24rpx;
           &.main {
+            border: 1rpx solid #ff5500;
+            background: linear-gradient(180deg, #fff8f4 0%, #ffffff 100%);
+            // border-image: linear-gradient(180deg, rgba(255, 85, 0, 1), rgba(255, 85, 0, 0)) 1 1;
             .item-top {
               .right {
                 .r-t {
