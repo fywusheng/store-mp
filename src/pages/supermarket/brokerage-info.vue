@@ -2,51 +2,37 @@
 <!-- date：2.15 -->
 <template>
   <view class="main_content">
-    <!-- 门店管理-订单管理 -->
-    <!-- <view class="top">
-      <view class="form flex_r_h">
-        <view class="item"><input type="text" placeholder="输入商品编码" v-model="queryParam.orderId" /></view>
-        <view class="item"><input type="text" placeholder="输入商品名称" v-model="queryParam.userLoginName" /></view>
-        <view class="btn" @click="handSearch">查询</view>
-      </view>
-    </view> -->
     <view class="order_content">
       <view class="list">
-        <!-- 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ） -->
         <view class="item main">
           <view class="item-top">
-            <image class="logo" src="" mode="scaleToFill" />
+            <image class="logo" :src="productInfo.mainImgUrl" mode="scaleToFill" />
             <view class="right">
               <view class="r-t">
-                <view class="name">松辉健康理疗仪-2024款全名称两行情况</view>
-                <view class="label">销售中</view>
-                <!-- <view class="label wait">待上架</view> -->
+                <view class="name">{{ productInfo.name }}</view>
+                <view v-if="[5, 61].includes(productInfo.saleState)" class="label">销售中</view>
+                <view v-if="[6, 51].includes(productInfo.saleState)" class="label wait">待上架</view>
               </view>
-              <view class="sku">PRD100234311233123</view>
+              <view class="sku">{{ productInfo.code }}</view>
             </view>
           </view>
-          <!-- <view class="line"></view>
-          <view class="bottom flex_r_h">
-            <view class="sale-price">销售价：¥345.00</view>
-            <view class="brokerage-price">佣金：¥45.00</view>
-          </view> -->
         </view>
-        <view class="item" v-for="(item, index) in orderList" :key="index">
+        <view class="item" v-for="(item, index) in specSkuList" :key="index">
           <view class="item-top">
-            <image class="logo" src="" mode="scaleToFill" />
+            <image class="logo" :src="item.imgUrl" mode="scaleToFill" />
             <view class="right">
               <view class="r-t">
-                <view class="name">SKU规格：512G/曜石黑</view>
+                <view class="name">SKU规格：{{ item.specs }}</view>
                 <!-- <view class="label ">销售中</view> -->
                 <!-- <view class="label wait">待上架</view> -->
               </view>
-              <view class="sku">SKU编码：PRD100234311233123</view>
+              <view class="sku">SKU编码：{{ item.code }}</view>
             </view>
           </view>
           <view class="line"></view>
           <view class="bottom flex_r_h">
-            <view class="sale-price">销售价：¥345.00</view>
-            <view class="brokerage-price">佣金：¥45.00</view>
+            <view class="sale-price">销售价：¥{{ item.sellingPrice.toFixed(2) }}</view>
+            <view class="brokerage-price">佣金：¥{{ item.commissionPrice.toFixed(2) }}</view>
           </view>
         </view>
       </view>
@@ -57,7 +43,7 @@
     <!-- <view class="footer_bottom">合计共{{ total }}条</view> -->
     <view>
       <!-- 日期选择框 -->
-      <uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true" @confirm="confirmDate" />
+      <!-- <uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true" @confirm="confirmDate" /> -->
     </view>
   </view>
 </template>
@@ -106,7 +92,9 @@
         },
         // 数据列表
         orderList: [[], [], []],
+        specSkuList: [],
         show: false,
+        productInfo: {},
         mode: 'date',
         queryParam: {
           pageNum: 1,
@@ -120,7 +108,9 @@
     mounted() {
       // this.queryOrderList();
     },
-    onLoad(e) {},
+    onLoad(e) {
+      this.queryOrderList(e.productId);
+    },
     methods: {
       clearIcon: function () {
         this.dateSelect = '';
@@ -147,49 +137,37 @@
       /**
        * 获取订单列表
        */
-      queryOrderList() {
-        let params = {
-          storeNo: uni.getStorageSync('storeNo'),
-          // storeNo: '1',
-          ...this.queryParam,
-          // orderId:"CO20221220152139642"
-        };
-        this.status = 'loading';
-        try {
-          api.getUserOrderList({
-            data: {
-              ...params,
-            },
-            success: (data) => {
-              console.log('整理前数据', data);
-              if (data) {
-                console.log('数据', data);
-                this.total = data.totalCount;
-                const orderList = data.list || [];
-                if (this.queryParam.pageNum == 1) this.orderList = [];
-                if (orderList.length) {
-                  this.orderList = this.orderList.concat(orderList);
-                  this.status = data.totalPages > data.pageNum ? 'more' : 'noMore';
-                } else {
-                  this.status = 'noMore';
+      async queryOrderList(productId) {
+        this.loading = true;
+        this.specSkuList = [];
+        const result = await Axios.post('/product/get', { id: productId });
+        this.loading = false;
+        if (result.code == 200) {
+          if (result.data) {
+            this.specSkuList = [];
+            result.data.skuList.forEach((ele) => {
+              if (ele.skuAndPriceList) {
+                ele.skuAndPriceList.forEach((s) => {
+                  s.specs = ele.firstClassAttrName + '/' + s.subClassAttrName;
+                  s.saleState = ele.saleState;
+                  s.imgUrl = ele.imgUrlList[0];
+                  this.saleState = ele.saleState == 5;
+                  this.specSkuList.push(s);
+                });
+                if (ele.imgUrlList && ele.imgUrlList.length > 0) {
+                  ele.specImgUrlList = [];
+                  var index = 0;
+                  ele.imgUrlList.forEach((img) => {
+                    ele.specImgUrlList.push({ name: index++, url: img });
+                  });
                 }
-                if (this.orderList.length == 0) {
-                  this.status = 'noMore';
-                }
-              } else {
-                this.orderList = [];
-                this.status = 'noMore';
+                ele.hideUploadCard = ele.imgUrlList && ele.imgUrlList.length >= 3 ? true : false;
               }
-            },
-            fail: (err) => {
-              this.$uni.showToast(err.message);
-              uni.stopPullDownRefresh();
-              uni.hideLoading();
-            },
-          });
-        } catch (error) {
-          this.status = 'noMore';
-          console.log(error);
+            });
+            this.productInfo = result.data;
+          }
+        } else {
+          this.$message.error(result.msg);
         }
       },
       /**
@@ -340,7 +318,7 @@
     }
 
     .order_content {
-      padding: 34rpx;
+      padding: 22rpx;
 
       .list {
         .item {
@@ -373,7 +351,6 @@
               width: 120rpx;
               height: 120rpx;
               border-radius: 8rpx;
-              background: #fa7532;
               margin-right: 24rpx;
             }
             .right {

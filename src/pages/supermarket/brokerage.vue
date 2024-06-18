@@ -5,29 +5,28 @@
     <!-- 门店管理-订单管理 -->
     <view class="top">
       <view class="form flex_r_h">
-        <view class="item"><input type="text" placeholder="输入商品编码" v-model="queryParam.orderId" /></view>
-        <view class="item"><input type="text" placeholder="输入商品名称" v-model="queryParam.userLoginName" /></view>
+        <view class="item"><input type="text" placeholder="输入商品编码" v-model="queryParam.queryObject.code" /></view>
+        <view class="item"><input type="text" placeholder="输入商品名称" v-model="queryParam.queryObject.name" /></view>
         <view class="btn" @click="handSearch">查询</view>
       </view>
     </view>
     <view class="order_content">
       <view class="list">
-        <!-- 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ） -->
         <view class="item" v-for="(item, index) in orderList" :key="index">
           <view class="item-top">
-            <image class="logo" src="" mode="scaleToFill" />
+            <image class="logo" :src="item.mainImgUrl" mode="scaleToFill" />
             <view class="right">
               <view class="r-t">
-                <view class="name">松辉健康理疗仪-2024款…</view>
-                <!-- <view class="label ">销售中</view> -->
-                <view class="label wait">待上架</view>
+                <view class="name">{{ item.name }}</view>
+                <view v-if="[5, 61].includes(item.saleState)" class="label">销售中</view>
+                <view v-if="[6, 51].includes(item.saleState)" class="label wait">待上架</view>
               </view>
-              <view class="sku">PRD100234311233123</view>
+              <view class="sku">{{ item.code }}</view>
             </view>
           </view>
           <view class="line"></view>
           <view class="bottom flex_r_h">
-            <view class="details_btn" @click.stop="handleGoDetails(item.orderId)">查看佣金</view>
+            <view class="details_btn" @click.stop="handleGoDetails(item.id)">查看佣金</view>
           </view>
         </view>
       </view>
@@ -48,37 +47,7 @@
     data() {
       return {
         showClearIcon: false,
-        // 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ）
-        tabList: [
-          {
-            value: '',
-            text: '全部',
-          },
-          {
-            value: 10,
-            text: '待付款',
-          },
-          {
-            value: 20,
-            text: '待发货',
-          },
-          {
-            value: 30,
-            text: '待收货',
-          },
-          {
-            value: 40,
-            text: '已完成',
-          },
-          {
-            value: 90,
-            text: '已取消',
-          },
-          {
-            value: 100,
-            text: '退款/售后',
-          },
-        ], //tab
+
         status: 'more',
         loadText: {
           contentdown: '轻轻上拉',
@@ -92,6 +61,11 @@
         queryParam: {
           pageNum: 1,
           pageSize: 10,
+          queryObject: {
+            queryType: 5,
+            name: '',
+            code: '',
+          },
         },
         dateSelect: '',
         total: 0,
@@ -99,7 +73,7 @@
     },
     created() {},
     mounted() {
-      // this.queryOrderList();
+      this.queryOrderList();
     },
     onLoad(e) {},
     methods: {
@@ -128,46 +102,28 @@
       /**
        * 获取订单列表
        */
-      queryOrderList() {
-        let params = {
-          storeNo: uni.getStorageSync('storeNo'),
-          // storeNo: '1',
-          ...this.queryParam,
-          // orderId:"CO20221220152139642"
-        };
-        this.status = 'loading';
+      async queryOrderList() {
         try {
-          api.getUserOrderList({
-            data: {
-              ...params,
-            },
-            success: (data) => {
-              console.log('整理前数据', data);
-              if (data) {
-                console.log('数据', data);
-                this.total = data.totalCount;
-                const orderList = data.list || [];
-                if (this.queryParam.pageNum == 1) this.orderList = [];
-                if (orderList.length) {
-                  this.orderList = this.orderList.concat(orderList);
-                  this.status = data.totalPages > data.pageNum ? 'more' : 'noMore';
-                } else {
-                  this.status = 'noMore';
-                }
-                if (this.orderList.length == 0) {
-                  this.status = 'noMore';
-                }
-              } else {
-                this.orderList = [];
-                this.status = 'noMore';
-              }
-            },
-            fail: (err) => {
-              this.$uni.showToast(err.message);
-              uni.stopPullDownRefresh();
-              uni.hideLoading();
-            },
-          });
+          const result = await Axios.post('/product/listByPageNo', this.queryParam);
+          console.log('result: ', result);
+
+          if (result.data) {
+            this.total = result.data.totalCount;
+            const orderList = result.data.list || [];
+            if (this.queryParam.pageNum == 1) this.orderList = [];
+            if (orderList.length) {
+              this.orderList = this.orderList.concat(orderList);
+              this.status = result.data.totalPages > result.data.pageNum ? 'more' : 'noMore';
+            } else {
+              this.status = 'noMore';
+            }
+            if (this.orderList.length == 0) {
+              this.status = 'noMore';
+            }
+          } else {
+            this.orderList = [];
+            this.status = 'noMore';
+          }
         } catch (error) {
           this.status = 'noMore';
           console.log(error);
@@ -178,7 +134,7 @@
        */
       handleGoDetails(id) {
         uni.navigateTo({
-          url: '/pages/supermarket/brokerage-info?orderId=' + id,
+          url: '/pages/supermarket/brokerage-info?productId=' + id,
         });
       },
       // 查询
@@ -337,7 +293,6 @@
               width: 120rpx;
               height: 120rpx;
               border-radius: 8rpx;
-              background: #fa7532;
               margin-right: 24rpx;
             }
             .right {
