@@ -1,8 +1,5 @@
-<!-- author by liushuag -->
-<!-- date：2.15 -->
 <template>
   <view class="main_content">
-    <!-- 门店管理-订单管理 -->
     <view class="top">
       <view class="form flex_r_h">
         <view class="item"><input type="text" placeholder="输入商品编码" v-model="queryParam.queryObject.code" /></view>
@@ -35,19 +32,12 @@
       <uni-load-more :status="status" :content-text="loadText"></uni-load-more>
     </view>
     <view class="footer_bottom">合计共{{ total }}条</view>
-    <view>
-      <!-- 日期选择框 -->
-      <uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true" @confirm="confirmDate" />
-    </view>
   </view>
 </template>
 <script>
-  import api from '@/apis/index.js';
   export default {
     data() {
       return {
-        showClearIcon: false,
-
         status: 'more',
         loadText: {
           contentdown: '轻轻上拉',
@@ -55,9 +45,7 @@
           contentnomore: '我是有底线的',
         },
         // 数据列表
-        orderList: [[], [], []],
-        show: false,
-        mode: 'date',
+        orderList: [],
         queryParam: {
           pageNum: 1,
           pageSize: 10,
@@ -67,7 +55,6 @@
             code: '',
           },
         },
-        dateSelect: '',
         total: 0,
       };
     },
@@ -77,28 +64,6 @@
     },
     onLoad(e) {},
     methods: {
-      clearIcon: function () {
-        this.dateSelect = '';
-        this.queryParam.startTime = '';
-        this.queryParam.endTime = '';
-        this.showClearIcon = false;
-      },
-      /**
-       * 打开时间
-       */
-      selectDate() {
-        this.$refs.calendar.open();
-      },
-      confirmDate(obj) {
-        if (obj.range.data.length == 0) {
-          this.$uni.showToast('请选择时间区间范围');
-          return;
-        }
-        this.queryParam.startTime = obj.range.data[0];
-        this.queryParam.endTime = obj.range.data[obj.range.data.length - 1];
-        this.dateSelect = obj.range.data[0] + '~' + obj.range.data[obj.range.data.length - 1];
-        this.showClearIcon = true;
-      },
       /**
        * 获取订单列表
        */
@@ -186,6 +151,7 @@
   }
 
   .main_content {
+    padding-bottom: 80rpx;
     .top {
       padding: 24rpx 32rpx;
       background: #fff;
@@ -278,6 +244,7 @@
 
     .order_content {
       padding: 34rpx;
+      padding-bottom: 0;
 
       .list {
         .item {

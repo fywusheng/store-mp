@@ -1,5 +1,3 @@
-<!-- author by liushuag -->
-<!-- date：2.15 -->
 <template>
   <view class="main_content">
     <view class="order_content">
@@ -37,71 +35,14 @@
         </view>
       </view>
     </view>
-    <!-- <view class="loading">
-      <uni-load-more :status="status" :content-text="loadText"></uni-load-more>
-    </view> -->
-    <!-- <view class="footer_bottom">合计共{{ total }}条</view> -->
-    <view>
-      <!-- 日期选择框 -->
-      <!-- <uni-calendar ref="calendar" class="uni-calendar--hook" :clear-date="true" :insert="false" :range="true" @confirm="confirmDate" /> -->
-    </view>
   </view>
 </template>
 <script>
-  import api from '@/apis/index.js';
   export default {
     data() {
       return {
-        showClearIcon: false,
-        // 状态（0:未知 10：待付款 20：代发货 30：待收货 40：已完成 50：已评价 90：订单取消、手动取消、系统自动取消 100：交易取消 ）
-        tabList: [
-          {
-            value: '',
-            text: '全部',
-          },
-          {
-            value: 10,
-            text: '待付款',
-          },
-          {
-            value: 20,
-            text: '待发货',
-          },
-          {
-            value: 30,
-            text: '待收货',
-          },
-          {
-            value: 40,
-            text: '已完成',
-          },
-          {
-            value: 90,
-            text: '已取消',
-          },
-          {
-            value: 100,
-            text: '退款/售后',
-          },
-        ], //tab
-        status: 'more',
-        loadText: {
-          contentdown: '轻轻上拉',
-          contentrefresh: '努力加载中',
-          contentnomore: '我是有底线的',
-        },
-        // 数据列表
-        orderList: [[], [], []],
         specSkuList: [],
-        show: false,
         productInfo: {},
-        mode: 'date',
-        queryParam: {
-          pageNum: 1,
-          pageSize: 10,
-        },
-        dateSelect: '',
-        total: 0,
       };
     },
     created() {},
@@ -109,38 +50,17 @@
       // this.queryOrderList();
     },
     onLoad(e) {
-      this.queryOrderList(e.productId);
+      this.id = e.productId;
+      this.queryOrderList();
     },
     methods: {
-      clearIcon: function () {
-        this.dateSelect = '';
-        this.queryParam.startTime = '';
-        this.queryParam.endTime = '';
-        this.showClearIcon = false;
-      },
-      /**
-       * 打开时间
-       */
-      selectDate() {
-        this.$refs.calendar.open();
-      },
-      confirmDate(obj) {
-        if (obj.range.data.length == 0) {
-          this.$uni.showToast('请选择时间区间范围');
-          return;
-        }
-        this.queryParam.startTime = obj.range.data[0];
-        this.queryParam.endTime = obj.range.data[obj.range.data.length - 1];
-        this.dateSelect = obj.range.data[0] + '~' + obj.range.data[obj.range.data.length - 1];
-        this.showClearIcon = true;
-      },
       /**
        * 获取订单列表
        */
-      async queryOrderList(productId) {
+      async queryOrderList() {
         this.loading = true;
         this.specSkuList = [];
-        const result = await Axios.post('/product/get', { id: productId });
+        const result = await Axios.post('/product/get', { id: this.id });
         this.loading = false;
         if (result.code == 200) {
           if (result.data) {
@@ -170,29 +90,10 @@
           this.$message.error(result.msg);
         }
       },
-      /**
-       * 去订单详情 handleGoDetails
-       */
-      handleGoDetails(id) {
-        uni.navigateTo({
-          url: '/pages/order/details?orderId=' + id,
-        });
-      },
-      // 查询
-      handSearch() {
-        this.queryParam.pageNum = 1;
-        this.queryOrderList();
-      },
     },
-    // 上拉加载
-    onReachBottom() {
-      if (this.status === 'noMore') return;
-      this.queryParam.pageNum++;
-      this.queryOrderList();
-    },
+
     //下拉刷新
     onPullDownRefresh() {
-      this.queryParam.pageNum = 1;
       this.queryOrderList();
       setTimeout(function () {
         uni.stopPullDownRefresh();
