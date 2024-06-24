@@ -178,9 +178,10 @@
   }
   .main_content {
     width: 750rpx;
-    height: 1190rpx;
+    // height: 1190rpx;
     background: linear-gradient(180deg, #fe5a08 0%, rgba(254, 89, 6, 0) 100%);
     position: relative;
+    // padding-bottom: 100rpx;
     .top {
       padding: 24rpx 32rpx;
       position: relative;
