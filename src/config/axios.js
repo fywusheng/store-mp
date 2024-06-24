@@ -4,7 +4,7 @@ Axios.interceptors.request.use(request => {
   const headers = {
     'content-type': 'application/json;charset=utf-8',
     'accessToken': uni.getStorageSync('khUserInfo').accessToken,
-    'channel': uni.getSystemInfoSync().app
+    'channel': uni.getSystemInfoSync().host.env,
   }
   request.headers = Object.assign(headers, request.headers)
   return request
